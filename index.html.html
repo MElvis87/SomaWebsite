@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soma 3D-Education</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="favicon.png">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #3a0ca3;
+            --accent: #4cc9f0;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #4bb543;
+            --bg-color: #f5f7fb;
+            --text-color: #212529;
+            --card-bg: #ffffff;
+            --header-bg: rgba(255, 255, 255, 0.95);
+            --footer-bg: #212529;
+            --footer-text: rgba(255, 255, 255, 0.7);
+            --muted-text: #6c757d;
+        }
+        
+        [data-theme="dark"] {
+            --bg-color: #121212;
+            --text-color: #e9ecef;
+            --card-bg: #1e1e1e;
+            --header-bg: rgba(30, 30, 30, 0.95);
+            --footer-bg: #0a0a0a;
+            --footer-text: rgba(255, 255, 255, 0.7);
+            --light: #2d2d2d;
+            --muted-text: #a0a0a0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            padding-top: 80px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        /* Navigation Bar */
+        .navbar {
+            background: var(--header-bg);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 12px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar-brand img {
+            height: 40px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link {
+            font-weight: 500;
+            margin: 0 8px;
+            color: var(--text-color) !important;
+            transition: all 0.2s ease;
+            border-radius: 6px;
+            padding: 8px 16px !important;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            background-color: rgba(67, 97, 238, 0.1);
+            color: var(--primary) !important;
+        }
+        
+        .dropdown-menu {
+            border: none;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            padding: 8px;
+            background-color: var(--card-bg);
+        }
+        
+        .dropdown-item {
+            border-radius: 8px;
+            padding: 10px 16px;
+            margin: 2px 0;
+            color: var(--text-color);
+        }
+        
+        .dropdown-item:hover {
+            background-color: rgba(67, 97, 238, 0.1);
+            color: var(--primary);
+        }
+        
+        .search-form {
+            max-width: 300px;
+        }
+        
+        .search-form .form-control {
+            border-radius: 50px;
+            padding: 10px 20px;
+            border: 1px solid #e0e0e0;
+            transition: all 0.3s ease;
+            background-color: var(--card-bg);
+            color: var(--text-color);
+        }
+        
+        .search-form .form-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 0.25rem rgba(67, 97, 238, 0.25);
+        }
+        
+        .profile-dropdown img {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .profile-dropdown:hover img {
+            border-color: var(--primary);
+        }
+        
+        /* Theme Toggle Switch */
+        .theme-toggle {
+            display: flex;
+            align-items: center;
+            margin-right: 15px;
+        }
+        
+        .theme-toggle-label {
+            margin: 0 10px;
+            font-size: 0.9rem;
+            color: var(--text-color);
+        }
+        
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+        
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 24px;
+        }
+        
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .slider {
+            background-color: var(--primary);
+        }
+        
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+        
+        /* Main Content */
+        .hero-section {
+            background: url('bio.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            color: white;
+            border-radius: 20px;
+            padding: 60px 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(67, 97, 238, 0.3);
+        }
+        
+        .card {
+            border: none;
+            border-radius: 16px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            margin-bottom: 24px;
+            overflow: hidden;
+            background-color: var(--card-bg);
+        }
+
+        
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-header {
+            background-color: white;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            padding: 20px 25px;
+            color: var(--text-color);
+        }
+
+        [data-theme="dark"] .card-header {
+            background-color: #0057a8; /* Dark blue background */
+            color: #4de1ff;
+        }
+
+        [data-theme="dark"] .card-header h2 {
+            color: #4de1ff;
+        }
+
+        [data-theme="dark"] .card-header .text-muted {
+            color: black;
+        }
+
+        [data-theme="dark"] .card-header .fa-graduation-cap {
+            color: #4de1ff;
+        }
+        
+        .accordion-button {
+            background-color: var(--card-bg);
+            padding: 18px 25px;
+            font-weight: 600;
+            color: var(--text-color);
+            border: none;
+            box-shadow: none;
+        }
+        
+        .accordion-button:not(.collapsed) {
+            background-color: rgba(67, 97, 238, 0.05);
+            color: var(--primary);
+        }
+        
+        .accordion-button:focus {
+            box-shadow: none;
+            border-color: rgba(0,0,0,.125);
+        }
+        
+        .accordion-body {
+            padding: 25px;
+            color: var(--text-color);
+        }
+
+        [data-theme="dark"] .accordion-body {
+        /* Specific dark mode overrides for accordion body */
+        background-color: #091c47;
+        color: white;
+        border-top: 1px solid #333; /* Add subtle separation */
+        }
+        
+
+
+        /* UPDATED: Sketchfab Model Container - RESPONSIVE DIMENSIONS */
+        .model-container {
+            background-color: var(--light);
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        /* UPDATED: Responsive iframe container */
+        .responsive-iframe-container {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            overflow: hidden;
+            border-radius: 8px;
+            background: var(--light);
+        }
+        
+        .responsive-iframe-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        /* UPDATED: Sketchfab embed wrapper styling */
+        .sketchfab-embed-wrapper {
+            width: 100%;
+        }
+        
+        .sketchfab-embed-wrapper p {
+            font-size: 13px;
+            font-weight: normal;
+            margin: 5px 0;
+            color: var(--text-color);
+            text-align: center;
+            padding: 10px;
+        }
+        
+        .sketchfab-embed-wrapper a {
+            font-weight: bold;
+            color: #1CAAD9;
+            text-decoration: none;
+        }
+        
+        .sketchfab-embed-wrapper a:hover {
+            text-decoration: underline;
+        }
+        
+        .model-placeholder {
+            color: var(--text-color);
+            text-align: center;
+            padding: 20px;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .model-placeholder i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .highlight {
+            background-color: #fff9c4;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+        
+        .subject-badge {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        
+        /* Search Navigation Controls */
+        .search-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 10px 15px;
+            background-color: var(--light);
+            border-radius: 8px;
+        }
+        
+        .search-info {
+            font-size: 0.9rem;
+            color: var(--text-color);
+        }
+        
+        .search-nav-buttons button {
+            margin-left: 8px;
+        }
+        
+        /* Scroll to Top Button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .scroll-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .scroll-to-top:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        /* Mobile adjustments */
+        @media (max-width: 768px) {
+            .model-placeholder {
+                height: 300px;
+            }
+            
+            .search-navigation {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .search-nav-buttons {
+                display: flex;
+                justify-content: center;
+                width: 100%;
+            }
+        }
+        
+        /* Small mobile adjustments */
+        @media (max-width: 576px) {
+            .model-placeholder {
+                height: 250px;
+            }
+            
+            .theme-toggle {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: var(--footer-bg);
+            color: white;
+            padding: 60px 0 30px;
+            margin-top: 60px;
+        }
+        
+        .footer h5 {
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .footer a {
+            color: var(--footer-text);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer a:hover {
+            color: white;
+        }
+        
+        .social-icons a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 992px) {
+            .search-form {
+                max-width: 100%;
+                margin: 15px 0;
+            }
+            
+            .hero-section {
+                padding: 40px 20px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .navbar-brand img {
+                height: 32px;
+            }
+            
+            .hero-section {
+                text-align: center;
+                padding: 30px 20px;
+            }
+        }
+        
+        /* Search result styling */
+        .search-match {
+            background-color: #fff9c4 !important;
+            font-weight: 600;
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            color: var(--muted-text);
+        }
+        
+        /* Demo new content styles */
+        .new-content {
+            background-color: #e8f4fd;
+            border-left: 4px solid var(--primary);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+
+        [data-theme="dark"] .new-content {
+        background-color: #1a3a5f; /* Dark blue background */
+        border-left: 4px solid var(--accent); /* Use accent color */
+        color: #4de1ff;
+        }
+        
+        .key-points {
+            background-color: #f0f9ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        [data-theme="dark"] .key-points {
+        background-color: #1a3a5f; /* Dark blue background */
+        border-left: 4px solid var(--accent); /* Use accent color */
+        color: #4de1ff;
+        }
+        
+        .key-points ul {
+            margin-bottom: 0;
+        }
+        
+        /* Text Muted Fix for Dark Mode */
+        .text-muted {
+            color: var(--muted-text) !important;
+        }
+        
+        /* Navbar Toggler Icon Fix for Dark Mode */
+        .navbar-toggler {
+            border-color: var(--text-color);
+        }
+        
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2833, 37, 41, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+        
+        [data-theme="dark"] .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28233, 236, 239, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <!-- Logo -->
+            <a class="navbar-brand" href="#">
+                <img src="logo.png" alt="LearnSphere Logo">
+            </a>
+            
+            <!-- Mobile Toggle Button -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <!-- Navbar Content -->
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <!-- Navigation Links -->
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#"><i class="fas fa-home me-1"></i> Home</a>
+                    </li>
+                    
+                    <!-- Subjects Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="subjectsDropdown" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-book me-1"></i> Subjects
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="index.html"><i class="fas fa-dna me-2"></i> Biology</a></li>
+                            <li><a class="dropdown-item" href="3dgeo.html"><i class="fas fa-globe-americas me-2"></i> Geography</a></li>
+                            <li><a class="dropdown-item" href="3dphysics.html"><i class="fas fa-atom me-2"></i> Physics</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-address-card me-1"></i> About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-envelope me-1"></i> Contact Us</a>
+                    </li>
+                </ul>
+                
+                <!-- Theme Toggle -->
+                <div class="theme-toggle me-3">
+                    <span class="theme-toggle-label"><i class="fas fa-sun"></i></span>
+                    <label class="switch">
+                        <input type="checkbox" id="themeToggle">
+                        <span class="slider"></span>
+                    </label>
+                    <span class="theme-toggle-label"><i class="fas fa-moon"></i></span>
+                </div>
+                
+                <!-- Search Bar -->
+                <form class="d-flex search-form me-3" id="searchForm">
+                    <div class="input-group">
+                        <input class="form-control" type="search" placeholder="Search topics..." id="searchInput">
+                        <button class="btn btn-outline-primary" type="submit"><i class="fas fa-search"></i></button>
+                    </div>
+                </form>
+                
+                <!-- Profile Dropdown -->
+                <div class="dropdown profile-dropdown">
+                    <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" id="profileDropdown" data-bs-toggle="dropdown">
+                        <img src="https://i.pravatar.cc/150?img=12" alt="Profile">
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="#"><i class="fas fa-user-circle me-2"></i> Account</a></li>
+                        <li><a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i> Settings</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt me-2"></i> Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <br>
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h1 class="display-4 fw-bold mb-3">Learn Biology with 3D Models</h1>
+                    <p class="lead mb-4">Explore complex concepts through interactive 3D visualizations from Sketchfab. Our LMS brings learning to life with immersive educational experiences.</p>
+                    <a href="#" class="btn btn-light btn-lg px-4 py-2 fw-bold">Start Learning Now</a>
+                </div>
+                <div class="col-lg-4 text-center">
+                    <i class="fas fa-cube" style="font-size: 10rem; opacity: 0.8;"></i>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Search Navigation (initially hidden) -->
+        <div class="search-navigation" id="searchNavigation" style="display: none;">
+            <div class="search-info" id="searchInfo">0 results found</div>
+            <div class="search-nav-buttons">
+                <button class="btn btn-sm btn-outline-primary" id="prevResult"><i class="fas fa-chevron-up"></i> Previous</button>
+                <button class="btn btn-sm btn-outline-primary" id="nextResult">Next <i class="fas fa-chevron-down"></i></button>
+                <button class="btn btn-sm btn-outline-secondary" id="clearSearch">Clear Search</button>
+            </div>
+        </div>
+        
+        <!-- Main Card -->
+        <div class="card">
+            <div class="card-header">
+                <h2 class="h3 mb-0"><i class="fas fa-graduation-cap me-2 text-primary"></i> Learning Modules</h2>
+                <p class="text-muted mb-0 mt-2">Browse through our interactive learning modules with embedded 3D models</p>
+            </div>
+            
+            <!-- Accordion -->
+            <div class="accordion accordion-flush" id="topicsAccordion">
+                <!-- Topic 1 -->
+                <div class="accordion-item" data-topic="biology">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                            <span class="subject-badge me-3">Biology</span> Human Anatomy: Skeletal System
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#topicsAccordion">
+                        <div class="accordion-body">
+                            <h4>Understanding the Human Skeleton</h4>
+                            <p>The human skeleton is the internal framework of the body. It is composed of around 270 bones at birth – this total decreases to around 206 bones by adulthood after some bones have fused together. The bone mass in the skeleton reaches maximum density around age 21.</p>
+                            
+                            <!-- NEW CONTENT EXAMPLE - This will now be searchable -->
+                            <div class="new-content">
+                                <h5>New Research Findings</h5>
+                                <p>Recent studies have shown that bone density can be maintained through proper nutrition and weight-bearing exercises. Calcium and Vitamin D are essential nutrients for bone health.</p>
+                            </div>
+                            
+                            <div class="key-points">
+                                <h6>Key Learning Objectives:</h6>
+                                <ul>
+                                    <li>Identify major bones in the human body</li>
+                                    <li>Understand bone development and growth</li>
+                                    <li>Learn about common skeletal disorders</li>
+                                    <li>Explore the role of minerals in bone health</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="model-container">
+                                <h6>Model of a Kipoli Van</h6>
+                                <!-- UPDATED: Responsive Sketchfab Embedding -->
+                                <div class="sketchfab-embed-wrapper">
+                                    <div class="responsive-iframe-container">
+                                        <iframe title="Kamaz" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/9edac45856a34dfeb1326b61d3d69a74/embed">
+                                        </iframe>
+                                    </div>
+                                    <p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;">
+                                        <a href="https://sketchfab.com/3d-models/kamaz-9edac45856a34dfeb1326b61d3d69a74?utm_medium=embed&utm_campaign=share-popup&utm_content=9edac45856a34dfeb1326b61d3d69a74" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">Kamaz</a>
+                                        by <a href="https://sketchfab.com/Korolv?utm_medium=embed&utm_campaign=share-popup&utm_content=9edac45856a34dfeb1326b61d3d69a74" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">Korolv</a>
+                                        on <a href="https://sketchfab.com?utm_medium=embed&utm_campaign=share-popup&utm_content=9edac45856a34dfeb1326b61d3d69a74" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a>
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div class="d-flex justify-content-between align-items-center mt-4">
+                                <div>
+                                    <span class="badge bg-primary me-2"><i class="fas fa-clock me-1"></i> 15 min</span>
+                                    <span class="badge bg-success"><i class="fas fa-check-circle me-1"></i> Beginner</span>
+                                </div>
+                                <button class="btn btn-primary"><i class="fas fa-play me-1"></i> Start Lesson</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Topic 2 -->
+                <div class="accordion-item" data-topic="biology">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                            <span class="subject-badge me-3">Biology</span> Cell Structure and Organelles
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#topicsAccordion">
+                        <div class="accordion-body">
+                            <h4>Exploring the Building Blocks of Life</h4>
+                            <p>Cells are the basic building blocks of all living things. The human body is composed of trillions of cells. They provide structure for the body, take in nutrients from food, convert those nutrients into energy, and carry out specialized functions.</p>
+                            
+                            <div class="model-container">
+                                <!-- PLACEHOLDER FOR SKETCHFAB MODEL -->
+                                <div class="model-placeholder">
+                                    <i class="fas fa-cube"></i>
+                                    <h5>Animal Cell 3D Model</h5>
+                                    <p>Embedded from Sketchfab</p>
+                                    <small>This model shows the detailed structure of a typical animal cell</small>
+                                </div>
+                            </div>
+                            
+                            <div class="d-flex justify-content-between align-items-center mt-4">
+                                <div>
+                                    <span class="badge bg-primary me-2"><i class="fas fa-clock me-1"></i> 20 min</span>
+                                    <span class="badge bg-warning text-dark"><i class="fas fa-exclamation-circle me-1"></i> Intermediate</span>
+                                </div>
+                                <button class="btn btn-primary"><i class="fas fa-play me-1"></i> Start Lesson</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Topic 3 -->
+                <div class="accordion-item" data-topic="geography">
+                    <h2 class="accordion-header" id="headingThree">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
+                            <span class="subject-badge me-3">Geography</span> Earth's Geological Formations
+                        </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#topicsAccordion">
+                        <div class="accordion-body">
+                            <h4>Understanding Earth's Structure</h4>
+                            <p>The Earth's crust is divided into several tectonic plates that are constantly moving. This movement creates various geological formations such as mountains, valleys, and volcanoes. The study of these formations helps us understand Earth's history and predict geological events.</p>
+                            
+                            <div class="model-container">
+                                <!-- PLACEHOLDER FOR SKETCHFAB MODEL -->
+                                <div class="model-placeholder">
+                                    <i class="fas fa-cube"></i>
+                                    <h5>Volcano Cross-Section 3D Model</h5>
+                                    <p>Embedded from Sketchfab</p>
+                                    <small>This model shows the internal structure of a stratovolcano</small>
+                                </div>
+                            </div>
+                            
+                            <div class="d-flex justify-content-between align-items-center mt-4">
+                                <div>
+                                    <span class="badge bg-primary me-2"><i class="fas fa-clock me-1"></i> 25 min</span>
+                                    <span class="badge bg-success"><i class="fas fa-check-circle me-1"></i> Beginner</span>
+                                </div>
+                                <button class="btn btn-primary"><i class="fas fa-play me-1"></i> Start Lesson</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" id="scrollToTop">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5>LearnSphere LMS</h5>
+                    <p>An interactive learning platform that brings education to life through 3D visualization and immersive experiences.</p>
+                    <div class="social-icons mt-4">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#">Home</a></li>
+                        <li class="mb-2"><a href="#">Subjects</a></li>
+                        <li class="mb-2"><a href="#">About Us</a></li>
+                        <li class="mb-2"><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5>Subjects</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#">Biology</a></li>
+                        <li class="mb-2"><a href="#">Geography</a></li>
+                        <li class="mb-2"><a href="#">Physics</a></li>
+                        <li class="mb-2"><a href="#">Chemistry</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 mb-4">
+                    <h5>Contact Info</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i> 123 Education St, Learn City</li>
+                        <li class="mb-2"><i class="fas fa-phone me-2"></i> +1 (555) 123-4567</li>
+                        <li class="mb-2"><i class="fas fa-envelope me-2"></i> info@learnsphere.com</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="mt-4 mb-4" style="border-color: rgba(255,255,255,0.1);">
+            <div class="text-center">
+                <p class="mb-0">&copy; 2023 LearnSphere LMS. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script>
+        // Search functionality
+        let currentSearchResults = [];
+        let currentResultIndex = -1;
+        
+        document.getElementById('searchInput').addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase().trim();
+            performSearch(searchTerm);
+        });
+        
+        function performSearch(searchTerm) {
+            const accordionItems = document.querySelectorAll('.accordion-item');
+            let hasResults = false;
+            currentSearchResults = [];
+            
+            // Remove previous highlights
+            removeHighlights();
+            
+            if (searchTerm === '') {
+                // Reset all items if search is empty
+                accordionItems.forEach(item => {
+                    item.style.display = 'block';
+                    item.style.border = '';
+                });
+                document.getElementById('searchNavigation').style.display = 'none';
+                
+                // Reset all accordions to collapsed state
+                accordionItems.forEach(item => {
+                    const collapseId = item.querySelector('.accordion-button').getAttribute('data-bs-target');
+                    const collapseElement = document.querySelector(collapseId);
+                    if (collapseElement.classList.contains('show')) {
+                        new bootstrap.Collapse(collapseElement, { toggle: true });
+                    }
+                });
+                
+                return;
+            }
+            
+            accordionItems.forEach(item => {
+                const accordionButton = item.querySelector('.accordion-button');
+                const accordionBody = item.querySelector('.accordion-body');
+                
+                // Get ALL text content (without HTML tags)
+                const buttonText = accordionButton.textContent.toLowerCase();
+                const bodyText = accordionBody.textContent.toLowerCase();
+                
+                // Check if search term exists in button or body
+                if (buttonText.includes(searchTerm) || bodyText.includes(searchTerm)) {
+                    item.style.display = 'block';
+                    hasResults = true;
+                    
+                    // Store this item as a search result
+                    currentSearchResults.push(item);
+                    
+                    // Highlight the search term in button text
+                    highlightText(accordionButton, searchTerm);
+                    
+                    // Highlight the search term in ALL body content
+                    highlightText(accordionBody, searchTerm);
+                    
+                    // Expand the accordion if it contains the search term
+                    const collapseId = accordionButton.getAttribute('data-bs-target');
+                    const collapseElement = document.querySelector(collapseId);
+                    if (!collapseElement.classList.contains('show')) {
+                        new bootstrap.Collapse(collapseElement, { toggle: true });
+                    }
+                } else {
+                    item.style.display = 'none';
+                    item.style.border = '';
+                }
+            });
+            
+            // Update search navigation
+            if (hasResults) {
+                document.getElementById('searchNavigation').style.display = 'flex';
+                document.getElementById('searchInfo').textContent = `${currentSearchResults.length} results found`;
+                currentResultIndex = -1;
+            } else {
+                document.getElementById('searchNavigation').style.display = 'none';
+            }
+            
+            // Show no results message if needed
+            showNoResultsMessage(hasResults);
+        }
+        
+        // Navigation between search results
+        document.getElementById('nextResult').addEventListener('click', function() {
+            if (currentSearchResults.length === 0) return;
+            
+            // Remove previous active highlight
+            if (currentResultIndex >= 0) {
+                const prevItem = currentSearchResults[currentResultIndex];
+                prevItem.style.border = '';
+            }
+            
+            // Move to next result
+            currentResultIndex = (currentResultIndex + 1) % currentSearchResults.length;
+            
+            // Highlight current result
+            const currentItem = currentSearchResults[currentResultIndex];
+            currentItem.style.border = '2px solid var(--primary)';
+            
+            // Scroll to the result
+            currentItem.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
+            // Update search info
+            document.getElementById('searchInfo').textContent = 
+                `Result ${currentResultIndex + 1} of ${currentSearchResults.length}`;
+        });
+        
+        document.getElementById('prevResult').addEventListener('click', function() {
+            if (currentSearchResults.length === 0) return;
+            
+            // Remove previous active highlight
+            if (currentResultIndex >= 0) {
+                const prevItem = currentSearchResults[currentResultIndex];
+                prevItem.style.border = '';
+            }
+            
+            // Move to previous result
+            currentResultIndex = (currentResultIndex - 1 + currentSearchResults.length) % currentSearchResults.length;
+            
+            // Highlight current result
+            const currentItem = currentSearchResults[currentResultIndex];
+            currentItem.style.border = '2px solid var(--primary)';
+            
+            // Scroll to the result
+            currentItem.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
+            // Update search info
+            document.getElementById('searchInfo').textContent = 
+                `Result ${currentResultIndex + 1} of ${currentSearchResults.length}`;
+        });
+        
+        // Clear search
+        document.getElementById('clearSearch').addEventListener('click', function() {
+            document.getElementById('searchInput').value = '';
+            performSearch('');
+        });
+        
+        // Highlight text function
+        function highlightText(element, searchTerm) {
+            // Create a copy of the element to work with
+            const tempElement = element.cloneNode(true);
+            
+            // Function to recursively highlight text in nodes
+            function highlightNode(node) {
+                if (node.nodeType === Node.TEXT_NODE) {
+                    const text = node.textContent;
+                    const regex = new RegExp(`(${searchTerm})`, 'gi');
+                    const newText = text.replace(regex, '<mark class="highlight">$1</mark>');
+                    
+                    if (newText !== text) {
+                        const newSpan = document.createElement('span');
+                        newSpan.innerHTML = newText;
+                        node.parentNode.replaceChild(newSpan, node);
+                    }
+                } else if (node.nodeType === Node.ELEMENT_NODE && 
+                          node.tagName !== 'SCRIPT' && 
+                          node.tagName !== 'STYLE' &&
+                          node.tagName !== 'IFRAME' &&
+                          !node.classList.contains('sketchfab-embed-wrapper')) {
+                    // Skip iframes and Sketchfab embeds to preserve 3D models
+                    Array.from(node.childNodes).forEach(highlightNode);
+                }
+            }
+            
+            // Apply highlighting to the temporary element
+            Array.from(tempElement.childNodes).forEach(highlightNode);
+            
+            // Replace the original element with the highlighted version
+            element.parentNode.replaceChild(tempElement, element);
+        }
+        
+        // Remove highlights function
+        function removeHighlights() {
+            const highlights = document.querySelectorAll('.highlight');
+            highlights.forEach(highlight => {
+                const parent = highlight.parentNode;
+                parent.replaceChild(document.createTextNode(highlight.textContent), highlight);
+                parent.normalize();
+            });
+            
+            // Remove borders from search results
+            const accordionItems = document.querySelectorAll('.accordion-item');
+            accordionItems.forEach(item => {
+                item.style.border = '';
+            });
+        }
+        
+        // Show no results message
+        function showNoResultsMessage(hasResults) {
+            let noResultsMsg = document.getElementById('noResultsMessage');
+            
+            if (!hasResults && document.getElementById('searchInput').value.trim() !== '') {
+                if (!noResultsMsg) {
+                    noResultsMsg = document.createElement('div');
+                    noResultsMsg.id = 'noResultsMessage';
+                    noResultsMsg.className = 'no-results';
+                    noResultsMsg.innerHTML = `
+                        <i class="fas fa-search fa-3x mb-3 text-muted"></i>
+                        <h4>No results found</h4>
+                        <p>Try different keywords or browse the subjects directly</p>
+                    `;
+                    document.querySelector('.container').appendChild(noResultsMsg);
+                }
+            } else if (noResultsMsg) {
+                noResultsMsg.remove();
+            }
+        }
+        
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        // Set initial theme
+        if (currentTheme === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            themeToggle.checked = true;
+        }
+        
+        themeToggle.addEventListener('change', function() {
+            if (this.checked) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                document.documentElement.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+        
+        // Scroll to top functionality
+        const scrollToTopBtn = document.getElementById('scrollToTop');
+        
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                scrollToTopBtn.classList.add('show');
+            } else {
+                scrollToTopBtn.classList.remove('show');
+            }
+        });
+        
+        scrollToTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Prevent form submission
+        document.getElementById('searchForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+        });
+        
+        // Fade in on page load
+        document.body.style.opacity = '0';
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+                document.body.style.transition = 'opacity 0.5s ease-in-out';
+            }, 100);
+        });
+    </script>
+</body>
+</html>
