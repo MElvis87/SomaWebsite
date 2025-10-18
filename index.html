@@ -560,6 +560,146 @@
         [data-theme="dark"] .navbar-toggler-icon {
             background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28233, 236, 239, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
         }
+        
+        /* NEW: Modal Overlay and Popup Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1100;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-popup {
+            background-color: var(--card-bg);
+            border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+            top: 20px;
+            width: 90%;
+            max-width: 800px; /* Increased width for desktop */
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            transform: scale(0.8);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-overlay.active .modal-popup {
+            transform: scale(1);
+            opacity: 1;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 18px; /* Positioned above the modal */
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: white;
+            border: none;
+            font-size: 24px;
+            color: #333;
+            cursor: pointer;
+            z-index: 10;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        .modal-close:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateX(-50%) scale(1.1);
+        }
+        
+        .modal-header {
+            padding: 0;
+            text-align: center;
+            position: relative;
+        }
+        
+        .modal-image {
+            width: 100%;
+            height: 200px; /* Increased height for better image display */
+            object-fit: cover;
+            border-radius: 20px 20px 0 0; /* Rounded top corners only */
+            margin-bottom: 0;
+        }
+        
+        .modal-body {
+            padding: 30px;
+        }
+        
+        .modal-title {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 15px;
+            margin-top: 10px;
+        }
+        
+        .contact-info {
+            margin-top: 20px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            color: var(--text-color);
+        }
+        
+        .contact-item i {
+            width: 30px;
+            color: var(--primary);
+            font-size: 18px;
+        }
+        
+        /* Responsive adjustments for modals */
+        @media (max-width: 768px) {
+            .modal-popup {
+                width: 95%;
+                max-height: 95vh;
+            }
+            
+            .modal-body {
+                padding: 20px;
+            }
+            
+            .modal-image {
+                height: 150px;
+            }
+            
+            .modal-close {
+                top: 35px;
+                width: 45px;
+                height: 45px;
+                font-size: 20px;
+            }
+        }
+        
+        @media (min-width: 1200px) {
+            .modal-popup {
+                max-width: 900px; /* Even wider on larger screens */
+            }
+        }
     </style>
 </head>
 <body>
@@ -597,10 +737,10 @@
                     </li>
                     
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fas fa-address-card me-1"></i> About Us</a>
+                        <a class="nav-link" href="#" id="aboutUsLink"><i class="fas fa-address-card me-1"></i> About Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fas fa-envelope me-1"></i> Contact Us</a>
+                        <a class="nav-link" href="#" id="contactUsLink"><i class="fas fa-envelope me-1"></i> Contact Us</a>
                     </li>
                 </ul>
                 
@@ -798,18 +938,101 @@
         </div>
     </div>
 
-    <!-- Scroll to Top Button -->
-    <button class="scroll-to-top" id="scrollToTop">
-        <i class="fas fa-chevron-up"></i>
-    </button>
+    <!-- NEW: About Us Modal -->
+    <div class="modal-overlay" id="aboutUsModal">
+        <button class="modal-close" id="closeAboutUs">
+                <i class="fas fa-times"></i>
+            </button>
+        <div class="modal-popup">
+            
+            <div class="modal-header">
+                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" alt="About Us" class="modal-image">
+                
+            </div>
+            <div class="modal-body">
+                <h3 class="modal-title">About LearnSphere</h3>
+                <p>LearnSphere is an innovative educational platform that transforms learning through interactive 3D visualization technology. Our mission is to make complex concepts accessible and engaging for students of all ages.</p>
+                
+                <div class="contact-info">
+                    <h5>Our Team</h5>
+                    <div class="contact-item">
+                        <i class="fas fa-users"></i>
+                        <span>Founded by educators and 3D visualization experts</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Based in San Francisco with team members worldwide</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>Serving over 50,000 students across 120 countries</span>
+                    </div>
+                </div>
+                
+                <div class="contact-info mt-4">
+                    <h5>Our Vision</h5>
+                    <p>We believe that immersive learning experiences can transform education. By integrating 3D models directly into our learning management system, we help students visualize and understand complex topics in ways that traditional textbooks cannot provide.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- NEW: Contact Us Modal -->
+    <div class="modal-overlay" id="contactUsModal">
+        <button class="modal-close" id="closeContactUs">
+                <i class="fas fa-times"></i>
+            </button>
+        <div class="modal-popup">
+            <div class="modal-header">
+                <img src="https://images.unsplash.com/photo-1534536281715-e28d76689b4d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Contact Us" class="modal-image">
+                
+            </div>
+            <div class="modal-body">
+                <h3 class="modal-title">Contact Us</h3>
+                <p>We'd love to hear from you! Whether you have questions about our platform, need technical support, or want to explore partnership opportunities, our team is here to help.</p>
+                
+                <div class="contact-info">
+                    <h5>Get in Touch</h5>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>hello@learnsphere.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+1 (555) 123-4567</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>123 Education Street, San Francisco, CA 94107</span>
+                    </div>
+                </div>
+                
+                <div class="contact-info mt-4">
+                    <h5>Office Hours</h5>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <span>Monday - Friday: 9:00 AM - 6:00 PM PST</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <span>Saturday: 10:00 AM - 4:00 PM PST</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <span>Sunday: Closed</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="row">
-                <div class="col-lg-4 mb-4">
-                    <h5>LearnSphere LMS</h5>
-                    <p>An interactive learning platform that brings education to life through 3D visualization and immersive experiences.</p>
+                <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+                    <h5>LearnSphere</h5>
+                    <p>Transforming education through immersive 3D learning experiences. Making complex concepts accessible and engaging for students worldwide.</p>
                     <div class="social-icons mt-4">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
@@ -817,305 +1040,317 @@
                         <a href="#"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
-                <div class="col-lg-2 col-md-6 mb-4">
-                    <h5>Quick Links</h5>
-                    <ul class="list-unstyled">
-                        <li class="mb-2"><a href="#">Home</a></li>
-                        <li class="mb-2"><a href="#">Subjects</a></li>
-                        <li class="mb-2"><a href="#">About Us</a></li>
-                        <li class="mb-2"><a href="#">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-3 col-md-6 mb-4">
+                <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
                     <h5>Subjects</h5>
                     <ul class="list-unstyled">
-                        <li class="mb-2"><a href="#">Biology</a></li>
-                        <li class="mb-2"><a href="#">Geography</a></li>
-                        <li class="mb-2"><a href="#">Physics</a></li>
-                        <li class="mb-2"><a href="#">Chemistry</a></li>
+                        <li><a href="#">Biology</a></li>
+                        <li><a href="#">Geography</a></li>
+                        <li><a href="#">Physics</a></li>
+                        <li><a href="#">Chemistry</a></li>
+                        <li><a href="#">Mathematics</a></li>
                     </ul>
                 </div>
-                <div class="col-lg-3 mb-4">
-                    <h5>Contact Info</h5>
+                <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+                    <h5>Resources</h5>
                     <ul class="list-unstyled">
-                        <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i> 123 Education St, Learn City</li>
-                        <li class="mb-2"><i class="fas fa-phone me-2"></i> +1 (555) 123-4567</li>
-                        <li class="mb-2"><i class="fas fa-envelope me-2"></i> info@learnsphere.com</li>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">Tutorials</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Webinars</a></li>
+                        <li><a href="#">Support</a></li>
                     </ul>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <h5>Newsletter</h5>
+                    <p>Subscribe to our newsletter for the latest updates and educational resources.</p>
+                    <form class="mt-3">
+                        <div class="input-group">
+                            <input type="email" class="form-control" placeholder="Your email address">
+                            <button class="btn btn-primary" type="submit">Subscribe</button>
+                        </div>
+                    </form>
                 </div>
             </div>
-            <hr class="mt-4 mb-4" style="border-color: rgba(255,255,255,0.1);">
-            <div class="text-center">
-                <p class="mb-0">&copy; 2023 LearnSphere LMS. All rights reserved.</p>
+            <hr class="my-4">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2023 LearnSphere. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="text-decoration-none me-3">Privacy Policy</a>
+                    <a href="#" class="text-decoration-none me-3">Terms of Service</a>
+                    <a href="#" class="text-decoration-none">Cookie Policy</a>
+                </div>
             </div>
         </div>
     </footer>
 
-    <!-- Bootstrap JS -->
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" id="scrollToTop">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Bootstrap JS Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     
-    <!-- Custom JavaScript -->
     <script>
-        // Search functionality
-        let currentSearchResults = [];
-        let currentResultIndex = -1;
-        
-        document.getElementById('searchInput').addEventListener('input', function() {
-            const searchTerm = this.value.toLowerCase().trim();
-            performSearch(searchTerm);
-        });
-        
-        function performSearch(searchTerm) {
-            const accordionItems = document.querySelectorAll('.accordion-item');
-            let hasResults = false;
-            currentSearchResults = [];
+        // Theme Toggle Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeToggle = document.getElementById('themeToggle');
+            const body = document.body;
             
-            // Remove previous highlights
-            removeHighlights();
-            
-            if (searchTerm === '') {
-                // Reset all items if search is empty
-                accordionItems.forEach(item => {
-                    item.style.display = 'block';
-                    item.style.border = '';
-                });
-                document.getElementById('searchNavigation').style.display = 'none';
-                
-                // Reset all accordions to collapsed state
-                accordionItems.forEach(item => {
-                    const collapseId = item.querySelector('.accordion-button').getAttribute('data-bs-target');
-                    const collapseElement = document.querySelector(collapseId);
-                    if (collapseElement.classList.contains('show')) {
-                        new bootstrap.Collapse(collapseElement, { toggle: true });
-                    }
-                });
-                
-                return;
+            // Check for saved theme preference or default to light
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            if (savedTheme === 'dark') {
+                body.setAttribute('data-theme', 'dark');
+                themeToggle.checked = true;
             }
             
-            accordionItems.forEach(item => {
-                const accordionButton = item.querySelector('.accordion-button');
-                const accordionBody = item.querySelector('.accordion-body');
-                
-                // Get ALL text content (without HTML tags)
-                const buttonText = accordionButton.textContent.toLowerCase();
-                const bodyText = accordionBody.textContent.toLowerCase();
-                
-                // Check if search term exists in button or body
-                if (buttonText.includes(searchTerm) || bodyText.includes(searchTerm)) {
-                    item.style.display = 'block';
-                    hasResults = true;
-                    
-                    // Store this item as a search result
-                    currentSearchResults.push(item);
-                    
-                    // Highlight the search term in button text
-                    highlightText(accordionButton, searchTerm);
-                    
-                    // Highlight the search term in ALL body content
-                    highlightText(accordionBody, searchTerm);
-                    
-                    // Expand the accordion if it contains the search term
-                    const collapseId = accordionButton.getAttribute('data-bs-target');
-                    const collapseElement = document.querySelector(collapseId);
-                    if (!collapseElement.classList.contains('show')) {
-                        new bootstrap.Collapse(collapseElement, { toggle: true });
-                    }
+            // Theme toggle event listener
+            themeToggle.addEventListener('change', function() {
+                if (this.checked) {
+                    body.setAttribute('data-theme', 'dark');
+                    localStorage.setItem('theme', 'dark');
                 } else {
-                    item.style.display = 'none';
-                    item.style.border = '';
+                    body.removeAttribute('data-theme');
+                    localStorage.setItem('theme', 'light');
                 }
             });
             
-            // Update search navigation
-            if (hasResults) {
-                document.getElementById('searchNavigation').style.display = 'flex';
-                document.getElementById('searchInfo').textContent = `${currentSearchResults.length} results found`;
-                currentResultIndex = -1;
-            } else {
-                document.getElementById('searchNavigation').style.display = 'none';
+            // Search Functionality
+            const searchForm = document.getElementById('searchForm');
+            const searchInput = document.getElementById('searchInput');
+            const searchNavigation = document.getElementById('searchNavigation');
+            const searchInfo = document.getElementById('searchInfo');
+            const prevResult = document.getElementById('prevResult');
+            const nextResult = document.getElementById('nextResult');
+            const clearSearch = document.getElementById('clearSearch');
+            
+            let searchResults = [];
+            let currentResultIndex = -1;
+            
+            searchForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                performSearch();
+            });
+            
+            function performSearch() {
+                const searchTerm = searchInput.value.trim().toLowerCase();
+                
+                if (searchTerm === '') {
+                    clearSearchResults();
+                    return;
+                }
+                
+                // Clear previous highlights
+                clearSearchResults();
+                
+                // Search in accordion content
+                const accordionItems = document.querySelectorAll('.accordion-body');
+                searchResults = [];
+                
+                accordionItems.forEach((item, index) => {
+                    const textContent = item.textContent.toLowerCase();
+                    if (textContent.includes(searchTerm)) {
+                        searchResults.push(item);
+                    }
+                });
+                
+                if (searchResults.length > 0) {
+                    // Show search navigation
+                    searchNavigation.style.display = 'flex';
+                    searchInfo.textContent = `${searchResults.length} result${searchResults.length > 1 ? 's' : ''} found`;
+                    
+                    // Highlight first result
+                    currentResultIndex = 0;
+                    highlightCurrentResult();
+                    
+                    // Expand accordion for first result
+                    const accordionItem = searchResults[0].closest('.accordion-item');
+                    const collapseElement = accordionItem.querySelector('.accordion-collapse');
+                    const bsCollapse = new bootstrap.Collapse(collapseElement, {
+                        toggle: false
+                    });
+                    bsCollapse.show();
+                } else {
+                    searchNavigation.style.display = 'flex';
+                    searchInfo.textContent = 'No results found';
+                }
             }
             
-            // Show no results message if needed
-            showNoResultsMessage(hasResults);
-        }
-        
-        // Navigation between search results
-        document.getElementById('nextResult').addEventListener('click', function() {
-            if (currentSearchResults.length === 0) return;
-            
-            // Remove previous active highlight
-            if (currentResultIndex >= 0) {
-                const prevItem = currentSearchResults[currentResultIndex];
-                prevItem.style.border = '';
+            function highlightCurrentResult() {
+                if (currentResultIndex < 0 || currentResultIndex >= searchResults.length) return;
+                
+                // Remove previous highlights
+                document.querySelectorAll('.search-match').forEach(el => {
+                    el.classList.remove('search-match');
+                });
+                
+                // Highlight current result
+                const currentResult = searchResults[currentResultIndex];
+                const searchTerm = searchInput.value.trim().toLowerCase();
+                highlightText(currentResult, searchTerm);
+                
+                // Scroll to result
+                currentResult.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
             
-            // Move to next result
-            currentResultIndex = (currentResultIndex + 1) % currentSearchResults.length;
-            
-            // Highlight current result
-            const currentItem = currentSearchResults[currentResultIndex];
-            currentItem.style.border = '2px solid var(--primary)';
-            
-            // Scroll to the result
-            currentItem.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            
-            // Update search info
-            document.getElementById('searchInfo').textContent = 
-                `Result ${currentResultIndex + 1} of ${currentSearchResults.length}`;
-        });
-        
-        document.getElementById('prevResult').addEventListener('click', function() {
-            if (currentSearchResults.length === 0) return;
-            
-            // Remove previous active highlight
-            if (currentResultIndex >= 0) {
-                const prevItem = currentSearchResults[currentResultIndex];
-                prevItem.style.border = '';
-            }
-            
-            // Move to previous result
-            currentResultIndex = (currentResultIndex - 1 + currentSearchResults.length) % currentSearchResults.length;
-            
-            // Highlight current result
-            const currentItem = currentSearchResults[currentResultIndex];
-            currentItem.style.border = '2px solid var(--primary)';
-            
-            // Scroll to the result
-            currentItem.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            
-            // Update search info
-            document.getElementById('searchInfo').textContent = 
-                `Result ${currentResultIndex + 1} of ${currentSearchResults.length}`;
-        });
-        
-        // Clear search
-        document.getElementById('clearSearch').addEventListener('click', function() {
-            document.getElementById('searchInput').value = '';
-            performSearch('');
-        });
-        
-        // Highlight text function
-        function highlightText(element, searchTerm) {
-            // Create a copy of the element to work with
-            const tempElement = element.cloneNode(true);
-            
-            // Function to recursively highlight text in nodes
-            function highlightNode(node) {
-                if (node.nodeType === Node.TEXT_NODE) {
+            function highlightText(element, searchTerm) {
+                const textNodes = getTextNodes(element);
+                
+                textNodes.forEach(node => {
                     const text = node.textContent;
                     const regex = new RegExp(`(${searchTerm})`, 'gi');
-                    const newText = text.replace(regex, '<mark class="highlight">$1</mark>');
+                    const newText = text.replace(regex, '<span class="search-match">$1</span>');
                     
                     if (newText !== text) {
                         const newSpan = document.createElement('span');
                         newSpan.innerHTML = newText;
                         node.parentNode.replaceChild(newSpan, node);
                     }
-                } else if (node.nodeType === Node.ELEMENT_NODE && 
-                          node.tagName !== 'SCRIPT' && 
-                          node.tagName !== 'STYLE' &&
-                          node.tagName !== 'IFRAME' &&
-                          !node.classList.contains('sketchfab-embed-wrapper')) {
-                    // Skip iframes and Sketchfab embeds to preserve 3D models
-                    Array.from(node.childNodes).forEach(highlightNode);
+                });
+            }
+            
+            function getTextNodes(element) {
+                const textNodes = [];
+                
+                function findTextNodes(node) {
+                    if (node.nodeType === Node.TEXT_NODE) {
+                        textNodes.push(node);
+                    } else {
+                        for (let child of node.childNodes) {
+                            findTextNodes(child);
+                        }
+                    }
                 }
+                
+                findTextNodes(element);
+                return textNodes;
             }
             
-            // Apply highlighting to the temporary element
-            Array.from(tempElement.childNodes).forEach(highlightNode);
+            function clearSearchResults() {
+                document.querySelectorAll('.search-match').forEach(el => {
+                    el.classList.remove('search-match');
+                    const parent = el.parentNode;
+                    parent.replaceChild(document.createTextNode(el.textContent), el);
+                    parent.normalize();
+                });
+                
+                searchNavigation.style.display = 'none';
+                searchResults = [];
+                currentResultIndex = -1;
+            }
             
-            // Replace the original element with the highlighted version
-            element.parentNode.replaceChild(tempElement, element);
-        }
-        
-        // Remove highlights function
-        function removeHighlights() {
-            const highlights = document.querySelectorAll('.highlight');
-            highlights.forEach(highlight => {
-                const parent = highlight.parentNode;
-                parent.replaceChild(document.createTextNode(highlight.textContent), highlight);
-                parent.normalize();
+            prevResult.addEventListener('click', function() {
+                if (searchResults.length === 0) return;
+                
+                currentResultIndex = (currentResultIndex - 1 + searchResults.length) % searchResults.length;
+                highlightCurrentResult();
+                
+                // Expand accordion for current result
+                const accordionItem = searchResults[currentResultIndex].closest('.accordion-item');
+                const collapseElement = accordionItem.querySelector('.accordion-collapse');
+                const bsCollapse = new bootstrap.Collapse(collapseElement, {
+                    toggle: false
+                });
+                bsCollapse.show();
             });
             
-            // Remove borders from search results
-            const accordionItems = document.querySelectorAll('.accordion-item');
-            accordionItems.forEach(item => {
-                item.style.border = '';
+            nextResult.addEventListener('click', function() {
+                if (searchResults.length === 0) return;
+                
+                currentResultIndex = (currentResultIndex + 1) % searchResults.length;
+                highlightCurrentResult();
+                
+                // Expand accordion for current result
+                const accordionItem = searchResults[currentResultIndex].closest('.accordion-item');
+                const collapseElement = accordionItem.querySelector('.accordion-collapse');
+                const bsCollapse = new bootstrap.Collapse(collapseElement, {
+                    toggle: false
+                });
+                bsCollapse.show();
             });
-        }
-        
-        // Show no results message
-        function showNoResultsMessage(hasResults) {
-            let noResultsMsg = document.getElementById('noResultsMessage');
             
-            if (!hasResults && document.getElementById('searchInput').value.trim() !== '') {
-                if (!noResultsMsg) {
-                    noResultsMsg = document.createElement('div');
-                    noResultsMsg.id = 'noResultsMessage';
-                    noResultsMsg.className = 'no-results';
-                    noResultsMsg.innerHTML = `
-                        <i class="fas fa-search fa-3x mb-3 text-muted"></i>
-                        <h4>No results found</h4>
-                        <p>Try different keywords or browse the subjects directly</p>
-                    `;
-                    document.querySelector('.container').appendChild(noResultsMsg);
+            clearSearch.addEventListener('click', function() {
+                searchInput.value = '';
+                clearSearchResults();
+            });
+            
+            // Scroll to Top Functionality
+            const scrollToTopBtn = document.getElementById('scrollToTop');
+            
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    scrollToTopBtn.classList.add('show');
+                } else {
+                    scrollToTopBtn.classList.remove('show');
                 }
-            } else if (noResultsMsg) {
-                noResultsMsg.remove();
-            }
-        }
-        
-        // Theme toggle functionality
-        const themeToggle = document.getElementById('themeToggle');
-        const currentTheme = localStorage.getItem('theme') || 'light';
-        
-        // Set initial theme
-        if (currentTheme === 'dark') {
-            document.documentElement.setAttribute('data-theme', 'dark');
-            themeToggle.checked = true;
-        }
-        
-        themeToggle.addEventListener('change', function() {
-            if (this.checked) {
-                document.documentElement.setAttribute('data-theme', 'dark');
-                localStorage.setItem('theme', 'dark');
-            } else {
-                document.documentElement.removeAttribute('data-theme');
-                localStorage.setItem('theme', 'light');
-            }
-        });
-        
-        // Scroll to top functionality
-        const scrollToTopBtn = document.getElementById('scrollToTop');
-        
-        window.addEventListener('scroll', function() {
-            if (window.pageYOffset > 300) {
-                scrollToTopBtn.classList.add('show');
-            } else {
-                scrollToTopBtn.classList.remove('show');
-            }
-        });
-        
-        scrollToTopBtn.addEventListener('click', function() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
             });
-        });
-        
-        // Prevent form submission
-        document.getElementById('searchForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-        });
-        
-        // Fade in on page load
-        document.body.style.opacity = '0';
-        window.addEventListener('load', function() {
-            setTimeout(() => {
-                document.body.style.opacity = '1';
-                document.body.style.transition = 'opacity 0.5s ease-in-out';
-            }, 100);
+            
+            scrollToTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // NEW: Modal Functionality
+            const aboutUsLink = document.getElementById('aboutUsLink');
+            const contactUsLink = document.getElementById('contactUsLink');
+            const aboutUsModal = document.getElementById('aboutUsModal');
+            const contactUsModal = document.getElementById('contactUsModal');
+            const closeAboutUs = document.getElementById('closeAboutUs');
+            const closeContactUs = document.getElementById('closeContactUs');
+            
+            // Open About Us modal
+            aboutUsLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                aboutUsModal.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            });
+            
+            // Open Contact Us modal
+            contactUsLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                contactUsModal.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            });
+            
+            // Close About Us modal
+            closeAboutUs.addEventListener('click', function() {
+                aboutUsModal.classList.remove('active');
+                document.body.style.overflow = ''; // Restore scrolling
+            });
+            
+            // Close Contact Us modal
+            closeContactUs.addEventListener('click', function() {
+                contactUsModal.classList.remove('active');
+                document.body.style.overflow = ''; // Restore scrolling
+            });
+            
+            // Close modals when clicking on overlay
+            aboutUsModal.addEventListener('click', function(e) {
+                if (e.target === aboutUsModal) {
+                    aboutUsModal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+            
+            contactUsModal.addEventListener('click', function(e) {
+                if (e.target === contactUsModal) {
+                    contactUsModal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+            
+            // Close modals with Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    aboutUsModal.classList.remove('active');
+                    contactUsModal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
         });
     </script>
 </body>
