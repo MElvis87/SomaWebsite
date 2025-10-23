@@ -41,17 +41,26 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
-            padding-top: 80px;
+            padding-top: 100px;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
         
-        /* Navigation Bar */
+        /* Navigation Bar - UPDATED: Floating Sticky Navbar */
         .navbar {
             background: var(--header-bg);
             backdrop-filter: blur(10px);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             padding: 12px 0;
             transition: all 0.3s ease;
+            margin: 0 auto;
+            max-width: 1400px;
+            border-radius: 16px;
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 40px);
+            z-index: 1030;
         }
         
         .navbar-brand img {
@@ -204,8 +213,6 @@
             background-color: var(--card-bg);
         }
 
-        
-        
         .card:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
@@ -266,8 +273,6 @@
         border-top: 1px solid #333; /* Add subtle separation */
         }
         
-
-
         /* UPDATED: Sketchfab Model Container - RESPONSIVE DIMENSIONS */
         .model-container {
             background-color: var(--light);
@@ -354,20 +359,27 @@
             font-weight: 500;
         }
         
-        /* Search Navigation Controls */
+        /* Search Navigation Controls - UPDATED: Sticky Search Navigator */
         .search-navigation {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
-            padding: 10px 15px;
+            padding: 12px 20px;
             background-color: var(--light);
-            border-radius: 8px;
+            border-radius: 12px;
+            position: sticky;
+            top: 90px;
+            z-index: 1020;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.1);
         }
         
         .search-info {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: var(--text-color);
+            font-weight: 500;
         }
         
         .search-nav-buttons button {
@@ -415,12 +427,18 @@
             .search-navigation {
                 flex-direction: column;
                 gap: 10px;
+                padding: 15px;
             }
             
             .search-nav-buttons {
                 display: flex;
                 justify-content: center;
                 width: 100%;
+            }
+            
+            .search-nav-buttons button {
+                flex: 1;
+                margin: 0 4px;
             }
         }
         
@@ -486,6 +504,11 @@
             .hero-section {
                 padding: 40px 20px;
             }
+            
+            .navbar {
+                width: calc(100% - 30px);
+                padding: 10px 0;
+            }
         }
         
         @media (max-width: 768px) {
@@ -497,12 +520,40 @@
                 text-align: center;
                 padding: 30px 20px;
             }
+            
+            .navbar {
+                width: calc(100% - 20px);
+                top: 10px;
+            }
+            
+            body {
+                padding-top: 90px;
+            }
+            
+            .search-navigation {
+                top: 80px;
+            }
         }
         
         /* Search result styling */
         .search-match {
             background-color: #fff9c4 !important;
             font-weight: 600;
+            transition: all 0.3s ease;
+            padding: 1px 3px;
+            border-radius: 3px;
+        }
+        
+        .current-search-match {
+            background-color: #ffeb3b !important;
+            box-shadow: 0 0 0 2px var(--primary);
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(67, 97, 238, 0.7); }
+            70% { box-shadow: 0 0 0 6px rgba(67, 97, 238, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(67, 97, 238, 0); }
         }
         
         .no-results {
@@ -704,7 +755,7 @@
 </head>
 <body>
     <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
             <!-- Logo -->
             <a class="navbar-brand" href="#">
@@ -779,7 +830,6 @@
     </nav>
 
     <!-- Main Content -->
-    <br>
     <div class="container">
         <!-- Hero Section -->
         <div class="hero-section">
@@ -799,8 +849,8 @@
         <div class="search-navigation" id="searchNavigation" style="display: none;">
             <div class="search-info" id="searchInfo">0 results found</div>
             <div class="search-nav-buttons">
-                <button class="btn btn-sm btn-outline-primary" id="prevResult"><i class="fas fa-chevron-up"></i> Previous</button>
-                <button class="btn btn-sm btn-outline-primary" id="nextResult">Next <i class="fas fa-chevron-down"></i></button>
+                <button class="btn btn-sm btn-outline-primary" id="prevResult"><i class="fas fa-chevron-up me-1"></i> Previous</button>
+                <button class="btn btn-sm btn-outline-primary" id="nextResult">Next <i class="fas fa-chevron-down ms-1"></i></button>
                 <button class="btn btn-sm btn-outline-secondary" id="clearSearch">Clear Search</button>
             </div>
         </div>
@@ -841,9 +891,10 @@
                                     <li>Explore the role of minerals in bone health</li>
                                 </ul>
                             </div>
-                            
+
+                            <h4> Model of a Kipoli Van</h4>
                             <div class="model-container">
-                                <h6>Model of a Kipoli Van</h6>
+                                
                                 <!-- UPDATED: Responsive Sketchfab Embedding -->
                                 <div class="sketchfab-embed-wrapper">
                                     <div class="responsive-iframe-container">
@@ -1159,7 +1210,7 @@
                 if (searchResults.length > 0) {
                     // Show search navigation
                     searchNavigation.style.display = 'flex';
-                    searchInfo.textContent = `${searchResults.length} result${searchResults.length > 1 ? 's' : ''} found`;
+                    searchInfo.textContent = `${searchResults.length} result${searchResults.length > 1 ? 's' : ''} found for "${searchTerm}"`;
                     
                     // Highlight first result
                     currentResultIndex = 0;
@@ -1174,7 +1225,7 @@
                     bsCollapse.show();
                 } else {
                     searchNavigation.style.display = 'flex';
-                    searchInfo.textContent = 'No results found';
+                    searchInfo.textContent = `No results found for "${searchTerm}"`;
                 }
             }
             
@@ -1184,6 +1235,7 @@
                 // Remove previous highlights
                 document.querySelectorAll('.search-match').forEach(el => {
                     el.classList.remove('search-match');
+                    el.classList.remove('current-search-match');
                 });
                 
                 // Highlight current result
@@ -1209,6 +1261,13 @@
                         node.parentNode.replaceChild(newSpan, node);
                     }
                 });
+                
+                // Highlight the current match with a special class
+                const matches = element.querySelectorAll('.search-match');
+                if (matches.length > 0) {
+                    // For simplicity, highlight the first match in the current result
+                    matches[0].classList.add('current-search-match');
+                }
             }
             
             function getTextNodes(element) {
@@ -1231,6 +1290,7 @@
             function clearSearchResults() {
                 document.querySelectorAll('.search-match').forEach(el => {
                     el.classList.remove('search-match');
+                    el.classList.remove('current-search-match');
                     const parent = el.parentNode;
                     parent.replaceChild(document.createTextNode(el.textContent), el);
                     parent.normalize();
