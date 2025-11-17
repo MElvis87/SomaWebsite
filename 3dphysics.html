@@ -70,11 +70,13 @@
         
         .nav-link {
             font-weight: 500;
-            margin: 0 8px;
+            margin: 0 4px;
             color: var(--text-color) !important;
             transition: all 0.2s ease;
             border-radius: 6px;
-            padding: 8px 16px !important;
+            padding: 8px 12px !important;
+            white-space: nowrap;
+            font-size: 0.95rem;
         }
         
         .nav-link:hover, .nav-link.active {
@@ -103,7 +105,8 @@
         }
         
         .search-form {
-            max-width: 300px;
+            max-width: 280px;
+            min-width: 200px;
         }
         
         .search-form .form-control {
@@ -113,6 +116,7 @@
             transition: all 0.3s ease;
             background-color: var(--card-bg);
             color: var(--text-color);
+            font-size: 0.9rem;
         }
         
         .search-form .form-control:focus {
@@ -137,20 +141,20 @@
         .theme-toggle {
             display: flex;
             align-items: center;
-            margin-right: 15px;
+            margin-right: 10px;
         }
         
         .theme-toggle-label {
-            margin: 0 10px;
-            font-size: 0.9rem;
+            margin: 0 6px;
+            font-size: 0.85rem;
             color: var(--text-color);
         }
         
         .switch {
             position: relative;
             display: inline-block;
-            width: 50px;
-            height: 24px;
+            width: 46px;
+            height: 22px;
         }
         
         .switch input {
@@ -176,8 +180,8 @@
             content: "";
             height: 16px;
             width: 16px;
-            left: 4px;
-            bottom: 4px;
+            left: 3px;
+            bottom: 3px;
             background-color: white;
             transition: .4s;
             border-radius: 50%;
@@ -188,14 +192,17 @@
         }
         
         input:checked + .slider:before {
-            transform: translateX(26px);
+            transform: translateX(24px);
+        }
+        
+        /* Navbar Icons for Mobile */
+        .nav-icon {
+            display: none;
         }
         
         /* Main Content */
         .hero-section {
             background: url('phy.jpg');
-            background-repeat: no-repeat;
-            background-size: cover;
             color: white;
             border-radius: 20px;
             padding: 60px 40px;
@@ -226,7 +233,7 @@
         }
 
         [data-theme="dark"] .card-header {
-            background-color: #0057a8; /* Dark blue background */
+            background-color: #0057a8;
             color: #4de1ff;
         }
 
@@ -267,10 +274,9 @@
         }
 
         [data-theme="dark"] .accordion-body {
-        /* Specific dark mode overrides for accordion body */
-        background-color: #091c47;
-        color: white;
-        border-top: 1px solid #333; /* Add subtle separation */
+            background-color: #091c47;
+            color: white;
+            border-top: 1px solid #333;
         }
         
         /* UPDATED: Sketchfab Model Container - RESPONSIVE DIMENSIONS */
@@ -494,11 +500,55 @@
             transform: translateY(-3px);
         }
         
-        /* Responsive Adjustments */
-        @media (max-width: 992px) {
+        /* Responsive Adjustments - UPDATED FOR TABLET NAVBAR */
+        @media (max-width: 1199px) and (min-width: 992px) {
+            /* Tablet landscape optimizations */
+            .nav-link {
+                font-size: 0.9rem;
+                padding: 8px 10px !important;
+                margin: 0 3px;
+            }
+            
+            .navbar-nav {
+                gap: 5px;
+            }
+            
+            .search-form {
+                max-width: 220px;
+                min-width: 180px;
+            }
+            
+            .theme-toggle {
+                margin-right: 8px;
+            }
+            
+            .theme-toggle-label {
+                margin: 0 4px;
+                font-size: 0.8rem;
+            }
+            
+            .switch {
+                width: 42px;
+                height: 20px;
+            }
+            
+            .slider:before {
+                height: 14px;
+                width: 14px;
+            }
+            
+            input:checked + .slider:before {
+                transform: translateX(22px);
+            }
+        }
+        
+        @media (max-width: 991px) {
+            /* Tablet portrait and mobile */
             .search-form {
                 max-width: 100%;
                 margin: 15px 0;
+                order: 3;
+                width: 100%;
             }
             
             .hero-section {
@@ -508,6 +558,35 @@
             .navbar {
                 width: calc(100% - 30px);
                 padding: 10px 0;
+            }
+            
+            .navbar-collapse {
+                padding-top: 15px;
+            }
+            
+            .nav-link {
+                padding: 10px 15px !important;
+                margin: 2px 0;
+            }
+            
+            .navbar-nav {
+                margin-bottom: 10px;
+            }
+            
+            .theme-toggle {
+                margin: 10px 0;
+                justify-content: center;
+            }
+            
+            .nav-icon {
+                display: inline-block;
+                width: 20px;
+                text-align: center;
+                margin-right: 8px;
+            }
+            
+            .nav-text {
+                display: inline;
             }
         }
         
@@ -532,6 +611,31 @@
             
             .search-navigation {
                 top: 80px;
+            }
+            
+            /* Hide text on mobile, show only icons */
+            .nav-text {
+                display: inline;
+            }
+            
+            .nav-link {
+                font-size: 0.9rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            /* Extra small devices */
+            .nav-text {
+                display: inline;
+            }
+            
+            .nav-link {
+                font-size: 0.85rem;
+                padding: 8px 12px !important;
+            }
+            
+            .navbar-brand img {
+                height: 28px;
             }
         }
         
@@ -572,9 +676,9 @@
         }
 
         [data-theme="dark"] .new-content {
-        background-color: #1a3a5f; /* Dark blue background */
-        border-left: 4px solid var(--accent); /* Use accent color */
-        color: #4de1ff;
+            background-color: #1a3a5f;
+            border-left: 4px solid var(--accent);
+            color: #4de1ff;
         }
         
         .key-points {
@@ -585,9 +689,9 @@
         }
 
         [data-theme="dark"] .key-points {
-        background-color: #1a3a5f; /* Dark blue background */
-        border-left: 4px solid var(--accent); /* Use accent color */
-        color: #4de1ff;
+            background-color: #1a3a5f;
+            border-left: 4px solid var(--accent);
+            color: #4de1ff;
         }
         
         .key-points ul {
@@ -640,7 +744,7 @@
             box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
             top: 20px;
             width: 90%;
-            max-width: 800px; /* Increased width for desktop */
+            max-width: 800px;
             max-height: 90vh;
             overflow-y: auto;
             position: relative;
@@ -656,7 +760,7 @@
         
         .modal-close {
             position: absolute;
-            top: 18px; /* Positioned above the modal */
+            top: 18px;
             left: 50%;
             transform: translateX(-50%);
             background-color: white;
@@ -689,9 +793,9 @@
         
         .modal-image {
             width: 100%;
-            height: 200px; /* Increased height for better image display */
+            height: 200px;
             object-fit: cover;
-            border-radius: 20px 20px 0 0; /* Rounded top corners only */
+            border-radius: 20px 20px 0 0;
             margin-bottom: 0;
         }
         
@@ -748,7 +852,7 @@
         
         @media (min-width: 1200px) {
             .modal-popup {
-                max-width: 900px; /* Even wider on larger screens */
+                max-width: 900px;
             }
         }
     </style>
@@ -772,13 +876,17 @@
                 <!-- Navigation Links -->
                 <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#"><i class="fas fa-home me-1"></i> Home</a>
+                        <a class="nav-link active" href="#">
+                            <i class="fas fa-home nav-icon"></i>
+                            <span class="nav-text">Home</span>
+                        </a>
                     </li>
                     
                     <!-- Subjects Dropdown -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="subjectsDropdown" role="button" data-bs-toggle="dropdown">
-                            <i class="fas fa-book me-1"></i> Subjects
+                            <i class="fas fa-book nav-icon"></i>
+                            <span class="nav-text">Subjects</span>
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="index.html"><i class="fas fa-dna me-2"></i> Biology</a></li>
@@ -788,42 +896,51 @@
                     </li>
                     
                     <li class="nav-item">
-                        <a class="nav-link" href="#" id="aboutUsLink"><i class="fas fa-address-card me-1"></i> About Us</a>
+                        <a class="nav-link" href="#" id="aboutUsLink">
+                            <i class="fas fa-address-card nav-icon"></i>
+                            <span class="nav-text">About</span>
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" id="contactUsLink"><i class="fas fa-envelope me-1"></i> Contact Us</a>
+                        <a class="nav-link" href="#" id="contactUsLink">
+                            <i class="fas fa-envelope nav-icon"></i>
+                            <span class="nav-text">Contact</span>
+                        </a>
                     </li>
                 </ul>
                 
-                <!-- Theme Toggle -->
-                <div class="theme-toggle me-3">
-                    <span class="theme-toggle-label"><i class="fas fa-sun"></i></span>
-                    <label class="switch">
-                        <input type="checkbox" id="themeToggle">
-                        <span class="slider"></span>
-                    </label>
-                    <span class="theme-toggle-label"><i class="fas fa-moon"></i></span>
-                </div>
-                
-                <!-- Search Bar -->
-                <form class="d-flex search-form me-3" id="searchForm">
-                    <div class="input-group">
-                        <input class="form-control" type="search" placeholder="Search topics..." id="searchInput">
-                        <button class="btn btn-outline-primary" type="submit"><i class="fas fa-search"></i></button>
+                <!-- Right side elements -->
+                <div class="d-flex align-items-center flex-wrap">
+                    <!-- Theme Toggle -->
+                    <div class="theme-toggle">
+                        <span class="theme-toggle-label"><i class="fas fa-sun"></i></span>
+                        <label class="switch">
+                            <input type="checkbox" id="themeToggle">
+                            <span class="slider"></span>
+                        </label>
+                        <span class="theme-toggle-label"><i class="fas fa-moon"></i></span>
                     </div>
-                </form>
-                
-                <!-- Profile Dropdown -->
-                <div class="dropdown profile-dropdown">
-                    <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" id="profileDropdown" data-bs-toggle="dropdown">
-                        <img src="https://i.pravatar.cc/150?img=12" alt="Profile">
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="#"><i class="fas fa-user-circle me-2"></i> Account</a></li>
-                        <li><a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i> Settings</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt me-2"></i> Logout</a></li>
-                    </ul>
+                    
+                    <!-- Search Bar -->
+                    <form class="d-flex search-form me-3" id="searchForm">
+                        <div class="input-group">
+                            <input class="form-control" type="search" placeholder="Search..." id="searchInput">
+                            <button class="btn btn-outline-primary" type="submit"><i class="fas fa-search"></i></button>
+                        </div>
+                    </form>
+                    
+                    <!-- Profile Dropdown -->
+                    <div class="dropdown profile-dropdown">
+                        <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" id="profileDropdown" data-bs-toggle="dropdown">
+                            <img src="https://i.pravatar.cc/150?img=12" alt="Profile">
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-user-circle me-2"></i> Account</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i> Settings</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt me-2"></i> Logout</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1179,10 +1296,47 @@
             
             let searchResults = [];
             let currentResultIndex = -1;
+            let originalTextNodes = new Map(); // Store original text nodes for restoration
             
             searchForm.addEventListener('submit', function(e) {
                 e.preventDefault();
                 performSearch();
+            });
+            
+            // Add keyboard shortcuts for search navigation
+            document.addEventListener('keydown', function(e) {
+                // Ctrl+F or Cmd+F to focus search
+                if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
+                    e.preventDefault();
+                    searchInput.focus();
+                    searchInput.select();
+                }
+                
+                // F3 or Enter to find next result
+                if (e.key === 'F3' || (e.key === 'Enter' && !e.shiftKey)) {
+                    e.preventDefault();
+                    if (searchResults.length > 0) {
+                        navigateToResult((currentResultIndex + 1) % searchResults.length);
+                    } else if (searchInput.value.trim()) {
+                        performSearch();
+                    }
+                }
+                
+                // Shift+F3 or Shift+Enter to find previous result
+                if ((e.key === 'F3' && e.shiftKey) || (e.key === 'Enter' && e.shiftKey)) {
+                    e.preventDefault();
+                    if (searchResults.length > 0) {
+                        navigateToResult((currentResultIndex - 1 + searchResults.length) % searchResults.length);
+                    } else if (searchInput.value.trim()) {
+                        performSearch();
+                    }
+                }
+                
+                // Escape to clear search
+                if (e.key === 'Escape' && searchInput.value.trim()) {
+                    clearSearchResults();
+                    searchInput.blur();
+                }
             });
             
             function performSearch() {
@@ -1196,14 +1350,25 @@
                 // Clear previous highlights
                 clearSearchResults();
                 
-                // Search in accordion content
-                const accordionItems = document.querySelectorAll('.accordion-body');
+                // Search in all content (accordion headers and bodies)
+                const searchableElements = document.querySelectorAll('.accordion-button, .accordion-body, .card-header');
                 searchResults = [];
                 
-                accordionItems.forEach((item, index) => {
-                    const textContent = item.textContent.toLowerCase();
+                searchableElements.forEach((element) => {
+                    const textContent = element.textContent.toLowerCase();
                     if (textContent.includes(searchTerm)) {
-                        searchResults.push(item);
+                        // Count how many matches are in this element
+                        const regex = new RegExp(searchTerm, 'gi');
+                        const matches = textContent.match(regex);
+                        if (matches) {
+                            // Add the element once for each match
+                            for (let i = 0; i < matches.length; i++) {
+                                searchResults.push({
+                                    element: element,
+                                    matchIndex: i
+                                });
+                            }
+                        }
                     }
                 });
                 
@@ -1216,16 +1381,39 @@
                     currentResultIndex = 0;
                     highlightCurrentResult();
                     
-                    // Expand accordion for first result
-                    const accordionItem = searchResults[0].closest('.accordion-item');
-                    const collapseElement = accordionItem.querySelector('.accordion-collapse');
-                    const bsCollapse = new bootstrap.Collapse(collapseElement, {
-                        toggle: false
-                    });
-                    bsCollapse.show();
+                    // Expand accordion for first result if it's in a collapsed section
+                    const accordionItem = searchResults[0].element.closest('.accordion-item');
+                    if (accordionItem) {
+                        const collapseElement = accordionItem.querySelector('.accordion-collapse');
+                        if (collapseElement && collapseElement.classList.contains('collapse')) {
+                            const bsCollapse = new bootstrap.Collapse(collapseElement, {
+                                toggle: false
+                            });
+                            bsCollapse.show();
+                        }
+                    }
                 } else {
                     searchNavigation.style.display = 'flex';
                     searchInfo.textContent = `No results found for "${searchTerm}"`;
+                }
+            }
+            
+            function navigateToResult(index) {
+                if (index < 0 || index >= searchResults.length) return;
+                
+                currentResultIndex = index;
+                highlightCurrentResult();
+                
+                // Expand accordion for current result if needed
+                const accordionItem = searchResults[currentResultIndex].element.closest('.accordion-item');
+                if (accordionItem) {
+                    const collapseElement = accordionItem.querySelector('.accordion-collapse');
+                    if (collapseElement && collapseElement.classList.contains('collapse')) {
+                        const bsCollapse = new bootstrap.Collapse(collapseElement, {
+                            toggle: false
+                        });
+                        bsCollapse.show();
+                    }
                 }
             }
             
@@ -1238,46 +1426,102 @@
                     el.classList.remove('current-search-match');
                 });
                 
-                // Highlight current result
-                const currentResult = searchResults[currentResultIndex];
-                const searchTerm = searchInput.value.trim().toLowerCase();
-                highlightText(currentResult, searchTerm);
+                // Restore original text
+                restoreOriginalText();
                 
-                // Scroll to result
-                currentResult.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                // Highlight all results
+                const searchTerm = searchInput.value.trim().toLowerCase();
+                searchResults.forEach((result, index) => {
+                    highlightText(result.element, searchTerm, index === currentResultIndex, result.matchIndex);
+                });
+                
+                // Scroll to current result with proper centering
+                const currentMatchElement = document.querySelector('.current-search-match');
+                if (currentMatchElement) {
+                    // Calculate the position to center the match
+                    const elementRect = currentMatchElement.getBoundingClientRect();
+                    const absoluteElementTop = elementRect.top + window.pageYOffset;
+                    const middle = absoluteElementTop - (window.innerHeight / 2) + (elementRect.height / 2);
+                    
+                    // Scroll to center the match
+                    window.scrollTo({
+                        top: middle,
+                        behavior: 'smooth'
+                    });
+                }
+                
+                // Update search info
+                searchInfo.textContent = `${currentResultIndex + 1} of ${searchResults.length} results for "${searchTerm}"`;
             }
             
-            function highlightText(element, searchTerm) {
+            function highlightText(element, searchTerm, isCurrent, matchIndex) {
                 const textNodes = getTextNodes(element);
+                let currentMatch = 0;
                 
                 textNodes.forEach(node => {
-                    const text = node.textContent;
-                    const regex = new RegExp(`(${searchTerm})`, 'gi');
-                    const newText = text.replace(regex, '<span class="search-match">$1</span>');
+                    // Store original text if not already stored
+                    if (!originalTextNodes.has(node)) {
+                        originalTextNodes.set(node, node.textContent);
+                    }
                     
-                    if (newText !== text) {
+                    const text = node.textContent;
+                    const regex = new RegExp(`(${escapeRegExp(searchTerm)})`, 'gi');
+                    
+                    // Replace each match with highlighted span
+                    let newText = text;
+                    let match;
+                    let lastIndex = 0;
+                    let result = '';
+                    
+                    while ((match = regex.exec(text)) !== null) {
+                        // Add text before the match
+                        result += text.substring(lastIndex, match.index);
+                        
+                        // Check if this is the specific match we're looking for
+                        const isThisMatch = (currentMatch === matchIndex);
+                        
+                        // Add the highlighted match
+                        result += `<span class="search-match ${isThisMatch && isCurrent ? 'current-search-match' : ''}">${match[0]}</span>`;
+                        
+                        lastIndex = regex.lastIndex;
+                        currentMatch++;
+                    }
+                    
+                    // Add remaining text
+                    result += text.substring(lastIndex);
+                    
+                    if (result !== text) {
                         const newSpan = document.createElement('span');
-                        newSpan.innerHTML = newText;
+                        newSpan.innerHTML = result;
                         node.parentNode.replaceChild(newSpan, node);
                     }
                 });
-                
-                // Highlight the current match with a special class
-                const matches = element.querySelectorAll('.search-match');
-                if (matches.length > 0) {
-                    // For simplicity, highlight the first match in the current result
-                    matches[0].classList.add('current-search-match');
-                }
+            }
+            
+            function restoreOriginalText() {
+                originalTextNodes.forEach((originalText, node) => {
+                    if (node.parentNode) {
+                        const parent = node.parentNode;
+                        parent.replaceChild(document.createTextNode(originalText), node);
+                        parent.normalize();
+                    }
+                });
+                originalTextNodes.clear();
             }
             
             function getTextNodes(element) {
                 const textNodes = [];
                 
                 function findTextNodes(node) {
-                    if (node.nodeType === Node.TEXT_NODE) {
+                    if (node.nodeType === Node.TEXT_NODE && node.textContent.trim() !== '') {
                         textNodes.push(node);
                     } else {
                         for (let child of node.childNodes) {
+                            // Skip script and style elements
+                            if (child.nodeType === Node.ELEMENT_NODE && 
+                                (child.tagName === 'SCRIPT' || child.tagName === 'STYLE')) {
+                                continue;
+                            }
                             findTextNodes(child);
                         }
                     }
@@ -1287,48 +1531,36 @@
                 return textNodes;
             }
             
+            function escapeRegExp(string) {
+                return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            }
+            
             function clearSearchResults() {
-                document.querySelectorAll('.search-match').forEach(el => {
+                // Remove all search-match and current-search-match classes
+                document.querySelectorAll('.search-match, .current-search-match').forEach(el => {
                     el.classList.remove('search-match');
                     el.classList.remove('current-search-match');
-                    const parent = el.parentNode;
-                    parent.replaceChild(document.createTextNode(el.textContent), el);
-                    parent.normalize();
                 });
                 
+                // Restore original text content
+                restoreOriginalText();
+                
+                // Hide search navigation
                 searchNavigation.style.display = 'none';
+                
+                // Reset search variables
                 searchResults = [];
                 currentResultIndex = -1;
             }
             
             prevResult.addEventListener('click', function() {
                 if (searchResults.length === 0) return;
-                
-                currentResultIndex = (currentResultIndex - 1 + searchResults.length) % searchResults.length;
-                highlightCurrentResult();
-                
-                // Expand accordion for current result
-                const accordionItem = searchResults[currentResultIndex].closest('.accordion-item');
-                const collapseElement = accordionItem.querySelector('.accordion-collapse');
-                const bsCollapse = new bootstrap.Collapse(collapseElement, {
-                    toggle: false
-                });
-                bsCollapse.show();
+                navigateToResult((currentResultIndex - 1 + searchResults.length) % searchResults.length);
             });
             
             nextResult.addEventListener('click', function() {
                 if (searchResults.length === 0) return;
-                
-                currentResultIndex = (currentResultIndex + 1) % searchResults.length;
-                highlightCurrentResult();
-                
-                // Expand accordion for current result
-                const accordionItem = searchResults[currentResultIndex].closest('.accordion-item');
-                const collapseElement = accordionItem.querySelector('.accordion-collapse');
-                const bsCollapse = new bootstrap.Collapse(collapseElement, {
-                    toggle: false
-                });
-                bsCollapse.show();
+                navigateToResult((currentResultIndex + 1) % searchResults.length);
             });
             
             clearSearch.addEventListener('click', function() {
