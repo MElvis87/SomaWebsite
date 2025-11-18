@@ -795,13 +795,14 @@
         }
         
         /* NEW: Modal Overlay and Popup Styles */
+                /* NEW: Improved Modal Overlay and Popup Styles */
         .modal-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: rgba(0, 0, 0, 0.7);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -809,42 +810,47 @@
             opacity: 0;
             visibility: hidden;
             transition: all 0.3s ease;
+            padding: 20px;
+            box-sizing: border-box;
         }
-        
+
         .modal-overlay.active {
             opacity: 1;
             visibility: visible;
         }
-        
+
         .modal-popup {
             background-color: var(--card-bg);
             border-radius: 20px;
-            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
-            top: 20px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
             width: 90%;
-            max-width: 800px;
-            max-height: 90vh;
+            max-width: 1000px; /* Increased max-width for larger screens */
+            height: auto;
+            max-height: 85vh; /* Better height for rectangular shape */
             overflow-y: auto;
             position: relative;
-            transform: scale(0.8);
+            transform: scale(0.9);
             opacity: 0;
             transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
         }
-        
+
         .modal-overlay.active .modal-popup {
             transform: scale(1);
             opacity: 1;
         }
-        
+
         .modal-close {
             position: absolute;
-            top: 18px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: white;
+            top: 20px;
+            right: 25px;
+            left: auto;
+            transform: none;
+            background-color: var(--card-bg);
             border: none;
             font-size: 24px;
-            color: #333;
+            color: var(--text-color);
             cursor: pointer;
             z-index: 10;
             width: 50px;
@@ -854,61 +860,147 @@
             align-items: center;
             justify-content: center;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
-        
+
         .modal-close:hover {
             background-color: var(--primary);
             color: white;
-            transform: translateX(-50%) scale(1.1);
+            transform: scale(1.1);
         }
-        
+
         .modal-header {
             padding: 0;
             text-align: center;
             position: relative;
+            flex-shrink: 0;
         }
-        
+
         .modal-image {
             width: 100%;
-            height: 200px;
+            height: 200px; /* Fixed height for consistent rectangular shape */
             object-fit: cover;
             border-radius: 20px 20px 0 0;
-            margin-bottom: 0;
         }
-        
+
         .modal-body {
             padding: 30px;
+            flex: 1; /* Takes remaining space */
+            overflow-y: auto;
         }
-        
+
         .modal-title {
             font-weight: 700;
             color: var(--primary);
-            margin-bottom: 15px;
-            margin-top: 10px;
+            margin-bottom: 20px;
+            margin-top: 0;
+            font-size: 1.8rem;
         }
-        
+
         .contact-info {
-            margin-top: 20px;
+            margin-top: 25px;
         }
-        
+
         .contact-item {
             display: flex;
             align-items: center;
             margin-bottom: 15px;
             color: var(--text-color);
+            font-size: 1.05rem;
         }
-        
+
         .contact-item i {
             width: 30px;
             color: var(--primary);
             font-size: 18px;
+            flex-shrink: 0;
         }
-        
-        /* Responsive adjustments for modals */
-        @media (max-width: 768px) {
+
+        /* Improved responsive adjustments for modals */
+        @media (min-width: 768px) {
+            .modal-popup {
+                max-width: 900px;
+                max-height: 80vh;
+            }
+            
+            .modal-body {
+                padding: 40px;
+            }
+            
+            .modal-image {
+                height: 250px; /* Taller image on larger screens */
+            }
+            
+            .modal-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .modal-popup {
+                max-width: 1000px;
+                max-height: 85vh;
+                flex-direction: row; /* Side-by-side layout on large screens */
+            }
+            
+            .modal-header {
+                flex: 0 0 45%; /* Image takes 45% of width */
+                border-radius: 20px 0 0 20px;
+            }
+            
+            .modal-body {
+                flex: 0 0 55%; /* Content takes 55% of width */
+                padding: 40px;
+            }
+            
+            .modal-image {
+                height: 100%; /* Full height on desktop */
+                border-radius: 20px 0 0 20px;
+                object-fit: cover;
+            }
+            
+            .modal-close {
+                top: 25px;
+                right: 25px;
+                background-color: rgba(255, 255, 255, 0.9);
+            }
+            
+            [data-theme="dark"] .modal-close {
+                background-color: rgba(30, 30, 30, 0.9);
+            }
+        }
+
+        @media (max-width: 767px) {
             .modal-popup {
                 width: 95%;
+                max-height: 90vh;
+            }
+            
+            .modal-body {
+                padding: 25px;
+            }
+            
+            .modal-image {
+                height: 180px;
+            }
+            
+            .modal-close {
+                top: 15px;
+                right: 15px;
+                width: 45px;
+                height: 45px;
+                font-size: 20px;
+            }
+        }
+
+        /* Extra small devices */
+        @media (max-width: 480px) {
+            .modal-overlay {
+                padding: 10px;
+            }
+            
+            .modal-popup {
+                width: 100%;
                 max-height: 95vh;
             }
             
@@ -918,19 +1010,6 @@
             
             .modal-image {
                 height: 150px;
-            }
-            
-            .modal-close {
-                top: 35px;
-                width: 45px;
-                height: 45px;
-                font-size: 20px;
-            }
-        }
-        
-        @media (min-width: 1200px) {
-            .modal-popup {
-                max-width: 900px;
             }
         }
     </style>
