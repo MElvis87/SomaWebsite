@@ -87,13 +87,10 @@
         /* Hide content initially */
         body {
             font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            /*font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;*/
             background-color: var(--bg-color);
             color: var(--text-color);
             padding-top: 120px;
             transition: background-color 0.3s ease, color 0.3s ease;
-            /* opacity: 0;*/
-            
         }
         
         body.content-loaded {
@@ -255,266 +252,208 @@
             display: none;
         }
         
-        /* Main Content */
+        /* Homepage Hero Section */
         .hero-section {
-            background: url('bio.jpg');
-            background-repeat: no-repeat;
-            background-size: cover;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
             border-radius: 20px;
-            padding: 60px 40px;
+            padding: 80px 40px;
             margin-bottom: 40px;
             box-shadow: 0 10px 30px rgba(67, 97, 238, 0.3);
+            position: relative;
+            overflow: hidden;
         }
         
-        .card {
-            border: none;
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" opacity="0.05"><polygon fill="white" points="0,1000 1000,0 1000,1000"/></svg>');
+            background-size: cover;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-gif-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .hero-gif {
+            max-width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Features Section */
+        .features-section {
+            margin: 60px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .feature-card {
+            background-color: var(--card-bg);
             border-radius: 16px;
+            padding: 30px;
+            text-align: center;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease;
-            margin-bottom: 24px;
-            overflow: hidden;
-            background-color: var(--card-bg);
+            height: 100%;
+            border: 1px solid rgba(0, 0, 0, 0.05);
         }
-
-        .card:hover {
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .feature-gif-container {
+            margin: 20px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--light);
+        }
+        
+        .feature-gif {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 8px;
+        }
+        
+        /* Subjects Showcase */
+        .subjects-showcase {
+            margin: 80px 0;
+        }
+        
+        .subject-card {
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        
+        .subject-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
         }
         
-        .card-header {
-            background-color: white;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-            padding: 20px 25px;
-            color: var(--text-color);
-        }
-
-        [data-theme="dark"] .card-header {
-            background-color: #0057a8;
-            color: #4de1ff;
-        }
-
-        [data-theme="dark"] .card-header h2 {
-            color: #4de1ff;
-        }
-
-        [data-theme="dark"] .card-header .text-muted {
-            color: black;
-        }
-
-        [data-theme="dark"] .card-header .fa-graduation-cap {
-            color: #4de1ff;
+        .subject-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
         }
         
-        .accordion-button {
-            background-color: var(--card-bg);
-            padding: 18px 25px;
-            font-weight: 600;
-            color: var(--text-color);
-            border: none;
-            box-shadow: none;
-        }
-        
-        .accordion-button:not(.collapsed) {
-            background-color: rgba(67, 97, 238, 0.05);
-            color: var(--primary);
-        }
-        
-        .accordion-button:focus {
-            box-shadow: none;
-            border-color: rgba(0,0,0,.125);
-        }
-        
-        .accordion-body {
+        .subject-content {
             padding: 25px;
-            color: var(--text-color);
-        }
-
-        [data-theme="dark"] .accordion-body {
-            background-color: #091c47;
-            color: white;
-            border-top: 1px solid #333;
         }
         
-        /* UPDATED: Sketchfab Model Container - RESPONSIVE DIMENSIONS */
-        .model-container {
-            background-color: var(--light);
-            border-radius: 12px;
-            overflow: hidden;
-            margin: 20px 0;
-            position: relative;
-        }
-        
-        /* UPDATED: Responsive iframe container */
-        .responsive-iframe-container {
-            position: relative;
-            width: 100%;
-            height: 0;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-            overflow: hidden;
+        .subject-gif-container {
+            margin: 15px 0;
             border-radius: 8px;
-            background: var(--light);
-        }
-        
-        .responsive-iframe-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-        
-        /* UPDATED: Sketchfab embed wrapper styling */
-        .sketchfab-embed-wrapper {
-            width: 100%;
-        }
-        
-        .sketchfab-embed-wrapper p {
-            font-size: 13px;
-            font-weight: normal;
-            margin: 5px 0;
-            color: var(--text-color);
-            text-align: center;
-            padding: 10px;
-        }
-        
-        .sketchfab-embed-wrapper a {
-            font-weight: bold;
-            color: #1CAAD9;
-            text-decoration: none;
-        }
-        
-        .sketchfab-embed-wrapper a:hover {
-            text-decoration: underline;
-        }
-        
-        .model-placeholder {
-            color: var(--text-color);
-            text-align: center;
-            padding: 20px;
-            height: 400px;
+            overflow: hidden;
+            height: 150px;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-        }
-        
-        .model-placeholder i {
-            font-size: 3rem;
-            margin-bottom: 15px;
-            color: var(--primary);
-        }
-        
-        .highlight {
-            background-color: #fff9c4;
-            padding: 2px 4px;
-            border-radius: 4px;
-            font-weight: 600;
-        }
-        
-        .subject-badge {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 6px 14px;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 500;
-        }
-        
-        /* Search Navigation Controls - UPDATED: Sticky Search Navigator */
-        .search-navigation {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            padding: 12px 20px;
             background-color: var(--light);
-            border-radius: 12px;
-            position: sticky;
-            top: 90px;
-            z-index: 1020;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            border: 1px solid rgba(0, 0, 0, 0.1);
         }
         
-        .search-info {
-            font-size: 0.95rem;
-            color: var(--text-color);
-            font-weight: 500;
+        .subject-gif {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 6px;
         }
         
-        .search-nav-buttons button {
-            margin-left: 8px;
+        /* Testimonials Section */
+        .testimonials-section {
+            margin: 80px 0;
+            background-color: var(--light);
+            padding: 60px 0;
+            border-radius: 20px;
         }
         
-        /* Scroll to Top Button */
-        .scroll-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
+        .testimonial-card {
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+            height: 100%;
+        }
+        
+        .testimonial-content {
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .testimonial-content::before {
+            content: """;
+            position: absolute;
+            left: 0;
+            top: -10px;
+            font-size: 3rem;
+            color: var(--primary);
+            opacity: 0.2;
+            font-family: Georgia, serif;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+        
+        .testimonial-avatar {
             width: 50px;
             height: 50px;
             border-radius: 50%;
-            background-color: var(--primary);
+            margin-right: 15px;
+            object-fit: cover;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
-            border: none;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            z-index: 1000;
+            border-radius: 20px;
+            padding: 60px 40px;
+            text-align: center;
+            margin: 80px 0;
         }
         
-        .scroll-to-top.show {
-            opacity: 1;
-            visibility: visible;
+        .cta-gif-container {
+            margin: 30px 0;
+            text-align: center;
         }
         
-        .scroll-to-top:hover {
-            background-color: var(--secondary);
-            transform: translateY(-3px);
-        }
-        
-        /* Mobile adjustments */
-        @media (max-width: 768px) {
-            .model-placeholder {
-                height: 300px;
-            }
-            
-            .search-navigation {
-                flex-direction: column;
-                gap: 10px;
-                padding: 15px;
-            }
-            
-            .search-nav-buttons {
-                display: flex;
-                justify-content: center;
-                width: 100%;
-            }
-            
-            .search-nav-buttons button {
-                flex: 1;
-                margin: 0 4px;
-            }
-        }
-        
-        /* Small mobile adjustments */
-        @media (max-width: 576px) {
-            .model-placeholder {
-                height: 250px;
-            }
-            
-            .theme-toggle {
-                margin-right: 0;
-                margin-bottom: 10px;
-            }
+        .cta-gif {
+            max-width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
         }
         
         /* Footer */
@@ -557,230 +496,69 @@
             transform: translateY(-3px);
         }
         
-        /* Responsive Adjustments - UPDATED FOR TABLET NAVBAR */
-        @media (max-width: 1199px) and (min-width: 992px) {
-            /* Tablet landscape optimizations */
-            .nav-link {
-                font-size: 0.9rem;
-                padding: 8px 10px !important;
-                margin: 0 3px;
-            }
-            
-            .navbar-nav {
-                gap: 5px;
-            }
-            
-            .search-form {
-                max-width: 220px;
-                min-width: 180px;
-            }
-            
-            .theme-toggle {
-                margin-right: 8px;
-            }
-            
-            .theme-toggle-label {
-                margin: 0 4px;
-                font-size: 0.8rem;
-            }
-            
-            .switch {
-                width: 42px;
-                height: 20px;
-            }
-            
-            .slider:before {
-                height: 14px;
-                width: 14px;
-            }
-            
-            input:checked + .slider:before {
-                transform: translateX(22px);
-            }
+        /* Scroll to Top Button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
         }
         
-        @media (max-width: 991px) {
-            /* Tablet portrait and mobile */
-            .search-form {
-                max-width: 100%;
-                margin: 15px 0;
-                order: 3;
-                width: 100%;
+        .scroll-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .scroll-to-top:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 50px 20px;
             }
             
-            .hero-section {
+            .feature-gif-container {
+                height: 150px;
+            }
+            
+            .subject-gif-container {
+                height: 120px;
+            }
+            
+            .cta-section {
                 padding: 40px 20px;
             }
-            
-            .navbar {
-                width: calc(100% - 30px);
-                padding: 10px 0;
-            }
-            
-            .navbar-collapse {
-                padding-top: 15px;
-            }
-            
-            .nav-link {
-                padding: 10px 15px !important;
-                margin: 2px 0;
-            }
-            
-            .navbar-nav {
-                margin-bottom: 10px;
-            }
-            
-            .theme-toggle {
-                margin: 10px 0;
-                justify-content: center;
-            }
-            
-            .nav-icon {
-                display: inline-block;
-                width: 20px;
-                text-align: center;
-                margin-right: 8px;
-            }
-            
-            .nav-text {
-                display: inline;
-            }
         }
         
-        @media (max-width: 768px) {
-            .navbar-brand img {
-                height: 32px;
-            }
-            
+        @media (max-width: 576px) {
             .hero-section {
-                text-align: center;
-                padding: 30px 20px;
+                padding: 40px 15px;
             }
             
-            .navbar {
-                width: calc(100% - 20px);
-                top: 10px;
+            .feature-card {
+                padding: 20px;
             }
             
-            body {
-                padding-top: 90px;
+            .subject-content {
+                padding: 20px;
             }
-            
-            .search-navigation {
-                top: 80px;
-            }
-            
-            /* Hide text on mobile, show only icons */
-            .nav-text {
-                display: inline;
-            }
-            
-            .nav-link {
-                font-size: 0.9rem;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            /* Extra small devices */
-            .nav-text {
-                display: inline;
-            }
-            
-            .nav-link {
-                font-size: 0.85rem;
-                padding: 8px 12px !important;
-            }
-            
-            .navbar-brand img {
-                height: 28px;
-            }
-        }
-        
-        /* Search result styling */
-        .search-match {
-            background-color: #fff9c4 !important;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            padding: 1px 3px;
-            border-radius: 3px;
-        }
-        
-        .current-search-match {
-            background-color: #ffeb3b !important;
-            box-shadow: 0 0 0 2px var(--primary);
-            animation: pulse 1.5s infinite;
-        }
-        
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(67, 97, 238, 0.7); }
-            70% { box-shadow: 0 0 0 6px rgba(67, 97, 238, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(67, 97, 238, 0); }
-        }
-        
-        .no-results {
-            text-align: center;
-            padding: 40px;
-            color: var(--muted-text);
-        }
-
-
-        /* Search result styling - Night Mode */
-        [data-theme="dark"] .search-match {
-            background-color: #6d28d9 !important;
-        }
-
-        [data-theme="dark"] .current-search-match {
-            background-color: #8b5cf6 !important;
-        }
-
-        /* Teal theme */
-        [data-theme="dark"] .search-match {
-            background-color: #0f766e !important;
-        }
-
-        [data-theme="dark"] .current-search-match {
-            background-color: #14b8a6 !important;
-        }
-
-        /* Orange theme */
-        [data-theme="dark"] .search-match {
-            background-color: #33e307 !important;
-        }
-
-        [data-theme="dark"] .current-search-match {
-            background-color: #fb923c !important;
-        }
-                
-        /* Demo new content styles */
-        .new-content {
-            background-color: #e8f4fd;
-            border-left: 4px solid var(--primary);
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 8px;
-        }
-
-        [data-theme="dark"] .new-content {
-            background-color: #1a3a5f;
-            border-left: 4px solid var(--accent);
-            color: #4de1ff;
-        }
-        
-        .key-points {
-            background-color: #f0f9ff;
-            padding: 15px;
-            border-radius: 8px;
-            margin: 15px 0;
-        }
-
-        [data-theme="dark"] .key-points {
-            background-color: #1a3a5f;
-            border-left: 4px solid var(--accent);
-            color: #4de1ff;
-        }
-        
-        .key-points ul {
-            margin-bottom: 0;
         }
         
         /* Text Muted Fix for Dark Mode */
@@ -801,8 +579,7 @@
             background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28233, 236, 239, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
         }
         
-        /* NEW: Modal Overlay and Popup Styles */
-                /* NEW: Improved Modal Overlay and Popup Styles */
+        /* Modal Styles (for About and Contact) */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -831,9 +608,9 @@
             border-radius: 20px;
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
             width: 90%;
-            max-width: 1000px; /* Increased max-width for larger screens */
+            max-width: 1000px;
             height: auto;
-            max-height: 85vh; /* Better height for rectangular shape */
+            max-height: 85vh;
             overflow-y: auto;
             position: relative;
             transform: scale(0.9);
@@ -885,14 +662,14 @@
 
         .modal-image {
             width: 100%;
-            height: 200px; /* Fixed height for consistent rectangular shape */
+            height: 200px;
             object-fit: cover;
             border-radius: 20px 20px 0 0;
         }
 
         .modal-body {
             padding: 30px;
-            flex: 1; /* Takes remaining space */
+            flex: 1;
             overflow-y: auto;
         }
 
@@ -923,7 +700,6 @@
             flex-shrink: 0;
         }
 
-        /* Improved responsive adjustments for modals */
         @media (min-width: 768px) {
             .modal-popup {
                 max-width: 900px;
@@ -935,7 +711,7 @@
             }
             
             .modal-image {
-                height: 250px; /* Taller image on larger screens */
+                height: 250px;
             }
             
             .modal-title {
@@ -947,21 +723,21 @@
             .modal-popup {
                 max-width: 1000px;
                 max-height: 85vh;
-                flex-direction: row; /* Side-by-side layout on large screens */
+                flex-direction: row;
             }
             
             .modal-header {
-                flex: 0 0 45%; /* Image takes 45% of width */
+                flex: 0 0 45%;
                 border-radius: 20px 0 0 20px;
             }
             
             .modal-body {
-                flex: 0 0 55%; /* Content takes 55% of width */
+                flex: 0 0 55%;
                 padding: 40px;
             }
             
             .modal-image {
-                height: 100%; /* Full height on desktop */
+                height: 100%;
                 border-radius: 20px 0 0 20px;
                 object-fit: cover;
             }
@@ -1000,7 +776,6 @@
             }
         }
 
-        /* Extra small devices */
         @media (max-width: 480px) {
             .modal-overlay {
                 padding: 10px;
@@ -1027,7 +802,6 @@
         <div class="loading-content">
             <img src="somagif.gif" alt="Loading..." class="loading-gif">
             <div class="loading-text">Wrapping it up.</div>
-            <!--<div class="loading-subtext">Preparing your 3D learning experience...</div>-->
         </div>
     </div>
 
@@ -1123,161 +897,200 @@
     <!-- Main Content -->
     <div class="container">
         <!-- Hero Section -->
-        <div class="hero-section">
-            <div class="row align-items-center">
-                <div class="col-lg-8">
-                    <h1 class="display-4 fw-bold mb-3">Learn Biology with 3D Models</h1>
-                    <p class="lead mb-4">Explore complex concepts through interactive 3D visualizations from Sketchfab. Our LMS brings learning to life with immersive educational experiences.</p>
-                    <a href="#" class="btn btn-light btn-lg px-4 py-2 fw-bold">Start Learning Now</a>
+        <section class="hero-section">
+            <div class="hero-content">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <h1 class="display-4 fw-bold mb-3">Transform Learning with 3D Experiences</h1>
+                        <p class="lead mb-4">Soma brings complex concepts to life through interactive 3D visualizations. Our immersive platform makes learning engaging, intuitive, and unforgettable.</p>
+                        <div class="d-flex flex-wrap gap-3">
+                            <a href="#" class="btn btn-light btn-lg px-4 py-2 fw-bold">Start Learning Now</a>
+                            <a href="#" class="btn btn-outline-light btn-lg px-4 py-2">Explore Subjects</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="hero-gif-container">
+                            <!-- Placeholder for animated GIF - Replace with actual GIF -->
+                            <img src="https://via.placeholder.com/500x300/4361ee/ffffff?text=Interactive+3D+Demo+GIF" alt="Interactive 3D Learning" class="hero-gif">
+                        </div>
+                    </div>
                 </div>
-                <div class="col-lg-4 text-center">
-                    <i class="fas fa-cube" style="font-size: 10rem; opacity: 0.8;"></i>
+            </div>
+        </section>
+        
+        <!-- Features Section -->
+        <section class="features-section">
+            <h2 class="section-title">Why Choose Soma?</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-cube"></i>
+                        </div>
+                        <h3>Interactive 3D Models</h3>
+                        <p>Explore complex concepts through fully interactive 3D models that you can rotate, zoom, and dissect.</p>
+                        <div class="feature-gif-container">
+                            <!-- Placeholder for animated GIF - Replace with actual GIF -->
+                            <img src="https://via.placeholder.com/300x150/4361ee/ffffff?text=3D+Interaction+GIF" alt="3D Interaction" class="feature-gif">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h3>Expert-Curated Content</h3>
+                        <p>All our learning materials are developed by subject matter experts and experienced educators.</p>
+                        <div class="feature-gif-container">
+                            <!-- Placeholder for animated GIF - Replace with actual GIF -->
+                            <img src="https://via.placeholder.com/300x150/3a0ca3/ffffff?text=Expert+Content+GIF" alt="Expert Content" class="feature-gif">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3>Learn Anywhere</h3>
+                        <p>Access our platform on any device - desktop, tablet, or mobile - for learning on the go.</p>
+                        <div class="feature-gif-container">
+                            <!-- Placeholder for animated GIF - Replace with actual GIF -->
+                            <img src="https://via.placeholder.com/300x150/4cc9f0/ffffff?text=Mobile+Learning+GIF" alt="Mobile Learning" class="feature-gif">
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
         
-        <!-- Search Navigation (initially hidden) -->
-        <div class="search-navigation" id="searchNavigation" style="display: none;">
-            <div class="search-info" id="searchInfo">0 results found</div>
-            <div class="search-nav-buttons">
-                <button class="btn btn-sm btn-outline-primary" id="prevResult"><i class="fas fa-chevron-up me-1"></i> Previous</button>
-                <button class="btn btn-sm btn-outline-primary" id="nextResult">Next <i class="fas fa-chevron-down ms-1"></i></button>
-                <button class="btn btn-sm btn-outline-secondary" id="clearSearch">Clear Search</button>
+        <!-- Subjects Showcase -->
+        <section class="subjects-showcase">
+            <h2 class="section-title">Explore Our Subjects</h2>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="subject-card">
+                        <div class="subject-image" style="background-color: #4361ee;"></div>
+                        <div class="subject-content">
+                            <h4>Biology</h4>
+                            <p>Discover the wonders of life from cells to ecosystems with our interactive 3D models.</p>
+                            <div class="subject-gif-container">
+                                <!-- Placeholder for animated GIF - Replace with actual GIF -->
+                                <img src="https://via.placeholder.com/250x120/4361ee/ffffff?text=Biology+GIF" alt="Biology" class="subject-gif">
+                            </div>
+                            <a href="#" class="btn btn-primary mt-2">Explore Biology</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="subject-card">
+                        <div class="subject-image" style="background-color: #3a0ca3;"></div>
+                        <div class="subject-content">
+                            <h4>Geography</h4>
+                            <p>Journey through Earth's landscapes, climates, and geological formations in 3D.</p>
+                            <div class="subject-gif-container">
+                                <!-- Placeholder for animated GIF - Replace with actual GIF -->
+                                <img src="https://via.placeholder.com/250x120/3a0ca3/ffffff?text=Geography+GIF" alt="Geography" class="subject-gif">
+                            </div>
+                            <a href="#" class="btn btn-primary mt-2">Explore Geography</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="subject-card">
+                        <div class="subject-image" style="background-color: #4cc9f0;"></div>
+                        <div class="subject-content">
+                            <h4>Physics</h4>
+                            <p>Visualize complex physical phenomena and principles with interactive simulations.</p>
+                            <div class="subject-gif-container">
+                                <!-- Placeholder for animated GIF - Replace with actual GIF -->
+                                <img src="https://via.placeholder.com/250x120/4cc9f0/ffffff?text=Physics+GIF" alt="Physics" class="subject-gif">
+                            </div>
+                            <a href="#" class="btn btn-primary mt-2">Explore Physics</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="subject-card">
+                        <div class="subject-image" style="background-color: #f72585;"></div>
+                        <div class="subject-content">
+                            <h4>Culture</h4>
+                            <p>Explore historical artifacts, architectural wonders, and cultural heritage in 3D.</p>
+                            <div class="subject-gif-container">
+                                <!-- Placeholder for animated GIF - Replace with actual GIF -->
+                                <img src="https://via.placeholder.com/250x120/f72585/ffffff?text=Culture+GIF" alt="Culture" class="subject-gif">
+                            </div>
+                            <a href="#" class="btn btn-primary mt-2">Explore Culture</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
+        </section>
         
-        <!-- Main Card -->
-        <div class="card">
-            <div class="card-header">
-                <h2 class="h3 mb-0"><i class="fas fa-graduation-cap me-2 text-primary"></i> Learning Modules</h2>
-                <p class="text-muted mb-0 mt-2">Browse through our interactive learning modules with embedded 3D models</p>
-            </div>
-            
-            <!-- Accordion -->
-            <div class="accordion accordion-flush" id="topicsAccordion">
-                <!-- Topic 1 -->
-                <div class="accordion-item" data-topic="biology">
-                    <h2 class="accordion-header" id="headingOne">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
-                            <span class="subject-badge me-3">Biology</span> Human Anatomy: Skeletal System
-                        </button>
-                    </h2>
-                    <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#topicsAccordion">
-                        <div class="accordion-body">
-                            <h4>Understanding the Human Skeleton</h4>
-                            <p>The human skeleton is the internal framework of the body. It is composed of around 270 bones at birth – this total decreases to around 206 bones by adulthood after some bones have fused together. The bone mass in the skeleton reaches maximum density around age 21.</p>
-                            
-                            <!-- NEW CONTENT EXAMPLE - This will now be searchable -->
-                            <div class="new-content">
-                                <h5>New Research Findings</h5>
-                                <p>Recent studies have shown that bone density can be maintained through proper nutrition and weight-bearing exercises. Calcium and Vitamin D are essential nutrients for bone health.</p>
-                            </div>
-                            
-                            <div class="key-points">
-                                <h6>Key Learning Objectives:</h6>
-                                <ul>
-                                    <li>Identify major bones in the human body</li>
-                                    <li>Understand bone development and growth</li>
-                                    <li>Learn about common skeletal disorders</li>
-                                    <li>Explore the role of minerals in bone health</li>
-                                </ul>
-                            </div>
-
-                            <h4> Model of a Kipoli Van</h4>
-                            <div class="model-container">
-                                
-                                <!-- UPDATED: Responsive Sketchfab Embedding -->
-                                <div class="sketchfab-embed-wrapper">
-                                    <div class="responsive-iframe-container">
-                                        <iframe title="Kamaz" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/9edac45856a34dfeb1326b61d3d69a74/embed">
-                                        </iframe>
+        <!-- Testimonials Section -->
+        <section class="testimonials-section">
+            <div class="container">
+                <h2 class="section-title">What Students Say</h2>
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <p>"The 3D models in Soma have completely transformed how I understand complex biological concepts. It's like having a lab in my pocket!"</p>
+                                <div class="testimonial-author">
+                                    <img src="https://i.pravatar.cc/150?img=5" alt="Student" class="testimonial-avatar">
+                                    <div>
+                                        <h5 class="mb-0">Sarah Johnson</h5>
+                                        <p class="text-muted mb-0">Biology Student</p>
                                     </div>
-                                    <p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;">
-                                        <a href="https://sketchfab.com/3d-models/kamaz-9edac45856a34dfeb1326b61d3d69a74?utm_medium=embed&utm_campaign=share-popup&utm_content=9edac45856a34dfeb1326b61d3d69a74" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">Kamaz</a>
-                                        by <a href="https://sketchfab.com/Korolv?utm_medium=embed&utm_campaign=share-popup&utm_content=9edac45856a34dfeb1326b61d3d69a74" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">Korolv</a>
-                                        on <a href="https://sketchfab.com?utm_medium=embed&utm_campaign=share-popup&utm_content=9edac45856a34dfeb1326b61d3d69a74" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a>
-                                    </p>
                                 </div>
-                            </div>
-                            
-                            <div class="d-flex justify-content-between align-items-center mt-4">
-                                <div>
-                                    <span class="badge bg-primary me-2"><i class="fas fa-clock me-1"></i> 15 min</span>
-                                    <span class="badge bg-success"><i class="fas fa-check-circle me-1"></i> Beginner</span>
-                                </div>
-                                <button class="btn btn-primary"><i class="fas fa-play me-1"></i> Start Lesson</button>
                             </div>
                         </div>
                     </div>
-                </div>
-                
-                <!-- Topic 2 -->
-                <div class="accordion-item" data-topic="biology">
-                    <h2 class="accordion-header" id="headingTwo">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
-                            <span class="subject-badge me-3">Biology</span> Cell Structure and Organelles
-                        </button>
-                    </h2>
-                    <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#topicsAccordion">
-                        <div class="accordion-body">
-                            <h4>Exploring the Building Blocks of Life</h4>
-                            <p>Cells are the basic building blocks of all living things. The human body is composed of trillions of cells. They provide structure for the body, take in nutrients from food, convert those nutrients into energy, and carry out specialized functions.</p>
-                            
-                            <div class="model-container">
-                                <!-- PLACEHOLDER FOR SKETCHFAB MODEL -->
-                                <div class="model-placeholder">
-                                    <i class="fas fa-cube"></i>
-                                    <h5>Animal Cell 3D Model</h5>
-                                    <p>Embedded from Sketchfab</p>
-                                    <small>This model shows the detailed structure of a typical animal cell</small>
+                    <div class="col-md-4">
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <p>"As a visual learner, Soma's interactive models have helped me grasp physics concepts that I struggled with for years. Highly recommended!"</p>
+                                <div class="testimonial-author">
+                                    <img src="https://i.pravatar.cc/150?img=11" alt="Student" class="testimonial-avatar">
+                                    <div>
+                                        <h5 class="mb-0">Michael Chen</h5>
+                                        <p class="text-muted mb-0">Physics Student</p>
+                                    </div>
                                 </div>
-                            </div>
-                            
-                            <div class="d-flex justify-content-between align-items-center mt-4">
-                                <div>
-                                    <span class="badge bg-primary me-2"><i class="fas fa-clock me-1"></i> 20 min</span>
-                                    <span class="badge bg-warning text-dark"><i class="fas fa-exclamation-circle me-1"></i> Intermediate</span>
-                                </div>
-                                <button class="btn btn-primary"><i class="fas fa-play me-1"></i> Start Lesson</button>
                             </div>
                         </div>
                     </div>
-                </div>
-                
-                <!-- Topic 3 -->
-                <div class="accordion-item" data-topic="geography">
-                    <h2 class="accordion-header" id="headingThree">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
-                            <span class="subject-badge me-3">Geography</span> Earth's Geological Formations
-                        </button>
-                    </h2>
-                    <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#topicsAccordion">
-                        <div class="accordion-body">
-                            <h4>Understanding Earth's Structure</h4>
-                            <p>The Earth's crust is divided into several tectonic plates that are constantly moving. This movement creates various geological formations such as mountains, valleys, and volcanoes. The study of these formations helps us understand Earth's history and predict geological events.</p>
-                            
-                            <div class="model-container">
-                                <!-- PLACEHOLDER FOR SKETCHFAB MODEL -->
-                                <div class="model-placeholder">
-                                    <i class="fas fa-cube"></i>
-                                    <h5>Volcano Cross-Section 3D Model</h5>
-                                    <p>Embedded from Sketchfab</p>
-                                    <small>This model shows the internal structure of a stratovolcano</small>
+                    <div class="col-md-4">
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <p>"The geography modules with 3D terrain models have made studying landforms so much more engaging. It's revolutionized how I learn."</p>
+                                <div class="testimonial-author">
+                                    <img src="https://i.pravatar.cc/150?img=8" alt="Student" class="testimonial-avatar">
+                                    <div>
+                                        <h5 class="mb-0">Emma Rodriguez</h5>
+                                        <p class="text-muted mb-0">Geography Student</p>
+                                    </div>
                                 </div>
-                            </div>
-                            
-                            <div class="d-flex justify-content-between align-items-center mt-4">
-                                <div>
-                                    <span class="badge bg-primary me-2"><i class="fas fa-clock me-1"></i> 25 min</span>
-                                    <span class="badge bg-success"><i class="fas fa-check-circle me-1"></i> Beginner</span>
-                                </div>
-                                <button class="btn btn-primary"><i class="fas fa-play me-1"></i> Start Lesson</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
+        
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <h2 class="display-5 fw-bold mb-3">Ready to Transform Your Learning?</h2>
+            <p class="lead mb-4">Join thousands of students who are already experiencing education in a whole new dimension.</p>
+            <div class="cta-gif-container">
+                <!-- Placeholder for animated GIF - Replace with actual GIF -->
+                <img src="https://via.placeholder.com/500x250/ffffff/4361ee?text=Join+Now+GIF" alt="Join Soma" class="cta-gif">
+            </div>
+            <div class="d-flex flex-wrap justify-content-center gap-3">
+                <a href="#" class="btn btn-light btn-lg px-4 py-2 fw-bold">Sign Up Free</a>
+                <a href="#" class="btn btn-outline-light btn-lg px-4 py-2">Watch Demo</a>
+            </div>
+        </section>
     </div>
 
     <!-- NEW: About Us Modal -->
@@ -1442,31 +1255,46 @@
             const body = document.body;
             
             setTimeout(function() {
-    // Fade out loading screen
-    loadingScreen.style.opacity = '0';
-    
-    // Remove loading screen and show content with animations immediately
-    loadingScreen.style.display = 'none';
-    body.classList.add('content-loaded');
-    
-    // Add bouncy animations to main sections immediately
-    const heroSection = document.querySelector('.hero-section');
-    const mainCard = document.querySelector('.card');
-    
-    if (heroSection) {
-        heroSection.classList.add('animate__animated', 'animate__bounceInDown');
-    }
-    
-    if (mainCard) {
-        mainCard.classList.add('animate__animated', 'animate__bounceInUp');
-    }
-    
-    // Add animation to footer
-    const footer = document.querySelector('.footer');
-    if (footer) {
-        footer.classList.add('animate__animated', 'animate__fadeInUp');
-    }
-}, 2000); // Reduce loading time to 1 second or even less
+                // Fade out loading screen
+                loadingScreen.style.opacity = '0';
+                
+                // Remove loading screen and show content with animations immediately
+                loadingScreen.style.display = 'none';
+                body.classList.add('content-loaded');
+                
+                // Add bouncy animations to main sections immediately
+                const heroSection = document.querySelector('.hero-section');
+                const featuresSection = document.querySelector('.features-section');
+                const subjectsSection = document.querySelector('.subjects-showcase');
+                const testimonialsSection = document.querySelector('.testimonials-section');
+                const ctaSection = document.querySelector('.cta-section');
+                
+                if (heroSection) {
+                    heroSection.classList.add('animate__animated', 'animate__fadeIn');
+                }
+                
+                if (featuresSection) {
+                    featuresSection.classList.add('animate__animated', 'animate__fadeInUp');
+                }
+                
+                if (subjectsSection) {
+                    subjectsSection.classList.add('animate__animated', 'animate__fadeInUp');
+                }
+                
+                if (testimonialsSection) {
+                    testimonialsSection.classList.add('animate__animated', 'animate__fadeIn');
+                }
+                
+                if (ctaSection) {
+                    ctaSection.classList.add('animate__animated', 'animate__bounceIn');
+                }
+                
+                // Add animation to footer
+                const footer = document.querySelector('.footer');
+                if (footer) {
+                    footer.classList.add('animate__animated', 'animate__fadeInUp');
+                }
+            }, 2000);
             
             // Theme Toggle Functionality
             const themeToggle = document.getElementById('themeToggle');
@@ -1492,284 +1320,13 @@
             // Search Functionality
             const searchForm = document.getElementById('searchForm');
             const searchInput = document.getElementById('searchInput');
-            const searchNavigation = document.getElementById('searchNavigation');
-            const searchInfo = document.getElementById('searchInfo');
-            const prevResult = document.getElementById('prevResult');
-            const nextResult = document.getElementById('nextResult');
-            const clearSearch = document.getElementById('clearSearch');
-            
-            let searchResults = [];
-            let currentResultIndex = -1;
-            let originalTextNodes = new Map(); // Store original text nodes for restoration
             
             searchForm.addEventListener('submit', function(e) {
                 e.preventDefault();
-                performSearch();
-            });
-            
-            // Add keyboard shortcuts for search navigation
-            document.addEventListener('keydown', function(e) {
-                // Ctrl+F or Cmd+F to focus search
-                if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
-                    e.preventDefault();
-                    searchInput.focus();
-                    searchInput.select();
+                // Simple search functionality - can be expanded
+                if (searchInput.value.trim()) {
+                    alert('Search functionality would navigate to search results page');
                 }
-                
-                // F3 or Enter to find next result
-                if (e.key === 'F3' || (e.key === 'Enter' && !e.shiftKey)) {
-                    e.preventDefault();
-                    if (searchResults.length > 0) {
-                        navigateToResult((currentResultIndex + 1) % searchResults.length);
-                    } else if (searchInput.value.trim()) {
-                        performSearch();
-                    }
-                }
-                
-                // Shift+F3 or Shift+Enter to find previous result
-                if ((e.key === 'F3' && e.shiftKey) || (e.key === 'Enter' && e.shiftKey)) {
-                    e.preventDefault();
-                    if (searchResults.length > 0) {
-                        navigateToResult((currentResultIndex - 1 + searchResults.length) % searchResults.length);
-                    } else if (searchInput.value.trim()) {
-                        performSearch();
-                    }
-                }
-                
-                // Escape to clear search
-                if (e.key === 'Escape' && searchInput.value.trim()) {
-                    clearSearchResults();
-                    searchInput.blur();
-                }
-            });
-            
-            function performSearch() {
-                const searchTerm = searchInput.value.trim().toLowerCase();
-                
-                if (searchTerm === '') {
-                    clearSearchResults();
-                    return;
-                }
-                
-                // Clear previous highlights
-                clearSearchResults();
-                
-                // Search in all content (accordion headers and bodies)
-                const searchableElements = document.querySelectorAll('.accordion-button, .accordion-body, .card-header');
-                searchResults = [];
-                
-                searchableElements.forEach((element) => {
-                    const textContent = element.textContent.toLowerCase();
-                    if (textContent.includes(searchTerm)) {
-                        // Count how many matches are in this element
-                        const regex = new RegExp(searchTerm, 'gi');
-                        const matches = textContent.match(regex);
-                        if (matches) {
-                            // Add the element once for each match
-                            for (let i = 0; i < matches.length; i++) {
-                                searchResults.push({
-                                    element: element,
-                                    matchIndex: i
-                                });
-                            }
-                        }
-                    }
-                });
-                
-                if (searchResults.length > 0) {
-                    // Show search navigation
-                    searchNavigation.style.display = 'flex';
-                    searchInfo.textContent = `${searchResults.length} result${searchResults.length > 1 ? 's' : ''} found for "${searchTerm}"`;
-                    
-                    // Highlight first result
-                    currentResultIndex = 0;
-                    highlightCurrentResult();
-                    
-                    // Expand accordion for first result if it's in a collapsed section
-                    const accordionItem = searchResults[0].element.closest('.accordion-item');
-                    if (accordionItem) {
-                        const collapseElement = accordionItem.querySelector('.accordion-collapse');
-                        if (collapseElement && collapseElement.classList.contains('collapse')) {
-                            const bsCollapse = new bootstrap.Collapse(collapseElement, {
-                                toggle: false
-                            });
-                            bsCollapse.show();
-                        }
-                    }
-                } else {
-                    searchNavigation.style.display = 'flex';
-                    searchInfo.textContent = `No results found for "${searchTerm}"`;
-                }
-            }
-            
-            function navigateToResult(index) {
-                if (index < 0 || index >= searchResults.length) return;
-                
-                currentResultIndex = index;
-                highlightCurrentResult();
-                
-                // Expand accordion for current result if needed
-                const accordionItem = searchResults[currentResultIndex].element.closest('.accordion-item');
-                if (accordionItem) {
-                    const collapseElement = accordionItem.querySelector('.accordion-collapse');
-                    if (collapseElement && collapseElement.classList.contains('collapse')) {
-                        const bsCollapse = new bootstrap.Collapse(collapseElement, {
-                            toggle: false
-                        });
-                        bsCollapse.show();
-                    }
-                }
-            }
-            
-            function highlightCurrentResult() {
-                if (currentResultIndex < 0 || currentResultIndex >= searchResults.length) return;
-                
-                // Remove previous highlights
-                document.querySelectorAll('.search-match').forEach(el => {
-                    el.classList.remove('search-match');
-                    el.classList.remove('current-search-match');
-                });
-                
-                // Restore original text
-                restoreOriginalText();
-                
-                // Highlight all results
-                const searchTerm = searchInput.value.trim().toLowerCase();
-                searchResults.forEach((result, index) => {
-                    highlightText(result.element, searchTerm, index === currentResultIndex, result.matchIndex);
-                });
-                
-                // Scroll to current result with proper centering
-                const currentMatchElement = document.querySelector('.current-search-match');
-                if (currentMatchElement) {
-                    // Calculate the position to center the match
-                    const elementRect = currentMatchElement.getBoundingClientRect();
-                    const absoluteElementTop = elementRect.top + window.pageYOffset;
-                    const middle = absoluteElementTop - (window.innerHeight / 2) + (elementRect.height / 2);
-                    
-                    // Scroll to center the match
-                    window.scrollTo({
-                        top: middle,
-                        behavior: 'smooth'
-                    });
-                }
-                
-                // Update search info
-                searchInfo.textContent = `${currentResultIndex + 1} of ${searchResults.length} results for "${searchTerm}"`;
-            }
-            
-            function highlightText(element, searchTerm, isCurrent, matchIndex) {
-                const textNodes = getTextNodes(element);
-                let currentMatch = 0;
-                
-                textNodes.forEach(node => {
-                    // Store original text if not already stored
-                    if (!originalTextNodes.has(node)) {
-                        originalTextNodes.set(node, node.textContent);
-                    }
-                    
-                    const text = node.textContent;
-                    const regex = new RegExp(`(${escapeRegExp(searchTerm)})`, 'gi');
-                    
-                    // Replace each match with highlighted span
-                    let newText = text;
-                    let match;
-                    let lastIndex = 0;
-                    let result = '';
-                    
-                    while ((match = regex.exec(text)) !== null) {
-                        // Add text before the match
-                        result += text.substring(lastIndex, match.index);
-                        
-                        // Check if this is the specific match we're looking for
-                        const isThisMatch = (currentMatch === matchIndex);
-                        
-                        // Add the highlighted match
-                        result += `<span class="search-match ${isThisMatch && isCurrent ? 'current-search-match' : ''}">${match[0]}</span>`;
-                        
-                        lastIndex = regex.lastIndex;
-                        currentMatch++;
-                    }
-                    
-                    // Add remaining text
-                    result += text.substring(lastIndex);
-                    
-                    if (result !== text) {
-                        const newSpan = document.createElement('span');
-                        newSpan.innerHTML = result;
-                        node.parentNode.replaceChild(newSpan, node);
-                    }
-                });
-            }
-            
-            function restoreOriginalText() {
-                originalTextNodes.forEach((originalText, node) => {
-                    if (node.parentNode) {
-                        const parent = node.parentNode;
-                        parent.replaceChild(document.createTextNode(originalText), node);
-                        parent.normalize();
-                    }
-                });
-                originalTextNodes.clear();
-            }
-            
-            function getTextNodes(element) {
-                const textNodes = [];
-                
-                function findTextNodes(node) {
-                    if (node.nodeType === Node.TEXT_NODE && node.textContent.trim() !== '') {
-                        textNodes.push(node);
-                    } else {
-                        for (let child of node.childNodes) {
-                            // Skip script and style elements
-                            if (child.nodeType === Node.ELEMENT_NODE && 
-                                (child.tagName === 'SCRIPT' || child.tagName === 'STYLE')) {
-                                continue;
-                            }
-                            findTextNodes(child);
-                        }
-                    }
-                }
-                
-                findTextNodes(element);
-                return textNodes;
-            }
-            
-            function escapeRegExp(string) {
-                return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-            }
-            
-            function clearSearchResults() {
-                // Remove all search-match and current-search-match classes
-                document.querySelectorAll('.search-match, .current-search-match').forEach(el => {
-                    el.classList.remove('search-match');
-                    el.classList.remove('current-search-match');
-                });
-                
-                // Restore original text content
-                restoreOriginalText();
-                
-                // Hide search navigation
-                searchNavigation.style.display = 'none';
-                
-                // Reset search variables
-                searchResults = [];
-                currentResultIndex = -1;
-            }
-            
-            prevResult.addEventListener('click', function() {
-                if (searchResults.length === 0) return;
-                navigateToResult((currentResultIndex - 1 + searchResults.length) % searchResults.length);
-            });
-            
-            nextResult.addEventListener('click', function() {
-                if (searchResults.length === 0) return;
-                navigateToResult((currentResultIndex + 1) % searchResults.length);
-            });
-            
-            clearSearch.addEventListener('click', function() {
-                searchInput.value = '';
-                clearSearchResults();
             });
             
             // Scroll to Top Functionality
