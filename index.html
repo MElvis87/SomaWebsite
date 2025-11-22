@@ -437,12 +437,9 @@
             border-radius: 12px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
         }
-        
-        /* Features Section */
-        .features-section {
-            margin: 60px 0;
-        }
-        
+
+
+        /*Section- Titles*/
         .section-title {
             text-align: center;
             margin-bottom: 50px;
@@ -450,44 +447,159 @@
             color: var(--primary);
         }
         
-        .feature-card {
-            background-color: var(--card-bg);
-            border-radius: 16px;
-            padding: 30px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-            height: 100%;
-            border: 1px solid rgba(0, 0, 0, 0.05);
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .feature-icon {
-            font-size: 3rem;
-            color: var(--primary);
-            margin-bottom: 20px;
-        }
-        
-        .feature-gif-container {
-            margin: 20px 0;
-            border-radius: 12px;
-            overflow: hidden;
-            height: 200px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: var(--light);
-        }
-        
-        .feature-gif {
-            max-width: 100%;
-            max-height: 100%;
-            border-radius: 8px;
-        }
+        /* Features Section - IMPROVED */
+.features-section {
+    margin: 60px 0;
+}
+
+.feature-card {
+    background-color: var(--card-bg);
+    border-radius: 16px;
+    padding: 30px 25px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    height: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    min-height: 450px; /* Set a consistent minimum height */
+}
+
+.feature-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.feature-icon {
+    font-size: 2.5rem;
+    color: var(--primary);
+    margin-bottom: 20px;
+    flex-shrink: 0;
+}
+
+.feature-card h3 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: var(--text-color);
+    flex-shrink: 0;
+}
+
+.feature-card p {
+    color: var(--muted-text);
+    line-height: 1.6;
+    margin-bottom: 20px;
+    flex-shrink: 0;
+}
+
+.feature-gif-container {
+    margin: 15px 0;
+    border-radius: 12px;
+    overflow: hidden;
+    height: 160px; /* Fixed height for consistency */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--light);
+    flex: 1; /* Allow this container to grow and fill remaining space */
+    min-height: 160px;
+}
+
+.feature-gif {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 8px;
+    object-fit: contain;
+}
+
+/* Fix Lottie animation sizing */
+.feature-gif-container dotlottie-wc {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+}
+
+/* Responsive adjustments for features section */
+@media (max-width: 1200px) {
+    .feature-card {
+        padding: 25px 20px;
+        min-height: 420px;
+    }
+    
+    .feature-gif-container {
+        height: 140px;
+        min-height: 140px;
+    }
+}
+
+@media (max-width: 992px) {
+    .feature-card {
+        min-height: 400px;
+        margin-bottom: 25px;
+    }
+    
+    .feature-gif-container {
+        height: 130px;
+        min-height: 130px;
+    }
+    
+    .feature-icon {
+        font-size: 2.2rem;
+    }
+    
+    .feature-card h3 {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .feature-card {
+        min-height: 380px;
+        padding: 20px 15px;
+    }
+    
+    .feature-gif-container {
+        height: 120px;
+        min-height: 120px;
+    }
+    
+    .feature-icon {
+        font-size: 2rem;
+        margin-bottom: 15px;
+    }
+    
+    .feature-card h3 {
+        font-size: 1.25rem;
+        margin-bottom: 12px;
+    }
+    
+    .feature-card p {
+        font-size: 0.95rem;
+        margin-bottom: 15px;
+    }
+}
+
+@media (max-width: 576px) {
+    .feature-card {
+        min-height: 350px;
+        padding: 20px;
+    }
+    
+    .feature-gif-container {
+        height: 110px;
+        min-height: 110px;
+    }
+    
+    .features-section .row {
+        margin: 0 -10px;
+    }
+    
+    .features-section .col-md-4 {
+        padding: 0 10px;
+    }
+}
         
         /* Subjects Showcase */
         .subjects-showcase {
@@ -1150,57 +1262,47 @@
             </div>
         </section>
         
-        <!-- Features Section -->
         <section class="features-section">
-            <h2 class="section-title" id="benefits">Why Choose Soma?</h2>
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-cube"></i>
-                        </div>
-                        <h3>Interactive 3D Models</h3>
-                        <p>Explore complex concepts through interactive 3D models that you can rotate, zoom and inspect, thanks to Sketchfab.</p>
-                        <div class="feature-gif-container">
-                            <!-- Placeholder for animated GIF - Replace with actual GIF -->
-                            <!--<img src="https://via.placeholder.com/300x150/4361ee/ffffff?text=3D+Interaction+GIF" alt="3D Interaction" class="feature-gif">-->
-                            <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js" type="module"></script>
-<dotlottie-wc src="https://lottie.host/755a2c2e-d75b-45c1-920f-0e173010183a/KUkID2mKMx.lottie" style="width: 300px;height: 300px" autoplay loop></dotlottie-wc>
-                        </div>
-                    </div>
+    <h2 class="section-title" id="benefits">Why Choose Soma?</h2>
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-cube"></i>
                 </div>
-                <div class="col-md-4">
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-graduation-cap"></i>
-                        </div>
-                        <h3>Expert-Curated Content</h3>
-                        <p>All our learning materials are developed by subject matter experts and experienced educators.</p>
-                        <div class="feature-gif-container">
-                            <!-- Placeholder for animated GIF - Replace with actual GIF -->
-                            <!--<img src="https://via.placeholder.com/300x150/3a0ca3/ffffff?text=Expert+Content+GIF" alt="Expert Content" class="feature-gif">-->
-                            <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js" type="module"></script>
-<dotlottie-wc src="https://lottie.host/6f440918-6691-4a2f-8e79-e2046d41e33c/oGagqRDys1.lottie" style="width: 300px;height: 300px" autoplay loop></dotlottie-wc>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-mobile-alt"></i>
-                        </div>
-                        <h3>Learn Anywhere</h3>
-                        <p>Access our platform anywhere on any device - desktop, tablet, or mobile - for learning on the go.</p>
-                        <div class="feature-gif-container">
-                            <!-- Placeholder for animated GIF - Replace with actual GIF -->
-                            <!--<img src="https://via.placeholder.com/300x150/4cc9f0/ffffff?text=Mobile+Learning+GIF" alt="Mobile Learning" class="feature-gif">-->
-                            <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js" type="module"></script>
-<dotlottie-wc src="https://lottie.host/0512ce35-f201-4093-b4f4-7e22782c928b/vdzESBDvk8.lottie" style="width: 300px;height: 300px" autoplay loop></dotlottie-wc>
-                        </div>
-                    </div>
+                <h3>Interactive 3D Models</h3>
+                <p>Explore complex concepts through interactive 3D models that you can rotate, zoom and inspect, thanks to Sketchfab.</p>
+                <div class="feature-gif-container">
+                    <dotlottie-wc src="https://lottie.host/755a2c2e-d75b-45c1-920f-0e173010183a/KUkID2mKMx.lottie" autoplay loop></dotlottie-wc>
                 </div>
             </div>
-        </section>
+        </div>
+        <div class="col-md-4">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h3>Expert-Curated Content</h3>
+                <p>All our learning materials are developed by subject matter experts and experienced educators.</p>
+                <div class="feature-gif-container">
+                    <dotlottie-wc src="https://lottie.host/6f440918-6691-4a2f-8e79-e2046d41e33c/oGagqRDys1.lottie" autoplay loop></dotlottie-wc>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h3>Learn Anywhere</h3>
+                <p>Access our platform anywhere on any device - desktop, tablet, or mobile - for learning on the go.</p>
+                <div class="feature-gif-container">
+                    <dotlottie-wc src="https://lottie.host/0512ce35-f201-4093-b4f4-7e22782c928b/vdzESBDvk8.lottie" autoplay loop></dotlottie-wc>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
         
         <!-- Subjects Showcase -->
         <section class="subjects-showcase">
