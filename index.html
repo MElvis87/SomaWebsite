@@ -398,426 +398,96 @@
         }
         
         /* Homepage Hero Section */
-        /* Improved Hero Section */
-.hero-section {
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    color: white;
-    border-radius: 20px;
-    padding: 60px 20px;
-    margin-bottom: 40px;
-    box-shadow: 0 10px 30px rgba(67, 97, 238, 0.3);
-    position: relative;
-    overflow: hidden;
-    text-align: center;
-}
-
-.hero-content {
-    position: relative;
-    z-index: 1;
-    max-width: 1400px;
-    margin: 0 auto;
-}
-
-.hero-text-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 100%;
-    padding-right: 20px;
-}
-
-.hero-visual-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-}
-
-.hero-gif-container {
-    text-align: center;
-    width: 100%;
-    max-width: 400px;
-    margin: 0 auto;
-}
-
-/* Improved Typography Scaling */
-.hero-title {
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    font-weight: 700;
-    margin-bottom: 1rem;
-    line-height: 1.2;
-    text-shadow: 0 5px 0 rgba(0, 0, 0, 0.8);
-    
-}
-
-.hero-description {
-    font-size: clamp(1rem, 2vw, 1.25rem);
-    margin-bottom: 2rem;
-    line-height: 1.6;
-    opacity: 0.9;
-    text-shadow: 0 5px 0 rgba(0, 0, 0, 0.8);
-}
-
-/* Improved Button Layout */
-.hero-buttons {
-    display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-}
-
-.hero-btn {
-    padding: 12px 30px;
-    font-weight: 600;
-    border-radius: 50px;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    flex-shrink: 0;
-}
-
-/* Responsive Adjustments */
-@media (max-width: 1200px) {
-    .hero-section {
-        padding: 50px 30px;
-    }
-}
-
-@media (max-width: 992px) {
-    .hero-section {
-        padding: 40px 25px;
-    }
-    
-    .hero-text-content {
-        padding-right: 0;
-        text-align: center;
-        margin-bottom: 30px;
-    }
-    
-    .hero-buttons {
-        justify-content: center;
-    }
-    
-    .hero-gif-container {
-        max-width: 350px;
-    }
-}
-
-@media (max-width: 768px) {
-    .hero-section {
-        padding: 40px 20px;
-        border-radius: 16px;
-    }
-    
-    .hero-title {
-        font-size: clamp(1.8rem, 4vw, 2.5rem);
-    }
-    
-    .hero-description {
-        font-size: clamp(0.9rem, 1.8vw, 1.1rem);
-    }
-    
-    .hero-buttons {
-        gap: 12px;
-    }
-    
-    .hero-btn {
-        padding: 10px 25px;
-        font-size: 0.9rem;
-    }
-    
-    .hero-gif-container {
-        max-width: 300px;
-    }
-}
-
-@media (max-width: 576px) {
-    .hero-section {
-        padding: 30px 15px;
-        border-radius: 12px;
-    }
-    
-    .hero-title {
-        font-size: 1.8rem;
-    }
-    
-    .hero-description {
-        font-size: 1rem;
-        margin-bottom: 1.5rem;
-    }
-    
-    .hero-buttons {
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
-    }
-    
-    .hero-btn {
-        width: 100%;
-        max-width: 250px;
-        text-align: center;
-    }
-    
-    .hero-gif-container {
-        max-width: 250px;
-    }
-}
-
-@media (max-width: 400px) {
-    .hero-section {
-        padding: 25px 12px;
-    }
-    
-    .hero-title {
-        font-size: 1.6rem;
-    }
-    
-    .hero-description {
-        font-size: 0.9rem;
-    }
-    
-    .hero-gif-container {
-        max-width: 220px;
-    }
-}
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 20px;
+            padding: 80px 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(67, 97, 238, 0.3);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
         
-        /* Feature Cards Matching Hero Width */
-.features-section {
-    margin: 80px 0;
-}
-
-.features-container {
-    width: 100%;
-}
-
-.feature-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-    align-items: stretch;
-}
-
-.feature-card {
-    background-color: var(--card-bg);
-    border-radius: 20px; /* Match hero section border-radius */
-    padding: 40px 35px; /* Increased padding to match hero proportions */
-    text-align: center;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Similar shadow to hero */
-    transition: all 0.3s ease;
-    height: 100%;
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-width: 0;
-}
-
-.feature-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-}
-
-.feature-icon {
-    font-size: 3.2rem;
-    color: var(--primary);
-    margin-bottom: 25px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 85px;
-}
-
-.feature-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.feature-card h3 {
-    font-size: clamp(1.4rem, 2vw, 1.7rem);
-    font-weight: 600;
-    margin-bottom: 18px;
-    color: var(--text-color);
-    line-height: 1.3;
-}
-
-.feature-card p {
-    color: var(--muted-text);
-    line-height: 1.6;
-    margin-bottom: 28px;
-    font-size: clamp(1rem, 1.5vw, 1.15rem);
-    flex: 1;
-}
-
-.feature-gif-container {
-    margin: 25px 0 0;
-    border-radius: 12px;
-    overflow: hidden;
-    height: 190px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--light);
-    min-height: 190px;
-}
-
-/* Ensure consistent Lottie animation sizing */
-dotlottie-player, dotlottie-wc {
-    width: 100% !important;
-    height: 100% !important;
-    max-width: 300px !important;
-    max-height: 170px !important;
-}
-
-/* Responsive Breakpoints - Matching Hero Behavior */
-@media (max-width: 1200px) {
-    .feature-grid {
-        gap: 25px;
-    }
-    
-    .feature-card {
-        padding: 35px 30px;
-    }
-    
-    .feature-gif-container {
-        height: 180px;
-        min-height: 180px;
-    }
-}
-
-@media (max-width: 992px) {
-    .features-section {
-        margin: 60px 0;
-    }
-    
-    .feature-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 25px;
-    }
-    
-    .feature-card {
-        padding: 35px 30px;
-        border-radius: 18px;
-    }
-    
-    .feature-icon {
-        font-size: 3rem;
-        margin-bottom: 22px;
-        height: 80px;
-    }
-    
-    .feature-gif-container {
-        height: 180px;
-        min-height: 180px;
-    }
-}
-
-@media (max-width: 768px) {
-    .features-section {
-        margin: 50px 0;
-    }
-    
-    .feature-grid {
-        grid-template-columns: 1fr;
-        gap: 25px;
-    }
-    
-    .feature-card {
-        padding: 40px 35px;
-        border-radius: 20px;
-        margin: 0 10px;
-    }
-    
-    .feature-icon {
-        font-size: 3.2rem;
-        height: 85px;
-    }
-    
-    .feature-gif-container {
-        height: 190px;
-        min-height: 190px;
-    }
-    
-    .feature-card h3 {
-        font-size: 1.5rem;
-    }
-    
-    .feature-card p {
-        font-size: 1.1rem;
-    }
-}
-
-@media (max-width: 576px) {
-    .features-section {
-        margin: 40px 0;
-    }
-    
-    .feature-grid {
-        gap: 20px;
-    }
-    
-    .feature-card {
-        padding: 35px 30px;
-        margin: 0 15px;
-        border-radius: 18px;
-    }
-    
-    .feature-icon {
-        font-size: 2.8rem;
-        margin-bottom: 20px;
-        height: 75px;
-    }
-    
-    .feature-gif-container {
-        height: 170px;
-        min-height: 170px;
-    }
-    
-    .feature-card h3 {
-        font-size: 1.4rem;
-    }
-    
-    .feature-card p {
-        font-size: 1.05rem;
-    }
-}
-
-@media (max-width: 400px) {
-    .feature-card {
-        padding: 30px 25px;
-        margin: 0 10px;
-        border-radius: 16px;
-    }
-    
-    .feature-icon {
-        font-size: 2.5rem;
-        height: 70px;
-    }
-    
-    .feature-gif-container {
-        height: 160px;
-        min-height: 160px;
-    }
-    
-    .feature-card h3 {
-        font-size: 1.3rem;
-    }
-    
-    .feature-card p {
-        font-size: 1rem;
-    }
-}
-
-/* Section Title - Match hero spacing */
-.section-title {
-    text-align: center;
-    margin-bottom: 60px; /* Increased to match hero spacing */
-    font-weight: 700;
-    color: var(--primary);
-    font-size: clamp(1.8rem, 4vw, 2.5rem);
-    padding: 0 15px;
-}
-
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" opacity="0.05"><polygon fill="white" points="0,1000 1000,0 1000,1000"/></svg>');
+            background-size: cover;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-gif-container {
+            text-align: center;
+            margin-top: 30px;
+            width: 200px;
+        }
+        
+        .hero-gif {
+            max-width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Features Section */
+        .features-section {
+            margin: 60px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .feature-card {
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            height: 100%;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .feature-gif-container {
+            margin: 20px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--light);
+        }
+        
+        .feature-gif {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 8px;
+        }
         
         /* Subjects Showcase */
         .subjects-showcase {
@@ -888,7 +558,7 @@ dotlottie-player, dotlottie-wc {
         }
         
         .testimonial-content::before {
-            content: "";
+            content: """;
             position: absolute;
             left: 0;
             top: -10px;
@@ -1480,72 +1150,57 @@ dotlottie-player, dotlottie-wc {
             </div>
         </section>
         
-       <!-- Features Section -->
-<section class="features-section">
-    <div class="container"> <!-- Same container class as hero -->
-        <h2 class="section-title">Why Choose Soma?</h2>
-        <div class="features-container">
-            <div class="feature-grid">
-                <!-- Feature 1 -->
-                <div class="feature-card">
-                    <div class="feature-content">
+        <!-- Features Section -->
+        <section class="features-section">
+            <h2 class="section-title" id="benefits">Why Choose Soma?</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="feature-card">
                         <div class="feature-icon">
                             <i class="fas fa-cube"></i>
                         </div>
                         <h3>Interactive 3D Models</h3>
                         <p>Explore complex concepts through interactive 3D models that you can rotate, zoom and inspect, thanks to Sketchfab.</p>
                         <div class="feature-gif-container">
+                            <!-- Placeholder for animated GIF - Replace with actual GIF -->
+                            <!--<img src="https://via.placeholder.com/300x150/4361ee/ffffff?text=3D+Interaction+GIF" alt="3D Interaction" class="feature-gif">-->
                             <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js" type="module"></script>
-                            <dotlottie-wc 
-                                src="https://lottie.host/755a2c2e-d75b-45c1-920f-0e173010183a/KUkID2mKMx.lottie" 
-                                style="width: 100%; height: 100%;" 
-                                autoplay loop>
-                            </dotlottie-wc>
+<dotlottie-wc src="https://lottie.host/755a2c2e-d75b-45c1-920f-0e173010183a/KUkID2mKMx.lottie" style="width: 300px;height: 300px" autoplay loop></dotlottie-wc>
                         </div>
                     </div>
                 </div>
-
-                <!-- Feature 2 -->
-                <div class="feature-card">
-                    <div class="feature-content">
+                <div class="col-md-4">
+                    <div class="feature-card">
                         <div class="feature-icon">
                             <i class="fas fa-graduation-cap"></i>
                         </div>
                         <h3>Expert-Curated Content</h3>
                         <p>All our learning materials are developed by subject matter experts and experienced educators.</p>
                         <div class="feature-gif-container">
+                            <!-- Placeholder for animated GIF - Replace with actual GIF -->
+                            <!--<img src="https://via.placeholder.com/300x150/3a0ca3/ffffff?text=Expert+Content+GIF" alt="Expert Content" class="feature-gif">-->
                             <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js" type="module"></script>
-                            <dotlottie-wc 
-                                src="https://lottie.host/6f440918-6691-4a2f-8e79-e2046d41e33c/oGagqRDys1.lottie" 
-                                style="width: 100%; height: 100%;" 
-                                autoplay loop>
-                            </dotlottie-wc>
+<dotlottie-wc src="https://lottie.host/6f440918-6691-4a2f-8e79-e2046d41e33c/oGagqRDys1.lottie" style="width: 300px;height: 300px" autoplay loop></dotlottie-wc>
                         </div>
                     </div>
                 </div>
-
-                <!-- Feature 3 -->
-                <div class="feature-card">
-                    <div class="feature-content">
+                <div class="col-md-4">
+                    <div class="feature-card">
                         <div class="feature-icon">
                             <i class="fas fa-mobile-alt"></i>
                         </div>
                         <h3>Learn Anywhere</h3>
                         <p>Access our platform anywhere on any device - desktop, tablet, or mobile - for learning on the go.</p>
                         <div class="feature-gif-container">
+                            <!-- Placeholder for animated GIF - Replace with actual GIF -->
+                            <!--<img src="https://via.placeholder.com/300x150/4cc9f0/ffffff?text=Mobile+Learning+GIF" alt="Mobile Learning" class="feature-gif">-->
                             <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js" type="module"></script>
-                            <dotlottie-wc 
-                                src="https://lottie.host/0512ce35-f201-4093-b4f4-7e22782c928b/vdzESBDvk8.lottie" 
-                                style="width: 100%; height: 100%;" 
-                                autoplay loop>
-                            </dotlottie-wc>
+<dotlottie-wc src="https://lottie.host/0512ce35-f201-4093-b4f4-7e22782c928b/vdzESBDvk8.lottie" style="width: 300px;height: 300px" autoplay loop></dotlottie-wc>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
+        </section>
         
         <!-- Subjects Showcase -->
         <section class="subjects-showcase">
