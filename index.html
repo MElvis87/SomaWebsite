@@ -18,6 +18,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="icon" type="image/x-icon" href="favicon.png">
     <style>
+        html {
+  scroll-behavior: smooth;
+  }
         :root {
             --primary: #4361ee;
             --secondary: #3a0ca3;
@@ -245,6 +248,7 @@
     }
 }
 
+/*Dropdown Dark Shade for Mobile view*/
 @media (max-width: 991.98px) {
     .navbar-nav .dropdown-menu {
         position: static;
@@ -271,32 +275,32 @@
         margin: 5px 0;
     }
     
-    /* Dark mode support */
-    [data-theme="dark"] .navbar-nav .dropdown-menu {
-        background-color: rgba(255, 255, 255, 0.05); /* Light shade for dark mode */
-    }
-    
-    /* Show dropdown when parent has show class */
-    .dropdown.show .dropdown-menu,
-    .navbar-nav .dropdown-menu.show {
-        opacity: 1;
-        visibility: visible;
-        height: auto;
-        overflow: visible;
-    }
-    
-    .navbar-nav .dropdown-item {
-        padding: 8px 15px;
-        color: var(--text-color);
-        margin: 0;
-        border-radius: 6px; /* Rounded corners for items */
-    }
-    
-    .navbar-nav .dropdown-item:hover {
-        background-color: rgba(67, 97, 238, 0.1);
-    }
-}
+        /* Dark mode support */
+        [data-theme="dark"] .navbar-nav .dropdown-menu {
+            background-color: rgba(255, 255, 255, 0.05); /* Light shade for dark mode */
+        }
         
+        /* Show dropdown when parent has show class */
+        .dropdown.show .dropdown-menu,
+        .navbar-nav .dropdown-menu.show {
+            opacity: 1;
+            visibility: visible;
+            height: auto;
+            overflow: visible;
+        }
+        
+        .navbar-nav .dropdown-item {
+            padding: 8px 15px;
+            color: var(--text-color);
+            margin: 0;
+            border-radius: 6px; /* Rounded corners for items */
+        }
+        
+        .navbar-nav .dropdown-item:hover {
+            background-color: rgba(67, 97, 238, 0.1);
+        }
+    }
+            
         .search-form {
             max-width: 280px;
             min-width: 200px;
@@ -1048,8 +1052,8 @@
                         <h1 class="display-4 fw-bold mb-3">Transform Learning with 3D Experiences</h1>
                         <p class="lead mb-4">Soma brings complex concepts to life through interactive 3D visualizations. Our immersive platform makes learning engaging, intuitive, and unforgettable.</p>
                         <div class="d-flex flex-wrap gap-3">
-                            <a href="#" class="btn btn-light btn-lg px-4 py-2 fw-bold">Start Learning Now</a>
-                            <a href="#" class="btn btn-outline-light btn-lg px-4 py-2">Explore Subjects</a>
+                            <!--<a href="#explore-subjects" class="btn btn-light btn-lg px-4 py-2 fw-bold">Start Learning Now</a>-->
+                            <a href="#explore-subjects" class="btn btn-outline-light btn-lg px-4 py-2">Start Exploring</a>
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -1118,7 +1122,7 @@
         
         <!-- Subjects Showcase -->
         <section class="subjects-showcase">
-            <h2 class="section-title">Explore Our Subjects</h2>
+            <h2 class="section-title" id="explore-subjects">Explore Our Subjects</h2>
             <div class="row g-4">
                 <div class="col-md-6 col-lg-3">
                     <div class="subject-card">
