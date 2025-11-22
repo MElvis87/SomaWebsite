@@ -941,6 +941,88 @@
                 height: 150px;
             }
         }
+
+                 /* Benefits Section Styles */
+        .benefits-section {
+            margin: 80px 0;
+            background-color: var(--light);
+            padding: 60px 0;
+            border-radius: 20px;
+        }
+
+        .benefit-card {
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            align-items: flex-start;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .benefit-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-right: 20px;
+            flex-shrink: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 60px; /* Fixed width for consistent alignment */
+        }
+
+        .benefit-content h4 {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .benefit-content p {
+            color: var(--text-color);
+            margin-bottom: 0;
+        }
+
+        .benefits-gif-container {
+            margin: 30px 0;
+        }
+
+        .benefits-gif {
+            max-width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Responsive adjustments for benefits section */
+        @media (max-width: 768px) {
+            .benefit-card {
+                padding: 25px 20px;
+                flex-direction: column;
+                text-align: center;
+                align-items: center; /* Center all content */
+            }
+            
+            .benefit-icon {
+                margin-right: 0;
+                margin-bottom: 15px;
+                width: 100%; /* Full width to center the icon */
+                justify-content: center; /* Center the icon horizontally */
+            }
+            
+            .benefits-section {
+                padding: 40px 0;
+            }
+            
+            .benefit-content {
+                width: 100%; /* Ensure content takes full width */
+            }
+        }
     </style>
 </head>
 <body>
@@ -1190,8 +1272,63 @@
                 </div>
             </div>
         </section>
+
+
+        <!-- Benefits of 3D Learning Section -->
+<section class="benefits-section">
+    <div class="container">
+        <h2 class="section-title">What we hope you get.</h2>
+        <div class="row g-4">
+            <div class="col-lg-6">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="benefit-content">
+                        <h4>Enhanced Understanding</h3>
+                        <p>3D models help students visualize complex concepts that are difficult to grasp through 2D diagrams or text alone. By interacting with models, learners develop a deeper understanding of spatial relationships and structural details.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="benefit-content">
+                        <h4>Increased Engagement</h3>
+                        <p>Interactive elements keep students actively involved in the learning process. The ability to rotate, zoom, and explore models creates an immersive experience that boosts motivation and retention.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="benefit-content">
+                        <h4>Accessible Learning</h3>
+                        <p>3D models make abstract concepts tangible for all types of learners. Visual and kinesthetic learners particularly benefit from being able to manipulate objects and see them from multiple perspectives.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="benefit-content">
+                        <h4>Improved Retention</h3>
+                        <p>Studies show that interactive 3D learning leads to better knowledge retention compared to traditional methods. The multi-sensory experience creates stronger neural connections and memory formation.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
         
-        <!-- Testimonials Section -->
+        <!-- Testimonials Section
         <section class="testimonials-section">
             <div class="container">
                 <h2 class="section-title">What Students Say</h2>
@@ -1240,7 +1377,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section>-->
         
         <!-- CTA Section -->
         <section class="cta-section">
