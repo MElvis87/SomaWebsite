@@ -247,6 +247,59 @@
         background-color: rgba(67, 97, 238, 0.1);
     }
 }
+
+/*Dropdown Dark Shade for Mobile view*/
+@media (max-width: 991.98px) {
+    .navbar-nav .dropdown-menu {
+        position: static;
+        float: none;
+        margin-top: 0;
+        border: none;
+        box-shadow: none;
+        background-color: transparent;
+        padding-left: 20px;
+        
+        /* Existing animation properties */
+        opacity: 0;
+        visibility: hidden;
+        height: 0;
+        overflow: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s;
+        margin-bottom: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+        
+        /* NEW: Dark shade background */
+        background-color: rgba(0, 0, 0, 0.05); /* Light dark shade for light mode */
+        border-radius: 8px;
+        margin: 5px 0;
+    }
+    
+    /* Dark mode support */
+    [data-theme="dark"] .navbar-nav .dropdown-menu {
+        background-color: rgba(255, 255, 255, 0.05); /* Light shade for dark mode */
+    }
+    
+    /* Show dropdown when parent has show class */
+    .dropdown.show .dropdown-menu,
+    .navbar-nav .dropdown-menu.show {
+        opacity: 1;
+        visibility: visible;
+        height: auto;
+        overflow: visible;
+    }
+    
+    .navbar-nav .dropdown-item {
+        padding: 8px 15px;
+        color: var(--text-color);
+        margin: 0;
+        border-radius: 6px; /* Rounded corners for items */
+    }
+    
+    .navbar-nav .dropdown-item:hover {
+        background-color: rgba(67, 97, 238, 0.1);
+    }
+}
         
         .search-form {
             max-width: 280px;
