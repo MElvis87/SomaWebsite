@@ -427,16 +427,42 @@
         }
         
         .hero-gif-container {
-            text-align: center;
-            margin-top: 30px;
-            width: 200px;
-        }
+    text-align: center;
+    margin-top: 30px; /* ← Push down */
+    margin-bottom: 30px; /* ← Push up */
+    margin-left: 170px; /* ← Push right */
+    margin-right: 50px; /* ← Push left */
+    width: 500px;
+    
+}
+
+@media (max-width: 768px) {
+    .hero-gif-container {
+        margin-top: 20px; /* ← Adjust for tablet */
+        margin-left: 30px;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-gif-container {
+        margin-top: 15px; /* ← Adjust for mobile */
+        margin-left: 60px;
+    }
+}
         
         .hero-gif {
             max-width: 100%;
             border-radius: 12px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
         }
+
+        .hero-buttons {
+    margin-left: 140px; /* ← Push right */
+    margin-top: 30px;  /* ← Push down */
+    /* OR */
+    margin-right: 50px; /* ← Push left */
+    margin-bottom: 30px; /* ← Push up */
+}
 
 
         /*Section- Titles*/
@@ -1249,7 +1275,7 @@
                     <div class="col-lg-6">
                         <h1 class="display-4 fw-bold mb-3">Transform Learning with 3D Experiences</h1>
                         <p class="lead mb-4">Soma brings complex concepts to life through interactive 3D visualizations. Our immersive platform makes learning engaging, intuitive, and unforgettable.</p>
-                        <div class="d-flex flex-wrap gap-3">
+                        <div class="d-flex flex-wrap gap-3 hero-buttons">
                             <a href="#explore-subjects" class="btn btn-light btn-lg px-4 py-2 fw-bold">Start Exploring</a>
                             <a href="#benefits" class="btn btn-outline-light btn-lg px-4 py-2">Gains</a>
                         </div>
