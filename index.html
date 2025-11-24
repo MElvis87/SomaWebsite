@@ -428,14 +428,10 @@
         
         .hero-gif-container {
     text-align: center;
-    margin-top: 30px; /* ← Push down */
-    margin-bottom: 30px; /* ← Push up */
-    margin-left: 170px; /* ← Push right */
-    margin-right: 50px; /* ← Push left */
-    width: 500px;
+    transform: translateX(-5px) translateY(8px); /* ← RIGHT and DOWN */
     
 }
-
+/*Responsiveness for the hero-gif*/
 @media (max-width: 768px) {
     .hero-gif-container {
         margin-top: 20px; /* ← Adjust for tablet */
@@ -445,9 +441,10 @@
 
 @media (max-width: 576px) {
     .hero-gif-container {
-        margin-top: 15px; /* ← Adjust for mobile */
-        margin-left: 60px;
-    }
+    text-align: center;
+    transform: translateX(-170px) translateY(8px); /* ← RIGHT and DOWN */
+    
+  }
 }
         
         .hero-gif {
@@ -456,13 +453,65 @@
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
         }
 
-        .hero-buttons {
-    margin-left: 140px; /* ← Push right */
-    margin-top: 30px;  /* ← Push down */
-    /* OR */
-    margin-right: 50px; /* ← Push left */
-    margin-bottom: 30px; /* ← Push up */
+               /* Individual hero-button positioning */
+        .explore-btn {
+            margin-right: 20px; /* Space between buttons */
+            transform: translateX(120px) translateY(-13px); /* ← RIGHT and DOWN */
+            z-index: 1; 
+            position: relative;
+        }
+
+        .gains-btn {
+            transform: translateX(75px) translateY(12px); /* ← LEFT and UP */
+            z-index: 2; 
+            position: relative;
+        }
+
+        /* Ensure buttons stay side-by-side */
+        .hero-buttons-container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 15px;
+        }
+
+
+        .hero-words{
+            transform: translateX(1px) translateY(-8px); /* ← LEFT and UP */
+        }
+
+        /*Responsiveness for the hero-buttons*/
+@media (max-width: 768px) {
+    .explore-btn {
+            margin-right: 20px; /* Space between buttons */
+            transform: translateX(120px) translateY(-13px); /* ← RIGHT and DOWN */
+            z-index: 1; 
+            position: relative;
+        }
+
+        .gains-btn {
+            transform: translateX(75px) translateY(12px); /* ← LEFT and UP */
+            z-index: 2; 
+            position: relative;
+        }
 }
+
+@media (max-width: 576px) {
+    .explore-btn {
+            margin-right: 20px; /* Space between buttons */
+            transform: translateX(60px) translateY(-13px); /* ← RIGHT and DOWN */
+            z-index: 1; 
+            position: relative;
+        }
+
+        .gains-btn {
+            transform: translateX(10px) translateY(12px); /* ← LEFT and UP */
+            z-index: 2; 
+            position: relative;
+        }
+}
+        
+
 
 
         /*Section- Titles*/
@@ -1274,18 +1323,19 @@
                 <div class="row align-items-center">
                     <div class="col-lg-6">
                         <h1 class="display-4 fw-bold mb-3">Transform Learning with 3D Experiences</h1>
-                        <p class="lead mb-4">Soma brings complex concepts to life through interactive 3D visualizations. Our immersive platform makes learning engaging, intuitive, and unforgettable.</p>
-                        <div class="d-flex flex-wrap gap-3 hero-buttons">
-                            <a href="#explore-subjects" class="btn btn-light btn-lg px-4 py-2 fw-bold">Start Exploring</a>
-                            <a href="#benefits" class="btn btn-outline-light btn-lg px-4 py-2">Gains</a>
-                        </div>
+                        <div class="hero-words">
+                        <p class="lead mb-4" id="subwords">Soma brings complex concepts to life through interactive 3D visualizations. Our immersive platform makes learning engaging, intuitive, and unforgettable.</p></div>
+                        <div class="hero-buttons-container">
+    <a href="#explore-subjects" class="btn btn-light btn-lg px-4 py-2 fw-bold explore-btn">Start Exploring</a>
+    <a href="#benefits" class="btn btn-outline-light btn-lg px-4 py-2 gains-btn">Gains</a>
+</div>
                     </div>
                     <div class="col-lg-6">
                         <div class="hero-gif-container">
                             <!-- Placeholder for animated GIF - Replace with actual GIF -->
                             <!--<img src="bookgif.gif" alt="Interactive 3D Learning" class="hero-gif">-->
                             <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js" type="module"></script>
-<dotlottie-wc src="https://lottie.host/c0783ebe-6814-4ed6-aa7d-5ffd9a359bbb/cFuixkaW1B.lottie" style="width: 300px;height: 300px" autoplay loop></dotlottie-wc>
+<dotlottie-wc src="https://lottie.host/c0783ebe-6814-4ed6-aa7d-5ffd9a359bbb/cFuixkaW1B.lottie" style="width: 700px;height: 300px" autoplay loop></dotlottie-wc>
                         </div>
                     </div>
                 </div>
