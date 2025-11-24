@@ -1475,6 +1475,26 @@
         <div class="accordion-body">
           <h4>Third Independent Section</h4>
           <p>All three accordion items can be open simultaneously since they work independently.</p>
+
+          <!-- Nested independent accordion -->
+  <div class="card my-4">
+    <div class="accordion accordion-flush" id="nestedIndependentAccordion">
+      <!-- Nested accordion items (without data-bs-parent) -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="nestedHeadingOne">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#nestedCollapseOne">
+            Nested Topic
+          </button>
+        </h2>
+        <div id="nestedCollapseOne" class="accordion-collapse collapse" aria-labelledby="nestedHeadingOne">
+          <div class="accordion-body">
+            Nested content here
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--End of Nested Independent Accordion-->
           
           <div class="new-content">
             <h5>Additional Information</h5>
