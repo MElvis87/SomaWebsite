@@ -426,7 +426,6 @@
             z-index: 1;
         }
         
-        /*Hero-Gif-Container*/
       /*Hero-Gif-Container*/
 .hero-gif-container {
     text-align: center;
@@ -752,11 +751,48 @@
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
         }
         
-        .subject-image {
+        /*.subject-image {
             height: 200px;
             background-size: cover;
             background-position: center;
+        }*/
+
+        .subject-image-biology {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            background: url('bio.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
         }
+
+        .subject-image-geography {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            background: url('geog.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .subject-image-physics {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            background: url('phy.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .subject-image-culture {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            background: url('culture.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
         
         .subject-content {
             padding: 25px;
@@ -1375,13 +1411,14 @@
                         <span class="theme-toggle-label"><i class="fas fa-moon"></i></span>
                     </div>
                     
-                    <!-- Search Bar -->
+                    <!--Search Bar
+                    
                     <form class="d-flex search-form me-3" id="searchForm">
                         <div class="input-group">
                             <input class="form-control" type="search" placeholder="Search..." id="searchInput">
                             <button class="btn btn-outline-primary" type="submit"><i class="fas fa-search"></i></button>
                         </div>
-                    </form>
+                    </form>-->
                     
                     <!-- Profile Dropdown -->
                     <div class="dropdown profile-dropdown">
@@ -1475,7 +1512,7 @@
             <div class="row g-4">
                 <div class="col-md-6 col-lg-3">
                     <div class="subject-card">
-                        <div class="subject-image" style="background-color: #4361ee;"></div>
+                        <div class="subject-image-biology"></div>
                         <div class="subject-content">
                             <h4>Biology</h4>
                             <p>Discover the wonders of life from cells to ecosystems with our interactive 3D models.</p>
@@ -1491,7 +1528,7 @@
                 </div>
                 <div class="col-md-6 col-lg-3">
                     <div class="subject-card">
-                        <div class="subject-image" style="background-color: #3a0ca3;"></div>
+                        <div class="subject-image-geography"></div>
                         <div class="subject-content">
                             <h4>Geography</h4>
                             <p>Journey through Earth's landscapes, climates, and geological formations in 3D.</p>
@@ -1507,7 +1544,7 @@
                 </div>
                 <div class="col-md-6 col-lg-3">
                     <div class="subject-card">
-                        <div class="subject-image" style="background-color: #4cc9f0;"></div>
+                        <div class="subject-image-physics"></div>
                         <div class="subject-content">
                             <h4>Physics</h4>
                             <p>Visualize complex physical phenomena and principles with interactive simulations.</p>
@@ -1523,7 +1560,7 @@
                 </div>
                 <div class="col-md-6 col-lg-3">
                     <div class="subject-card">
-                        <div class="subject-image" style="background-color: #f72585;"></div>
+                        <div class="subject-image-culture"></div>
                         <div class="subject-content">
                             <h4>Culture</h4>
                             <p>Explore historical artifacts, architectural wonders, and cultural heritage in 3D.</p>
