@@ -427,7 +427,8 @@
         }
         
         /*Hero-Gif-Container*/
-       .hero-gif-container {
+      /*Hero-Gif-Container*/
+.hero-gif-container {
     text-align: center;
     display: flex;
     justify-content: center;
@@ -440,27 +441,27 @@
     margin: 0 auto;
 }
 
-/* Desktop (default) - Largest screens */
-@media (min-width: 1200px) {
+/* Default - Mobile First */
+.hero-section .hero-gif-container dotlottie-wc {
+    width: 350px !important;
+    height: 200px !important;
+}
+
+/* Extra Small Mobile */
+@media (max-width: 400px) {
     .hero-section .hero-gif-container dotlottie-wc {
-        width: 700px !important;
+        width: 300px !important;
+        height: 160px !important;
+    }
+}
+
+/* Mobile - override default */
+@media (min-width: 401px) and (max-width: 575px) {
+    .hero-section .hero-gif-container dotlottie-wc {
+        width: 350px !important;
         height: 400px !important;
-    }
-}
-
-/* Desktop - Standard */
-@media (min-width: 992px) and (max-width: 1199px) {
-    .hero-section .hero-gif-container dotlottie-wc {
-        width: 600px !important;
-        height: 300px !important;
-    }
-}
-
-/* Tablet - Landscape */
-@media (min-width: 768px) and (max-width: 991px) {
-    .hero-section .hero-gif-container dotlottie-wc {
-        width: 500px !important;
-        height: 250px !important;
+        margin-top: 40px;
+        margin-bottom: 5px;
     }
 }
 
@@ -472,19 +473,27 @@
     }
 }
 
-/* Mobile */
-@media (max-width: 575px) {
+/* Tablet - Landscape */
+@media (min-width: 768px) and (max-width: 991px) {
     .hero-section .hero-gif-container dotlottie-wc {
-        width: 350px !important;
-        height: 400px !important;
+        width: 500px !important;
+        height: 250px !important;
     }
 }
 
-/* Extra Small Mobile */
-@media (max-width: 400px) {
+/* Desktop - Standard */
+@media (min-width: 992px) and (max-width: 1199px) {
     .hero-section .hero-gif-container dotlottie-wc {
-        width: 300px !important;
-        height: 160px !important;
+        width: 600px !important;
+        height: 300px !important;
+    }
+}
+
+/* Desktop (default) - Largest screens */
+@media (min-width: 1200px) {
+    .hero-section .hero-gif-container dotlottie-wc {
+        width: 700px !important;
+        height: 300px !important;
     }
 }
         
@@ -763,23 +772,31 @@
             border-radius: 6px;
         }
 
-        /* Subject card GIF sizing */
+        /* Subject card GIF sizing - Mobile First */
 .subject-gif-container dotlottie-wc {
     width: 100% !important;
-    height: 250px !important;
+    height: 180px !important;
     max-width: 100% !important;
 }
 
-/* Responsive sizing for subject GIFs */
-@media (max-width: 768px) {
+/* Mobile */
+@media (min-width: 401px) and (max-width: 575px) {
+    .subject-gif-container dotlottie-wc {
+        height: 230px !important;
+    }
+}
+
+/* Tablet */
+@media (min-width: 576px) and (max-width: 767px) {
     .subject-gif-container dotlottie-wc {
         height: 200px !important;
     }
 }
 
-@media (max-width: 576px) {
+/* Desktop */
+@media (min-width: 768px) {
     .subject-gif-container dotlottie-wc {
-        height: 230px !important;
+        height: 250px !important;
     }
 }
         
@@ -1948,6 +1965,15 @@
                 }
             });
         });
+
+
+// Handling dynamic screen resizing
+window.addEventListener('resize', function() {
+    // Force browser to recalculate styles on resize
+    document.body.style.display = 'none';
+    document.body.offsetHeight; // Trigger reflow
+    document.body.style.display = '';
+});
     </script>
 </body>
 </html>
