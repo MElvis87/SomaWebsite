@@ -426,25 +426,66 @@
             z-index: 1;
         }
         
-        .hero-gif-container {
+        /*Hero-Gif-Container*/
+       .hero-gif-container {
     text-align: center;
-    transform: translateX(-5px) translateY(8px); /* ← RIGHT and DOWN */
-    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
-/*Responsiveness for the hero-gif*/
-@media (max-width: 768px) {
-    .hero-gif-container {
-        margin-top: 20px; /* ← Adjust for tablet */
-        margin-left: 30px;
+
+/* More specific selector for hero GIF only */
+.hero-section .hero-gif-container dotlottie-wc {
+    margin: 0 auto;
+}
+
+/* Desktop (default) - Largest screens */
+@media (min-width: 1200px) {
+    .hero-section .hero-gif-container dotlottie-wc {
+        width: 700px !important;
+        height: 400px !important;
     }
 }
 
-@media (max-width: 576px) {
-    .hero-gif-container {
-    text-align: center;
-    transform: translateX(-170px) translateY(8px); /* ← RIGHT and DOWN */
-    
-  }
+/* Desktop - Standard */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .hero-section .hero-gif-container dotlottie-wc {
+        width: 600px !important;
+        height: 300px !important;
+    }
+}
+
+/* Tablet - Landscape */
+@media (min-width: 768px) and (max-width: 991px) {
+    .hero-section .hero-gif-container dotlottie-wc {
+        width: 500px !important;
+        height: 250px !important;
+    }
+}
+
+/* Tablet - Portrait */
+@media (min-width: 576px) and (max-width: 767px) {
+    .hero-section .hero-gif-container dotlottie-wc {
+        width: 450px !important;
+        height: 220px !important;
+    }
+}
+
+/* Mobile */
+@media (max-width: 575px) {
+    .hero-section .hero-gif-container dotlottie-wc {
+        width: 350px !important;
+        height: 400px !important;
+    }
+}
+
+/* Extra Small Mobile */
+@media (max-width: 400px) {
+    .hero-section .hero-gif-container dotlottie-wc {
+        width: 300px !important;
+        height: 160px !important;
+    }
 }
         
         .hero-gif {
@@ -721,6 +762,26 @@
             max-height: 100%;
             border-radius: 6px;
         }
+
+        /* Subject card GIF sizing */
+.subject-gif-container dotlottie-wc {
+    width: 100% !important;
+    height: 250px !important;
+    max-width: 100% !important;
+}
+
+/* Responsive sizing for subject GIFs */
+@media (max-width: 768px) {
+    .subject-gif-container dotlottie-wc {
+        height: 200px !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .subject-gif-container dotlottie-wc {
+        height: 230px !important;
+    }
+}
         
         /* Testimonials Section */
         .testimonials-section {
@@ -872,9 +933,9 @@
                 height: 150px;
             }
             
-            .subject-gif-container {
+            /*.subject-gif-container {
                 height: 120px;
-            }
+            }*/
             
             .cta-section {
                 padding: 40px 20px;
@@ -894,9 +955,9 @@
                 padding: 20px;
             }
 
-            .subject-gif-container {
+            /*.subject-gif-container {
                 height: 250px;
-            }
+            }*/
         }
         
         /* Text Muted Fix for Dark Mode */
@@ -1335,7 +1396,7 @@
                             <!-- Placeholder for animated GIF - Replace with actual GIF -->
                             <!--<img src="bookgif.gif" alt="Interactive 3D Learning" class="hero-gif">-->
                             <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js" type="module"></script>
-<dotlottie-wc src="https://lottie.host/c0783ebe-6814-4ed6-aa7d-5ffd9a359bbb/cFuixkaW1B.lottie" style="width: 700px;height: 300px" autoplay loop></dotlottie-wc>
+<dotlottie-wc src="https://lottie.host/c0783ebe-6814-4ed6-aa7d-5ffd9a359bbb/cFuixkaW1B.lottie" autoplay loop></dotlottie-wc>
                         </div>
                     </div>
                 </div>
@@ -1398,7 +1459,7 @@
                                 <!-- Placeholder for animated GIF - Replace with actual GIF -->
                                 <!--<img src="https://via.placeholder.com/250x120/4361ee/ffffff?text=Biology+GIF" alt="Biology" class="subject-gif">-->
                                 <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js" type="module"></script>
-<dotlottie-wc src="https://lottie.host/3631dbed-37b0-4a4c-9989-1a77f885a57b/9B4dtzYgDs.lottie" style="width: 300px;height: 300px" autoplay loop></dotlottie-wc>
+<dotlottie-wc src="https://lottie.host/3631dbed-37b0-4a4c-9989-1a77f885a57b/9B4dtzYgDs.lottie" autoplay loop></dotlottie-wc>
                             </div>
                             <a href="3dbio.html" class="btn btn-primary mt-2">Explore Biology</a>
                         </div>
@@ -1414,7 +1475,7 @@
                                 <!-- Placeholder for animated GIF - Replace with actual GIF -->
                                 <!--<img src="https://via.placeholder.com/250x120/3a0ca3/ffffff?text=Geography+GIF" alt="Geography" class="subject-gif">-->
                                 <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js" type="module"></script>
-<dotlottie-wc src="https://lottie.host/5ccffa51-39d8-4f5b-9001-14f4caea55ee/wAAX5xptrq.lottie" style="width: 300px;height: 300px" autoplay loop></dotlottie-wc>
+<dotlottie-wc src="https://lottie.host/5ccffa51-39d8-4f5b-9001-14f4caea55ee/wAAX5xptrq.lottie" autoplay loop></dotlottie-wc>
                             </div>
                             <a href="3dgeo.html" class="btn btn-primary mt-2">Explore Geography</a>
                         </div>
@@ -1430,7 +1491,7 @@
                                 <!-- Placeholder for animated GIF - Replace with actual GIF -->
                                 <!--<img src="https://via.placeholder.com/250x120/4cc9f0/ffffff?text=Physics+GIF" alt="Physics" class="subject-gif">-->
                                 <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js" type="module"></script>
-<dotlottie-wc src="https://lottie.host/ad22c5d0-7bb9-414a-a46a-1ce071fbb771/w7VVCWOknY.lottie" style="width: 300px;height: 300px" autoplay loop></dotlottie-wc>
+<dotlottie-wc src="https://lottie.host/ad22c5d0-7bb9-414a-a46a-1ce071fbb771/w7VVCWOknY.lottie" autoplay loop></dotlottie-wc>
                             </div>
                             <a href="3dphysics.html" class="btn btn-primary mt-2">Explore Physics</a>
                         </div>
@@ -1446,7 +1507,7 @@
                                 <!-- Placeholder for animated GIF - Replace with actual GIF -->
                                 <!--<img src="https://via.placeholder.com/250x120/f72585/ffffff?text=Culture+GIF" alt="Culture" class="subject-gif">-->
                                 <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js" type="module"></script>
-<dotlottie-wc src="https://lottie.host/637f3935-c95b-4c88-aeae-7dfa6c5324f6/FJRM2SaVSR.lottie" style="width: 300px;height: 300px" autoplay loop></dotlottie-wc>
+<dotlottie-wc src="https://lottie.host/637f3935-c95b-4c88-aeae-7dfa6c5324f6/FJRM2SaVSR.lottie" autoplay loop></dotlottie-wc>
                             </div>
                             <a href="3dculture.html" class="btn btn-primary mt-2">Explore Culture</a>
                         </div>
