@@ -846,7 +846,7 @@
     }
 }
 
-/*Disappear the subject GIFS when in Mobile View*/
+/*Disappear the subject GIFS when in Mobile*/
 @media (max-width: 768px) {
     .subject-card .subject-gif-container {
         display: none !important;
@@ -1352,6 +1352,79 @@
                 width: 100%; /* Ensure content takes full width */
             }
         }
+
+
+        /* Feature Section GIF Container - Square Dimensions */
+.feature-gif-container {
+    margin: 15px 0;
+    border-radius: 12px;
+    overflow: hidden;
+    height: 0;
+    padding-bottom: 100%; /* This creates a perfect square */
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--light);
+    flex: 1;
+    min-height: auto; /* Remove fixed min-height */
+}
+
+.feature-gif {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 8px;
+    object-fit: contain;
+}
+
+/* Fix Lottie animation sizing for square containers */
+.feature-gif-container dotlottie-wc {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90% !important; /* Slightly smaller to fit within container */
+    height: 90% !important;
+    max-width: 90% !important;
+    max-height: 90% !important;
+}
+
+/* Remove the responsive adjustments that set fixed heights */
+@media (max-width: 1200px) {
+    .feature-card {
+        padding: 25px 20px;
+        min-height: 420px;
+    }
+    
+    /* Remove the fixed height for feature-gif-container */
+}
+
+@media (max-width: 992px) {
+    .feature-card {
+        min-height: 400px;
+        margin-bottom: 25px;
+    }
+    
+    /* Remove the fixed height for feature-gif-container */
+}
+
+@media (max-width: 768px) {
+    .feature-card {
+        min-height: 380px;
+        padding: 20px 15px;
+    }
+    
+    /* Remove the fixed height for feature-gif-container */
+}
+
+@media (max-width: 576px) {
+    .feature-card {
+        min-height: 350px;
+        padding: 20px;
+    }
+    
+    /* Remove the fixed height for feature-gif-container */
+}
     </style>
 </head>
 <body>
