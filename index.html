@@ -845,6 +845,20 @@
         height: 250px !important;
     }
 }
+
+/*Disappear the subject GIFS when in Mobile View*/
+@media (max-width: 768px) {
+    .subject-card .subject-gif-container {
+        display: none !important;
+    }
+    
+    /* Also hide the Lottie element directly */
+    .subject-gif-container dotlottie-wc {
+        display: none !important;
+    }
+}
+
+
         
         /* Testimonials Section */
         .testimonials-section {
