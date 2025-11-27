@@ -88,26 +88,33 @@
             opacity: 0.7;
             cursor: not-allowed;
         }
-        .success-message {
+        .success-message, .error-message {
             display: none;
-            background: #10b981;
-            color: white;
             padding: 1.5rem;
             border-radius: 10px;
             text-align: center;
             margin-top: 1rem;
         }
+        .success-message {
+            background: #10b981;
+            color: white;
+        }
+        .error-message {
+            background: #dc3545;
+            color: white;
+        }
+        .form-hidden {
+            display: none;
+        }
     </style>
 </head>
 <body>
     <div class="feedback-container">
-        <div class="feedback-form">
+        <div class="feedback-form" id="feedbackForm">
             <h2>📝 We'd love your feedback!</h2>
             <p style="margin-bottom: 2rem; opacity: 0.9;">Help us improve in just 30 seconds</p>
             
-            <form action="https://formsubmit.co/elvismukuru23@gmail.com" method="POST">
-                <!-- Replace YOUR_EMAIL@yourdomain.com with your actual Zoho email -->
-                
+            <form id="submitForm" method="POST">
                 <div class="form-group">
                     <label>Your Name</label>
                     <input type="text" name="name" placeholder="John Doe" required>
@@ -140,12 +147,11 @@
                     <textarea name="improvement_suggestions" placeholder="Any suggestions for improvement?"></textarea>
                 </div>
                 
-                <!-- REQUIRED FormSubmit hidden fields -->
+                <!-- FormSubmit hidden fields (fixed: no invalid _next) -->
                 <input type="hidden" name="_subject" value="🌟 New Website Feedback">
                 <input type="hidden" name="_captcha" value="false">
                 <input type="hidden" name="_template" value="table">
                 <input type="hidden" name="_autocomplete" value="off">
-                <input type="hidden" name="_next" value="https://yourwebsite.com/thank-you.html">
                 
                 <!-- Optional: Auto-reply to user -->
                 <input type="hidden" name="_autoresponse" value="Thank you for your feedback! We'll review it and get back to you soon.">
@@ -157,6 +163,11 @@
                 <h3>🎉 Thank you!</h3>
                 <p>Your feedback has been sent successfully. We appreciate your time!</p>
             </div>
+            
+            <div class="error-message" id="errorMessage">
+                <h3>❌ Oops!</h3>
+                <p>Something went wrong. Please try again or check your connection.</p>
+            </div>
         </div>
     </div>
 
@@ -164,16 +175,56 @@
         // Rating button functionality
         const ratingButtons = document.querySelectorAll('.rating-btn');
         const ratingInput = document.getElementById('rating');
+        const form = document.getElementById('submitForm');
+        const feedbackForm = document.getElementById('feedbackForm');
+        const successMessage = document.getElementById('successMessage');
+        const errorMessage = document.getElementById('errorMessage');
         
         ratingButtons.forEach(button => {
             button.addEventListener('click', () => {
-                // Remove selected from all buttons
                 ratingButtons.forEach(btn => btn.classList.remove('selected'));
-                // Add selected to clicked button
                 button.classList.add('selected');
-                // Set hidden input value
                 ratingInput.value = button.dataset.rating;
             });
+        });
+        
+        // Form submission handling
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault(); // Prevent default to handle manually
+            
+            // Validate rating
+            if (!ratingInput.value) {
+                alert('Please select a rating before submitting!');
+                return;
+            }
+            
+            const submitButton = form.querySelector('button[type="submit"]');
+            const originalText = submitButton.innerHTML;
+            submitButton.innerHTML = 'Sending...';
+            submitButton.disabled = true;
+            
+            try {
+                const formData = new FormData(form);
+                const response = await fetch('https://formsubmit.co/elvismukuru23@gmail.com', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                if (response.ok) {
+                    // Hide form, show success
+                    feedbackForm.classList.add('form-hidden');
+                    successMessage.style.display = 'block';
+                    form.reset();
+                } else {
+                    throw new Error('Submission failed');
+                }
+            } catch (error) {
+                console.error('Form submission error:', error); // For debugging
+                errorMessage.style.display = 'block';
+            } finally {
+                submitButton.innerHTML = originalText;
+                submitButton.disabled = false;
+            }
         });
     </script>
 </body>
