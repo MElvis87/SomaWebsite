@@ -1429,6 +1429,190 @@
     /* Remove the fixed height for feature-gif-container */
 }
 
+/*Ad Card CSS*/
+:root {
+            --card-bg: #f9f9f9;
+            --card-border: #e0e0e0;
+            --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --ad-label-color: #666;
+            --close-btn-bg: rgba(0, 0, 0, 0.7);
+            --close-btn-hover: rgba(0, 0, 0, 0.9);
+        }
+
+        .ad-container {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            box-shadow: var(--card-shadow);
+            margin: 1rem auto;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        .ad-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .ad-container.square {
+            max-width: 300px;
+            aspect-ratio: 1 / 1;
+        }
+
+        .ad-container.rectangle {
+            max-width: 600px;
+            aspect-ratio: 16 / 9;
+        }
+
+        .ad-inner {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .ad-media-area {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .ad-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .ad-vid {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .ad-caption {
+            padding: 8px 12px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--ad-label-color);
+            border-top: 1px solid var(--card-border);
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Perfectly round close button */
+        .ad-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%; /* This makes it perfectly round */
+            background-color: var(--close-btn-bg);
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: bold;
+            z-index: 10;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+            padding: 0;
+            line-height: 1;
+        }
+
+        .ad-close:hover {
+            background-color: var(--close-btn-hover);
+            transform: scale(1.1);
+        }
+
+        /* Hidden state for closed ads */
+        .ad-container.hidden {
+            display: none;
+        }
+
+        /* Fade out animation */
+        .ad-container.fade-out {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .ad-container.square {
+                max-width: 250px;
+            }
+            
+            .ad-container.rectangle {
+                max-width: 100%;
+            }
+            
+            .ad-close {
+                width: 28px;
+                height: 28px;
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .ad-container.square {
+                max-width: 200px;
+            }
+            
+            .ad-close {
+                width: 24px;
+                height: 24px;
+                font-size: 14px;
+            }
+        }
+
+        /* Demo page styles 
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        h1, h2 {
+            color: #333;
+            text-align: center;
+        }*/
+        
+        .content-section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .demo-controls {
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .demo-btn {
+            background-color: #4a6ee0;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 0 10px;
+            transition: background-color 0.2s;
+        }
+        
+        .demo-btn:hover {
+            background-color: #3a5ecf;
+        }
+        /*Ad Card CSS End*/
 </style>
     </style>
 </head>
@@ -1778,6 +1962,55 @@
         </section>-->
 
         <!-- Ad Start -->
+<h1>Responsive Ad Card with Round Close Button</h1>
+    
+    <div class="demo-controls">
+        <button class="demo-btn" id="showAllBtn">Show All Ads</button>
+        <button class="demo-btn" id="addSquareBtn">Add Square Ad</button>
+        <button class="demo-btn" id="addRectangleBtn">Add Rectangle Ad</button>
+    </div>
+    
+    <div class="content-section">
+        <h2>Square Image Ad</h2>
+        <div class="ad-container square">
+            <button class="ad-close" aria-label="Close ad">×</button>
+            <div class="ad-inner">
+                <div class="ad-media-area">
+                    <img src="https://picsum.photos/600/600" alt="Advertisement" class="ad-img">
+                </div>
+                <div class="ad-caption">Advertisement</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="content-section">
+        <h2>Rectangular Video Ad</h2>
+        <div class="ad-container rectangle">
+            <button class="ad-close" aria-label="Close ad">×</button>
+            <div class="ad-inner">
+                <div class="ad-media-area">
+                    <video class="ad-vid" controls muted>
+                        <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="ad-caption">Advertisement</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="content-section">
+        <h2>Another Square Image Ad</h2>
+        <div class="ad-container square">
+            <button class="ad-close" aria-label="Close ad">×</button>
+            <div class="ad-inner">
+                <div class="ad-media-area">
+                    <img src="https://picsum.photos/500/500" alt="Advertisement" class="ad-img">
+                </div>
+                <div class="ad-caption">Advertisement</div>
+            </div>
+        </div>
+    </div>
 
         <!--Ad End-->
         
@@ -2105,6 +2338,105 @@
                     contactUsModal.classList.remove('active');
                     document.body.style.overflow = '';
                 }
+            });
+        });
+
+
+ // Function to create a new ad container
+        function createAdContainer(type, mediaSrc, isVideo = false) {
+            const adContainer = document.createElement('div');
+            adContainer.className = `ad-container ${type}`;
+            
+            // Create close button
+            const closeBtn = document.createElement('button');
+            closeBtn.className = 'ad-close';
+            closeBtn.setAttribute('aria-label', 'Close ad');
+            closeBtn.innerHTML = '×';
+            closeBtn.addEventListener('click', closeAd);
+            
+            const adInner = document.createElement('div');
+            adInner.className = 'ad-inner';
+            
+            const adMediaArea = document.createElement('div');
+            adMediaArea.className = 'ad-media-area';
+            
+            let mediaElement;
+            if (isVideo) {
+                mediaElement = document.createElement('video');
+                mediaElement.className = 'ad-vid';
+                mediaElement.controls = true;
+                mediaElement.muted = true;
+                
+                const source = document.createElement('source');
+                source.src = mediaSrc;
+                source.type = 'video/mp4';
+                mediaElement.appendChild(source);
+                
+                mediaElement.appendChild(document.createTextNode('Your browser does not support the video tag.'));
+            } else {
+                mediaElement = document.createElement('img');
+                mediaElement.className = 'ad-img';
+                mediaElement.src = mediaSrc;
+                mediaElement.alt = 'Advertisement';
+            }
+            
+            adMediaArea.appendChild(mediaElement);
+            adInner.appendChild(adMediaArea);
+            
+            const adCaption = document.createElement('div');
+            adCaption.className = 'ad-caption';
+            adCaption.textContent = 'Advertisement';
+            adInner.appendChild(adCaption);
+            
+            adContainer.appendChild(closeBtn);
+            adContainer.appendChild(adInner);
+            
+            return adContainer;
+        }
+        
+        // Function to close an ad
+        function closeAd(event) {
+            const adContainer = event.target.closest('.ad-container');
+            if (adContainer) {
+                // Add fade-out animation
+                adContainer.classList.add('fade-out');
+                
+                // Hide after animation completes
+                setTimeout(() => {
+                    adContainer.classList.add('hidden');
+                }, 300);
+            }
+        }
+        
+        // Function to show all hidden ads
+        function showAllAds() {
+            const hiddenAds = document.querySelectorAll('.ad-container.hidden');
+            hiddenAds.forEach(ad => {
+                ad.classList.remove('hidden', 'fade-out');
+            });
+        }
+        
+        // Add event listeners when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add close functionality to existing ads
+            const closeButtons = document.querySelectorAll('.ad-close');
+            closeButtons.forEach(btn => {
+                btn.addEventListener('click', closeAd);
+            });
+            
+            // Show all ads button
+            document.getElementById('showAllBtn').addEventListener('click', showAllAds);
+            
+            // Add new square ad button
+            document.getElementById('addSquareBtn').addEventListener('click', function() {
+                const newAd = createAdContainer('square', 'https://picsum.photos/400/400?' + Date.now(), false);
+                document.querySelector('.content-section:last-child').after(newAd);
+            });
+            
+            // Add new rectangle ad button
+            document.getElementById('addRectangleBtn').addEventListener('click', function() {
+                const newAd = createAdContainer('rectangle', 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4', true);
+                document.querySelector('.content-section:last-child').after(newAd);
             });
         });
 
