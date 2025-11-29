@@ -1613,6 +1613,180 @@
             background-color: #3a5ecf;
         }
         /*Ad Card CSS End*/
+
+
+        /* Pricing Cards CSS */
+.pricing-section {
+    margin: 80px 0;
+    padding: 60px 0;
+    background-color: var(--light);
+    border-radius: 20px;
+}
+
+.pricing-card {
+    background-color: var(--card-bg);
+    border-radius: 16px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    overflow: hidden;
+    height: 100%;
+    position: relative;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.pricing-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.pricing-card.premium {
+    border: 2px solid var(--primary);
+    transform: scale(1.03);
+}
+
+.pricing-card.premium:hover {
+    transform: scale(1.03) translateY(-8px);
+}
+
+.pricing-badge {
+    position: absolute;
+    top: 20px;
+    right: -30px;
+    background-color: var(--primary);
+    color: white;
+    padding: 5px 30px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transform: rotate(45deg);
+    z-index: 1;
+}
+
+.pricing-header {
+    padding: 30px 30px 20px;
+    text-align: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.pricing-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 15px;
+}
+
+.pricing-price {
+    margin-bottom: 15px;
+}
+
+.pricing-price .currency {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-color);
+    vertical-align: top;
+    line-height: 1;
+}
+
+.pricing-price .amount {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--primary);
+    line-height: 1;
+}
+
+.pricing-price .period {
+    font-size: 1rem;
+    color: var(--muted-text);
+}
+
+.pricing-description {
+    color: var(--muted-text);
+    margin-bottom: 0;
+}
+
+.pricing-features {
+    padding: 25px 30px;
+}
+
+.pricing-features ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.pricing-features li {
+    margin-bottom: 12px;
+    display: flex;
+    align-items: flex-start;
+}
+
+.pricing-features i {
+    margin-right: 10px;
+    margin-top: 3px;
+    flex-shrink: 0;
+}
+
+.pricing-features .fa-check {
+    color: var(--success);
+}
+
+.pricing-features .fa-times {
+    color: #dc3545;
+}
+
+.feature-disabled {
+    color: var(--muted-text);
+    text-decoration: line-through;
+}
+
+.pricing-footer {
+    padding: 0 30px 30px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .pricing-card.premium {
+        transform: scale(1);
+    }
+    
+    .pricing-card.premium:hover {
+        transform: translateY(-8px);
+    }
+    
+    .pricing-header {
+        padding: 25px 25px 15px;
+    }
+    
+    .pricing-features {
+        padding: 20px 25px;
+    }
+    
+    .pricing-footer {
+        padding: 0 25px 25px;
+    }
+}
+
+@media (max-width: 576px) {
+    .pricing-section {
+        padding: 40px 0;
+        margin: 60px 0;
+    }
+    
+    .pricing-header {
+        padding: 20px 20px 15px;
+    }
+    
+    .pricing-features {
+        padding: 15px 20px;
+    }
+    
+    .pricing-footer {
+        padding: 0 20px 20px;
+    }
+    
+    .pricing-price .amount {
+        font-size: 2.5rem;
+    }
+}
 </style>
     </style>
 </head>
@@ -2013,6 +2187,74 @@
     </div>
 
         Ad End-->
+
+        <!-- Pricing Cards Section -->
+<section class="pricing-section">
+    <h2 class="section-title">Get an upgrade.</h2>
+    <div class="row justify-content-center">
+        <!-- Free Plan Card -->
+        <div class="col-md-5 col-lg-4 mb-4">
+            <div class="pricing-card">
+                <div class="pricing-header">
+                    <h3 class="pricing-title">Free</h3>
+                    <div class="pricing-price">
+                        <span class="currency">$</span>
+                        <span class="amount">0</span>
+                        <span class="period">/month</span>
+                    </div>
+                    <p class="pricing-description">Free access for everyone.</p>
+                </div>
+                <div class="pricing-features">
+                    <ul>
+                        <li><i class="fas fa-check"></i> No account setup.</li>
+                        <li><i class="fas fa-check"></i> Access to all 3d models</li>
+                        <li><i class="fas fa-check"></i> Ads</li>
+                        <li><i class="fas fa-check"></i> Community support</li>
+                        <li><i class="fas fa-times"></i> <span class="feature-disabled">No personalisation</span></li>
+                        <li><i class="fas fa-times"></i> <span class="feature-disabled">All subjects</span></li>
+                        <li><i class="fas fa-times"></i> <span class="feature-disabled">Download models</span></li>
+                        <li><i class="fas fa-times"></i> <span class="feature-disabled">Priority support</span></li>
+                    </ul>
+                </div>
+                <div class="pricing-footer">
+                    <button class="btn btn-outline-primary btn-lg w-100">Default</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Premium Plan Card -->
+        <div class="col-md-5 col-lg-4 mb-4">
+            <div class="pricing-card premium">
+                <div class="pricing-badge">Most Popular</div>
+                <div class="pricing-header">
+                    <h3 class="pricing-title">Premium</h3>
+                    <div class="pricing-price">
+                        <span class="currency">$</span>
+                        <span class="amount">2.99</span>
+                        <span class="period">/month</span>
+                    </div>
+                    <p class="pricing-description">Personalised account setup.</p>
+                </div>
+                <div class="pricing-features">
+                    <ul>
+                        <li><i class="fas fa-check"></i> Account setup</li>
+                        <li><i class="fas fa-check"></i> Access to all 3d models</li>
+                        <li><i class="fas fa-check"></i> No ads</li>
+                        <li><i class="fas fa-check"></i> Download models for offline use</li>
+                        <li><i class="fas fa-check"></i> Advanced interactive features</li>
+                        <li><i class="fas fa-check"></i> Priority customer support</li>
+                        <li><i class="fas fa-check"></i> Personalisation</li>
+                        <li><i class="fas fa-check"></i> Community support</li>
+                    </ul>
+                </div>
+                <div class="pricing-footer">
+                    <button class="btn btn-primary btn-lg w-100">Get Premium</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Pricing Cards Section End-->
         
         <!-- CTA Section -->
         <section class="cta-section">
