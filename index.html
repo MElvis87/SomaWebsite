@@ -1787,6 +1787,71 @@
         font-size: 2.5rem;
     }
 }
+/*Pricing CSS End*/
+
+/* Notepad Dropdown Button Styles */
+.notepad-dropdown {
+    margin-right: 10px;
+}
+
+.notepad-btn {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(67, 97, 238, 0.2);
+}
+
+.notepad-btn:hover {
+    background-color: var(--secondary);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(67, 97, 238, 0.3);
+}
+
+.notepad-btn:active {
+    transform: translateY(0);
+}
+
+.notepad-btn i {
+    font-size: 1.1rem;
+}
+
+/* Mobile adjustments */
+@media (max-width: 991.98px) {
+    .notepad-dropdown {
+        margin-right: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    
+    .notepad-btn {
+        width: 50px;
+        height: 50px;
+        border-radius: 12px;
+    }
+    
+    .notepad-btn i {
+        font-size: 1.3rem;
+    }
+    
+    .notepad-dropdown .dropdown-menu {
+        position: static !important;
+        transform: none !important;
+        text-align: center;
+        width: 100%;
+        margin-top: 10px;
+    }
+}
+/* Notepad Dropdown Button Styles */
 </style>
     </style>
 </head>
@@ -1863,6 +1928,17 @@
                         </label>
                         <span class="theme-toggle-label"><i class="fas fa-moon"></i></span>
                     </div>
+
+                    <!-- Notepad Dropdown Button -->
+<div class="dropdown notepad-dropdown">
+    <button class="btn notepad-btn" type="button" id="notepadDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="fas fa-book"></i>
+    </button>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="notepadDropdown">
+        <li><a class="dropdown-item" href="#"><i class="fas fa-sign-in-alt me-2"></i> Sign In</a></li>
+        <li><a class="dropdown-item" href="#"><i class="fas fa-user-plus me-2"></i> Sign Up</a></li>
+    </ul>
+</div>
                     
                     <!--Search Bar-->
                     <form class="d-flex search-form me-3" id="searchForm" style="display: none !important;">
