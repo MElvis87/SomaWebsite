@@ -1852,6 +1852,145 @@
     }
 }
 /* Notepad Dropdown Button Styles */
+
+/*--------------------------Centering Navbar Mobile Content Start-----------------------------*/
+
+/* Navigation Links */
+.navbar-nav {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (max-width: 991.98px) {
+    .navbar-nav {
+        text-align: center;
+        width: 100%;
+    }
+    
+    .nav-item {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .nav-link {
+        justify-content: center;
+        padding: 12px 15px !important;
+    }
+}
+
+/* Fix for mobile dropdown spacing */
+@media (max-width: 991.98px) {
+    .navbar-nav .dropdown-menu {
+        position: static;
+        float: none;
+        margin-top: 0;
+        border: none;
+        box-shadow: none;
+        background-color: transparent;
+        padding-left: 0;
+        text-align: center;
+        width: 100%;
+        
+        /* Animation properties */
+        opacity: 0;
+        visibility: hidden;
+        height: 0;
+        overflow: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s;
+        margin-bottom: 0;
+    }
+    
+    /* Show dropdown when parent has show class */
+    .dropdown.show .dropdown-menu,
+    .navbar-nav .dropdown-menu.show {
+        opacity: 1;
+        visibility: visible;
+        height: auto;
+        overflow: visible;
+        background-color: rgba(0, 0, 0, 0.05);
+        border-radius: 8px;
+        margin: 5px 0;
+        padding: 10px 0;
+    }
+    
+    /* Dark mode support */
+    [data-theme="dark"] .navbar-nav .dropdown-menu {
+        background-color: rgba(255, 255, 255, 0.05);
+    }
+    
+    .navbar-nav .dropdown-item {
+        padding: 10px 15px;
+        color: var(--text-color);
+        margin: 0;
+        border-radius: 6px;
+        text-align: center;
+        justify-content: center;
+    }
+    
+    .navbar-nav .dropdown-item:hover {
+        background-color: rgba(67, 97, 238, 0.1);
+    }
+    
+    /* Center the dropdown toggle */
+    .dropdown > .nav-link {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+/* Mobile adjustments for notepad */
+@media (max-width: 991.98px) {
+    .notepad-dropdown {
+        margin-right: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    
+    .notepad-btn {
+        width: 50px;
+        height: 50px;
+        border-radius: 12px;
+    }
+    
+    .notepad-btn i {
+        font-size: 1.3rem;
+    }
+    
+    .notepad-dropdown .dropdown-menu {
+        position: absolute !important;
+        transform: translate3d(0px, 50px, 0px) !important;
+        text-align: center;
+        width: 200px;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        top: 100% !important;
+    }
+    
+    /* Ensure notepad dropdown appears below the button */
+    .notepad-dropdown {
+        position: relative;
+    }
+}
+
+@media (max-width: 991.98px) {
+    #navbarContent {
+        text-align: center;
+    }
+    
+    .d-flex.align-items-center.flex-wrap {
+        justify-content: center;
+        width: 100%;
+    }
+    
+    .theme-toggle {
+        justify-content: center;
+        margin: 10px 0;
+    }
+}
+/*--------------------------Centering Navbar Mobile Content End-----------------------------*/
 </style>
     </style>
 </head>
