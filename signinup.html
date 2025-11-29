@@ -1991,6 +1991,246 @@
     }
 }
 /*--------------------------Centering Navbar Mobile Content End-----------------------------*/
+
+/* Auth Section Styles */
+.auth-section {
+    margin: 20px 0;
+    padding: 20px 0;
+    background-color: var(--light);
+    border-radius: 20px;
+    margin-right: 5px;
+}
+
+.auth-container {
+    background-color: var(--card-bg);
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.auth-tabs {
+    display: flex;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.auth-tab {
+    flex: 1;
+    padding: 20px;
+    background: none;
+    border: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--muted-text);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.auth-tab.active {
+    color: var(--primary);
+    border-bottom: 3px solid var(--primary);
+}
+
+.auth-form {
+    padding: 40px;
+    display: none;
+}
+
+.auth-form.active {
+    display: block;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: var(--text-color);
+    display: block;
+}
+
+.input-group {
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.input-group:focus-within {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 0.25rem rgba(67, 97, 238, 0.25);
+}
+
+.input-group-text {
+    background-color: var(--light);
+    border: none;
+    color: var(--muted-text);
+    padding: 12px 15px;
+}
+
+.form-control {
+    border: none;
+    padding: 12px 15px;
+    background-color: var(--card-bg);
+    color: var(--text-color);
+}
+
+.form-control:focus {
+    box-shadow: none;
+    background-color: var(--card-bg);
+    color: var(--text-color);
+}
+
+.password-toggle {
+    border: none;
+    background-color: var(--light);
+    color: var(--muted-text);
+    padding: 12px 15px;
+}
+
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.form-check-input:checked {
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+
+.forgot-password {
+    color: var(--primary);
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    margin: 25px 0;
+    color: var(--muted-text);
+}
+
+.divider::before,
+.divider::after {
+    content: "";
+    flex: 1;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.divider span {
+    padding: 0 15px;
+    font-size: 0.9rem;
+}
+
+.social-auth {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.btn-social {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px 20px;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    transition: all 0.3s ease;
+    flex: 1;
+    max-width: 120px;
+}
+
+.btn-social:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btn-google:hover {
+    background-color: #f1f1f1;
+    border-color: #db4437;
+}
+
+.btn-facebook:hover {
+    background-color: #f0f2f5;
+    border-color: #1877f2;
+}
+
+.btn-apple:hover {
+    background-color: #f5f5f7;
+    border-color: #000;
+}
+
+.password-strength {
+    display: none;
+}
+
+.password-strength.active {
+    display: block;
+}
+
+.progress {
+    height: 5px;
+    background-color: var(--light);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    border-radius: 5px;
+    transition: width 0.3s ease;
+}
+
+.password-strength-text {
+    color: var(--muted-text);
+    font-size: 0.8rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .auth-form {
+        padding: 30px 25px;
+    }
+    
+    .social-auth {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .btn-social {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .auth-form {
+        padding: 25px 20px;
+    }
+    
+    .auth-tab {
+        padding: 15px;
+        font-size: 1rem;
+    }
+    
+    .form-options {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+}
 </style>
     </style>
 </head>
@@ -2074,8 +2314,8 @@
         <i class="fas fa-book"></i>
     </button>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="notepadDropdown">
-        <li><a class="dropdown-item" href="signinup.html"><i class="fas fa-sign-in-alt me-2"></i> Sign In</a></li>
-        <li><a class="dropdown-item" href="signinup.html"><i class="fas fa-user-plus me-2"></i> Sign Up</a></li>
+        <li><a class="dropdown-item" href="#"><i class="fas fa-sign-in-alt me-2"></i> Sign In</a></li>
+        <li><a class="dropdown-item" href="#"><i class="fas fa-user-plus me-2"></i> Sign Up</a></li>
     </ul>
 </div>
                     
@@ -2104,304 +2344,155 @@
         </div>
     </nav>
 
-    <!-- Main Content -->
+        <!-- Add this section where you want the sign in/sign up to appear -->
+<section class="auth-section">
     <div class="container">
-        <!-- Hero Section -->
-        <section class="hero-section">
-            <div class="hero-content">
-                <div class="row align-items-center">
-                    <div class="col-lg-6">
-                        <h1 class="display-4 fw-bold mb-3">Transform Learning with 3D Experiences</h1>
-                        <div class="hero-words">
-                        <p class="lead mb-4" id="subwords">Soma brings complex concepts to life through interactive 3D visualizations. Our immersive platform makes learning engaging, intuitive, and unforgettable.</p></div>
-                        <div class="hero-buttons-container">
-    <a href="#explore-subjects" class="btn btn-light btn-lg px-4 py-2 fw-bold explore-btn">Start Exploring</a>
-    <a href="#benefits" class="btn btn-outline-light btn-lg px-4 py-2 gains-btn">Gains</a>
-</div>
+        <h2 class="section-title">Join Our Learning Community</h2>
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="auth-container">
+                    <!-- Toggle between Sign In and Sign Up -->
+                    <div class="auth-tabs">
+                        <button class="auth-tab active" id="signInTab">Sign In</button>
+                        <button class="auth-tab" id="signUpTab">Sign Up</button>
                     </div>
-                    <div class="col-lg-6">
-                        <div class="hero-gif-container">
-                            <!-- Placeholder for animated GIF - Replace with actual GIF -->
-                            <!--<img src="bookgif.gif" alt="Interactive 3D Learning" class="hero-gif">-->
-                            <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js" type="module"></script>
-<dotlottie-wc src="https://lottie.host/c0783ebe-6814-4ed6-aa7d-5ffd9a359bbb/cFuixkaW1B.lottie" autoplay loop></dotlottie-wc>
+                    
+                    <!-- Sign In Form -->
+                    <div class="auth-form active" id="signInForm">
+                        <form id="signInFormElement">
+                            <div class="form-group">
+                                <label for="signInEmail">Email Address</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                    <input type="email" id="signInEmail" class="form-control" placeholder="Enter your email" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="signInPassword">Password</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                    <input type="password" id="signInPassword" class="form-control" placeholder="Enter your password" required>
+                                    <button type="button" class="btn btn-outline-secondary password-toggle" data-target="signInPassword">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="form-options">
+                                <div class="form-check">
+                                    <input type="checkbox" id="rememberMe" class="form-check-input">
+                                    <label for="rememberMe" class="form-check-label">Remember me</label>
+                                </div>
+                                <a href="#" class="forgot-password">Forgot password?</a>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg w-100 mt-3">Sign In</button>
+                        </form>
+                        
+                        <div class="divider">
+                            <span>or continue with</span>
+                        </div>
+                        
+                        <div class="social-auth">
+                            <button class="btn btn-social btn-google">
+                                <i class="fab fa-google"></i>
+                                <span>Google</span>
+                            </button>
+                            <button class="btn btn-social btn-facebook">
+                                <i class="fab fa-facebook-f"></i>
+                                <span>Facebook</span>
+                            </button>
+                            <button class="btn btn-social btn-apple">
+                                <i class="fab fa-apple"></i>
+                                <span>Apple</span>
+                            </button>
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
-        
-        <section class="features-section">
-    <h2 class="section-title" id="benefits">Why Choose Soma?</h2>
-    <div class="row g-4">
-        <div class="col-md-4">
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-cube"></i>
-                </div>
-                <h3>Interactive 3D Models</h3>
-                <p>Explore complex concepts through interactive 3D models that you can rotate, zoom and inspect, thanks to Sketchfab.</p>
-                <div class="feature-gif-container">
-                    <dotlottie-wc src="https://lottie.host/755a2c2e-d75b-45c1-920f-0e173010183a/KUkID2mKMx.lottie" autoplay loop></dotlottie-wc>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-graduation-cap"></i>
-                </div>
-                <h3>Expert-Curated Content</h3>
-                <p>All our learning materials are developed by subject matter experts and experienced educators.</p>
-                <div class="feature-gif-container">
-                    <dotlottie-wc src="https://lottie.host/6f440918-6691-4a2f-8e79-e2046d41e33c/oGagqRDys1.lottie" autoplay loop></dotlottie-wc>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-mobile-alt"></i>
-                </div>
-                <h3>Learn Anywhere</h3>
-                <p>Access our platform anywhere on any device - desktop, tablet, or mobile - for learning on the go.</p>
-                <div class="feature-gif-container">
-                    <dotlottie-wc src="https://lottie.host/0512ce35-f201-4093-b4f4-7e22782c928b/vdzESBDvk8.lottie" autoplay loop></dotlottie-wc>
+                    
+                    <!-- Sign Up Form -->
+                    <div class="auth-form" id="signUpForm">
+                        <form id="signUpFormElement">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="firstName">First Name</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                            <input type="text" id="firstName" class="form-control" placeholder="First name" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="lastName">Last Name</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                            <input type="text" id="lastName" class="form-control" placeholder="Last name" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="signUpEmail">Email Address</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                    <input type="email" id="signUpEmail" class="form-control" placeholder="Enter your email" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="signUpPassword">Password</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                    <input type="password" id="signUpPassword" class="form-control" placeholder="Create a password" required>
+                                    <button type="button" class="btn btn-outline-secondary password-toggle" data-target="signUpPassword">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                                <div class="password-strength mt-2">
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: 0%"></div>
+                                    </div>
+                                    <small class="password-strength-text">Password strength: weak</small>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="confirmPassword">Confirm Password</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                    <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm your password" required>
+                                </div>
+                            </div>
+                            <div class="form-check mt-3">
+                                <input type="checkbox" id="agreeTerms" class="form-check-input" required>
+                                <label for="agreeTerms" class="form-check-label">
+                                    I agree to the <a href="#" class="text-primary">Terms of Service</a> and <a href="#" class="text-primary">Privacy Policy</a>
+                                </label>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg w-100 mt-4">Create Account</button>
+                        </form>
+                        
+                        <div class="divider">
+                            <span>or sign up with</span>
+                        </div>
+                        
+                        <div class="social-auth">
+                            <button class="btn btn-social btn-google">
+                                <i class="fab fa-google"></i>
+                                <span>Google</span>
+                            </button>
+                            <button class="btn btn-social btn-facebook">
+                                <i class="fab fa-facebook-f"></i>
+                                <span>Facebook</span>
+                            </button>
+                            <button class="btn btn-social btn-apple">
+                                <i class="fab fa-apple"></i>
+                                <span>Apple</span>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-        
-        <!-- Subjects Showcase -->
-        <section class="subjects-showcase">
-            <h2 class="section-title" id="explore-subjects">Explore Our Subjects</h2>
-            <div class="row g-4">
-                <div class="col-md-6 col-lg-3">
-                    <div class="subject-card">
-                        <div class="subject-image-biology"></div>
-                        <div class="subject-content">
-                            <h4>Biology</h4>
-                            <p>Discover the wonders of life from cells to ecosystems with our interactive 3D models.</p>
-                            <div class="subject-gif-container">
-                                <!-- Placeholder for animated GIF - Replace with actual GIF -->
-                                <!--<img src="https://via.placeholder.com/250x120/4361ee/ffffff?text=Biology+GIF" alt="Biology" class="subject-gif">-->
-                                <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js" type="module"></script>
-<dotlottie-wc src="https://lottie.host/3631dbed-37b0-4a4c-9989-1a77f885a57b/9B4dtzYgDs.lottie" autoplay loop></dotlottie-wc>
-                            </div>
-                            <a href="3dbio.html" class="btn btn-primary mt-2">Explore Biology</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="subject-card">
-                        <div class="subject-image-geography"></div>
-                        <div class="subject-content">
-                            <h4>Geography</h4>
-                            <p>Journey through Earth's landscapes, climates, and geological formations in 3D.</p>
-                            <div class="subject-gif-container">
-                                <!-- Placeholder for animated GIF - Replace with actual GIF -->
-                                <!--<img src="https://via.placeholder.com/250x120/3a0ca3/ffffff?text=Geography+GIF" alt="Geography" class="subject-gif">-->
-                                <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js" type="module"></script>
-<dotlottie-wc src="https://lottie.host/5ccffa51-39d8-4f5b-9001-14f4caea55ee/wAAX5xptrq.lottie" autoplay loop></dotlottie-wc>
-                            </div>
-                            <a href="3dgeo.html" class="btn btn-primary mt-2">Explore Geography</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="subject-card">
-                        <div class="subject-image-physics"></div>
-                        <div class="subject-content">
-                            <h4>Physics</h4>
-                            <p>Visualize complex physical phenomena and principles with interactive simulations.</p>
-                            <div class="subject-gif-container">
-                                <!-- Placeholder for animated GIF - Replace with actual GIF -->
-                                <!--<img src="https://via.placeholder.com/250x120/4cc9f0/ffffff?text=Physics+GIF" alt="Physics" class="subject-gif">-->
-                                <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js" type="module"></script>
-<dotlottie-wc src="https://lottie.host/ad22c5d0-7bb9-414a-a46a-1ce071fbb771/w7VVCWOknY.lottie" autoplay loop></dotlottie-wc>
-                            </div>
-                            <a href="3dphysics.html" class="btn btn-primary mt-2">Explore Physics</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="subject-card">
-                        <div class="subject-image-culture"></div>
-                        <div class="subject-content">
-                            <h4>Culture</h4>
-                            <p>Explore historical artifacts, architectural wonders, and cultural heritage in 3D.</p>
-                            <div class="subject-gif-container">
-                                <!-- Placeholder for animated GIF - Replace with actual GIF -->
-                                <!--<img src="https://via.placeholder.com/250x120/f72585/ffffff?text=Culture+GIF" alt="Culture" class="subject-gif">-->
-                                <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js" type="module"></script>
-<dotlottie-wc src="https://lottie.host/637f3935-c95b-4c88-aeae-7dfa6c5324f6/FJRM2SaVSR.lottie" autoplay loop></dotlottie-wc>
-                            </div>
-                            <a href="3dculture.html" class="btn btn-primary mt-2">Explore Culture</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
-        <!-- Benefits of 3D Learning Section -->
-<section class="benefits-section">
-    <div class="container">
-        <h2 class="section-title">What we hope you get.</h2>
-        <div class="row g-4">
-            <div class="col-lg-6">
-                <div class="benefit-card">
-                    <div class="benefit-icon">
-                        <i class="fas fa-brain"></i>
-                    </div>
-                    <div class="benefit-content">
-                        <h4>Enhanced Understanding</h3>
-                        <p>3D models help students visualize complex concepts that are difficult to grasp through 2D diagrams or text alone. By interacting with models, learners develop a deeper understanding of spatial relationships and structural details.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="benefit-card">
-                    <div class="benefit-icon">
-                        <i class="fas fa-heart"></i>
-                    </div>
-                    <div class="benefit-content">
-                        <h4>Increased Engagement</h3>
-                        <p>Interactive elements keep students actively involved in the learning process. The ability to rotate, zoom, and explore models creates an immersive experience that boosts motivation and retention.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="benefit-card">
-                    <div class="benefit-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <div class="benefit-content">
-                        <h4>Accessible Learning</h3>
-                        <p>3D models make abstract concepts tangible for all types of learners. Visual and kinesthetic learners particularly benefit from being able to manipulate objects and see them from multiple perspectives.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="benefit-card">
-                    <div class="benefit-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <div class="benefit-content">
-                        <h4>Improved Retention</h3>
-                        <p>Studies show that interactive 3D learning leads to better knowledge retention compared to traditional methods. The multi-sensory experience creates stronger neural connections and memory formation.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-</section>
-        
-        <!-- Testimonials Section
-        <section class="testimonials-section">
-            <div class="container">
-                <h2 class="section-title">What Students Say</h2>
-                <div class="row g-4">
-                    <div class="col-md-4">
-                        <div class="testimonial-card">
-                            <div class="testimonial-content">
-                                <p>"The 3D models in Soma have completely transformed how I understand complex biological concepts. It's like having a lab in my pocket!"</p>
-                                <div class="testimonial-author">
-                                    <img src="https://i.pravatar.cc/150?img=5" alt="Student" class="testimonial-avatar">
-                                    <div>
-                                        <h5 class="mb-0">Sarah Johnson</h5>
-                                        <p class="text-muted mb-0">Biology Student</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="testimonial-card">
-                            <div class="testimonial-content">
-                                <p>"As a visual learner, Soma's interactive models have helped me grasp physics concepts that I struggled with for years. Highly recommended!"</p>
-                                <div class="testimonial-author">
-                                    <img src="https://i.pravatar.cc/150?img=11" alt="Student" class="testimonial-avatar">
-                                    <div>
-                                        <h5 class="mb-0">Michael Chen</h5>
-                                        <p class="text-muted mb-0">Physics Student</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="testimonial-card">
-                            <div class="testimonial-content">
-                                <p>"The geography modules with 3D terrain models have made studying landforms so much more engaging. It's revolutionized how I learn."</p>
-                                <div class="testimonial-author">
-                                    <img src="https://i.pravatar.cc/150?img=8" alt="Student" class="testimonial-avatar">
-                                    <div>
-                                        <h5 class="mb-0">Emma Rodriguez</h5>
-                                        <p class="text-muted mb-0">Geography Student</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>-->
-
-        <!-- Ad Start
-<h1>Responsive Ad Card with Round Close Button</h1>
-    
-    <div class="demo-controls">
-        <button class="demo-btn" id="showAllBtn">Show All Ads</button>
-        <button class="demo-btn" id="addSquareBtn">Add Square Ad</button>
-        <button class="demo-btn" id="addRectangleBtn">Add Rectangle Ad</button>
-    </div>
-    
-    <div class="content-section">
-        <h2>Square Image Ad</h2>
-        <div class="ad-container square">
-            <button class="ad-close" aria-label="Close ad">×</button>
-            <div class="ad-inner">
-                <div class="ad-media-area">
-                    <img src="https://picsum.photos/600/600" alt="Advertisement" class="ad-img">
-                </div>
-                <div class="ad-caption">Advertisement</div>
-            </div>
-        </div>
-    </div>
-    
-    <div class="content-section">
-        <h2>Rectangular Video Ad</h2>
-        <div class="ad-container rectangle">
-            <button class="ad-close" aria-label="Close ad">×</button>
-            <div class="ad-inner">
-                <div class="ad-media-area">
-                    <video class="ad-vid" controls muted>
-                        <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
-                <div class="ad-caption">Advertisement</div>
-            </div>
-        </div>
-    </div>
-    
-    <div class="content-section">
-        <h2>Another Square Image Ad</h2>
-        <div class="ad-container square">
-            <button class="ad-close" aria-label="Close ad">×</button>
-            <div class="ad-inner">
-                <div class="ad-media-area">
-                    <img src="https://picsum.photos/500/500" alt="Advertisement" class="ad-img">
-                </div>
-                <div class="ad-caption">Advertisement</div>
-            </div>
-        </div>
-    </div>
-
-        Ad End-->
 
         <!-- Pricing Cards Section -->
 <section class="pricing-section">
@@ -2468,22 +2559,7 @@
             </div>
         </div>
     </div>
-</section>
-<!--Pricing Cards Section End-->
-        
-        <!-- CTA Section -->
-        <section class="cta-section">
-            <h2 class="display-5 fw-bold mb-3">Ready to Transform Your Learning?</h2>
-            <p class="lead mb-4">Join thousands of students who are already experiencing education in a whole new dimension.</p>
-            <div class="cta-gif-container">
-                <!-- Placeholder for animated GIF - Replace with actual GIF -->
-                <!--<img src="https://via.placeholder.com/500x250/ffffff/4361ee?text=Join+Now+GIF" alt="Join Soma" class="cta-gif">-->
-            </div>
-            <div class="d-flex flex-wrap justify-content-center gap-3">
-                <a href="#" class="btn btn-light btn-lg px-4 py-2 fw-bold">Get Premium</a>
-                <a href="#" class="btn btn-outline-light btn-lg px-4 py-2">Watch Demo</a>
-            </div>
-        </section>
+
     </div>
 
     <!-- NEW: About Us Modal -->
@@ -2896,6 +2972,121 @@
                 document.querySelector('.content-section:last-child').after(newAd);
             });
         });
+
+
+        // Auth Section Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    // Tab switching
+    const signInTab = document.getElementById('signInTab');
+    const signUpTab = document.getElementById('signUpTab');
+    const signInForm = document.getElementById('signInForm');
+    const signUpForm = document.getElementById('signUpForm');
+    
+    signInTab.addEventListener('click', function() {
+        signInTab.classList.add('active');
+        signUpTab.classList.remove('active');
+        signInForm.classList.add('active');
+        signUpForm.classList.remove('active');
+    });
+    
+    signUpTab.addEventListener('click', function() {
+        signUpTab.classList.add('active');
+        signInTab.classList.remove('active');
+        signUpForm.classList.add('active');
+        signInForm.classList.remove('active');
+    });
+    
+    // Password visibility toggle
+    const passwordToggles = document.querySelectorAll('.password-toggle');
+    passwordToggles.forEach(toggle => {
+        toggle.addEventListener('click', function() {
+            const targetId = this.getAttribute('data-target');
+            const passwordInput = document.getElementById(targetId);
+            const icon = this.querySelector('i');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        });
+    });
+    
+    // Password strength indicator
+    const signUpPassword = document.getElementById('signUpPassword');
+    if (signUpPassword) {
+        signUpPassword.addEventListener('input', function() {
+            const password = this.value;
+            const strengthIndicator = document.querySelector('.password-strength');
+            const progressBar = document.querySelector('.progress-bar');
+            const strengthText = document.querySelector('.password-strength-text');
+            
+            if (password.length > 0) {
+                strengthIndicator.classList.add('active');
+                
+                let strength = 0;
+                let color = '#dc3545'; // red
+                let text = 'Weak';
+                
+                // Check password strength
+                if (password.length >= 8) strength += 25;
+                if (/[A-Z]/.test(password)) strength += 25;
+                if (/[0-9]/.test(password)) strength += 25;
+                if (/[^A-Za-z0-9]/.test(password)) strength += 25;
+                
+                // Update progress bar and text
+                progressBar.style.width = `${strength}%`;
+                
+                if (strength >= 75) {
+                    color = '#4bb543'; // green
+                    text = 'Strong';
+                } else if (strength >= 50) {
+                    color = '#ffc107'; // yellow
+                    text = 'Medium';
+                }
+                
+                progressBar.style.backgroundColor = color;
+                strengthText.textContent = `Password strength: ${text}`;
+            } else {
+                strengthIndicator.classList.remove('active');
+            }
+        });
+    }
+    
+    // Form submission
+    const signInFormElement = document.getElementById('signInFormElement');
+    const signUpFormElement = document.getElementById('signUpFormElement');
+    
+    if (signInFormElement) {
+        signInFormElement.addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Handle sign in logic here
+            alert('Sign In functionality would be implemented here');
+        });
+    }
+    
+    if (signUpFormElement) {
+        signUpFormElement.addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Handle sign up logic here
+            alert('Sign Up functionality would be implemented here');
+        });
+    }
+    
+    // Social login buttons
+    const socialButtons = document.querySelectorAll('.btn-social');
+    socialButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const platform = this.classList.contains('btn-google') ? 'Google' : 
+                            this.classList.contains('btn-facebook') ? 'Facebook' : 'Apple';
+            alert(`${platform} authentication would be implemented here`);
+        });
+    });
+});
 
     </script>
 </body>
