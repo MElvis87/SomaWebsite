@@ -1,0 +1,2736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soma 3D Education</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <script src="https://kit.fontawesome.com/3579b6ac8a.js" crossorigin="anonymous"></script>
+    <!-- Animate.css for bouncy animations -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="icon" type="image/x-icon" href="favicon.png">
+    <style>
+        html {
+  scroll-behavior: smooth;
+  }
+        :root {
+            --primary: #4361ee;
+            --secondary: #3a0ca3;
+            --accent: #4cc9f0;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #4bb543;
+            --bg-color: #f5f7fb;
+            --text-color: #212529;
+            --card-bg: #ffffff;
+            --header-bg: rgba(255, 255, 255, 0.95);
+            --footer-bg: #212529;
+            --footer-text: rgba(255, 255, 255, 0.7);
+            --muted-text: #6c757d;
+        }
+        
+        [data-theme="dark"] {
+            --bg-color: #121212;
+            --text-color: #e9ecef;
+            --card-bg: #1e1e1e;
+            --header-bg: rgba(30, 30, 30, 0.95);
+            --footer-bg: #0a0a0a;
+            --footer-text: rgba(255, 255, 255, 0.7);
+            --light: #2d2d2d;
+            --muted-text: #a0a0a0;
+        }
+        
+        /* Loading Screen Styles */
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #011e61;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+        
+        .loading-content {
+            text-align: center;
+            max-width: 300px;
+        }
+        
+        .loading-gif {
+            width: 150px;
+            height: auto;
+            margin-bottom: 5px;
+        }
+        
+        .loading-text {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .loading-subtext {
+            color: var(--muted-text);
+            font-size: 0.9rem;
+        }
+        
+        /* Hide content initially */
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /*font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;*/
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            padding-top: 120px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            /* opacity: 0;*/
+            
+        }
+        
+        body.content-loaded {
+            opacity: 1;
+        }
+        
+        /* Navigation Bar - UPDATED: Floating Sticky Navbar */
+        .navbar {
+            background: var(--header-bg);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 12px 0;
+            transition: all 0.3s ease;
+            margin: 0 auto;
+            max-width: 1400px;
+            border-radius: 16px;
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 40px);
+            z-index: 1030;
+        }
+        
+        .navbar-brand img {
+            height: 40px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link {
+            font-weight: 500;
+            margin: 0 4px;
+            color: var(--text-color) !important;
+            transition: all 0.2s ease;
+            border-radius: 6px;
+            padding: 8px 12px !important;
+            white-space: nowrap;
+            font-size: 0.95rem;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            background-color: rgba(67, 97, 238, 0.1);
+            color: var(--primary) !important;
+        }
+        
+                       /* Updated Dropdown Styles */
+            .dropdown-menu {
+                border: none;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                border-radius: 12px;
+                padding: 8px;
+                background-color: var(--card-bg);
+                position: absolute;
+                top: 100%;
+                left: 0;
+                margin-top: 8px;
+                min-width: 200px;
+                z-index: 1000;
+                
+                /* Animation properties - FIXED */
+                opacity: 0;
+                transform: translateY(-10px);
+                visibility: hidden;
+                transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+                display: block; /* Add this */
+            }
+
+            .dropdown-menu.show {
+                opacity: 1;
+                transform: translateY(0);
+                visibility: visible;
+            }
+
+            /* Make sure the dropdown item styling is correct */
+            .dropdown-item {
+                border-radius: 8px;
+                padding: 10px 16px;
+                margin: 2px 0;
+                color: var(--text-color);
+                cursor: pointer;
+                transition: all 0.2s;
+                display: block;
+                text-decoration: none;
+            }
+
+            .dropdown-item:hover {
+                background-color: rgba(67, 97, 238, 0.1);
+                color: var(--primary);
+            }
+
+            /* Fix for mobile dropdown spacing */
+            @media (max-width: 991.98px) {
+                .navbar-nav .dropdown-menu {
+                    position: static;
+                    float: none;
+                    margin-top: 0;
+                    border: none;
+                    box-shadow: none;
+                    background-color: transparent;
+                    padding-left: 20px;
+                }
+                
+                .navbar-nav .dropdown-item {
+                    padding: 8px 15px;
+                    color: var(--text-color);
+                }
+                
+                .navbar-nav .dropdown-item:hover {
+                    background-color: rgba(67, 97, 238, 0.1);
+                }
+            }
+
+            /* Fix for mobile dropdown spacing */
+    @media (max-width: 991.98px) {
+        .navbar-nav .dropdown-menu {
+            position: static;
+            float: none;
+            margin-top: 0;
+            border: none;
+            box-shadow: none;
+            background-color: transparent;
+            padding-left: 20px;
+            
+            /* FIX: Use opacity/visibility instead of display:none */
+            opacity: 0;
+            visibility: hidden;
+            height: 0;
+            overflow: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s;
+            margin-bottom: 0;
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+        
+        /* Show dropdown when parent has show class */
+        .dropdown.show .dropdown-menu,
+        .navbar-nav .dropdown-menu.show {
+            opacity: 1;
+            visibility: visible;
+            height: auto;
+            overflow: visible;
+        }
+        
+        .navbar-nav .dropdown-item {
+            padding: 8px 15px;
+            color: var(--text-color);
+            margin: 0;
+        }
+        
+        .navbar-nav .dropdown-item:hover {
+            background-color: rgba(67, 97, 238, 0.1);
+        }
+    }
+
+    /*Dropdown Dark Shade for Mobile view*/
+@media (max-width: 991.98px) {
+    .navbar-nav .dropdown-menu {
+        position: static;
+        float: none;
+        margin-top: 0;
+        border: none;
+        box-shadow: none;
+        background-color: transparent;
+        padding-left: 20px;
+        
+        /* Existing animation properties */
+        opacity: 0;
+        visibility: hidden;
+        height: 0;
+        overflow: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s;
+        margin-bottom: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+        
+        /* NEW: Dark shade background */
+        background-color: rgba(0, 0, 0, 0.05); /* Light dark shade for light mode */
+        border-radius: 8px;
+        margin: 5px 0;
+    }
+    
+    /* Dark mode support */
+    [data-theme="dark"] .navbar-nav .dropdown-menu {
+        background-color: rgba(255, 255, 255, 0.05); /* Light shade for dark mode */
+    }
+    
+    /* Show dropdown when parent has show class */
+    .dropdown.show .dropdown-menu,
+    .navbar-nav .dropdown-menu.show {
+        opacity: 1;
+        visibility: visible;
+        height: auto;
+        overflow: visible;
+    }
+    
+    .navbar-nav .dropdown-item {
+        padding: 8px 15px;
+        color: var(--text-color);
+        margin: 0;
+        border-radius: 6px; /* Rounded corners for items */
+    }
+    
+    .navbar-nav .dropdown-item:hover {
+        background-color: rgba(67, 97, 238, 0.1);
+    }
+}
+        
+        .search-form {
+            max-width: 280px;
+            min-width: 200px;
+        }
+        
+        .search-form .form-control {
+            border-radius: 50px;
+            padding: 10px 20px;
+            border: 1px solid #e0e0e0;
+            transition: all 0.3s ease;
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            font-size: 0.9rem;
+        }
+        
+        .search-form .form-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 0.25rem rgba(67, 97, 238, 0.25);
+        }
+        
+        .profile-dropdown img {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .profile-dropdown:hover img {
+            border-color: var(--primary);
+        }
+        
+        /* Theme Toggle Switch */
+        .theme-toggle {
+            display: flex;
+            align-items: center;
+            margin-right: 10px;
+        }
+        
+        .theme-toggle-label {
+            margin: 0 6px;
+            font-size: 0.85rem;
+            color: var(--text-color);
+        }
+        
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 46px;
+            height: 22px;
+        }
+        
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 24px;
+        }
+        
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .slider {
+            background-color: var(--primary);
+        }
+        
+        input:checked + .slider:before {
+            transform: translateX(24px);
+        }
+        
+        /* Navbar Icons for Mobile */
+        .nav-icon {
+            display: none;
+        }
+        
+        /* Main Content */
+        .hero-section {
+            background: url('chem.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center center;
+            color: white;
+            border-radius: 20px;
+            padding: 60px 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(67, 97, 238, 0.3);
+            text-shadow: 
+            2px 2px 4px rgba(0, 0, 0, 0.3), /* Main shadow for lift */
+            -1px -1px 2px rgba(255, 255, 255, 0.5); /* Lighter shadow for highlight */
+        }
+        
+        .card {
+            border: none;
+            border-radius: 16px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            margin-bottom: 24px;
+            overflow: hidden;
+            background-color: var(--card-bg);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-header {
+            background-color: white;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            padding: 20px 25px;
+            color: var(--text-color);
+        }
+
+        [data-theme="dark"] .card-header {
+            background-color: #0057a8;
+            color: #4de1ff;
+        }
+
+        [data-theme="dark"] .card-header h2 {
+            color: #4de1ff;
+        }
+
+        [data-theme="dark"] .card-header .text-muted {
+            color: black;
+        }
+
+        [data-theme="dark"] .card-header .fa-graduation-cap {
+            color: #4de1ff;
+        }
+        
+        .accordion-button {
+            background-color: var(--card-bg);
+            padding: 18px 25px;
+            font-weight: 600;
+            color: var(--text-color);
+            border: none;
+            box-shadow: none;
+        }
+        
+        .accordion-button:not(.collapsed) {
+            background-color: rgba(67, 97, 238, 0.05);
+            color: var(--primary);
+        }
+        
+        .accordion-button:focus {
+            box-shadow: none;
+            border-color: rgba(0,0,0,.125);
+        }
+        
+        .accordion-body {
+            padding: 25px;
+            color: var(--text-color);
+        }
+
+        [data-theme="dark"] .accordion-body {
+            background-color: #091c47;
+            color: white;
+            border-top: 1px solid #333;
+        }
+        
+        /* UPDATED: Sketchfab Model Container - RESPONSIVE DIMENSIONS */
+        .model-container {
+            background-color: var(--light);
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        /* UPDATED: Responsive iframe container */
+        .responsive-iframe-container {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            overflow: hidden;
+            border-radius: 8px;
+            background: var(--light);
+        }
+        
+        .responsive-iframe-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        /* UPDATED: Sketchfab embed wrapper styling */
+        .sketchfab-embed-wrapper {
+            width: 100%;
+        }
+        
+        .sketchfab-embed-wrapper p {
+            font-size: 13px;
+            font-weight: normal;
+            margin: 5px 0;
+            color: var(--text-color);
+            text-align: center;
+            padding: 10px;
+        }
+        
+        .sketchfab-embed-wrapper a {
+            font-weight: bold;
+            color: #1CAAD9;
+            text-decoration: none;
+        }
+        
+        .sketchfab-embed-wrapper a:hover {
+            text-decoration: underline;
+        }
+        
+        .model-placeholder {
+            color: var(--text-color);
+            text-align: center;
+            padding: 20px;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .model-placeholder i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .highlight {
+            background-color: #fff9c4;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+        
+        .subject-badge {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        
+        /* Search Navigation Controls - UPDATED: Sticky Search Navigator */
+        .search-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 12px 20px;
+            background-color: var(--light);
+            border-radius: 12px;
+            position: sticky;
+            top: 90px;
+            z-index: 1020;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .search-info {
+            font-size: 0.95rem;
+            color: var(--text-color);
+            font-weight: 500;
+        }
+        
+        .search-nav-buttons button {
+            margin-left: 8px;
+        }
+        
+        /* Scroll to Top Button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .scroll-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .scroll-to-top:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        /* Mobile adjustments */
+        @media (max-width: 768px) {
+            .model-placeholder {
+                height: 300px;
+            }
+            
+            .search-navigation {
+                flex-direction: column;
+                gap: 10px;
+                padding: 15px;
+            }
+            
+            .search-nav-buttons {
+                display: flex;
+                justify-content: center;
+                width: 100%;
+            }
+            
+            .search-nav-buttons button {
+                flex: 1;
+                margin: 0 4px;
+            }
+        }
+        
+        /* Small mobile adjustments */
+        @media (max-width: 576px) {
+            .model-placeholder {
+                height: 250px;
+            }
+            
+            .theme-toggle {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: var(--footer-bg);
+            color: white;
+            padding: 60px 0 30px;
+            margin-top: 60px;
+        }
+        
+        .footer h5 {
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .footer a {
+            color: var(--footer-text);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer a:hover {
+            color: white;
+        }
+        
+        .social-icons a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        /* Responsive Adjustments - UPDATED FOR TABLET NAVBAR */
+        @media (max-width: 1199px) and (min-width: 992px) {
+            /* Tablet landscape optimizations */
+            .nav-link {
+                font-size: 0.9rem;
+                padding: 8px 10px !important;
+                margin: 0 3px;
+            }
+            
+            .navbar-nav {
+                gap: 5px;
+            }
+            
+            .search-form {
+                max-width: 220px;
+                min-width: 180px;
+            }
+            
+            .theme-toggle {
+                margin-right: 8px;
+            }
+            
+            .theme-toggle-label {
+                margin: 0 4px;
+                font-size: 0.8rem;
+            }
+            
+            .switch {
+                width: 42px;
+                height: 20px;
+            }
+            
+            .slider:before {
+                height: 14px;
+                width: 14px;
+            }
+            
+            input:checked + .slider:before {
+                transform: translateX(22px);
+            }
+        }
+        
+        @media (max-width: 991px) {
+            /* Tablet portrait and mobile */
+            .search-form {
+                max-width: 100%;
+                margin: 15px 0;
+                order: 3;
+                width: 100%;
+            }
+            
+            .hero-section {
+                padding: 40px 20px;
+            }
+            
+            .navbar {
+                width: calc(100% - 30px);
+                padding: 10px 0;
+            }
+            
+            .navbar-collapse {
+                padding-top: 15px;
+            }
+            
+            .nav-link {
+                padding: 10px 15px !important;
+                margin: 2px 0;
+            }
+            
+            .navbar-nav {
+                margin-bottom: 10px;
+            }
+            
+            .theme-toggle {
+                margin: 10px 0;
+                justify-content: center;
+            }
+            
+            .nav-icon {
+                display: inline-block;
+                width: 20px;
+                text-align: center;
+                margin-right: 8px;
+            }
+            
+            .nav-text {
+                display: inline;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .navbar-brand img {
+                height: 32px;
+            }
+            
+            .hero-section {
+                text-align: center;
+                padding: 30px 20px;
+            }
+            
+            .navbar {
+                width: calc(100% - 20px);
+                top: 10px;
+            }
+            
+            body {
+                padding-top: 90px;
+            }
+            
+            .search-navigation {
+                top: 80px;
+            }
+            
+            /* Hide text on mobile, show only icons */
+            .nav-text {
+                display: inline;
+            }
+            
+            .nav-link {
+                font-size: 0.9rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            /* Extra small devices */
+            .nav-text {
+                display: inline;
+            }
+            
+            .nav-link {
+                font-size: 0.85rem;
+                padding: 8px 12px !important;
+            }
+            
+            .navbar-brand img {
+                height: 28px;
+            }
+        }
+        
+        /* Search result styling */
+        .search-match {
+            background-color: #fff9c4 !important;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            padding: 1px 3px;
+            border-radius: 3px;
+        }
+        
+        .current-search-match {
+            background-color: #ffeb3b !important;
+            box-shadow: 0 0 0 2px var(--primary);
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(67, 97, 238, 0.7); }
+            70% { box-shadow: 0 0 0 6px rgba(67, 97, 238, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(67, 97, 238, 0); }
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            color: var(--muted-text);
+        }
+
+
+        /* Search result styling - Night Mode */
+        [data-theme="dark"] .search-match {
+            background-color: #6d28d9 !important;
+        }
+
+        [data-theme="dark"] .current-search-match {
+            background-color: #8b5cf6 !important;
+        }
+
+        /* Teal theme */
+        [data-theme="dark"] .search-match {
+            background-color: #0f766e !important;
+        }
+
+        [data-theme="dark"] .current-search-match {
+            background-color: #14b8a6 !important;
+        }
+
+        /* Orange theme */
+        [data-theme="dark"] .search-match {
+            background-color: #33e307 !important;
+        }
+
+        [data-theme="dark"] .current-search-match {
+            background-color: #fb923c !important;
+        }
+                
+        /* Demo new content styles */
+        .new-content {
+            background-color: #e8f4fd;
+            border-left: 4px solid var(--primary);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+
+        [data-theme="dark"] .new-content {
+            background-color: #1a3a5f;
+            border-left: 4px solid var(--accent);
+            color: #4de1ff;
+        }
+        
+        .key-points {
+            background-color: #f0f9ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        [data-theme="dark"] .key-points {
+            background-color: #1a3a5f;
+            border-left: 4px solid var(--accent);
+            color: #4de1ff;
+        }
+        
+        .key-points ul {
+            margin-bottom: 0;
+        }
+        
+        /* Text Muted Fix for Dark Mode */
+        .text-muted {
+            color: var(--muted-text) !important;
+        }
+        
+        /* Navbar Toggler Icon Fix for Dark Mode */
+        .navbar-toggler {
+            border-color: var(--text-color);
+        }
+        
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2833, 37, 41, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+        
+        [data-theme="dark"] .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28233, 236, 239, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+        
+        /* NEW: Modal Overlay and Popup Styles */
+                /* NEW: Improved Modal Overlay and Popup Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1100;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-popup {
+            background-color: var(--card-bg);
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            width: 90%;
+            max-width: 1000px; /* Increased max-width for larger screens */
+            height: auto;
+            max-height: 85vh; /* Better height for rectangular shape */
+            overflow-y: auto;
+            position: relative;
+            transform: scale(0.9);
+            opacity: 0;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-overlay.active .modal-popup {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            left: auto;
+            transform: none;
+            background-color: var(--card-bg);
+            border: none;
+            font-size: 24px;
+            color: var(--text-color);
+            cursor: pointer;
+            z-index: 10;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-close:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .modal-header {
+            padding: 0;
+            text-align: center;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .modal-image {
+            width: 100%;
+            height: 200px; /* Fixed height for consistent rectangular shape */
+            object-fit: cover;
+            border-radius: 20px 20px 0 0;
+        }
+
+        .modal-body {
+            padding: 30px;
+            flex: 1; /* Takes remaining space */
+            overflow-y: auto;
+        }
+
+        .modal-title {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 20px;
+            margin-top: 0;
+            font-size: 1.8rem;
+        }
+
+        .contact-info {
+            margin-top: 25px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            color: var(--text-color);
+            font-size: 1.05rem;
+        }
+
+        .contact-item i {
+            width: 30px;
+            color: var(--primary);
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        /* Improved responsive adjustments for modals */
+        @media (min-width: 768px) {
+            .modal-popup {
+                max-width: 900px;
+                max-height: 80vh;
+            }
+            
+            .modal-body {
+                padding: 40px;
+            }
+            
+            .modal-image {
+                height: 250px; /* Taller image on larger screens */
+            }
+            
+            .modal-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .modal-popup {
+                max-width: 1000px;
+                max-height: 85vh;
+                flex-direction: row; /* Side-by-side layout on large screens */
+            }
+            
+            .modal-header {
+                flex: 0 0 45%; /* Image takes 45% of width */
+                border-radius: 20px 0 0 20px;
+            }
+            
+            .modal-body {
+                flex: 0 0 55%; /* Content takes 55% of width */
+                padding: 40px;
+            }
+            
+            .modal-image {
+                height: 100%; /* Full height on desktop */
+                border-radius: 20px 0 0 20px;
+                object-fit: cover;
+            }
+            
+            .modal-close {
+                top: 25px;
+                right: 25px;
+                background-color: rgba(255, 255, 255, 0.9);
+            }
+            
+            [data-theme="dark"] .modal-close {
+                background-color: rgba(30, 30, 30, 0.9);
+            }
+        }
+
+        @media (max-width: 767px) {
+            .modal-popup {
+                width: 95%;
+                max-height: 90vh;
+            }
+            
+            .modal-body {
+                padding: 25px;
+            }
+            
+            .modal-image {
+                height: 180px;
+            }
+            
+            .modal-close {
+                top: 15px;
+                right: 15px;
+                width: 45px;
+                height: 45px;
+                font-size: 20px;
+            }
+        }
+
+        /* Extra small devices */
+        @media (max-width: 480px) {
+            .modal-overlay {
+                padding: 10px;
+            }
+            
+            .modal-popup {
+                width: 100%;
+                max-height: 95vh;
+            }
+            
+            .modal-body {
+                padding: 20px;
+            }
+            
+            .modal-image {
+                height: 150px;
+            }
+        }
+
+        /*--------------------------Centering Navbar Mobile Content Start-----------------------------*/
+
+/* Navigation Links */
+.navbar-nav {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (max-width: 991.98px) {
+    .navbar-nav {
+        text-align: center;
+        width: 100%;
+    }
+    
+    .nav-item {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .nav-link {
+        justify-content: center;
+        padding: 12px 15px !important;
+    }
+}
+
+/* Fix for mobile dropdown spacing */
+@media (max-width: 991.98px) {
+    .navbar-nav .dropdown-menu {
+        position: static;
+        float: none;
+        margin-top: 0;
+        border: none;
+        box-shadow: none;
+        background-color: transparent;
+        padding-left: 0;
+        text-align: center;
+        width: 100%;
+        
+        /* Animation properties */
+        opacity: 0;
+        visibility: hidden;
+        height: 0;
+        overflow: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s;
+        margin-bottom: 0;
+    }
+    
+    /* Show dropdown when parent has show class */
+    .dropdown.show .dropdown-menu,
+    .navbar-nav .dropdown-menu.show {
+        opacity: 1;
+        visibility: visible;
+        height: auto;
+        overflow: visible;
+        background-color: rgba(0, 0, 0, 0.05);
+        border-radius: 8px;
+        margin: 5px 0;
+        padding: 10px 0;
+    }
+    
+    /* Dark mode support */
+    [data-theme="dark"] .navbar-nav .dropdown-menu {
+        background-color: rgba(255, 255, 255, 0.05);
+    }
+    
+    .navbar-nav .dropdown-item {
+        padding: 10px 15px;
+        color: var(--text-color);
+        margin: 0;
+        border-radius: 6px;
+        text-align: center;
+        justify-content: center;
+    }
+    
+    .navbar-nav .dropdown-item:hover {
+        background-color: rgba(67, 97, 238, 0.1);
+    }
+    
+    /* Center the dropdown toggle */
+    .dropdown > .nav-link {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+/* Mobile adjustments for notepad */
+@media (max-width: 991.98px) {
+    .notepad-dropdown {
+        margin-right: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    
+    .notepad-btn {
+        width: 50px;
+        height: 50px;
+        border-radius: 12px;
+    }
+    
+    .notepad-btn i {
+        font-size: 1.3rem;
+    }
+    
+    .notepad-dropdown .dropdown-menu {
+        position: absolute !important;
+        transform: translate3d(0px, 50px, 0px) !important;
+        text-align: center;
+        width: 200px;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        top: 100% !important;
+    }
+    
+    /* Ensure notepad dropdown appears below the button */
+    .notepad-dropdown {
+        position: relative;
+    }
+}
+
+@media (max-width: 991.98px) {
+    #navbarContent {
+        text-align: center;
+    }
+    
+    .d-flex.align-items-center.flex-wrap {
+        justify-content: center;
+        width: 100%;
+    }
+    
+    .theme-toggle {
+        justify-content: center;
+        margin: 10px 0;
+    }
+}
+/*--------------------------Centering Navbar Mobile Content End-----------------------------*/
+
+
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="loading-content">
+            <img src="somagif.gif" alt="Loading..." class="loading-gif">
+            <div class="loading-text">Wrapping it up.</div>
+            <!--<div class="loading-subtext">Preparing your 3D learning experience...</div>-->
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+            <!-- Logo -->
+            <a class="navbar-brand" href="index.html">
+                <img src="logo.png" alt="Solo Learn Logo">
+            </a>
+            
+            <!-- Mobile Toggle Button -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <!-- Navbar Content -->
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <!-- Navigation Links -->
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">
+                            <i class="fas fa-home nav-icon"></i>
+                            <span class="nav-text">Home</span>
+                        </a>
+                    </li>
+                    
+                    <!-- Subjects Dropdown - UPDATED -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-book nav-icon"></i>
+                            <span class="nav-text">Subjects</span>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="3dbio.html"><i class="fas fa-dna me-2"></i> Biology</a></li>
+                            <li><a class="dropdown-item" href="3dgeo.html"><i class="fas fa-globe-americas me-2"></i> Geography</a></li>
+                            <li><a class="dropdown-item" href="3dphysics.html"><i class="fas fa-atom me-2"></i> Physics</a></li>
+                            <li><a class="dropdown-item" href="3dphysics.html"><i class="fa-solid fa-flask"></i> Chemistry</a></li>
+                            <li><a class="dropdown-item" href="3dculture.html"><i class="fas fa-users me-2"></i> Culture</a></li>
+                             <li><a class="dropdown-item" href="3dcomp.html"><i class="fa-solid fa-computer"></i> Computer Studies</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="aboutUsLink">
+                            <i class="fas fa-address-card nav-icon"></i>
+                            <span class="nav-text">About</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="contactUsLink">
+                            <i class="fas fa-envelope nav-icon"></i>
+                            <span class="nav-text">Contact</span>
+                        </a>
+                    </li>
+                </ul>
+                
+                <!-- Right side elements -->
+                <div class="d-flex align-items-center flex-wrap">
+                    <!-- Theme Toggle -->
+                    <div class="theme-toggle">
+                        <span class="theme-toggle-label"><i class="fas fa-sun"></i></span>
+                        <label class="switch">
+                            <input type="checkbox" id="themeToggle">
+                            <span class="slider"></span>
+                        </label>
+                        <span class="theme-toggle-label"><i class="fas fa-moon"></i></span>
+                    </div>
+                    
+                    <!-- Search Bar -->
+                    <form class="d-flex search-form me-3" id="searchForm">
+                        <div class="input-group">
+                            <input class="form-control" type="search" placeholder="Search..." id="searchInput">
+                            <button class="btn btn-outline-primary" type="submit"><i class="fas fa-search"></i></button>
+                        </div>
+                    </form>
+                    
+                    <!-- Profile Dropdown -->
+                    <div class="dropdown profile-dropdown">
+                        <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" id="profileDropdown" data-bs-toggle="dropdown">
+                            <img src="https://i.pravatar.cc/150?img=12" alt="Profile">
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-user-circle me-2"></i> Account</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i> Settings</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt me-2"></i> Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h1 class="display-4 fw-bold mb-3">Learn Basic Chemistry with 3D Models</h1>
+                    <p class="lead mb-4">Explore complex concepts through interactive 3D visualizations from Sketchfab. Our LMS brings learning to life with immersive educational experiences.</p>
+                    <a href="#learning-modules" class="btn btn-light btn-lg px-4 py-2 fw-bold">Start Learning Now</a>
+                </div>
+                <div class="col-lg-4 text-center">
+                    <i class="fas fa-cube" style="font-size: 10rem; opacity: 0.8;"></i>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Search Navigation (initially hidden) -->
+        <div class="search-navigation" id="searchNavigation" style="display: none;">
+            <div class="search-info" id="searchInfo">0 results found</div>
+            <div class="search-nav-buttons">
+                <button class="btn btn-sm btn-outline-primary" id="prevResult"><i class="fas fa-chevron-up me-1"></i> Previous</button>
+                <button class="btn btn-sm btn-outline-primary" id="nextResult">Next <i class="fas fa-chevron-down ms-1"></i></button>
+                <button class="btn btn-sm btn-outline-secondary" id="clearSearch">Clear Search</button>
+            </div>
+        </div>
+        
+        <!-- Main Card -->
+        <div class="card" id="learning-modules">
+            <div class="card-header">
+                <h2 class="h3 mb-0"><i class="fas fa-graduation-cap me-2 text-primary"></i> Learning Modules</h2>
+                <p class="text-muted mb-0 mt-2">Browse through our interactive learning modules with embedded 3D models</p>
+            </div>
+            
+            <!-- Accordion -->
+            <div class="accordion accordion-flush" id="topicsAccordion">
+               <!-- Topic 1: Introduction to Chemistry -->
+<div class="accordion-item" data-topic="chemistry">
+    <h2 class="accordion-header" id="headingIntro">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseIntro">
+            <span class="subject-badge me-3">Chemistry</span> Introduction to Chemistry
+        </button>
+    </h2>
+    <div id="collapseIntro" class="accordion-collapse collapse">
+        <div class="accordion-body">
+            <h4>Basic Concepts and Fundamentals</h4>
+            <p>Chemistry is the study of matter, its properties, how and why substances combine or separate to form other substances, and how substances interact with energy.</p>
+            
+            <!-- Subtopic Accordion -->
+            <div class="card my-4">
+                <div class="accordion accordion-flush" id="introSubtopicAccordion">
+                    <!-- Matter and Its Classification -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="introHeadingOne">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#introCollapseOne">
+                                <span class="subject-badge me-3">Subtopic</span> Matter and Its Classification
+                            </button>
+                        </h2>
+                        <div id="introCollapseOne" class="accordion-collapse collapse" aria-labelledby="introHeadingOne">
+                            <div class="accordion-body">
+                                <p>Understanding the different states and types of matter.</p>
+                                <div class="key-points">
+                                    <h6>Key Concepts:</h6>
+                                    <ul>
+                                        <li>States of matter: Solid, Liquid, Gas, Plasma</li>
+                                        <li>Elements, Compounds, and Mixtures</li>
+                                        <li>Physical and Chemical Properties</li>
+                                        <li>Intensive vs Extensive Properties</li>
+                                    </ul>
+                                </div>
+                                <!-- Placeholder for 3D Model -->
+                                <div class="model-container mt-3">
+                                    <div class="model-placeholder">
+                                        <i class="fas fa-atom fa-3x mb-3"></i>
+                                        <p>3D States of Matter Model</p>
+                                        <p class="text-muted">Add Sketchfab embed code here</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Scientific Measurement -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="introHeadingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#introCollapseTwo">
+                                <span class="subject-badge me-3">Subtopic</span> Scientific Measurement
+                            </button>
+                        </h2>
+                        <div id="introCollapseTwo" class="accordion-collapse collapse" aria-labelledby="introHeadingTwo">
+                            <div class="accordion-body">
+                                <p>Units, precision, accuracy, and measurement in chemistry.</p>
+                                <div class="key-points">
+                                    <h6>Major Concepts:</h6>
+                                    <ul>
+                                        <li>SI Units and Metric System</li>
+                                        <li>Significant Figures</li>
+                                        <li>Scientific Notation</li>
+                                        <li>Density Calculations</li>
+                                        <li>Temperature Scales</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Topic 2: Atomic Structure -->
+<div class="accordion-item" data-topic="chemistry">
+    <h2 class="accordion-header" id="headingAtomic">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAtomic">
+            <span class="subject-badge me-3">Chemistry</span> Atomic Structure
+        </button>
+    </h2>
+    <div id="collapseAtomic" class="accordion-collapse collapse">
+        <div class="accordion-body">
+            <h4>Structure of the Atom</h4>
+            <p>The atom is the basic unit of matter, consisting of a nucleus surrounded by electrons.</p>
+            
+            <div class="key-points">
+                <h6>Major Components:</h6>
+                <ul>
+                    <li>Protons, Neutrons, and Electrons</li>
+                    <li>Atomic Number and Mass Number</li>
+                    <li>Isotopes and Ions</li>
+                    <li>Electron Configuration</li>
+                    <li>Quantum Mechanical Model</li>
+                </ul>
+            </div>
+            
+            <!-- 3D Atomic Model -->
+            <div class="model-container">
+                <div class="sketchfab-embed-wrapper"> 
+                    <div class="responsive-iframe-container"> 
+                        <iframe title="Bohr's Atomic Model" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/atombohr/embed"> 
+                        </iframe> 
+                    </div>
+                    <p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;">
+                        <a href="https://sketchfab.com/3d-models/bohrs-atomic-model" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">Atomic Model</a> by <a href="https://sketchfab.com" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Topic 3: Periodic Table -->
+<div class="accordion-item" data-topic="chemistry">
+    <h2 class="accordion-header" id="headingPeriodic">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePeriodic">
+            <span class="subject-badge me-3">Chemistry</span> Periodic Table
+        </button>
+    </h2>
+    <div id="collapsePeriodic" class="accordion-collapse collapse">
+        <div class="accordion-body">
+            <h4>Organization of Elements</h4>
+            <p>The periodic table organizes chemical elements based on their atomic structure and properties.</p>
+            
+            <!-- Subtopic Accordion -->
+            <div class="card my-4">
+                <div class="accordion accordion-flush" id="periodicSubtopicAccordion">
+                    <!-- Groups and Periods -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="periodicHeadingOne">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#periodicCollapseOne">
+                                <span class="subject-badge me-3">Section</span> Groups and Periods
+                            </button>
+                        </h2>
+                        <div id="periodicCollapseOne" class="accordion-collapse collapse" aria-labelledby="periodicHeadingOne">
+                            <div class="accordion-body">
+                                <p>Understanding the organization of elements in the periodic table.</p>
+                                <div class="key-points">
+                                    <h6>Key Groups:</h6>
+                                    <ul>
+                                        <li>Alkali Metals (Group 1)</li>
+                                        <li>Alkaline Earth Metals (Group 2)</li>
+                                        <li>Transition Metals</li>
+                                        <li>Halogens (Group 17)</li>
+                                        <li>Noble Gases (Group 18)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Periodic Trends -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="periodicHeadingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#periodicCollapseTwo">
+                                <span class="subject-badge me-3">Section</span> Periodic Trends
+                            </button>
+                        </h2>
+                        <div id="periodicCollapseTwo" class="accordion-collapse collapse" aria-labelledby="periodicHeadingTwo">
+                            <div class="accordion-body">
+                                <p>Patterns in elemental properties across the periodic table.</p>
+                                <div class="key-points">
+                                    <h6>Major Trends:</h6>
+                                    <ul>
+                                        <li>Atomic Radius</li>
+                                        <li>Ionization Energy</li>
+                                        <li>Electronegativity</li>
+                                        <li>Electron Affinity</li>
+                                        <li>Metallic Character</li>
+                                    </ul>
+                                </div>
+                                <!-- 3D Periodic Table Model -->
+                                <div class="model-container mt-3">
+                                    <div class="model-placeholder">
+                                        <i class="fas fa-table fa-3x mb-3"></i>
+                                        <p>3D Interactive Periodic Table</p>
+                                        <p class="text-muted">Add Sketchfab embed code here</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Topic 4: Chemical Bonding -->
+<div class="accordion-item" data-topic="chemistry">
+    <h2 class="accordion-header" id="headingBonding">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseBonding">
+            <span class="subject-badge me-3">Chemistry</span> Chemical Bonding
+        </button>
+    </h2>
+    <div id="collapseBonding" class="accordion-collapse collapse">
+        <div class="accordion-body">
+            <h4>Forces that Hold Atoms Together</h4>
+            <p>Chemical bonding is the physical process responsible for the attractive interactions between atoms and molecules.</p>
+            
+            <div class="new-content">
+                <h5>Types of Chemical Bonds:</h5>
+                <p>Ionic, Covalent, Metallic, and Intermolecular Forces.</p>
+            </div>
+            
+            <div class="key-points">
+                <h6>Bonding Concepts:</h6>
+                <ul>
+                    <li>Lewis Dot Structures</li>
+                    <li>VSEPR Theory</li>
+                    <li>Molecular Geometry</li>
+                    <li>Hybridization</li>
+                    <li>Polarity of Bonds</li>
+                </ul>
+            </div>
+            
+            <!-- 3D Molecular Model -->
+            <div class="model-container">
+                <div class="model-placeholder">
+                    <i class="fas fa-microscope fa-3x mb-3"></i>
+                    <p>3D Molecular Structure Models</p>
+                    <p class="text-muted">Add Sketchfab embed code here</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Topic 5: Chemical Reactions -->
+<div class="accordion-item" data-topic="chemistry">
+    <h2 class="accordion-header" id="headingReactions">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseReactions">
+            <span class="subject-badge me-3">Chemistry</span> Chemical Reactions
+        </button>
+    </h2>
+    <div id="collapseReactions" class="accordion-collapse collapse">
+        <div class="accordion-body">
+            <h4>Transformation of Substances</h4>
+            <p>Chemical reactions involve the rearrangement of atoms to form new substances with different properties.</p>
+            
+            <div class="key-points">
+                <h6>Types of Reactions:</h6>
+                <ul>
+                    <li>Synthesis/Combination</li>
+                    <li>Decomposition</li>
+                    <li>Single Replacement</li>
+                    <li>Double Replacement</li>
+                    <li>Combustion</li>
+                    <li>Redox Reactions</li>
+                </ul>
+            </div>
+            
+            <!-- 3D Reaction Model -->
+            <div class="model-container">
+                <div class="model-placeholder">
+                    <i class="fas fa-vial fa-3x mb-3"></i>
+                    <p>3D Chemical Reaction Animation</p>
+                    <p class="text-muted">Add Sketchfab embed code here</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Topic 6: Stoichiometry -->
+<div class="accordion-item" data-topic="chemistry">
+    <h2 class="accordion-header" id="headingStoich">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseStoich">
+            <span class="subject-badge me-3">Chemistry</span> Stoichiometry
+        </button>
+    </h2>
+    <div id="collapseStoich" class="accordion-collapse collapse">
+        <div class="accordion-body">
+            <h4>Calculations in Chemistry</h4>
+            <p>Stoichiometry deals with the quantitative relationships between reactants and products in chemical reactions.</p>
+            
+            <div class="new-content">
+                <h5>Key Calculations:</h5>
+                <p>Mole concept, balancing equations, limiting reagents, and percent yield.</p>
+            </div>
+            
+            <!-- 3D Mole Concept Model -->
+            <div class="model-container">
+                <div class="model-placeholder">
+                    <i class="fas fa-balance-scale fa-3x mb-3"></i>
+                    <p>3D Mole Concept Visualization</p>
+                    <p class="text-muted">Add Sketchfab embed code here</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Topic 7: States of Matter -->
+<div class="accordion-item" data-topic="chemistry">
+    <h2 class="accordion-header" id="headingStates">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseStates">
+            <span class="subject-badge me-3">Chemistry</span> States of Matter
+        </button>
+    </h2>
+    <div id="collapseStates" class="accordion-collapse collapse">
+        <div class="accordion-body">
+            <h4>Properties of Different States</h4>
+            <p>Study of solids, liquids, gases, and plasma including phase changes and kinetic theory.</p>
+            
+            <div class="key-points">
+                <h6>Key Concepts:</h6>
+                <ul>
+                    <li>Gas Laws (Boyle's, Charles', Avogadro's)</li>
+                    <li>Phase Diagrams</li>
+                    <li>Intermolecular Forces</li>
+                    <li>Crystal Structures</li>
+                    <li>Properties of Liquids</li>
+                </ul>
+            </div>
+            
+            <!-- 3D Gas Laws Model -->
+            <div class="model-container">
+                <div class="model-placeholder">
+                    <i class="fas fa-wind fa-3x mb-3"></i>
+                    <p>3D Gas Laws Visualization</p>
+                    <p class="text-muted">Add Sketchfab embed code here</p>
+                </div>
+            </div>
+        </div>
+</div>
+
+<!-- Topic 8: Solutions and Colloids -->
+<div class="accordion-item" data-topic="chemistry">
+    <h2 class="accordion-header" id="headingSolutions">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolutions">
+            <span class="subject-badge me-3">Chemistry</span> Solutions and Colloids
+        </button>
+    </h2>
+    <div id="collapseSolutions" class="accordion-collapse collapse">
+        <div class="accordion-body">
+            <h4>Mixtures and Their Properties</h4>
+            <p>Study of homogeneous mixtures (solutions) and heterogeneous mixtures (colloids, suspensions).</p>
+            
+            <div class="new-content">
+                <h5>Solution Chemistry:</h5>
+                <p>Concentration units, solubility, colligative properties, and colloids.</p>
+            </div>
+            
+            <div class="key-points">
+                <h6>Concentration Units:</h6>
+                <ul>
+                    <li>Molarity (M)</li>
+                    <li>Molality (m)</li>
+                    <li>Percent by Mass/Volume</li>
+                    <li>Parts Per Million (ppm)</li>
+                    <li>Normality (N)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Topic 9: Acids, Bases, and Salts -->
+<div class="accordion-item" data-topic="chemistry">
+    <h2 class="accordion-header" id="headingAcidBase">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAcidBase">
+            <span class="subject-badge me-3">Chemistry</span> Acids, Bases, and Salts
+        </button>
+    </h2>
+    <div id="collapseAcidBase" class="accordion-collapse collapse">
+        <div class="accordion-body">
+            <h4>Properties of Acids and Bases</h4>
+            <p>Study of acidic, basic, and neutral substances and their reactions.</p>
+            
+            <div class="key-points">
+                <h6>Key Theories:</h6>
+                <ul>
+                    <li>Arrhenius Theory</li>
+                    <li>Bronsted-Lowry Theory</li>
+                    <li>Lewis Theory</li>
+                    <li>pH and pOH Calculations</li>
+                    <li>Buffers and Titration</li>
+                </ul>
+            </div>
+            
+            <!-- 3D pH Scale Model -->
+            <div class="model-container">
+                <div class="model-placeholder">
+                    <i class="fas fa-flask fa-3x mb-3"></i>
+                    <p>3D pH Scale and Indicator Model</p>
+                    <p class="text-muted">Add Sketchfab embed code here</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Topic 10: Thermochemistry -->
+<div class="accordion-item" data-topic="chemistry">
+    <h2 class="accordion-header" id="headingThermo">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThermo">
+            <span class="subject-badge me-3">Chemistry</span> Thermochemistry
+        </button>
+    </h2>
+    <div id="collapseThermo" class="accordion-collapse collapse">
+        <div class="accordion-body">
+            <h4>Energy Changes in Chemical Reactions</h4>
+            <p>Study of heat energy changes during chemical and physical processes.</p>
+            
+            <div class="new-content">
+                <h5>Energy Concepts:</h5>
+                <p>Enthalpy, entropy, free energy, and heat transfer.</p>
+            </div>
+            
+            <div class="key-points">
+                <h6>Key Topics:</h6>
+                <ul>
+                    <li>Endothermic vs Exothermic Reactions</li>
+                    <li>Calorimetry</li>
+                    <li>Hess's Law</li>
+                    <li>Bond Energies</li>
+                    <li>Thermodynamic Laws</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Topic 11: Electrochemistry -->
+<div class="accordion-item" data-topic="chemistry">
+    <h2 class="accordion-header" id="headingElectro">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseElectro">
+            <span class="subject-badge me-3">Chemistry</span> Electrochemistry
+        </button>
+    </h2>
+    <div id="collapseElectro" class="accordion-collapse collapse">
+        <div class="accordion-body">
+            <h4>Chemistry of Electricity</h4>
+            <p>Study of the relationship between electrical energy and chemical change.</p>
+            
+            <div class="key-points">
+                <h6>Major Areas:</h6>
+                <ul>
+                    <li>Redox Reactions</li>
+                    <li>Galvanic/Voltaic Cells</li>
+                    <li>Electrolytic Cells</li>
+                    <li>Standard Electrode Potentials</li>
+                    <li>Nernst Equation</li>
+                    <li>Corrosion and Prevention</li>
+                </ul>
+            </div>
+            
+            <!-- 3D Electrochemical Cell Model -->
+            <div class="model-container">
+                <div class="model-placeholder">
+                    <i class="fas fa-bolt fa-3x mb-3"></i>
+                    <p>3D Electrochemical Cell Model</p>
+                    <p class="text-muted">Add Sketchfab embed code here</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Topic 12: Organic Chemistry -->
+<div class="accordion-item" data-topic="chemistry">
+    <h2 class="accordion-header" id="headingOrganic">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOrganic">
+            <span class="subject-badge me-3">Chemistry</span> Organic Chemistry
+        </button>
+    </h2>
+    <div id="collapseOrganic" class="accordion-collapse collapse">
+        <div class="accordion-body">
+            <h4>Chemistry of Carbon Compounds</h4>
+            <p>Study of carbon-containing compounds, their structure, properties, and reactions.</p>
+            
+            <!-- Subtopic Accordion -->
+            <div class="card my-4">
+                <div class="accordion accordion-flush" id="organicSubtopicAccordion">
+                    <!-- Hydrocarbons -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="organicHeadingOne">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#organicCollapseOne">
+                                <span class="subject-badge me-3">Class</span> Hydrocarbons
+                            </button>
+                        </h2>
+                        <div id="organicCollapseOne" class="accordion-collapse collapse" aria-labelledby="organicHeadingOne">
+                            <div class="accordion-body">
+                                <p>Compounds containing only carbon and hydrogen.</p>
+                                <div class="key-points">
+                                    <h6>Types of Hydrocarbons:</h6>
+                                    <ul>
+                                        <li>Alkanes (Single Bonds)</li>
+                                        <li>Alkenes (Double Bonds)</li>
+                                        <li>Alkynes (Triple Bonds)</li>
+                                        <li>Aromatic Hydrocarbons</li>
+                                        <li>Cyclic Hydrocarbons</li>
+                                    </ul>
+                                </div>
+                                <!-- 3D Hydrocarbon Models -->
+                                <div class="model-container mt-3">
+                                    <div class="model-placeholder">
+                                        <i class="fas fa-oil-can fa-3x mb-3"></i>
+                                        <p>3D Hydrocarbon Structure Models</p>
+                                        <p class="text-muted">Add Sketchfab embed code here</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Functional Groups -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="organicHeadingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#organicCollapseTwo">
+                                <span class="subject-badge me-3">Class</span> Functional Groups
+                            </button>
+                        </h2>
+                        <div id="organicCollapseTwo" class="accordion-collapse collapse" aria-labelledby="organicHeadingTwo">
+                            <div class="accordion-body">
+                                <p>Specific groups of atoms within molecules that determine chemical reactivity.</p>
+                                <div class="key-points">
+                                    <h6>Common Functional Groups:</h6>
+                                    <ul>
+                                        <li>Alcohols (-OH)</li>
+                                        <li>Carboxylic Acids (-COOH)</li>
+                                        <li>Aldehydes and Ketones (C=O)</li>
+                                        <li>Amines (-NH₂)</li>
+                                        <li>Esters (-COO-)</li>
+                                        <li>Ethers (-O-)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Topic 13: Biochemistry -->
+<div class="accordion-item" data-topic="chemistry">
+    <h2 class="accordion-header" id="headingBiochemChem">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseBiochemChem">
+            <span class="subject-badge me-3">Chemistry</span> Biochemistry
+        </button>
+    </h2>
+    <div id="collapseBiochemChem" class="accordion-collapse collapse">
+        <div class="accordion-body">
+            <h4>Chemistry of Living Organisms</h4>
+            <p>Study of chemical processes within and relating to living organisms.</p>
+            
+            <div class="new-content">
+                <h5>Biomolecules:</h5>
+                <p>Proteins, carbohydrates, lipids, nucleic acids, and enzymes.</p>
+            </div>
+            
+            <div class="key-points">
+                <h6>Key Areas:</h6>
+                <ul>
+                    <li>Metabolism and Energy Production</li>
+                    <li>Enzyme Kinetics</li>
+                    <li>DNA Structure and Replication</li>
+                    <li>Protein Synthesis</li>
+                    <li>Cellular Respiration</li>
+                </ul>
+            </div>
+            
+            <!-- 3D Protein Model -->
+            <div class="model-container">
+                <div class="model-placeholder">
+                    <i class="fas fa-dna fa-3x mb-3"></i>
+                    <p>3D Protein and Enzyme Models</p>
+                    <p class="text-muted">Add Sketchfab embed code here</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Topic 14: Nuclear Chemistry -->
+<div class="accordion-item" data-topic="chemistry">
+    <h2 class="accordion-header" id="headingNuclear">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNuclear">
+            <span class="subject-badge me-3">Chemistry</span> Nuclear Chemistry
+        </button>
+    </h2>
+    <div id="collapseNuclear" class="accordion-collapse collapse">
+        <div class="accordion-body">
+            <h4>Chemistry of the Atomic Nucleus</h4>
+            <p>Study of changes in atomic nuclei including radioactive decay, fission, and fusion.</p>
+            
+            <div class="key-points">
+                <h6>Major Topics:</h6>
+                <ul>
+                    <li>Radioactive Decay (Alpha, Beta, Gamma)</li>
+                    <li>Half-life Calculations</li>
+                    <li>Nuclear Fission and Fusion</li>
+                    <li>Nuclear Equations</li>
+                    <li>Applications in Medicine and Energy</li>
+                </ul>
+            </div>
+            
+            <!-- 3D Nuclear Model -->
+            <div class="model-container">
+                <div class="model-placeholder">
+                    <i class="fas fa-radiation fa-3x mb-3"></i>
+                    <p>3D Nuclear Reactions Visualization</p>
+                    <p class="text-muted">Add Sketchfab embed code here</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Topic 15: Analytical Chemistry -->
+<div class="accordion-item" data-topic="chemistry">
+    <h2 class="accordion-header" id="headingAnalytical">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAnalytical">
+            <span class="subject-badge me-3">Chemistry</span> Analytical Chemistry
+        </button>
+    </h2>
+    <div id="collapseAnalytical" class="accordion-collapse collapse">
+        <div class="accordion-body">
+            <h4>Separation and Analysis of Matter</h4>
+            <p>Study of methods and techniques to identify, separate, and quantify chemical components.</p>
+            
+            <div class="new-content">
+                <h5>Analytical Techniques:</h5>
+                <p>Chromatography, spectroscopy, electroanalysis, and mass spectrometry.</p>
+            </div>
+            
+            <div class="key-points">
+                <h6>Common Methods:</h6>
+                <ul>
+                    <li>Chromatography (HPLC, GC)</li>
+                    <li>Spectroscopy (UV-Vis, IR, NMR)</li>
+                    <li>Titration Methods</li>
+                    <li>Mass Spectrometry</li>
+                    <li>Electrochemical Analysis</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Topic 16: Environmental Chemistry -->
+<div class="accordion-item" data-topic="chemistry">
+    <h2 class="accordion-header" id="headingEnvironmental">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEnvironmental">
+            <span class="subject-badge me-3">Chemistry</span> Environmental Chemistry
+        </button>
+    </h2>
+    <div id="collapseEnvironmental" class="accordion-collapse collapse">
+        <div class="accordion-body">
+            <h4>Chemistry of the Environment</h4>
+            <p>Study of chemical processes occurring in the environment and their impacts.</p>
+            
+            <div class="key-points">
+                <h6>Key Areas:</h6>
+                <ul>
+                    <li>Atmospheric Chemistry</li>
+                    <li>Water Chemistry and Pollution</li>
+                    <li>Soil Chemistry</li>
+                    <li>Green Chemistry Principles</li>
+                    <li>Pollution Control Technologies</li>
+                </ul>
+            </div>
+            
+            <!-- 3D Environmental Model -->
+            <div class="model-container">
+                <div class="model-placeholder">
+                    <i class="fas fa-tree fa-3x mb-3"></i>
+                    <p>3D Environmental Process Models</p>
+                    <p class="text-muted">Add Sketchfab embed code here</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Topic 17: Industrial Chemistry -->
+<div class="accordion-item" data-topic="chemistry">
+    <h2 class="accordion-header" id="headingIndustrial">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseIndustrial">
+            <span class="subject-badge me-3">Chemistry</span> Industrial Chemistry
+        </button>
+    </h2>
+    <div id="collapseIndustrial" class="accordion-collapse collapse">
+        <div class="accordion-body">
+            <h4>Chemistry in Industry</h4>
+            <p>Application of chemical principles to industrial processes and manufacturing.</p>
+            
+            <div class="new-content">
+                <h5>Industrial Processes:</h5>
+                <p>Chemical synthesis, process optimization, and quality control in manufacturing.</p>
+            </div>
+            
+            <div class="key-points">
+                <h6>Major Industries:</h6>
+                <ul>
+                    <li>Petrochemical Industry</li>
+                    <li>Pharmaceutical Industry</li>
+                    <li>Fertilizer Production</li>
+                    <li>Polymer and Plastic Industry</li>
+                    <li>Food and Beverage Industry</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+</div>
+</div> 
+</div>
+
+    <!-- NEW: About Us Modal -->
+    <div class="modal-overlay" id="aboutUsModal">
+        <button class="modal-close" id="closeAboutUs">
+                <i class="fas fa-times"></i>
+            </button>
+        <div class="modal-popup">
+            
+            <div class="modal-header">
+                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" alt="About Us" class="modal-image">
+                
+            </div>
+            <div class="modal-body">
+                <h3 class="modal-title">About Soma</h3>
+                <p>Soma is an innovative educational platform that transforms learning through interactive 3D visualization technology. Our mission is to make complex concepts accessible and engaging for students of all ages.</p>
+                
+                <div class="contact-info">
+                    <h5>Our Team</h5>
+                    <div class="contact-item">
+                        <i class="fas fa-users"></i>
+                        <span>Founded by educators and 3D visualization experts</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Based in Africa with team members worldwide</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>Serving over 50,000 students across 120 countries</span>
+                    </div>
+                </div>
+                
+                <div class="contact-info mt-4">
+                    <h5>Our Vision</h5>
+                    <p>We believe that immersive learning experiences can transform education. By integrating 3D models directly into our learning management system, we help students visualize and understand complex topics in ways that traditional textbooks cannot provide.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- NEW: Contact Us Modal -->
+    <div class="modal-overlay" id="contactUsModal">
+        <button class="modal-close" id="closeContactUs">
+                <i class="fas fa-times"></i>
+            </button>
+        <div class="modal-popup">
+            <div class="modal-header">
+                <img src="https://images.unsplash.com/photo-1534536281715-e28d76689b4d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Contact Us" class="modal-image">
+                
+            </div>
+            <div class="modal-body">
+                <h3 class="modal-title">Contact Us</h3>
+                <p>We'd love to hear from you! Whether you have questions about our platform, need technical support, or want to explore partnership opportunities, our team is here to help.</p>
+                
+                <div class="contact-info">
+                    <h5>Get in Touch</h5>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@somalearn.site</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>(+256) 783 004 831</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Entebbe, Uganda</span>
+                    </div>
+                </div>
+                
+                <div class="contact-info mt-4">
+                    <h5>Office Hours</h5>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <span>Monday - Friday: 9:00 AM - 6:00 PM EAT</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <span>Saturday: 10:00 AM - 4:00 PM EAT</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <span>Sunday: Closed</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+                    <h5>Soma</h5>
+                    <p>Transforming education through immersive 3D learning experiences. Making complex concepts accessible and engaging for students worldwide.</p>
+                    <div class="social-icons mt-4">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+                    <h5>Subjects</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Biology</a></li>
+                        <li><a href="#">Geography</a></li>
+                        <li><a href="#">Physics</a></li>
+                        <li><a href="#">Culture</a></li>
+                        <li><a href="#">Computer Studies</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+                    <h5>Resources</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">Tutorials</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Webinars</a></li>
+                        <li><a href="#">Support</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <h5>Newsletter</h5>
+                    <p>Subscribe to our newsletter for the latest updates and educational resources.</p>
+                    <form class="mt-3">
+                        <div class="input-group">
+                            <input type="email" class="form-control" placeholder="Your email address">
+                            <button class="btn btn-primary" type="submit">Subscribe</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2025 Soma. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="text-decoration-none me-3">Privacy Policy</a>
+                    <a href="#" class="text-decoration-none me-3">Terms of Service</a>
+                    <a href="#" class="text-decoration-none">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" id="scrollToTop">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Loading Screen Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const loadingScreen = document.getElementById('loading-screen');
+            const body = document.body;
+            
+            setTimeout(function() {
+    // Fade out loading screen
+    loadingScreen.style.opacity = '0';
+    
+    // Remove loading screen and show content with animations immediately
+    loadingScreen.style.display = 'none';
+    body.classList.add('content-loaded');
+    
+    // Add bouncy animations to main sections immediately
+    const heroSection = document.querySelector('.hero-section');
+    const mainCard = document.querySelector('.card');
+    
+    if (heroSection) {
+        heroSection.classList.add('animate__animated', 'animate__bounceInDown');
+    }
+    
+    if (mainCard) {
+        mainCard.classList.add('animate__animated', 'animate__bounceInUp');
+    }
+    
+    // Add animation to footer
+    const footer = document.querySelector('.footer');
+    if (footer) {
+        footer.classList.add('animate__animated', 'animate__fadeInUp');
+    }
+}, 2000); // Reduce loading time to 1 second or even less
+            
+            // Theme Toggle Functionality
+            const themeToggle = document.getElementById('themeToggle');
+            
+            // Check for saved theme preference or default to light
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            if (savedTheme === 'dark') {
+                body.setAttribute('data-theme', 'dark');
+                themeToggle.checked = true;
+            }
+            
+            // Theme toggle event listener
+            themeToggle.addEventListener('change', function() {
+                if (this.checked) {
+                    body.setAttribute('data-theme', 'dark');
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    body.removeAttribute('data-theme');
+                    localStorage.setItem('theme', 'light');
+                }
+            });
+            
+            // Search Functionality
+            const searchForm = document.getElementById('searchForm');
+            const searchInput = document.getElementById('searchInput');
+            const searchNavigation = document.getElementById('searchNavigation');
+            const searchInfo = document.getElementById('searchInfo');
+            const prevResult = document.getElementById('prevResult');
+            const nextResult = document.getElementById('nextResult');
+            const clearSearch = document.getElementById('clearSearch');
+            
+            let searchResults = [];
+            let currentResultIndex = -1;
+            let originalTextNodes = new Map(); // Store original text nodes for restoration
+            
+            searchForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                performSearch();
+            });
+            
+            // Add keyboard shortcuts for search navigation
+            document.addEventListener('keydown', function(e) {
+                // Ctrl+F or Cmd+F to focus search
+                if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
+                    e.preventDefault();
+                    searchInput.focus();
+                    searchInput.select();
+                }
+                
+                // F3 or Enter to find next result
+                if (e.key === 'F3' || (e.key === 'Enter' && !e.shiftKey)) {
+                    e.preventDefault();
+                    if (searchResults.length > 0) {
+                        navigateToResult((currentResultIndex + 1) % searchResults.length);
+                    } else if (searchInput.value.trim()) {
+                        performSearch();
+                    }
+                }
+                
+                // Shift+F3 or Shift+Enter to find previous result
+                if ((e.key === 'F3' && e.shiftKey) || (e.key === 'Enter' && e.shiftKey)) {
+                    e.preventDefault();
+                    if (searchResults.length > 0) {
+                        navigateToResult((currentResultIndex - 1 + searchResults.length) % searchResults.length);
+                    } else if (searchInput.value.trim()) {
+                        performSearch();
+                    }
+                }
+                
+                // Escape to clear search
+                if (e.key === 'Escape' && searchInput.value.trim()) {
+                    clearSearchResults();
+                    searchInput.blur();
+                }
+            });
+            
+            function performSearch() {
+                const searchTerm = searchInput.value.trim().toLowerCase();
+                
+                if (searchTerm === '') {
+                    clearSearchResults();
+                    return;
+                }
+                
+                // Clear previous highlights
+                clearSearchResults();
+                
+                // Search in all content (accordion headers and bodies)
+                const searchableElements = document.querySelectorAll('.accordion-button, .accordion-body, .card-header');
+                searchResults = [];
+                
+                searchableElements.forEach((element) => {
+                    const textContent = element.textContent.toLowerCase();
+                    if (textContent.includes(searchTerm)) {
+                        // Count how many matches are in this element
+                        const regex = new RegExp(searchTerm, 'gi');
+                        const matches = textContent.match(regex);
+                        if (matches) {
+                            // Add the element once for each match
+                            for (let i = 0; i < matches.length; i++) {
+                                searchResults.push({
+                                    element: element,
+                                    matchIndex: i
+                                });
+                            }
+                        }
+                    }
+                });
+                
+                if (searchResults.length > 0) {
+                    // Show search navigation
+                    searchNavigation.style.display = 'flex';
+                    searchInfo.textContent = `${searchResults.length} result${searchResults.length > 1 ? 's' : ''} found for "${searchTerm}"`;
+                    
+                    // Highlight first result
+                    currentResultIndex = 0;
+                    highlightCurrentResult();
+                    
+                    // Expand accordion for first result if it's in a collapsed section
+                    const accordionItem = searchResults[0].element.closest('.accordion-item');
+                    if (accordionItem) {
+                        const collapseElement = accordionItem.querySelector('.accordion-collapse');
+                        if (collapseElement && collapseElement.classList.contains('collapse')) {
+                            const bsCollapse = new bootstrap.Collapse(collapseElement, {
+                                toggle: false
+                            });
+                            bsCollapse.show();
+                        }
+                    }
+                } else {
+                    searchNavigation.style.display = 'flex';
+                    searchInfo.textContent = `No results found for "${searchTerm}"`;
+                }
+            }
+            
+            function navigateToResult(index) {
+                if (index < 0 || index >= searchResults.length) return;
+                
+                currentResultIndex = index;
+                highlightCurrentResult();
+                
+                // Expand accordion for current result if needed
+                const accordionItem = searchResults[currentResultIndex].element.closest('.accordion-item');
+                if (accordionItem) {
+                    const collapseElement = accordionItem.querySelector('.accordion-collapse');
+                    if (collapseElement && collapseElement.classList.contains('collapse')) {
+                        const bsCollapse = new bootstrap.Collapse(collapseElement, {
+                            toggle: false
+                        });
+                        bsCollapse.show();
+                    }
+                }
+            }
+            
+            function highlightCurrentResult() {
+                if (currentResultIndex < 0 || currentResultIndex >= searchResults.length) return;
+                
+                // Remove previous highlights
+                document.querySelectorAll('.search-match').forEach(el => {
+                    el.classList.remove('search-match');
+                    el.classList.remove('current-search-match');
+                });
+                
+                // Restore original text
+                restoreOriginalText();
+                
+                // Highlight all results
+                const searchTerm = searchInput.value.trim().toLowerCase();
+                searchResults.forEach((result, index) => {
+                    highlightText(result.element, searchTerm, index === currentResultIndex, result.matchIndex);
+                });
+                
+                // Scroll to current result with proper centering
+                const currentMatchElement = document.querySelector('.current-search-match');
+                if (currentMatchElement) {
+                    // Calculate the position to center the match
+                    const elementRect = currentMatchElement.getBoundingClientRect();
+                    const absoluteElementTop = elementRect.top + window.pageYOffset;
+                    const middle = absoluteElementTop - (window.innerHeight / 2) + (elementRect.height / 2);
+                    
+                    // Scroll to center the match
+                    window.scrollTo({
+                        top: middle,
+                        behavior: 'smooth'
+                    });
+                }
+                
+                // Update search info
+                searchInfo.textContent = `${currentResultIndex + 1} of ${searchResults.length} results for "${searchTerm}"`;
+            }
+            
+            function highlightText(element, searchTerm, isCurrent, matchIndex) {
+                const textNodes = getTextNodes(element);
+                let currentMatch = 0;
+                
+                textNodes.forEach(node => {
+                    // Store original text if not already stored
+                    if (!originalTextNodes.has(node)) {
+                        originalTextNodes.set(node, node.textContent);
+                    }
+                    
+                    const text = node.textContent;
+                    const regex = new RegExp(`(${escapeRegExp(searchTerm)})`, 'gi');
+                    
+                    // Replace each match with highlighted span
+                    let newText = text;
+                    let match;
+                    let lastIndex = 0;
+                    let result = '';
+                    
+                    while ((match = regex.exec(text)) !== null) {
+                        // Add text before the match
+                        result += text.substring(lastIndex, match.index);
+                        
+                        // Check if this is the specific match we're looking for
+                        const isThisMatch = (currentMatch === matchIndex);
+                        
+                        // Add the highlighted match
+                        result += `<span class="search-match ${isThisMatch && isCurrent ? 'current-search-match' : ''}">${match[0]}</span>`;
+                        
+                        lastIndex = regex.lastIndex;
+                        currentMatch++;
+                    }
+                    
+                    // Add remaining text
+                    result += text.substring(lastIndex);
+                    
+                    if (result !== text) {
+                        const newSpan = document.createElement('span');
+                        newSpan.innerHTML = result;
+                        node.parentNode.replaceChild(newSpan, node);
+                    }
+                });
+            }
+            
+            function restoreOriginalText() {
+                originalTextNodes.forEach((originalText, node) => {
+                    if (node.parentNode) {
+                        const parent = node.parentNode;
+                        parent.replaceChild(document.createTextNode(originalText), node);
+                        parent.normalize();
+                    }
+                });
+                originalTextNodes.clear();
+            }
+            
+            function getTextNodes(element) {
+                const textNodes = [];
+                
+                function findTextNodes(node) {
+                    if (node.nodeType === Node.TEXT_NODE && node.textContent.trim() !== '') {
+                        textNodes.push(node);
+                    } else {
+                        for (let child of node.childNodes) {
+                            // Skip script and style elements
+                            if (child.nodeType === Node.ELEMENT_NODE && 
+                                (child.tagName === 'SCRIPT' || child.tagName === 'STYLE')) {
+                                continue;
+                            }
+                            findTextNodes(child);
+                        }
+                    }
+                }
+                
+                findTextNodes(element);
+                return textNodes;
+            }
+            
+            function escapeRegExp(string) {
+                return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            }
+            
+            function clearSearchResults() {
+                // Remove all search-match and current-search-match classes
+                document.querySelectorAll('.search-match, .current-search-match').forEach(el => {
+                    el.classList.remove('search-match');
+                    el.classList.remove('current-search-match');
+                });
+                
+                // Restore original text content
+                restoreOriginalText();
+                
+                // Hide search navigation
+                searchNavigation.style.display = 'none';
+                
+                // Reset search variables
+                searchResults = [];
+                currentResultIndex = -1;
+            }
+            
+            prevResult.addEventListener('click', function() {
+                if (searchResults.length === 0) return;
+                navigateToResult((currentResultIndex - 1 + searchResults.length) % searchResults.length);
+            });
+            
+            nextResult.addEventListener('click', function() {
+                if (searchResults.length === 0) return;
+                navigateToResult((currentResultIndex + 1) % searchResults.length);
+            });
+            
+            clearSearch.addEventListener('click', function() {
+                searchInput.value = '';
+                clearSearchResults();
+            });
+            
+            // Scroll to Top Functionality
+            const scrollToTopBtn = document.getElementById('scrollToTop');
+            
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    scrollToTopBtn.classList.add('show');
+                } else {
+                    scrollToTopBtn.classList.remove('show');
+                }
+            });
+            
+            scrollToTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // NEW: Modal Functionality
+            const aboutUsLink = document.getElementById('aboutUsLink');
+            const contactUsLink = document.getElementById('contactUsLink');
+            const aboutUsModal = document.getElementById('aboutUsModal');
+            const contactUsModal = document.getElementById('contactUsModal');
+            const closeAboutUs = document.getElementById('closeAboutUs');
+            const closeContactUs = document.getElementById('closeContactUs');
+            
+            // Open About Us modal
+            aboutUsLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                aboutUsModal.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            });
+            
+            // Open Contact Us modal
+            contactUsLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                contactUsModal.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            });
+            
+            // Close About Us modal
+            closeAboutUs.addEventListener('click', function() {
+                aboutUsModal.classList.remove('active');
+                document.body.style.overflow = ''; // Restore scrolling
+            });
+            
+            // Close Contact Us modal
+            closeContactUs.addEventListener('click', function() {
+                contactUsModal.classList.remove('active');
+                document.body.style.overflow = ''; // Restore scrolling
+            });
+            
+            // Close modals when clicking on overlay
+            aboutUsModal.addEventListener('click', function(e) {
+                if (e.target === aboutUsModal) {
+                    aboutUsModal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+            
+            contactUsModal.addEventListener('click', function(e) {
+                if (e.target === contactUsModal) {
+                    contactUsModal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+            
+            // Close modals with Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    aboutUsModal.classList.remove('active');
+                    contactUsModal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
