@@ -1472,232 +1472,574 @@
         </div>
         
         <!-- Main Card -->
-        <div class="card" id="learning-modules">
-            <div class="card-header">
-                <h2 class="h3 mb-0"><i class="fas fa-graduation-cap me-2 text-primary"></i> Learning Modules</h2>
-                <p class="text-muted mb-0 mt-2">Browse through our interactive learning modules with embedded 3D models</p>
-            </div>
-            
-            <!-- Accordion -->
-            <div class="accordion accordion-flush" id="topicsAccordion">
-                <!-- Topic 1 -->
-                <div class="accordion-item" data-topic="biology">
-                    <h2 class="accordion-header" id="headingOne">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
-                            <span class="subject-badge me-3">Energy</span> Understanding Energy.
-                        </button>
-                    </h2>
-                    <div id="collapseOne" class="accordion-collapse collapse">
-                        <div class="accordion-body">
-                            <h4>Understanding the Working Principles of Energy.</h4>
-                            <p>Energy is the internal framework of the body. It is composed of around 270 bones at birth – this total decreases to around 206 bones by adulthood after some bones have fused together. The bone mass in the skeleton reaches maximum density around age 21.</p>
-                            
-                            <!-- NEW CONTENT EXAMPLE - This will now be searchable -->
-                            <div class="new-content">
-                                <h5>New Research Findings</h5>
-                                <p>Recent studies have shown that bone density can be maintained through proper nutrition and weight-bearing exercises. Calcium and Vitamin D are essential nutrients for bone health.</p>
-                            </div>
-                            
-                            <div class="key-points">
-                                <h6>Key Learning Objectives:</h6>
-                                <ul>
-                                    <li>Identify major bones in the human body</li>
-                                    <li>Understand bone development and growth</li>
-                                    <li>Learn about common skeletal disorders</li>
-                                    <li>Explore the role of minerals in bone health</li>
-                                </ul>
-                            </div>
-
-                            <!--Subtopic Start-->
-                            <!-- Updated Reusable Accordion Component with Consistent Width -->
-<div class="card">
-  <div class="card-header">
-    <h3 class="h4 mb-0"><i class="fas fa-layer-group me-2 text-primary"></i> Your Module Title</h3>
-    <p class="text-muted mb-0 mt-2">Module description goes here</p>
-  </div>
-  
-  <div class="accordion accordion-flush" id="yourUniqueAccordionId">
-    <!-- Accordion Item 1 -->
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="yourUniqueHeadingOne">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#yourUniqueCollapseOne">
-          <span class="subject-badge me-3">Topic</span> Your Topic Title
-        </button>
-      </h2>
-      <div id="yourUniqueCollapseOne" class="accordion-collapse collapse">
-        <div class="accordion-body">
-          <h4>Content Heading</h4>
-          <p>More content supposed to go here...</p>
-
-          <!--Nested Subtopic Start-->
-          <!-- Nested accordion with identical width structure -->
-  <div class="card">  <!-- Remove any custom margins like 'my-4' or 'mt-3' -->
+<div class="card" id="learning-modules">
     <div class="card-header">
-      <h5 class="mb-0"><i class="fas fa-bars me-2 text-primary"></i> Nested Section Title</h5>
-      <p class="text-muted mb-0 mt-2">Nested section description</p>
-    </div>
-    <div class="accordion accordion-flush" id="nestedAccordion">
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="nestedHeadingOne">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#nestedCollapseOne">
-            <span class="subject-badge me-3">Sub-topic</span> Nested Topic Title
-          </button>
-        </h2>
-        <div id="nestedCollapseOne" class="accordion-collapse collapse">
-          <div class="accordion-body">
-            <h6>Nested Content Heading</h6>
-            <p>Nested content here with the exact same width as parent accordions.</p>
-            
-            <!-- 3D Model with same responsive container -->
-            <div class="model-container">
-              <div class="sketchfab-embed-wrapper"> 
-                <div class="responsive-iframe-container">   
-                  <iframe title="Nested Model" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/NESTED_MODEL_ID/embed"> 
-                  </iframe> 
-                </div>
-                <p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;">
-                  <a href="https://sketchfab.com/3d-models/nested-model" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">Nested Model</a> on <a href="https://sketchfab.com" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a>
-                </p>
-              </div>
-            </div>
-            
-            <div class="d-flex justify-content-between align-items-center mt-4">
-              <div>
-                <span class="badge bg-primary me-2"><i class="fas fa-clock me-1"></i> 10 min</span>
-                <span class="badge bg-info"><i class="fas fa-circle me-1"></i> Basic</span>
-              </div>
-              <button class="btn btn-primary btn-sm"><i class="fas fa-play me-1"></i> Start Lesson</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-          <!--Nested Subtopic End-->
-          
-          <!-- 3D Model -->
-          <div class="model-container">
-            <div class="sketchfab-embed-wrapper"> 
-              <div class="responsive-iframe-container">   
-                <iframe title="Your Model" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/YOUR_MODEL_ID/embed"> 
-                </iframe> 
-              </div>
-              <p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;">
-                <a href="https://sketchfab.com/3d-models/model-name" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">Model Name</a> by <a href="https://sketchfab.com/creator" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">Creator</a> on <a href="https://sketchfab.com" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a>
-              </p>
-            </div>
-          </div>
-          
-          <div class="d-flex justify-content-between align-items-center mt-4">
-            <div>
-              <span class="badge bg-primary me-2"><i class="fas fa-clock me-1"></i> Duration</span>
-              <span class="badge bg-success"><i class="fas fa-check-circle me-1"></i> Difficulty</span>
-            </div>
-            <button class="btn btn-primary"><i class="fas fa-play me-1"></i> Start Lesson</button>
-          </div>
-        </div>
-      </div>
+        <h2 class="h3 mb-0"><i class="fas fa-graduation-cap me-2 text-primary"></i> Physics Learning Modules</h2>
+        <p class="text-muted mb-0 mt-2">Explore physics concepts through interactive 3D models and detailed explanations</p>
     </div>
     
-    <!-- Add more accordion items as needed -->
-  </div>
-</div>
-                            <!--Subtopic End-->
-
-                            <h4> Model of a DC Motor</h4>
-                            <div class="model-container">
-                                
-                                <!-- UPDATED: Responsive Sketchfab Embedding -->
-                                <div class="sketchfab-embed-wrapper"> 
-                                <div class="responsive-iframe-container"> 
-                                    <iframe title="Model of DC motor working principle" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/e9ac2cf2f2d04180b02965c01f7a9a19/embed"> 
-                                    </iframe> 
-                                </div>
-                                    <p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;"> <a href="https://sketchfab.com/3d-models/model-of-dc-motor-working-principle-e9ac2cf2f2d04180b02965c01f7a9a19?utm_medium=embed&utm_campaign=share-popup&utm_content=e9ac2cf2f2d04180b02965c01f7a9a19" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> Model of DC motor working principle </a> by <a href="https://sketchfab.com/mansoorman?utm_medium=embed&utm_campaign=share-popup&utm_content=e9ac2cf2f2d04180b02965c01f7a9a19" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> Mansoor </a> on <a href="https://sketchfab.com?utm_medium=embed&utm_campaign=share-popup&utm_content=e9ac2cf2f2d04180b02965c01f7a9a19" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a></p>
-                                </div>
-                            </div>
-                            
-                            <div class="d-flex justify-content-between align-items-center mt-4">
-                                <div>
-                                    <span class="badge bg-primary me-2"><i class="fas fa-clock me-1"></i> 15 min</span>
-                                    <span class="badge bg-success"><i class="fas fa-check-circle me-1"></i> Beginner</span>
-                                </div>
-                                <button class="btn btn-primary"><i class="fas fa-play me-1"></i> Start Lesson</button>
-                            </div>
+    <!-- Accordion -->
+    <div class="accordion accordion-flush" id="topicsAccordion">
+        <!-- Topic 1: Classical Mechanics -->
+        <div class="accordion-item" data-topic="mechanics">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                    <span class="subject-badge me-3">Mechanics</span> Classical Mechanics
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                    <h4>Classical Mechanics - Motion and Forces</h4>
+                    <p>The study of motion, forces, and energy in physical systems. Classical mechanics describes how objects move under the influence of forces and forms the foundation of physics.</p>
+                    
+                    <!-- Subtopic Accordion -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="h4 mb-0"><i class="fas fa-layer-group me-2 text-primary"></i> Classical Mechanics Modules</h3>
+                            <p class="text-muted mb-0 mt-2">Explore fundamental concepts of motion and forces</p>
                         </div>
-                    </div>
-                </div>
-                
-                <!-- Topic 2 -->
-                <div class="accordion-item" data-topic="biology">
-                    <h2 class="accordion-header" id="headingTwo">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
-                            <span class="subject-badge me-3">Mechanics</span> Understanding Mechanics.
-                        </button>
-                    </h2>
-                    <div id="collapseTwo" class="accordion-collapse collapse">
-                        <div class="accordion-body">
-                            <h4>Exploring the Building Blocks of Physics</h4>
-                            <p>Cells are the basic building blocks of all living things. The human body is composed of trillions of cells. They provide structure for the body, take in nutrients from food, convert those nutrients into energy, and carry out specialized functions.</p>
-                            
-                            <div class="model-container">
-                                <!-- PLACEHOLDER FOR SKETCHFAB MODEL -->
-                                <div class="sketchfab-embed-wrapper">
-                                    <div class="responsive-iframe-container"> 
-                                    <iframe title="Block and Tackle" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/a25fab89be224ff8be071b93b2dc6f73/embed"> 
-                                    </iframe> 
-                                </div>
-                                    <p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;"> <a href="https://sketchfab.com/3d-models/block-and-tackle-a25fab89be224ff8be071b93b2dc6f73?utm_medium=embed&utm_campaign=share-popup&utm_content=a25fab89be224ff8be071b93b2dc6f73" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> Block and Tackle </a> by <a href="https://sketchfab.com/arloopa?utm_medium=embed&utm_campaign=share-popup&utm_content=a25fab89be224ff8be071b93b2dc6f73" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> arloopa </a> on <a href="https://sketchfab.com?utm_medium=embed&utm_campaign=share-popup&utm_content=a25fab89be224ff8be071b93b2dc6f73" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a></p>
-                                </div>
-                            </div>
-                            
-                            <div class="d-flex justify-content-between align-items-center mt-4">
-                                <div>
-                                    <span class="badge bg-primary me-2"><i class="fas fa-clock me-1"></i> 20 min</span>
-                                    <span class="badge bg-warning text-dark"><i class="fas fa-exclamation-circle me-1"></i> Intermediate</span>
-                                </div>
-                                <button class="btn btn-primary"><i class="fas fa-play me-1"></i> Start Lesson</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Topic 3 -->
-                <div class="accordion-item" data-topic="geography">
-                    <h2 class="accordion-header" id="headingThree">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
-                            <span class="subject-badge me-3">Thermodynamics</span> Temperature and energy.
-                        </button>
-                    </h2>
-                    <div id="collapseThree" class="accordion-collapse collapse">
-                        <div class="accordion-body">
-                            <h4>Understanding Thermal Energy and Heat</h4>
-                            <p>Adding or removing energy from a substance typically changes its temperature, provided no phase change (like melting or boiling) is occurring. The relationship between the amount of heat transferred (\(Q\)), the mass of the substance (\(m\)), its specific heat capacity (\(c\)), and the resulting temperature change (\(\Delta T\)) is given by the formul: (Q=mc\Delta T\)</p>
-                            
-                            <div class="model-container">
-                                <!-- PLACEHOLDER FOR SKETCHFAB MODEL -->
-                                <div class="sketchfab-embed-wrapper"> 
-                                  <div class="responsive-iframe-container"> 
-                                    <iframe title="Fever thermometer" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/acb2c16f9224404d996ab44c26d58176/embed"> 
-                                    </iframe> 
-                                </div>
-                                    <p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;"> <a href="https://sketchfab.com/3d-models/fever-thermometer-acb2c16f9224404d996ab44c26d58176?utm_medium=embed&utm_campaign=share-popup&utm_content=acb2c16f9224404d996ab44c26d58176" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> Fever thermometer </a> by <a href="https://sketchfab.com/blackcube4?utm_medium=embed&utm_campaign=share-popup&utm_content=acb2c16f9224404d996ab44c26d58176" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> BlackCube </a> on <a href="https://sketchfab.com?utm_medium=embed&utm_campaign=share-popup&utm_content=acb2c16f9224404d996ab44c26d58176" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a></p>
+                        
+                        <div class="accordion accordion-flush" id="mechanicsAccordion">
+                            <!-- Kinematics -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="kinematicsHeading">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#kinematicsCollapse">
+                                        <span class="subject-badge me-3">Sub-topic</span> Kinematics
+                                    </button>
+                                </h2>
+                                <div id="kinematicsCollapse" class="accordion-collapse collapse">
+                                    <div class="accordion-body">
+                                        <h6>Motion without Forces</h6>
+                                        <p>Description of motion in terms of displacement, velocity, and acceleration without considering forces.</p>
+                                        
+                                        <!-- 3D Model Placeholder -->
+                                        <div class="model-container">
+                                            <div class="sketchfab-embed-wrapper"> 
+                                                <div class="responsive-iframe-container">   
+                                                    <iframe title="Projectile Motion" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="YOUR_SKETCHFAB_MODEL_URL_HERE"> 
+                                                    </iframe> 
+                                                </div>
+                                                <p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;">
+                                                    <a href="https://sketchfab.com" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">Projectile Motion Model</a> on <a href="https://sketchfab.com" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="d-flex justify-content-between align-items-center mt-4">
+                                            <div>
+                                                <span class="badge bg-primary me-2"><i class="fas fa-clock me-1"></i> 15 min</span>
+                                                <span class="badge bg-info"><i class="fas fa-circle me-1"></i> Basic</span>
+                                            </div>
+                                            <button class="btn btn-primary btn-sm"><i class="fas fa-play me-1"></i> Start Lesson</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             
-                            <div class="d-flex justify-content-between align-items-center mt-4">
-                                <div>
-                                    <span class="badge bg-primary me-2"><i class="fas fa-clock me-1"></i> 25 min</span>
-                                    <span class="badge bg-success"><i class="fas fa-check-circle me-1"></i> Beginner</span>
+                            <!-- Dynamics -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="dynamicsHeading">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#dynamicsCollapse">
+                                        <span class="subject-badge me-3">Sub-topic</span> Dynamics
+                                    </button>
+                                </h2>
+                                <div id="dynamicsCollapse" class="accordion-collapse collapse">
+                                    <div class="accordion-body">
+                                        <h6>Forces and Motion</h6>
+                                        <p>Newton's laws of motion, friction, circular motion, and gravitational forces.</p>
+                                        
+                                        <!-- 3D Model Placeholder -->
+                                        <div class="model-container">
+                                            <div class="sketchfab-embed-wrapper"> 
+                                                <div class="responsive-iframe-container">   
+                                                    <iframe title="Newton's Cradle" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="YOUR_SKETCHFAB_MODEL_URL_HERE"> 
+                                                    </iframe> 
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="d-flex justify-content-between align-items-center mt-4">
+                                            <div>
+                                                <span class="badge bg-primary me-2"><i class="fas fa-clock me-1"></i> 20 min</span>
+                                                <span class="badge bg-success"><i class="fas fa-circle me-1"></i> Intermediate</span>
+                                            </div>
+                                            <button class="btn btn-primary btn-sm"><i class="fas fa-play me-1"></i> Start Lesson</button>
+                                        </div>
+                                    </div>
                                 </div>
-                                <button class="btn btn-primary"><i class="fas fa-play me-1"></i> Start Lesson</button>
+                            </div>
+                            
+                            <!-- Energy and Work -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="energyHeading">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#energyCollapse">
+                                        <span class="subject-badge me-3">Sub-topic</span> Energy & Work
+                                    </button>
+                                </h2>
+                                <div id="energyCollapse" class="accordion-collapse collapse">
+                                    <div class="accordion-body">
+                                        <h6>Conservation of Energy</h6>
+                                        <p>Work-energy theorem, kinetic and potential energy, conservation laws, and power.</p>
+                                        
+                                        <div class="d-flex justify-content-between align-items-center mt-4">
+                                            <div>
+                                                <span class="badge bg-primary me-2"><i class="fas fa-clock me-1"></i> 18 min</span>
+                                                <span class="badge bg-info"><i class="fas fa-circle me-1"></i> Basic</span>
+                                            </div>
+                                            <button class="btn btn-primary btn-sm"><i class="fas fa-play me-1"></i> Start Lesson</button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        
+        <!-- Topic 2: Thermodynamics -->
+        <div class="accordion-item" data-topic="thermodynamics">
+            <h2 class="accordion-header" id="headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                    <span class="subject-badge me-3">Thermo</span> Thermodynamics
+                </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                    <h4>Thermodynamics - Heat and Energy Transfer</h4>
+                    <p>The study of heat, temperature, and energy transfer, and how these affect matter. Thermodynamics governs the behavior of systems in terms of energy flow and transformation.</p>
+                    
+                    <!-- Key Points -->
+                    <div class="key-points">
+                        <h6>Key Concepts:</h6>
+                        <ul>
+                            <li>Laws of thermodynamics</li>
+                            <li>Heat transfer mechanisms</li>
+                            <li>Thermodynamic systems and processes</li>
+                            <li>Entropy and disorder</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- 3D Model Placeholder for Heat Engine -->
+                    <div class="model-container">
+                        <div class="sketchfab-embed-wrapper">
+                            <div class="responsive-iframe-container"> 
+                                <iframe title="Heat Engine" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="YOUR_SKETCHFAB_MODEL_URL_HERE"> 
+                                </iframe> 
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex justify-content-between align-items-center mt-4">
+                        <div>
+                            <span class="badge bg-primary me-2"><i class="fas fa-clock me-1"></i> 25 min</span>
+                            <span class="badge bg-warning text-dark"><i class="fas fa-circle me-1"></i> Intermediate</span>
+                        </div>
+                        <button class="btn btn-primary"><i class="fas fa-play me-1"></i> Start Lesson</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Topic 3: Electromagnetism -->
+        <div class="accordion-item" data-topic="electromagnetism">
+            <h2 class="accordion-header" id="headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
+                    <span class="subject-badge me-3">EM</span> Electromagnetism
+                </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                    <h4>Electromagnetism - Electric and Magnetic Phenomena</h4>
+                    <p>The study of electric and magnetic fields, their interactions, and electromagnetic waves. This includes electricity, magnetism, and electromagnetic radiation.</p>
+                    
+                    <!-- New Research Content -->
+                    <div class="new-content">
+                        <h5>Modern Applications</h5>
+                        <p>Electromagnetism forms the basis for modern technology including electric motors, generators, transformers, wireless communication, and medical imaging devices like MRI machines.</p>
+                    </div>
+                    
+                    <!-- Subtopic Accordion for Electromagnetism -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0"><i class="fas fa-bars me-2 text-primary"></i> Electromagnetism Topics</h5>
+                            <p class="text-muted mb-0 mt-2">Detailed exploration of electromagnetic concepts</p>
+                        </div>
+                        <div class="accordion accordion-flush" id="emAccordion">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="electricityHeading">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#electricityCollapse">
+                                        <span class="subject-badge me-3">Topic</span> Electricity
+                                    </button>
+                                </h2>
+                                <div id="electricityCollapse" class="accordion-collapse collapse">
+                                    <div class="accordion-body">
+                                        <h6>Electric Charges and Fields</h6>
+                                        <p>Coulomb's law, electric fields, electric potential, and capacitance.</p>
+                                        
+                                        <!-- 3D Model Placeholder -->
+                                        <div class="model-container">
+                                            <div class="sketchfab-embed-wrapper"> 
+                                                <div class="responsive-iframe-container">   
+                                                    <iframe title="Electric Field Lines" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="YOUR_SKETCHFAB_MODEL_URL_HERE"> 
+                                                    </iframe> 
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="d-flex justify-content-between align-items-center mt-4">
+                                            <div>
+                                                <span class="badge bg-primary me-2"><i class="fas fa-clock me-1"></i> 22 min</span>
+                                                <span class="badge bg-info"><i class="fas fa-circle me-1"></i> Basic</span>
+                                            </div>
+                                            <button class="btn btn-primary btn-sm"><i class="fas fa-play me-1"></i> Start Lesson</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="magnetismHeading">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#magnetismCollapse">
+                                        <span class="subject-badge me-3">Topic</span> Magnetism
+                                    </button>
+                                </h2>
+                                <div id="magnetismCollapse" class="accordion-collapse collapse">
+                                    <div class="accordion-body">
+                                        <h6>Magnetic Fields and Forces</h6>
+                                        <p>Magnetic fields, forces on moving charges, electromagnetic induction, and Faraday's law.</p>
+                                        
+                                        <div class="d-flex justify-content-between align-items-center mt-4">
+                                            <div>
+                                                <span class="badge bg-primary me-2"><i class="fas fa-clock me-1"></i> 20 min</span>
+                                                <span class="badge bg-success"><i class="fas fa-circle me-1"></i> Intermediate</span>
+                                            </div>
+                                            <button class="btn btn-primary btn-sm"><i class="fas fa-play me-1"></i> Start Lesson</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Topic 4: Optics -->
+        <div class="accordion-item" data-topic="optics">
+            <h2 class="accordion-header" id="headingFour">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour">
+                    <span class="subject-badge me-3">Optics</span> Optics and Light
+                </button>
+            </h2>
+            <div id="collapseFour" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                    <h4>Optics - The Study of Light</h4>
+                    <p>The branch of physics that studies the behavior and properties of light, including its interactions with matter and the construction of instruments that use or detect it.</p>
+                    
+                    <!-- 3D Model Placeholder for Lens System -->
+                    <div class="model-container">
+                        <div class="sketchfab-embed-wrapper"> 
+                            <div class="responsive-iframe-container"> 
+                                <iframe title="Optical Lens System" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="YOUR_SKETCHFAB_MODEL_URL_HERE"> 
+                                </iframe> 
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex justify-content-between align-items-center mt-4">
+                        <div>
+                            <span class="badge bg-primary me-2"><i class="fas fa-clock me-1"></i> 30 min</span>
+                            <span class="badge bg-warning text-dark"><i class="fas fa-circle me-1"></i> Intermediate</span>
+                        </div>
+                        <button class="btn btn-primary"><i class="fas fa-play me-1"></i> Start Lesson</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Topic 5: Modern Physics -->
+        <div class="accordion-item" data-topic="modern">
+            <h2 class="accordion-header" id="headingFive">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive">
+                    <span class="subject-badge me-3">Modern</span> Modern Physics
+                </button>
+            </h2>
+            <div id="collapseFive" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                    <h4>Modern Physics - Beyond Classical Physics</h4>
+                    <p>Encompasses relativity, quantum mechanics, nuclear physics, particle physics, and cosmology - the physics developed in the 20th century that revolutionized our understanding of the universe.</p>
+                    
+                    <!-- Key Points -->
+                    <div class="key-points">
+                        <h6>Major Theories:</h6>
+                        <ul>
+                            <li>Special and General Relativity</li>
+                            <li>Quantum Mechanics</li>
+                            <li>Nuclear Physics</li>
+                            <li>Particle Physics</li>
+                            <li>Cosmology</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Subtopic Accordion for Modern Physics -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="h4 mb-0"><i class="fas fa-layer-group me-2 text-primary"></i> Modern Physics Modules</h3>
+                            <p class="text-muted mb-0 mt-2">Explore revolutionary physics concepts</p>
+                        </div>
+                        
+                        <div class="accordion accordion-flush" id="modernAccordion">
+                            <!-- Quantum Mechanics -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="quantumHeading">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#quantumCollapse">
+                                        <span class="subject-badge me-3">Sub-topic</span> Quantum Mechanics
+                                    </button>
+                                </h2>
+                                <div id="quantumCollapse" class="accordion-collapse collapse">
+                                    <div class="accordion-body">
+                                        <h6>Quantum World</h6>
+                                        <p>Wave-particle duality, uncertainty principle, quantum states, and quantum tunneling.</p>
+                                        
+                                        <!-- 3D Model Placeholder -->
+                                        <div class="model-container">
+                                            <div class="sketchfab-embed-wrapper"> 
+                                                <div class="responsive-iframe-container">   
+                                                    <iframe title="Quantum Atom Model" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="YOUR_SKETCHFAB_MODEL_URL_HERE"> 
+                                                    </iframe> 
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="d-flex justify-content-between align-items-center mt-4">
+                                            <div>
+                                                <span class="badge bg-primary me-2"><i class="fas fa-clock me-1"></i> 35 min</span>
+                                                <span class="badge bg-danger"><i class="fas fa-circle me-1"></i> Advanced</span>
+                                            </div>
+                                            <button class="btn btn-primary btn-sm"><i class="fas fa-play me-1"></i> Start Lesson</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Relativity -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="relativityHeading">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#relativityCollapse">
+                                        <span class="subject-badge me-3">Sub-topic</span> Relativity
+                                    </button>
+                                </h2>
+                                <div id="relativityCollapse" class="accordion-collapse collapse">
+                                    <div class="accordion-body">
+                                        <h6>Space-Time Geometry</h6>
+                                        <p>Special relativity (time dilation, length contraction) and general relativity (gravity as curvature of spacetime).</p>
+                                        
+                                        <div class="d-flex justify-content-between align-items-center mt-4">
+                                            <div>
+                                                <span class="badge bg-primary me-2"><i class="fas fa-clock me-1"></i> 40 min</span>
+                                                <span class="badge bg-danger"><i class="fas fa-circle me-1"></i> Advanced</span>
+                                            </div>
+                                            <button class="btn btn-primary btn-sm"><i class="fas fa-play me-1"></i> Start Lesson</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Topic 6: Waves and Acoustics -->
+        <div class="accordion-item" data-topic="waves">
+            <h2 class="accordion-header" id="headingSix">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix">
+                    <span class="subject-badge me-3">Waves</span> Waves and Acoustics
+                </button>
+            </h2>
+            <div id="collapseSix" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                    <h4>Wave Phenomena and Sound</h4>
+                    <p>The study of mechanical waves, sound waves, wave interference, diffraction, and resonance phenomena. This includes both sound (acoustics) and other wave phenomena.</p>
+                    
+                    <!-- 3D Model Placeholder for Wave Interference -->
+                    <div class="model-container">
+                        <div class="sketchfab-embed-wrapper">
+                            <div class="responsive-iframe-container"> 
+                                <iframe title="Wave Interference Pattern" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="YOUR_SKETCHFAB_MODEL_URL_HERE"> 
+                                </iframe> 
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex justify-content-between align-items-center mt-4">
+                        <div>
+                            <span class="badge bg-primary me-2"><i class="fas fa-clock me-1"></i> 20 min</span>
+                            <span class="badge bg-info"><i class="fas fa-circle me-1"></i> Basic</span>
+                        </div>
+                        <button class="btn btn-primary"><i class="fas fa-play me-1"></i> Start Lesson</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Topic 7: Nuclear Physics -->
+        <div class="accordion-item" data-topic="nuclear">
+            <h2 class="accordion-header" id="headingSeven">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven">
+                    <span class="subject-badge me-3">Nuclear</span> Nuclear Physics
+                </button>
+            </h2>
+            <div id="collapseSeven" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                    <h4>Nuclear Structure and Reactions</h4>
+                    <p>The study of atomic nuclei, their components and interactions, nuclear reactions, radioactivity, and nuclear energy applications.</p>
+                    
+                    <!-- New Research Content -->
+                    <div class="new-content">
+                        <h5>Applications in Medicine and Energy</h5>
+                        <p>Nuclear physics has applications in medical imaging (PET scans), cancer treatment (radiation therapy), and as a source of clean energy through nuclear power plants.</p>
+                    </div>
+                    
+                    <!-- 3D Model Placeholder for Nuclear Reactor -->
+                    <div class="model-container">
+                        <div class="sketchfab-embed-wrapper">
+                            <div class="responsive-iframe-container"> 
+                                <iframe title="Nuclear Reactor Core" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="YOUR_SKETCHFAB_MODEL_URL_HERE"> 
+                                </iframe> 
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex justify-content-between align-items-center mt-4">
+                        <div>
+                            <span class="badge bg-primary me-2"><i class="fas fa-clock me-1"></i> 30 min</span>
+                            <span class="badge bg-warning text-dark"><i class="fas fa-circle me-1"></i> Intermediate</span>
+                        </div>
+                        <button class="btn btn-primary"><i class="fas fa-play me-1"></i> Start Lesson</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Topic 8: Fluid Mechanics -->
+        <div class="accordion-item" data-topic="fluids">
+            <h2 class="accordion-header" id="headingEight">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight">
+                    <span class="subject-badge me-3">Fluids</span> Fluid Mechanics
+                </button>
+            </h2>
+            <div id="collapseEight" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                    <h4>Behavior of Fluids</h4>
+                    <p>The study of fluids (liquids and gases) and the forces on them. Includes fluid statics (hydrostatics) and fluid dynamics, describing flow behavior.</p>
+                    
+                    <!-- Key Points -->
+                    <div class="key-points">
+                        <h6>Key Principles:</h6>
+                        <ul>
+                            <li>Bernoulli's principle</li>
+                            <li>Continuity equation</li>
+                            <li>Archimedes' principle</li>
+                            <li>Viscosity and turbulence</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- 3D Model Placeholder for Aerodynamics -->
+                    <div class="model-container">
+                        <div class="sketchfab-embed-wrapper">
+                            <div class="responsive-iframe-container"> 
+                                <iframe title="Aerodynamic Flow" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="YOUR_SKETCHFAB_MODEL_URL_HERE"> 
+                                </iframe> 
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex justify-content-between align-items-center mt-4">
+                        <div>
+                            <span class="badge bg-primary me-2"><i class="fas fa-clock me-1"></i> 25 min</span>
+                            <span class="badge bg-success"><i class="fas fa-circle me-1"></i> Intermediate</span>
+                        </div>
+                        <button class="btn btn-primary"><i class="fas fa-play me-1"></i> Start Lesson</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Topic 9: Solid State Physics -->
+        <div class="accordion-item" data-topic="solid-state">
+            <h2 class="accordion-header" id="headingNine">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNine">
+                    <span class="subject-badge me-3">Solid State</span> Solid State Physics
+                </button>
+            </h2>
+            <div id="collapseNine" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                    <h4>Physics of Solids</h4>
+                    <p>The study of rigid matter, or solids, through methods such as quantum mechanics, crystallography, and electromagnetism. This forms the basis for semiconductor physics and materials science.</p>
+                    
+                    <!-- 3D Model Placeholder for Crystal Lattice -->
+                    <div class="model-container">
+                        <div class="sketchfab-embed-wrapper">
+                            <div class="responsive-iframe-container"> 
+                                <iframe title="Crystal Lattice Structure" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="YOUR_SKETCHFAB_MODEL_URL_HERE"> 
+                                </iframe> 
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex justify-content-between align-items-center mt-4">
+                        <div>
+                            <span class="badge bg-primary me-2"><i class="fas fa-clock me-1"></i> 35 min</span>
+                            <span class="badge bg-danger"><i class="fas fa-circle me-1"></i> Advanced</span>
+                        </div>
+                        <button class="btn btn-primary"><i class="fas fa-play me-1"></i> Start Lesson</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Topic 10: Astrophysics -->
+        <div class="accordion-item" data-topic="astrophysics">
+            <h2 class="accordion-header" id="headingTen">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTen">
+                    <span class="subject-badge me-3">Astro</span> Astrophysics and Cosmology
+                </button>
+            </h2>
+            <div id="collapseTen" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                    <h4>Physics of the Universe</h4>
+                    <p>The application of physics principles to astronomical objects and phenomena. Includes stellar physics, galactic structure, black holes, and the evolution of the universe.</p>
+                    
+                    <!-- New Research Content -->
+                    <div class="new-content">
+                        <h5>Recent Discoveries</h5>
+                        <p>Gravitational wave detection, black hole imaging, exoplanet discovery, and dark matter/energy research are revolutionizing our understanding of the cosmos.</p>
+                    </div>
+                    
+                    <!-- 3D Model Placeholder for Solar System -->
+                    <div class="model-container">
+                        <div class="sketchfab-embed-wrapper">
+                            <div class="responsive-iframe-container"> 
+                                <iframe title="Solar System Model" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="YOUR_SKETCHFAB_MODEL_URL_HERE"> 
+                                </iframe> 
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex justify-content-between align-items-center mt-4">
+                        <div>
+                            <span class="badge bg-primary me-2"><i class="fas fa-clock me-1"></i> 40 min</span>
+                            <span class="badge bg-danger"><i class="fas fa-circle me-1"></i> Advanced</span>
+                        </div>
+                        <button class="btn btn-primary"><i class="fas fa-play me-1"></i> Start Lesson</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
 
     <!-- NEW: About Us Modal -->
     <div class="modal-overlay" id="aboutUsModal">
