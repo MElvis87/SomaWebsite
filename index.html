@@ -1991,6 +1991,209 @@
     }
 }
 /*--------------------------Centering Navbar Mobile Content End-----------------------------*/
+
+/*New Subjects*/
+/* NEW: All Subjects Section Styles */
+.all-subjects-showcase {
+    margin: 80px 0;
+    padding: 60px 0;
+    background-color: var(--light);
+    border-radius: 20px;
+}
+
+.subject-card-new {
+    background-color: var(--card-bg);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 25px 15px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.subject-card-new:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.subject-icon-container {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.subject-icon {
+    font-size: 1.8rem;
+    color: white;
+}
+
+.subject-card-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.subject-card-title {
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+.subject-card-description {
+    color: var(--muted-text);
+    font-size: 0.85rem;
+    line-height: 1.4;
+    flex: 1;
+    margin-bottom: 15px;
+}
+
+/* Responsive adjustments for all-subjects section */
+@media (max-width: 1200px) {
+    .subject-card-new {
+        padding: 20px 12px;
+    }
+    
+    .subject-icon-container {
+        width: 65px;
+        height: 65px;
+    }
+    
+    .subject-icon {
+        font-size: 1.6rem;
+    }
+    
+    .subject-card-title {
+        font-size: 1.05rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .all-subjects-showcase {
+        padding: 50px 0;
+        margin: 60px 0;
+    }
+    
+    .subject-card-new {
+        padding: 20px 15px;
+    }
+    
+    .subject-icon-container {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 15px;
+    }
+    
+    .subject-icon {
+        font-size: 1.5rem;
+    }
+    
+    .subject-card-title {
+        font-size: 1rem;
+    }
+    
+    .subject-card-description {
+        font-size: 0.82rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .all-subjects-showcase {
+        padding: 40px 0;
+        margin: 50px 0;
+    }
+    
+    .subject-card-new {
+        padding: 18px 12px;
+        margin-bottom: 15px;
+    }
+    
+    .subject-icon-container {
+        width: 55px;
+        height: 55px;
+        margin-bottom: 12px;
+    }
+    
+    .subject-icon {
+        font-size: 1.4rem;
+    }
+    
+    .subject-card-title {
+        font-size: 0.95rem;
+        margin-bottom: 8px;
+    }
+    
+    .subject-card-description {
+        font-size: 0.8rem;
+        margin-bottom: 12px;
+    }
+}
+
+@media (max-width: 576px) {
+    .all-subjects-showcase {
+        padding: 30px 0;
+        margin: 40px 0;
+    }
+    
+    .subject-card-new {
+        padding: 20px 15px;
+        margin-bottom: 20px;
+    }
+    
+    .subject-icon-container {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .subject-icon {
+        font-size: 1.3rem;
+    }
+    
+    .subject-card-title {
+        font-size: 1rem;
+    }
+    
+    .subject-card-description {
+        font-size: 0.85rem;
+    }
+}
+
+/* Extra small screens */
+@media (max-width: 400px) {
+    .subject-card-new {
+        padding: 15px 10px;
+    }
+    
+    .subject-icon-container {
+        width: 45px;
+        height: 45px;
+        margin-bottom: 10px;
+    }
+    
+    .subject-icon {
+        font-size: 1.2rem;
+    }
+    
+    .subject-card-title {
+        font-size: 0.9rem;
+    }
+    
+    .subject-card-description {
+        font-size: 0.78rem;
+    }
+}
+/*New Subjects End*/
 </style>
     </style>
 </head>
@@ -2175,75 +2378,103 @@
 </section>
         
         <!-- Subjects Showcase -->
-        <section class="subjects-showcase">
-            <h2 class="section-title" id="explore-subjects">Explore Our Subjects</h2>
-            <div class="row g-4">
-                <div class="col-md-6 col-lg-3">
-                    <div class="subject-card">
-                        <div class="subject-image-biology"></div>
-                        <div class="subject-content">
-                            <h4>Biology</h4>
-                            <p>Discover the wonders of life from cells to ecosystems with our interactive 3D models.</p>
-                            <div class="subject-gif-container">
-                                <!-- Placeholder for animated GIF - Replace with actual GIF -->
-                                <!--<img src="https://via.placeholder.com/250x120/4361ee/ffffff?text=Biology+GIF" alt="Biology" class="subject-gif">-->
-                                <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js" type="module"></script>
-<dotlottie-wc src="https://lottie.host/3631dbed-37b0-4a4c-9989-1a77f885a57b/9B4dtzYgDs.lottie" autoplay loop></dotlottie-wc>
-                            </div>
-                            <a href="3dbio.html" class="btn btn-primary mt-2">Explore Biology</a>
-                        </div>
+      <!-- NEW: 6 Subjects Showcase Section -->
+<section class="all-subjects-showcase">
+    <div class="container">
+        <h2 class="section-title" id="all-subjects">All Subjects</h2>
+        <p class="text-center text-muted mb-5">Explore our comprehensive collection of 3D-enhanced learning subjects</p>
+        
+        <div class="row g-4">
+            <!-- Biology -->
+            <div class="col-sm-6 col-md-4 col-lg-2">
+                <div class="subject-card-new">
+                    <div class="subject-icon-container">
+                        <i class="fas fa-dna subject-icon"></i>
                     </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="subject-card">
-                        <div class="subject-image-geography"></div>
-                        <div class="subject-content">
-                            <h4>Geography</h4>
-                            <p>Journey through Earth's landscapes, climates, and geological formations in 3D.</p>
-                            <div class="subject-gif-container">
-                                <!-- Placeholder for animated GIF - Replace with actual GIF -->
-                                <!--<img src="https://via.placeholder.com/250x120/3a0ca3/ffffff?text=Geography+GIF" alt="Geography" class="subject-gif">-->
-                                <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js" type="module"></script>
-<dotlottie-wc src="https://lottie.host/5ccffa51-39d8-4f5b-9001-14f4caea55ee/wAAX5xptrq.lottie" autoplay loop></dotlottie-wc>
-                            </div>
-                            <a href="3dgeo.html" class="btn btn-primary mt-2">Explore Geography</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="subject-card">
-                        <div class="subject-image-physics"></div>
-                        <div class="subject-content">
-                            <h4>Physics</h4>
-                            <p>Visualize complex physical phenomena and principles with interactive simulations.</p>
-                            <div class="subject-gif-container">
-                                <!-- Placeholder for animated GIF - Replace with actual GIF -->
-                                <!--<img src="https://via.placeholder.com/250x120/4cc9f0/ffffff?text=Physics+GIF" alt="Physics" class="subject-gif">-->
-                                <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js" type="module"></script>
-<dotlottie-wc src="https://lottie.host/ad22c5d0-7bb9-414a-a46a-1ce071fbb771/w7VVCWOknY.lottie" autoplay loop></dotlottie-wc>
-                            </div>
-                            <a href="3dphysics.html" class="btn btn-primary mt-2">Explore Physics</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="subject-card">
-                        <div class="subject-image-culture"></div>
-                        <div class="subject-content">
-                            <h4>Culture</h4>
-                            <p>Explore historical artifacts, architectural wonders, and cultural heritage in 3D.</p>
-                            <div class="subject-gif-container">
-                                <!-- Placeholder for animated GIF - Replace with actual GIF -->
-                                <!--<img src="https://via.placeholder.com/250x120/f72585/ffffff?text=Culture+GIF" alt="Culture" class="subject-gif">-->
-                                <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js" type="module"></script>
-<dotlottie-wc src="https://lottie.host/637f3935-c95b-4c88-aeae-7dfa6c5324f6/FJRM2SaVSR.lottie" autoplay loop></dotlottie-wc>
-                            </div>
-                            <a href="3dculture.html" class="btn btn-primary mt-2">Explore Culture</a>
-                        </div>
+                    <div class="subject-card-content">
+                        <h5 class="subject-card-title">Biology</h5>
+                        <p class="subject-card-description">Explore life from cells to ecosystems with interactive 3D models.</p>
+                        <a href="3dbio.html" class="btn btn-sm btn-primary mt-2 w-100">Explore</a>
                     </div>
                 </div>
             </div>
-        </section>
+            
+            <!-- Physics -->
+            <div class="col-sm-6 col-md-4 col-lg-2">
+                <div class="subject-card-new">
+                    <div class="subject-icon-container">
+                        <i class="fas fa-atom subject-icon"></i>
+                    </div>
+                    <div class="subject-card-content">
+                        <h5 class="subject-card-title">Physics</h5>
+                        <p class="subject-card-description">Visualize physical phenomena with interactive simulations.</p>
+                        <a href="3dphysics.html" class="btn btn-sm btn-primary mt-2 w-100">Explore</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Chemistry -->
+            <div class="col-sm-6 col-md-4 col-lg-2">
+                <div class="subject-card-new">
+                    <div class="subject-icon-container">
+                        <i class="fa-solid fa-flask subject-icon"></i>
+                    </div>
+                    <div class="subject-card-content">
+                        <h5 class="subject-card-title">Chemistry</h5>
+                        <p class="subject-card-description">Discover molecular structures and chemical reactions in 3D.</p>
+                        <a href="3dchem.html" class="btn btn-sm btn-primary mt-2 w-100">Explore</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Geography -->
+            <div class="col-sm-6 col-md-4 col-lg-2">
+                <div class="subject-card-new">
+                    <div class="subject-icon-container">
+                        <i class="fas fa-globe-americas subject-icon"></i>
+                    </div>
+                    <div class="subject-card-content">
+                        <h5 class="subject-card-title">Geography</h5>
+                        <p class="subject-card-description">Journey through Earth's landscapes and formations in 3D.</p>
+                        <a href="3dgeo.html" class="btn btn-sm btn-primary mt-2 w-100">Explore</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Culture -->
+            <div class="col-sm-6 col-md-4 col-lg-2">
+                <div class="subject-card-new">
+                    <div class="subject-icon-container">
+                        <i class="fas fa-users subject-icon"></i>
+                    </div>
+                    <div class="subject-card-content">
+                        <h5 class="subject-card-title">Culture</h5>
+                        <p class="subject-card-description">Explore historical artifacts and cultural heritage in 3D.</p>
+                        <a href="3dculture.html" class="btn btn-sm btn-primary mt-2 w-100">Explore</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Computer Studies -->
+            <div class="col-sm-6 col-md-4 col-lg-2">
+                <div class="subject-card-new">
+                    <div class="subject-icon-container">
+                        <i class="fa-solid fa-computer subject-icon"></i>
+                    </div>
+                    <div class="subject-card-content">
+                        <h5 class="subject-card-title">Computer Studies</h5>
+                        <p class="subject-card-description">Learn computer science concepts through interactive 3D models.</p>
+                        <a href="3dcomp.html" class="btn btn-sm btn-primary mt-2 w-100">Explore</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-5">
+            <a href="#explore-subjects" class="btn btn-primary btn-lg">View Detailed Subjects</a>
+        </div>
+    </div>
+</section>
 
 
         <!-- Benefits of 3D Learning Section -->
