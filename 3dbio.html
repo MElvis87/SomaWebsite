@@ -1419,6 +1419,41 @@
 }
 /*3d Model Comparison End*/
 
+/*3D Model Process Start*/
+/* Sequential process steps */
+.process-steps {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin: 25px 0;
+}
+
+.process-step {
+    flex: 1;
+    min-width: 300px;
+    background-color: var(--light);
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+}
+
+.step-number {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: var(--primary);
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    z-index: 1;
+}
+/*3D Model Process End*/
+
 
 
     </style>
@@ -1625,7 +1660,7 @@
                                         <li>Chloroplasts - Photosynthesis (plant cells)</li>
                                     </ul>
                                 </div>
-                                
+
 
 <!--3D Model Comparison Start-->
 <!-- Example: Plant vs Animal Cell Comparison -->
@@ -1659,11 +1694,51 @@
 
 
 
+                                     </div>
+                                  </div>
+                                </div>
+                              </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
+
+
+
+<!--3d Model Process Start-->
+<!-- Example: DNA Replication Process -->
+<h5>Process for the metamorphosis.</h5>
+<div class="process-steps">
+    <div class="process-step">
+        <span class="step-number">1</span>
+        <div class="sketchfab-embed-wrapper">
+            <div class="responsive-iframe-container">
+                <!-- DNA unwinding model -->
             </div>
+        </div>
+        <div class="p-3">
+            <h6>Step 1: Unwinding</h6>
+            <p class="small">DNA helix unwinds at the replication fork</p>
+        </div>
+    </div>
+    
+    <div class="process-step">
+        <span class="step-number">2</span>
+        <div class="sketchfab-embed-wrapper">
+            <div class="responsive-iframe-container">
+                <!-- Primer binding model -->
+            </div>
+        </div>
+        <div class="p-3">
+            <h6>Step 2: Primer Binding</h6>
+            <p class="small">RNA primers bind to DNA strands</p>
+        </div>
+    </div>
+    
+    <!-- Add more steps -->
+</div>
+<!--3D Model Process End-->
+
+
+                        
+          
             <!-- End Subtopic Accordion -->
         </div>
     </div>
