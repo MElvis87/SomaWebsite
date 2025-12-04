@@ -1389,6 +1389,36 @@
 }
 /*3D Model Grid End*/
 
+/*3D Model Comparison Start*/
+/* Side-by-side comparison layout */
+.comparison-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin: 25px 0;
+}
+
+.comparison-item {
+    text-align: center;
+}
+
+.comparison-title {
+    font-weight: 600;
+    margin-bottom: 15px;
+    padding: 10px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+    .comparison-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
+/*3d Model Comparison End*/
+
 
 
     </style>
@@ -1595,6 +1625,40 @@
                                         <li>Chloroplasts - Photosynthesis (plant cells)</li>
                                     </ul>
                                 </div>
+                                
+
+<!--3D Model Comparison Start-->
+<!-- Example: Plant vs Animal Cell Comparison -->
+<div class="comparison-container">
+    <div class="comparison-item">
+        <div class="comparison-title">Plant Cell</div>
+        <div class="sketchfab-embed-wrapper">
+            <div class="responsive-iframe-container">
+                <!-- Your plant cell 3D model iframe -->
+            </div>
+        </div>
+        <div class="mt-3">
+            <p><strong>Features:</strong> Cell wall, chloroplasts, large central vacuole</p>
+        </div>
+    </div>
+    
+    <div class="comparison-item">
+        <div class="comparison-title">Animal Cell</div>
+        <div class="sketchfab-embed-wrapper">
+            <div class="responsive-iframe-container">
+                <!-- Your animal cell 3D model iframe -->
+            </div>
+        </div>
+        <div class="mt-3">
+            <p><strong>Features:</strong> No cell wall, centrioles, lysosomes</p>
+        </div>
+    </div>
+</div>
+
+<!--3D Model Comparison End-->
+
+
+
                             </div>
                         </div>
                     </div>
