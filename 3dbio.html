@@ -1308,6 +1308,86 @@
 }
 /*--------------------------Centering Navbar Mobile Content End-----------------------------*/
 
+/*3D Model Grid Start*/
+/* Responsive 3D Model Grid */
+.model-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin: 25px 0;
+}
+
+.model-grid-item {
+    background-color: var(--light);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.model-grid-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.model-grid-header {
+    padding: 15px;
+    background-color: var(--card-bg);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.model-grid-header h5 {
+    margin: 0;
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+.model-grid-header .phase-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin-top: 5px;
+}
+
+/* Dark mode adjustments */
+[data-theme="dark"] .model-grid-item {
+    background-color: #2d2d2d;
+}
+
+[data-theme="dark"] .model-grid-header {
+    background-color: #1e1e1e;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Mobile adjustments for model grid */
+@media (max-width: 768px) {
+    .model-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .model-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* For 3 models in a row on large screens */
+.model-grid-3 {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+}
+
+@media (min-width: 1400px) {
+    .model-grid-3 {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+/*3D Model Grid End*/
 
 
 
@@ -1693,6 +1773,102 @@
                     <li>Embryology</li>
                 </ul>
             </div>
+
+            <!--3d model grid start-->
+            <!-- Example: Mitosis Process -->
+<div class="accordion-item" data-topic="biology">
+    <h2 class="accordion-header" id="headingMitosis">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMitosis">
+            <span class="subject-badge me-3">Biology</span> Cell Division: Mitosis
+        </button>
+    </h2>
+    <div id="collapseMitosis" class="accordion-collapse collapse">
+        <div class="accordion-body">
+            <h4>The Process of Mitosis</h4>
+            <p>Mitosis is the process where a single cell divides to produce two identical daughter cells. The process consists of several distinct phases:</p>
+            
+            <!-- Responsive Grid of 3D Models -->
+            <div class="model-grid model-grid-3">
+                
+                <!-- Phase 1: Prophase -->
+                <div class="model-grid-item">
+                    <div class="model-grid-header">
+                        <h5>Prophase</h5>
+                        <span class="phase-badge">Phase 1</span>
+                    </div>
+                    <div class="sketchfab-embed-wrapper">
+                        <div class="responsive-iframe-container">
+                            <iframe title="Prophase Cell Model" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/YOUR_PROPHASE_MODEL_ID/embed">
+                            </iframe>
+                        </div>
+                        <p style="font-size: 13px; margin: 5px; color: var(--text-color);">
+                            <a href="https://sketchfab.com/YOUR_LINK" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">Prophase Cell</a>
+                        </p>
+                    </div>
+                    <div class="p-3">
+                        <p class="small mb-0"><strong>Key Events:</strong> Chromosomes condense, nuclear envelope begins to break down, spindle fibers form.</p>
+                    </div>
+                </div>
+                
+                <!-- Phase 2: Metaphase -->
+                <div class="model-grid-item">
+                    <div class="model-grid-header">
+                        <h5>Metaphase</h5>
+                        <span class="phase-badge">Phase 2</span>
+                    </div>
+                    <div class="sketchfab-embed-wrapper">
+                        <div class="responsive-iframe-container">
+                            <iframe title="Metaphase Cell Model" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/YOUR_METAPHASE_MODEL_ID/embed">
+                            </iframe>
+                        </div>
+                        <p style="font-size: 13px; margin: 5px; color: var(--text-color);">
+                            <a href="https://sketchfab.com/YOUR_LINK" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">Metaphase Cell</a>
+                        </p>
+                    </div>
+                    <div class="p-3">
+                        <p class="small mb-0"><strong>Key Events:</strong> Chromosomes align at the metaphase plate, spindle fibers attach to centromeres.</p>
+                    </div>
+                </div>
+                
+                <!-- Phase 3: Anaphase -->
+                <div class="model-grid-item">
+                    <div class="model-grid-header">
+                        <h5>Anaphase</h5>
+                        <span class="phase-badge">Phase 3</span>
+                    </div>
+                    <div class="sketchfab-embed-wrapper">
+                        <div class="responsive-iframe-container">
+                            <iframe title="Anaphase Cell Model" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/YOUR_ANAPHASE_MODEL_ID/embed">
+                            </iframe>
+                        </div>
+                        <p style="font-size: 13px; margin: 5px; color: var(--text-color);">
+                            <a href="https://sketchfab.com/YOUR_LINK" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">Anaphase Cell</a>
+                        </p>
+                    </div>
+                    <div class="p-3">
+                        <p class="small mb-0"><strong>Key Events:</strong> Sister chromatids separate and move to opposite poles of the cell.</p>
+                    </div>
+                </div>
+                
+                <!-- Add more phases as needed -->
+                
+            </div>
+            
+            <div class="key-points mt-4">
+                <h6>Process Summary:</h6>
+                <ul>
+                    <li><strong>Prophase:</strong> Chromosomes condense and become visible</li>
+                    <li><strong>Metaphase:</strong> Chromosomes align at the cell's equator</li>
+                    <li><strong>Anaphase:</strong> Chromatids separate and move to opposite poles</li>
+                    <li><strong>Telophase:</strong> Nuclear membranes reform around the separated chromosomes</li>
+                    <li><strong>Cytokinesis:</strong> Cell divides into two daughter cells</li>
+                </ul>
+            </div>
+            
+        </div>
+    </div>
+</div>
+            <!--3d model grid end-->
             
             <!-- Placeholder for Evolutionary Tree 3D Model -->
             <div class="model-container">
