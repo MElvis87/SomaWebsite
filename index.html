@@ -2415,16 +2415,17 @@
 .hero-section-redesigned {
     margin: 40px 0 60px;
     padding: 20px 0;
+    margin-top: 1px !important;
 }
 
 .hero-glow-card {
-    background: var(--card-bg);
-    border-radius: 20px;
+    background: linear-gradient(90deg,rgba(0, 0, 139, 1) 0%, rgba(0, 0, 139, 1) 43%, rgba(0, 11, 31, 1) 100%);;
     padding: 40px;
     position: relative;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
     border: 1px solid rgba(67, 97, 238, 0.1);
     overflow: hidden;
+    border-radius: 20px;
 }
 
 /* Edge Glow Effect */
@@ -2468,7 +2469,7 @@
     font-weight: 800;
     line-height: 1.2;
     margin-bottom: 20px;
-    color: var(--text-color);
+    color: white;
 }
 
 .hero-highlight {
@@ -2482,7 +2483,7 @@
 .hero-description {
     font-size: 1.1rem;
     line-height: 1.7;
-    color: var(--muted-text);
+    color: whitesmoke;
     margin-bottom: 30px;
 }
 
@@ -2520,7 +2521,7 @@
 
 /* Dark Mode Adjustments */
 [data-theme="dark"] .hero-glow-card {
-    background: var(--card-bg);
+    background: linear-gradient(90deg,rgba(0, 0, 139, 1) 0%, rgba(0, 0, 139, 1) 43%, rgba(0, 11, 31, 1) 100%);;
     border-color: rgba(255, 255, 255, 0.1);
 }
 
@@ -2632,6 +2633,40 @@
         border-radius: 18px;
     }
 }
+
+/*Redesigned Hero Section Mobile view settings*/
+/* Current mobile settings */
+@media (max-width: 768px) {
+    .hero-section-redesigned {
+        margin: 30px 0 50px; /* This creates space on mobile */
+    }
+    .hero-glow-card {
+        padding: 25px; /* Card padding on mobile */
+    }
+}
+
+/* Change to reduce mobile spacing */
+@media (max-width: 768px) {
+    .hero-section-redesigned {
+        margin: 10px 0 30px; /* Reduced from 30px 0 50px */
+        padding-top: 1px;
+    }
+    .hero-glow-card {
+        padding: 20px; /* Reduced from 25px */
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-section-redesigned {
+        margin: 5px 0 20px; /* Even more compact on small phones */
+    }
+    .hero-glow-card {
+        padding: 15px; /* More compact */
+        border-radius: 16px; /* Optional: adjust border radius */
+    }
+}
+/**Mobile view settings*/
+
     </style>
 </head>
 <body>
