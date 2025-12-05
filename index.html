@@ -1992,207 +1992,202 @@
 }
 /*--------------------------Centering Navbar Mobile Content End-----------------------------*/
 
-/*New Subjects*/
-/* NEW: All Subjects Section Styles */
-.all-subjects-showcase {
+/*New Subjects Start*/
+/* NEW: Improved Subject Cards Styles */
+.subjects-showcase {
     margin: 80px 0;
-    padding: 60px 0;
-    background-color: var(--light);
-    border-radius: 20px;
 }
 
 .subject-card-new {
     background-color: var(--card-bg);
     border-radius: 16px;
     overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
     transition: all 0.3s ease;
     height: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 25px 15px;
-    border: 1px solid rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .subject-card-new:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
 }
 
-.subject-icon-container {
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
+.subject-image-container {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+}
+
+.subject-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.subject-card-new:hover .subject-image {
+    transform: scale(1.05);
+}
+
+.subject-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
     background: linear-gradient(135deg, var(--primary), var(--secondary));
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
-}
-
-.subject-icon {
-    font-size: 1.8rem;
     color: white;
+    padding: 6px 15px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 12px rgba(67, 97, 238, 0.3);
 }
 
-.subject-card-content {
+.subject-content-new {
+    padding: 25px;
     flex: 1;
     display: flex;
     flex-direction: column;
+}
+
+.subject-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 12px;
+}
+
+.subject-description {
+    color: var(--muted-text);
+    line-height: 1.6;
+    margin-bottom: 20px;
+    flex: 1;
+    font-size: 0.95rem;
+}
+
+.subject-stats {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding: 12px 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.subject-stats span {
+    display: flex;
+    align-items: center;
+    font-size: 0.85rem;
+    color: var(--muted-text);
+}
+
+.subject-stats i {
+    color: var(--primary);
+    font-size: 0.9rem;
+}
+
+.btn-explore {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    border: none;
+    border-radius: 10px;
+    padding: 12px 25px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
 }
 
-.subject-card-title {
-    font-weight: 600;
-    color: var(--text-color);
-    margin-bottom: 10px;
-    font-size: 1.1rem;
+.btn-explore:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(67, 97, 238, 0.3);
+    background: linear-gradient(135deg, var(--secondary), var(--primary));
 }
 
-.subject-card-description {
-    color: var(--muted-text);
-    font-size: 0.85rem;
-    line-height: 1.4;
-    flex: 1;
-    margin-bottom: 15px;
-}
-
-/* Responsive adjustments for all-subjects section */
-@media (max-width: 1200px) {
-    .subject-card-new {
-        padding: 20px 12px;
+/* Responsive adjustments */
+@media (max-width: 1199px) {
+    .subject-image-container {
+        height: 180px;
     }
     
-    .subject-icon-container {
-        width: 65px;
-        height: 65px;
+    .subject-content-new {
+        padding: 20px;
     }
     
-    .subject-icon {
-        font-size: 1.6rem;
-    }
-    
-    .subject-card-title {
-        font-size: 1.05rem;
+    .subject-title {
+        font-size: 1.3rem;
     }
 }
 
-@media (max-width: 992px) {
-    .all-subjects-showcase {
-        padding: 50px 0;
+@media (max-width: 991px) {
+    .subjects-showcase {
         margin: 60px 0;
     }
     
     .subject-card-new {
-        padding: 20px 15px;
-    }
-    
-    .subject-icon-container {
-        width: 60px;
-        height: 60px;
-        margin-bottom: 15px;
-    }
-    
-    .subject-icon {
-        font-size: 1.5rem;
-    }
-    
-    .subject-card-title {
-        font-size: 1rem;
-    }
-    
-    .subject-card-description {
-        font-size: 0.82rem;
-    }
-}
-
-@media (max-width: 768px) {
-    .all-subjects-showcase {
-        padding: 40px 0;
-        margin: 50px 0;
-    }
-    
-    .subject-card-new {
-        padding: 18px 12px;
-        margin-bottom: 15px;
-    }
-    
-    .subject-icon-container {
-        width: 55px;
-        height: 55px;
-        margin-bottom: 12px;
-    }
-    
-    .subject-icon {
-        font-size: 1.4rem;
-    }
-    
-    .subject-card-title {
-        font-size: 0.95rem;
-        margin-bottom: 8px;
-    }
-    
-    .subject-card-description {
-        font-size: 0.8rem;
-        margin-bottom: 12px;
-    }
-}
-
-@media (max-width: 576px) {
-    .all-subjects-showcase {
-        padding: 30px 0;
-        margin: 40px 0;
-    }
-    
-    .subject-card-new {
-        padding: 20px 15px;
         margin-bottom: 20px;
     }
     
-    .subject-icon-container {
-        width: 50px;
-        height: 50px;
-    }
-    
-    .subject-icon {
-        font-size: 1.3rem;
-    }
-    
-    .subject-card-title {
-        font-size: 1rem;
-    }
-    
-    .subject-card-description {
-        font-size: 0.85rem;
+    .subject-image-container {
+        height: 170px;
     }
 }
 
-/* Extra small screens */
-@media (max-width: 400px) {
-    .subject-card-new {
-        padding: 15px 10px;
+@media (max-width: 767px) {
+    .subject-image-container {
+        height: 160px;
     }
     
-    .subject-icon-container {
-        width: 45px;
-        height: 45px;
-        margin-bottom: 10px;
+    .subject-content-new {
+        padding: 18px;
     }
     
-    .subject-icon {
-        font-size: 1.2rem;
+    .subject-title {
+        font-size: 1.25rem;
     }
     
-    .subject-card-title {
+    .subject-description {
         font-size: 0.9rem;
     }
     
-    .subject-card-description {
-        font-size: 0.78rem;
+    .btn-explore {
+        padding: 10px 20px;
+        font-size: 0.95rem;
     }
 }
+
+@media (max-width: 575px) {
+    .subjects-showcase {
+        margin: 50px 0;
+    }
+    
+    .subject-image-container {
+        height: 180px;
+    }
+    
+    .subject-card-new {
+        margin-bottom: 25px;
+    }
+}
+
+/* Dark mode adjustments */
+[data-theme="dark"] .subject-card-new {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .subject-stats {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .subject-card-new:hover {
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+}
+
 /*New Subjects End*/
 </style>
     </style>
@@ -2378,103 +2373,166 @@
 </section>
         
         <!-- Subjects Showcase -->
-      <!-- NEW: 6 Subjects Showcase Section -->
-<section class="all-subjects-showcase">
+      <!-- Updated Subjects Showcase Section -->
+<section class="subjects-showcase">
     <div class="container">
-        <h2 class="section-title" id="all-subjects">Pick and explore.</h2>
-        <p class="text-center text-muted mb-5">Explore our comprehensive collection of 3D-enhanced learning subjects.</p>
+        <h2 class="section-title" id="explore-subjects">Explore Our Subjects</h2>
+        <p class="text-center text-muted mb-5">Dive into immersive 3D learning experiences across various disciplines</p>
         
         <div class="row g-4">
-            <!-- Biology -->
-            <div class="col-sm-6 col-md-4 col-lg-2">
+            <!-- Biology Card -->
+            <div class="col-md-6 col-lg-4">
                 <div class="subject-card-new">
-                    <div class="subject-icon-container">
-                        <i class="fas fa-dna subject-icon"></i>
+                    <div class="subject-image-container">
+                        <img src="bio.jpg" 
+                             alt="Biology" 
+                             class="subject-image">
+                        <div class="subject-badge">Biology</div>
                     </div>
-                    <div class="subject-card-content">
-                        <h5 class="subject-card-title">Biology</h5>
-                        <p class="subject-card-description">Explore life from cells to ecosystems with interactive 3D models.</p>
-                        <a href="3dbio.html" class="btn btn-sm btn-primary mt-2 w-100">Explore</a>
+                    <div class="subject-content-new">
+                        <h3 class="subject-title">Biology</h3>
+                        <p class="subject-description">
+                            Explore the wonders of life from cellular structures to complex ecosystems through interactive 3D models.
+                        </p>
+                        <div class="subject-stats">
+                            <span><i class="fas fa-cube me-1"></i> 150+ 3D Models</span>
+                            <span><i class="fas fa-clock me-1"></i> 40+ Lessons</span>
+                        </div>
+                        <a href="3dbio.html" class="btn btn-primary btn-explore">
+                            <i class="fas fa-eye me-2"></i>Explore Biology
+                        </a>
                     </div>
                 </div>
             </div>
             
-            <!-- Physics -->
-            <div class="col-sm-6 col-md-4 col-lg-2">
+            <!-- Physics Card -->
+            <div class="col-md-6 col-lg-4">
                 <div class="subject-card-new">
-                    <div class="subject-icon-container">
-                        <i class="fas fa-atom subject-icon"></i>
+                    <div class="subject-image-container">
+                        <img src="phy.jpg" 
+                             alt="Physics" 
+                             class="subject-image">
+                        <div class="subject-badge">Physics</div>
                     </div>
-                    <div class="subject-card-content">
-                        <h5 class="subject-card-title">Physics</h5>
-                        <p class="subject-card-description">Visualize physical phenomena with interactive simulations.</p>
-                        <a href="3dphysics.html" class="btn btn-sm btn-primary mt-2 w-100">Explore</a>
+                    <div class="subject-content-new">
+                        <h3 class="subject-title">Physics</h3>
+                        <p class="subject-description">
+                            Visualize physical phenomena, from quantum mechanics to astrophysics, with interactive simulations.
+                        </p>
+                        <div class="subject-stats">
+                            <span><i class="fas fa-cube me-1"></i> 120+ 3D Models</span>
+                            <span><i class="fas fa-clock me-1"></i> 35+ Lessons</span>
+                        </div>
+                        <a href="3dphysics.html" class="btn btn-primary btn-explore">
+                            <i class="fas fa-eye me-2"></i>Explore Physics
+                        </a>
                     </div>
                 </div>
             </div>
             
-            <!-- Chemistry -->
-            <div class="col-sm-6 col-md-4 col-lg-2">
+            <!-- Chemistry Card -->
+            <div class="col-md-6 col-lg-4">
                 <div class="subject-card-new">
-                    <div class="subject-icon-container">
-                        <i class="fa-solid fa-flask subject-icon"></i>
+                    <div class="subject-image-container">
+                        <img src="chem.jpg" 
+                             alt="Chemistry" 
+                             class="subject-image">
+                        <div class="subject-badge">Chemistry</div>
                     </div>
-                    <div class="subject-card-content">
-                        <h5 class="subject-card-title">Chemistry</h5>
-                        <p class="subject-card-description">Discover molecular structures and chemical reactions in 3D.</p>
-                        <a href="3dchem.html" class="btn btn-sm btn-primary mt-2 w-100">Explore</a>
+                    <div class="subject-content-new">
+                        <h3 class="subject-title">Chemistry</h3>
+                        <p class="subject-description">
+                            Discover molecular structures and chemical reactions in stunning 3D detail with interactive elements.
+                        </p>
+                        <div class="subject-stats">
+                            <span><i class="fas fa-cube me-1"></i> 180+ 3D Models</span>
+                            <span><i class="fas fa-clock me-1"></i> 45+ Lessons</span>
+                        </div>
+                        <a href="3dchem.html" class="btn btn-primary btn-explore">
+                            <i class="fas fa-eye me-2"></i>Explore Chemistry
+                        </a>
                     </div>
                 </div>
             </div>
             
-            <!-- Geography -->
-            <div class="col-sm-6 col-md-4 col-lg-2">
+            <!-- Geography Card -->
+            <div class="col-md-6 col-lg-4">
                 <div class="subject-card-new">
-                    <div class="subject-icon-container">
-                        <i class="fas fa-globe-americas subject-icon"></i>
+                    <div class="subject-image-container">
+                        <img src="geog.jpg" 
+                             alt="Geography" 
+                             class="subject-image">
+                        <div class="subject-badge">Geography</div>
                     </div>
-                    <div class="subject-card-content">
-                        <h5 class="subject-card-title">Geography</h5>
-                        <p class="subject-card-description">Journey through Earth's landscapes and formations in 3D.</p>
-                        <a href="3dgeo.html" class="btn btn-sm btn-primary mt-2 w-100">Explore</a>
+                    <div class="subject-content-new">
+                        <h3 class="subject-title">Geography</h3>
+                        <p class="subject-description">
+                            Journey through Earth's landscapes, tectonic plates, and weather systems with 3D terrain models.
+                        </p>
+                        <div class="subject-stats">
+                            <span><i class="fas fa-cube me-1"></i> 90+ 3D Models</span>
+                            <span><i class="fas fa-clock me-1"></i> 30+ Lessons</span>
+                        </div>
+                        <a href="3dgeo.html" class="btn btn-primary btn-explore">
+                            <i class="fas fa-eye me-2"></i>Explore Geography
+                        </a>
                     </div>
                 </div>
             </div>
             
-            <!-- Culture -->
-            <div class="col-sm-6 col-md-4 col-lg-2">
+            <!-- Culture Card -->
+            <div class="col-md-6 col-lg-4">
                 <div class="subject-card-new">
-                    <div class="subject-icon-container">
-                        <i class="fas fa-users subject-icon"></i>
+                    <div class="subject-image-container">
+                        <img src="culture.jpg" 
+                             alt="Culture" 
+                             class="subject-image">
+                        <div class="subject-badge">Culture</div>
                     </div>
-                    <div class="subject-card-content">
-                        <h5 class="subject-card-title">Culture</h5>
-                        <p class="subject-card-description">Explore historical artifacts and cultural heritage in 3D.</p>
-                        <a href="3dculture.html" class="btn btn-sm btn-primary mt-2 w-100">Explore</a>
+                    <div class="subject-content-new">
+                        <h3 class="subject-title">Culture</h3>
+                        <p class="subject-description">
+                            Explore historical artifacts, architectural wonders, and cultural heritage from around the world in 3D.
+                        </p>
+                        <div class="subject-stats">
+                            <span><i class="fas fa-cube me-1"></i> 200+ 3D Models</span>
+                            <span><i class="fas fa-clock me-1"></i> 50+ Lessons</span>
+                        </div>
+                        <a href="3dculture.html" class="btn btn-primary btn-explore">
+                            <i class="fas fa-eye me-2"></i>Explore Culture
+                        </a>
                     </div>
                 </div>
             </div>
             
-            <!-- Computer Studies -->
-            <div class="col-sm-6 col-md-4 col-lg-2">
+            <!-- Computer Studies Card -->
+            <div class="col-md-6 col-lg-4">
                 <div class="subject-card-new">
-                    <div class="subject-icon-container">
-                        <i class="fa-solid fa-computer subject-icon"></i>
+                    <div class="subject-image-container">
+                        <img src="comp.jpg" 
+                             alt="Computer Studies" 
+                             class="subject-image">
+                        <div class="subject-badge">Computer Science</div>
                     </div>
-                    <div class="subject-card-content">
-                        <h5 class="subject-card-title">Computer Studies</h5>
-                        <p class="subject-card-description">Learn computer science concepts through interactive 3D models.</p>
-                        <a href="3dcomp.html" class="btn btn-sm btn-primary mt-2 w-100">Explore</a>
+                    <div class="subject-content-new">
+                        <h3 class="subject-title">Computer Studies</h3>
+                        <p class="subject-description">
+                            Learn computer science concepts, hardware components, and network structures through interactive 3D models.
+                        </p>
+                        <div class="subject-stats">
+                            <span><i class="fas fa-cube me-1"></i> 110+ 3D Models</span>
+                            <span><i class="fas fa-clock me-1"></i> 38+ Lessons</span>
+                        </div>
+                        <a href="3dcomp.html" class="btn btn-primary btn-explore">
+                            <i class="fas fa-eye me-2"></i>Explore CS
+                        </a>
                     </div>
                 </div>
             </div>
-        </div>
-        
-        <div class="text-center mt-5">
-            <a href="#explore-subjects" class="btn btn-primary btn-lg">View Detailed Subjects</a>
         </div>
     </div>
 </section>
+<!--Subjects showcase-->
 
 
         <!-- Benefits of 3D Learning Section -->
