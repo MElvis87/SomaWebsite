@@ -2410,7 +2410,228 @@
 }
 
 /*New Subjects End*/
-</style>
+
+/* Redesigned Hero Section with Edge Glow */
+.hero-section-redesigned {
+    margin: 40px 0 60px;
+    padding: 20px 0;
+}
+
+.hero-glow-card {
+    background: var(--card-bg);
+    border-radius: 20px;
+    padding: 40px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(67, 97, 238, 0.1);
+    overflow: hidden;
+}
+
+/* Edge Glow Effect */
+.hero-glow-card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, 
+        var(--primary) 0%, 
+        var(--accent) 25%, 
+        var(--primary) 50%, 
+        var(--accent) 75%, 
+        var(--primary) 100%);
+    border-radius: 22px;
+    z-index: -1;
+    opacity: 0.7;
+    animation: edgeGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes edgeGlow {
+    0% {
+        opacity: 0.5;
+        filter: blur(10px);
+    }
+    100% {
+        opacity: 0.8;
+        filter: blur(15px);
+    }
+}
+
+/* Hero Content */
+.hero-content {
+    padding-right: 30px;
+}
+
+.hero-main-title {
+    font-size: 2.8rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    color: var(--text-color);
+}
+
+.hero-highlight {
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 900;
+}
+
+.hero-description {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--muted-text);
+    margin-bottom: 30px;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+/* Hero GIF Container */
+.hero-gif-container {
+    position: relative;
+}
+
+.hero-gif-wrapper {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    background: linear-gradient(135deg, 
+        rgba(67, 97, 238, 0.05) 0%, 
+        rgba(58, 12, 163, 0.05) 100%);
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 350px;
+    border: 1px solid rgba(67, 97, 238, 0.1);
+}
+
+.hero-lottie-animation {
+    width: 100% !important;
+    height: 300px !important;
+    filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.1));
+}
+
+/* Dark Mode Adjustments */
+[data-theme="dark"] .hero-glow-card {
+    background: var(--card-bg);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .hero-glow-card::before {
+    opacity: 0.4;
+}
+
+[data-theme="dark"] .hero-gif-wrapper {
+    background: linear-gradient(135deg, 
+        rgba(67, 97, 238, 0.1) 0%, 
+        rgba(58, 12, 163, 0.1) 100%);
+    border-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Responsive Design */
+@media (max-width: 1199px) {
+    .hero-main-title {
+        font-size: 2.4rem;
+    }
+    
+    .hero-lottie-animation {
+        height: 280px !important;
+    }
+}
+
+@media (max-width: 991px) {
+    .hero-glow-card {
+        padding: 30px;
+    }
+    
+    .hero-main-title {
+        font-size: 2.2rem;
+    }
+    
+    .hero-content {
+        padding-right: 0;
+        margin-bottom: 30px;
+    }
+    
+    .hero-lottie-animation {
+        height: 260px !important;
+    }
+    
+    .hero-gif-wrapper {
+        min-height: 300px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-section-redesigned {
+        margin: 30px 0 50px;
+    }
+    
+    .hero-glow-card {
+        padding: 25px;
+        border-radius: 18px;
+    }
+    
+    .hero-main-title {
+        font-size: 2rem;
+    }
+    
+    .hero-description {
+        font-size: 1rem;
+    }
+    
+    .hero-actions {
+        flex-direction: column;
+    }
+    
+    .hero-actions .btn {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .hero-lottie-animation {
+        height: 240px !important;
+    }
+    
+    .hero-gif-wrapper {
+        min-height: 280px;
+        padding: 15px;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-glow-card {
+        padding: 20px;
+        border-radius: 16px;
+    }
+    
+    .hero-main-title {
+        font-size: 1.8rem;
+    }
+    
+    .hero-description {
+        font-size: 0.95rem;
+    }
+    
+    .hero-lottie-animation {
+        height: 220px !important;
+    }
+    
+    .hero-gif-wrapper {
+        min-height: 260px;
+    }
+    
+    .hero-glow-card::before {
+        border-radius: 18px;
+    }
+}
     </style>
 </head>
 <body>
@@ -2524,32 +2745,45 @@
         </div>
     </nav>
 
-    <!-- Main Content -->
+    <!-- Redesigned Hero Section with Edge Glow -->
+<section class="hero-section-redesigned">
     <div class="container">
-        <!-- Hero Section -->
-        <section class="hero-section">
-            <div class="hero-content">
-                <div class="row align-items-center">
-                    <div class="col-lg-6">
-                        <h1 class="display-4 fw-bold mb-3">Transform Learning with 3D Experiences</h1>
-                        <div class="hero-words">
-                        <p class="lead mb-4" id="subwords">Soma brings complex concepts to life through interactive 3D visualizations. Our immersive platform makes learning engaging, intuitive, and unforgettable.</p></div>
-                        <div class="hero-buttons-container">
-    <a href="#explore-subjects" class="btn btn-light btn-lg px-4 py-2 fw-bold explore-btn">Start Exploring</a>
-    <a href="#benefits" class="btn btn-outline-light btn-lg px-4 py-2 gains-btn">Gains</a>
-</div>
+        <div class="hero-glow-card">
+            <div class="row g-4 align-items-center">
+                <!-- Left Content Column -->
+                <div class="col-lg-6 order-lg-1 order-2">
+                    <div class="hero-content">
+                        <h1 class="hero-main-title">Experience Learning in <span class="hero-highlight">3D</span></h1>
+                        
+                        <p class="hero-description">
+                            Soma transforms complex educational concepts into interactive 3D visualizations. 
+                            Explore subjects with immersive models that make learning intuitive and engaging.
+                        </p>
+                        
+                        <div class="hero-actions">
+                            <a href="#explore-subjects" class="btn btn-primary btn-lg">
+                                <i class="fas fa-rocket me-2"></i>Start Exploring
+                            </a>
+                            <a href="#benefits" class="btn btn-outline-primary btn-lg">
+                                <i class="fas fa-lightbulb me-2"></i>Learn More
+                            </a>
+                        </div>
                     </div>
-                    <div class="col-lg-6">
-                        <div class="hero-gif-container">
-                            <!-- Placeholder for animated GIF - Replace with actual GIF -->
-                            <!--<img src="bookgif.gif" alt="Interactive 3D Learning" class="hero-gif">-->
+                </div>
+                
+                <!-- Right GIF Column -->
+                <div class="col-lg-6 order-lg-2 order-1">
+                    <div class="hero-gif-container">
+                        <div class="hero-gif-wrapper">
                             <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js" type="module"></script>
-<dotlottie-wc src="https://lottie.host/c0783ebe-6814-4ed6-aa7d-5ffd9a359bbb/cFuixkaW1B.lottie" autoplay loop></dotlottie-wc>
+<dotlottie-wc src="https://lottie.host/c0783ebe-6814-4ed6-aa7d-5ffd9a359bbb/cFuixkaW1B.lottie" autoplay loop class="hero-lottie-animation"></dotlottie-wc>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </div>
+</section>
         
         <!-- Updated Features Section -->
 <section class="features-section-new">
