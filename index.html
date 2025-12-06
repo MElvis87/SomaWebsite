@@ -2667,8 +2667,112 @@
 }
 /*Mobile view settings*/
 
+
+
+/*Fixing hero-section top spacing*//* Compact layout for minimal spacing */
+body {
+    padding-top: 100px !important;
+}
+
+.navbar {
+    top: 10px !important;
+    padding: 8px 0;
+}
+
+.hero-section-redesigned {
+    margin: 10px 0 30px !important;
+    padding: 0 !important;
+}
+
+.hero-glow-card {
+    margin-top: 0 !important;
+}
+
+.cta-section {
+    margin: 10px 0 !important;
+    padding: 30px 20px !important;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    body {
+        padding-top: 95px !important;
+    }
+    
+    .navbar {
+        top: 8px !important;
+    }
+    
+    .hero-section-redesigned {
+        margin: 8px 0 25px !important;
+    }
+}
+
+@media (max-width: 576px) {
+    body {
+        padding-top: 90px !important;
+    }
+    
+    .navbar {
+        top: 6px !important;
+    }
+}
+/* Compact layout for minimal spacing */
+body {
+    padding-top: 100px !important;
+}
+
+.navbar {
+    top: 10px !important;
+    padding: 8px 0;
+}
+
+.hero-section-redesigned {
+    margin: 10px 0 30px !important;
+    padding: 0 !important;
+}
+
+.hero-glow-card {
+    margin-top: 0 !important;
+}
+
+.cta-section {
+    margin: 10px 0 !important;
+    padding: 30px 20px !important;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    body {
+        padding-top: 95px !important;
+    }
+    
+    .navbar {
+        top: 8px !important;
+    }
+    
+    .hero-section-redesigned {
+        margin: 8px 0 25px !important;
+    }
+}
+
+@media (max-width: 576px) {
+    body {
+        padding-top: 90px !important;
+    }
+    
+    .navbar {
+        top: 6px !important;
+    }
+}
+/*Fixing hero section top spacing end*/
+
 /*Preventing horizontal scrollable space*/
 
+html, body {
+    overflow-x: hidden;
+    max-width: 100%;
+}
 
 /*Preventing horizontal scrollable space*/
 
@@ -2788,40 +2892,42 @@
     <!-- Redesigned Hero Section with Edge Glow -->
 <section class="hero-section-redesigned">
     <div class="container">
-        <div class="hero-glow-card">
-            <div class="row g-4 align-items-center">
-                <!-- Left Content Column -->
-                <div class="col-lg-6 order-lg-1 order-2">
-                    <div class="hero-content">
-                        <h1 class="hero-main-title">Experience Learning in <span class="hero-highlight">3D</span></h1>
-                        
-                        <p class="hero-description">
-                            Soma transforms complex educational concepts into interactive 3D visualizations. 
-                            Explore subjects with immersive models that make learning intuitive and engaging.
-                        </p>
-                        
-                        <div class="hero-actions">
-                            <a href="#explore-subjects" class="btn btn-primary btn-lg">
-                                <i class="fas fa-rocket me-2"></i>Start Exploring
-                            </a>
-                            <a href="#benefits" class="btn btn-outline-primary btn-lg">
-                                <i class="fas fa-lightbulb me-2"></i>Learn More
-                            </a>
+        <section class="cta-section"> <!-- Use cta-section class here -->
+            <div class="container">
+                <div class="row g-4 align-items-center">
+                    <!-- Left Content Column -->
+                    <div class="col-lg-6 order-lg-1 order-2">
+                        <div class="hero-content">
+                            <h1 class="hero-main-title">Experience Learning in <span class="hero-highlight">3D</span></h1>
+                            
+                            <p class="hero-description">
+                                Soma transforms complex educational concepts into interactive 3D visualizations. 
+                                Explore subjects with immersive models that make learning intuitive and engaging.
+                            </p>
+                            
+                            <div class="hero-actions">
+                                <a href="#explore-subjects" class="btn btn-primary btn-lg">
+                                    <i class="fas fa-rocket me-2"></i>Start Exploring
+                                </a>
+                                <a href="#benefits" class="btn btn-outline-primary btn-lg">
+                                    <i class="fas fa-lightbulb me-2"></i>Learn More
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                
-                <!-- Right GIF Column -->
-                <div class="col-lg-6 order-lg-2 order-1">
-                    <div class="hero-gif-container">
-                        <div class="hero-gif-wrapper">
-                            <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js" type="module"></script>
-<dotlottie-wc src="https://lottie.host/c0783ebe-6814-4ed6-aa7d-5ffd9a359bbb/cFuixkaW1B.lottie" autoplay loop class="hero-lottie-animation"></dotlottie-wc>
+                    
+                    <!-- Right GIF Column -->
+                    <div class="col-lg-6 order-lg-2 order-1">
+                        <div class="hero-gif-container">
+                            <div class="hero-gif-wrapper">
+                                <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js" type="module"></script>
+                                <dotlottie-wc src="https://lottie.host/c0783ebe-6814-4ed6-aa7d-5ffd9a359bbb/cFuixkaW1B.lottie" autoplay loop class="hero-lottie-animation"></dotlottie-wc>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
     </div>
 </section>
         
