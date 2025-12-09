@@ -948,6 +948,44 @@
         [data-theme="dark"] .navbar-toggler-icon {
             background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28233, 236, 239, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
         }
+
+
+        /* Light blue edge border for navbar in dark mode */
+[data-theme="dark"] .navbar {
+    border: 2px solid #4cc9f0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1), 
+                0 0 0 1px rgba(76, 201, 240, 0.3), /* Inner shadow for depth */
+                0 0 15px rgba(76, 201, 240, 0.2); /* Glow effect */
+}
+
+/* Optional: Add a subtle animation for the border */
+[data-theme="dark"] .navbar {
+    animation: pulseBorder 3s infinite;
+}
+
+@keyframes pulseBorder {
+    0%, 100% {
+        border-color: #4cc9f0;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1), 
+                    0 0 0 1px rgba(76, 201, 240, 0.3),
+                    0 0 15px rgba(76, 201, 240, 0.2);
+    }
+    50% {
+        border-color: #63d6ff;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1), 
+                    0 0 0 1px rgba(99, 214, 255, 0.4),
+                    0 0 20px rgba(99, 214, 255, 0.3);
+    }
+}
+
+/* Alternative simpler version without animation - uncomment if you prefer */
+/*
+[data-theme="dark"] .navbar {
+    border: 2px solid #4cc9f0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1), 
+                0 0 10px rgba(76, 201, 240, 0.3);
+}
+*/
         
         /* NEW: Modal Overlay and Popup Styles */
                 /* NEW: Improved Modal Overlay and Popup Styles */
