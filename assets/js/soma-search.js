@@ -56,19 +56,12 @@
       '  <div class="soma-find-actions" aria-label="Search result navigation">',
       '    <button class="btn btn-sm btn-outline-primary" type="button" id="prevResult" title="Previous result (Shift+Enter)"><i class="fas fa-chevron-up" aria-hidden="true"></i><span class="visually-hidden">Previous result</span></button>',
       '    <button class="btn btn-sm btn-outline-primary" type="button" id="nextResult" title="Next result (Enter)"><i class="fas fa-chevron-down" aria-hidden="true"></i><span class="visually-hidden">Next result</span></button>',
-      '    <button class="btn btn-sm btn-outline-secondary" type="button" id="clearSearch" title="Clear search"><i class="fas fa-times" aria-hidden="true"></i><span class="visually-hidden">Clear search</span></button>',
+      '    <button class="btn btn-sm btn-outline-secondary soma-find-close" type="button" id="clearSearch" title="Close finder"><i class="fas fa-times" aria-hidden="true"></i><span class="visually-hidden">Close finder</span></button>',
       '  </div>',
       '</form>'
     ].join("");
 
-    if (!existing) {
-      var anchor = document.querySelector(".hero-section") || document.querySelector(".hero-section-redesigned") || document.querySelector(".container");
-      if (anchor && anchor.parentNode) {
-        anchor.parentNode.insertBefore(bar, anchor.nextSibling);
-      } else {
-        document.body.insertBefore(bar, document.body.firstChild);
-      }
-    }
+    document.body.appendChild(bar);
 
     state.bar = bar;
     state.input = document.getElementById("somaFindInput");
@@ -83,12 +76,26 @@
       state.navInput.setAttribute("placeholder", "Find in topics...");
       state.navInput.setAttribute("autocomplete", "off");
     }
+    positionBar();
+  }
+
+  function positionBar() {
+    if (!state.bar) return;
+    var navbar = document.querySelector(".navbar");
+    var top = 16;
+    if (navbar) {
+      var rect = navbar.getBoundingClientRect();
+      top = Math.max(8, Math.round(rect.bottom + 8));
+    }
+    state.bar.style.setProperty("--soma-find-top", top + "px");
   }
 
   function showBar(focusInput) {
     if (!state.bar) return;
+    positionBar();
     state.bar.classList.add("is-active");
     state.bar.style.display = "flex";
+    state.bar.style.zIndex = "2147483647";
     if (focusInput && state.input) {
       state.input.focus();
       state.input.select();
@@ -306,7 +313,11 @@
 
     if (state.prev) state.prev.addEventListener("click", function (event) { stop(event); go(-1); }, true);
     if (state.next) state.next.addEventListener("click", function (event) { stop(event); go(1); }, true);
-    if (state.clear) state.clear.addEventListener("click", function (event) { stop(event); clearSearch(true); }, true);
+    if (state.clear) state.clear.addEventListener("click", function (event) { stop(event); clearSearch(false); }, true);
+
+    window.addEventListener("resize", positionBar);
+    document.addEventListener("shown.bs.collapse", positionBar);
+    document.addEventListener("hidden.bs.collapse", positionBar);
 
     document.addEventListener("keydown", function (event) {
       var key = event.key;
