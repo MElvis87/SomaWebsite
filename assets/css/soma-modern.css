@@ -939,11 +939,14 @@ input:checked+.slider {
 /* VS Code-style topic finder */
 .soma-find-bar.search-navigation {
   display:none;
-  position:sticky;
-  top:86px;
-  z-index:1025;
-  width:100%;
-  margin:0 0 1rem;
+  position:fixed!important;
+  top:86px!important;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:1029;
+  width:calc(100% - 24px);
+  max-width:1180px;
+  margin:0;
   padding:.75rem;
   border:1px solid var(--line)!important;
   border-radius:var(--radius)!important;
@@ -1032,6 +1035,7 @@ mark.current-search-match {
   color:#ffffff!important;
   outline:2px solid #f59e0b!important;
   outline-offset:2px!important;
+  scroll-margin-top:155px;
   box-shadow:0 0 0 3px rgba(245,158,11,.22)!important;
 }
 
@@ -1058,8 +1062,8 @@ body[data-theme="dark"] mark.current-search-match,
 
 @media (max-width:767.98px) {
   .soma-find-bar.search-navigation {
-    position:sticky!important;
     top:82px!important;
+    width:calc(100% - 16px);
   }
 
   .soma-find-form {
