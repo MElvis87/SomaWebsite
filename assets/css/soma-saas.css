@@ -1,0 +1,337 @@
+/* Soma SaaS refresh layer. Keeps existing markup and avoids navbar hover motion. */
+:root {
+  --soma-ease-spring:cubic-bezier(.2,1.35,.34,1);
+  --soma-ease-soft:cubic-bezier(.22,.61,.36,1);
+  --soma-app-bg:#f6f8fb;
+  --soma-ink:#111827;
+  --soma-panel:#ffffff;
+  --soma-panel-2:#f9fbfd;
+  --soma-border:rgba(15,23,42,.10);
+  --soma-blue:#2563eb;
+  --soma-teal:#0f766e;
+  --soma-amber:#f59e0b;
+  --soma-shadow:0 18px 44px rgba(15,23,42,.10);
+  --soma-shadow-hover:0 26px 64px rgba(15,23,42,.16);
+}
+
+body[data-theme="dark"],
+[data-theme="dark"] {
+  --soma-app-bg:#0d1217;
+  --soma-ink:#f3f7fb;
+  --soma-panel:#121922;
+  --soma-panel-2:#161f29;
+  --soma-border:rgba(255,255,255,.13);
+  --soma-shadow:0 18px 44px rgba(0,0,0,.34);
+  --soma-shadow-hover:0 28px 70px rgba(0,0,0,.50);
+}
+
+body {
+  background:
+    radial-gradient(circle at 18% 0%, rgba(37,99,235,.08), transparent 28rem),
+    radial-gradient(circle at 88% 12%, rgba(15,118,110,.08), transparent 24rem),
+    var(--soma-app-bg)!important;
+}
+
+.container {
+  max-width:1240px!important;
+}
+
+.navbar {
+  border-radius:14px!important;
+  border-color:rgba(15,118,110,.24)!important;
+  box-shadow:0 14px 40px rgba(15,23,42,.12)!important;
+}
+
+.navbar *,
+.navbar *:hover,
+.navbar *:focus {
+  transition-duration:.16s!important;
+  transition-timing-function:var(--soma-ease-soft)!important;
+  transform:none!important;
+}
+
+.hero-section,
+.hero-section-redesigned .cta-section {
+  border-radius:16px!important;
+}
+
+.hero-section {
+  box-shadow:var(--soma-shadow)!important;
+}
+
+#learning-modules.card,
+.auth-container,
+.benefits-section,
+.feature-card,
+.feature-card-new,
+.subject-card-new,
+.testimonial-card {
+  border-radius:14px!important;
+  border:1px solid var(--soma-border)!important;
+  background:var(--soma-panel)!important;
+  box-shadow:var(--soma-shadow)!important;
+}
+
+#learning-modules > .card-header {
+  background:linear-gradient(180deg, var(--soma-panel-2), var(--soma-panel))!important;
+  padding:1.65rem 1.8rem!important;
+}
+
+#learning-modules > .card-header h2 {
+  font-size:clamp(1.45rem, 2vw, 2rem);
+  font-weight:850!important;
+}
+
+#topicsAccordion {
+  padding:.75rem;
+}
+
+#topicsAccordion > .accordion-item {
+  border-radius:12px!important;
+  border:1px solid var(--soma-border)!important;
+  background:var(--soma-panel)!important;
+  box-shadow:0 6px 20px rgba(15,23,42,.055)!important;
+}
+
+#topicsAccordion .accordion-button {
+  min-height:64px;
+  font-size:1.02rem;
+}
+
+#topicsAccordion .accordion-button:not(.collapsed) {
+  background:linear-gradient(90deg, rgba(37,99,235,.12), rgba(15,118,110,.08))!important;
+}
+
+.subject-badge {
+  background:rgba(15,118,110,.12)!important;
+  color:var(--soma-teal)!important;
+}
+
+.card:not(.navbar),
+.feature-card,
+.feature-card-new,
+.subject-card-new,
+.testimonial-card,
+#topicsAccordion > .accordion-item,
+.model-container,
+.soma-topic-expansion,
+.soma-note-card,
+.soma-model-slot,
+.comparison-item,
+.process-step,
+.model-grid-item,
+.btn:not(.nav-link) {
+  transition:
+    transform .46s var(--soma-ease-spring),
+    box-shadow .46s var(--soma-ease-spring),
+    border-color .32s var(--soma-ease-soft),
+    background-color .32s var(--soma-ease-soft)!important;
+}
+
+.card:not(.navbar):hover,
+.feature-card:hover,
+.feature-card-new:hover,
+.subject-card-new:hover,
+.testimonial-card:hover,
+#topicsAccordion > .accordion-item:hover,
+.model-container:hover,
+.soma-topic-expansion:hover,
+.soma-note-card:hover,
+.soma-model-slot:hover,
+.comparison-item:hover,
+.process-step:hover,
+.model-grid-item:hover {
+  transform:translateY(-5px) scale(1.006)!important;
+  box-shadow:var(--soma-shadow-hover)!important;
+}
+
+.btn:not(.nav-link):hover {
+  transform:translateY(-2px) scale(1.025)!important;
+}
+
+.navbar .btn,
+.navbar .btn:hover,
+.navbar .btn:focus {
+  transform:none!important;
+}
+
+.accordion-body > .subtopic-panel {
+  width:calc(100% + var(--soma-panel-pad) + var(--soma-panel-pad))!important;
+  max-width:calc(100% + var(--soma-panel-pad) + var(--soma-panel-pad))!important;
+  margin-left:calc(0px - var(--soma-panel-pad))!important;
+  margin-right:calc(0px - var(--soma-panel-pad))!important;
+}
+
+.soma-topic-expansion {
+  margin:1.35rem 0 0;
+  padding:1.25rem;
+  border:1px solid var(--soma-border);
+  border-radius:14px;
+  background:linear-gradient(180deg, var(--soma-panel), var(--soma-panel-2));
+}
+
+.soma-topic-kicker {
+  display:inline-flex;
+  align-items:center;
+  gap:.4rem;
+  margin-bottom:.75rem;
+  padding:.32rem .65rem;
+  border-radius:999px;
+  color:var(--soma-teal);
+  background:rgba(15,118,110,.12);
+  font-size:.78rem;
+  font-weight:800;
+}
+
+.soma-topic-grid {
+  display:grid;
+  grid-template-columns:minmax(0, 1.35fr) minmax(280px, .85fr);
+  gap:1rem;
+  align-items:stretch;
+}
+
+.soma-note-card,
+.soma-model-slot {
+  min-width:0;
+  border:1px solid var(--soma-border);
+  border-radius:12px;
+  background:var(--soma-panel);
+}
+
+.soma-note-card {
+  padding:1.1rem;
+}
+
+.soma-note-card h5,
+.soma-model-slot h5 {
+  margin:0 0 .75rem;
+  color:var(--soma-ink);
+  font-weight:850;
+}
+
+.soma-note-list {
+  display:grid;
+  gap:.65rem;
+  margin:0;
+  padding:0;
+  list-style:none;
+}
+
+.soma-note-list li {
+  position:relative;
+  padding-left:1.25rem;
+  color:var(--text-color);
+}
+
+.soma-note-list li::before {
+  content:"";
+  position:absolute;
+  left:0;
+  top:.62em;
+  width:.45rem;
+  height:.45rem;
+  border-radius:50%;
+  background:var(--soma-blue);
+  box-shadow:0 0 0 4px rgba(37,99,235,.12);
+}
+
+.soma-why {
+  margin:.95rem 0 0;
+  padding:.85rem;
+  border-radius:10px;
+  color:var(--muted-text);
+  background:rgba(37,99,235,.08);
+}
+
+.soma-model-slot {
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+}
+
+.soma-model-slot-header {
+  padding:1rem 1rem .75rem;
+}
+
+.soma-model-stage {
+  display:grid;
+  min-height:220px;
+  place-items:center;
+  margin:0 1rem 1rem;
+  padding:1rem;
+  border:1px dashed rgba(37,99,235,.38);
+  border-radius:12px;
+  color:var(--muted-text);
+  background:
+    linear-gradient(135deg, rgba(37,99,235,.10), rgba(15,118,110,.08));
+  text-align:center;
+}
+
+.soma-model-stage i {
+  display:block;
+  margin-bottom:.65rem;
+  color:var(--soma-blue);
+  font-size:2rem;
+}
+
+.soma-model-hint {
+  margin:.4rem 0 0;
+  color:var(--muted-text);
+  font-size:.92rem;
+}
+
+.soma-model-code {
+  display:block;
+  margin-top:.65rem;
+  padding:.55rem .65rem;
+  border-radius:8px;
+  color:var(--soma-ink);
+  background:var(--soma-panel-2);
+  font-size:.78rem;
+  overflow-wrap:anywhere;
+}
+
+@media (max-width:991.98px) {
+  .soma-topic-grid {
+    grid-template-columns:1fr;
+  }
+
+  .soma-model-stage {
+    min-height:190px;
+  }
+}
+
+@media (max-width:575.98px) {
+  #topicsAccordion {
+    padding:.4rem;
+  }
+
+  .soma-topic-expansion {
+    padding:.9rem;
+  }
+
+  .soma-note-card,
+  .soma-model-slot {
+    border-radius:10px;
+  }
+
+  .soma-model-stage {
+    margin:0 .75rem .75rem;
+  }
+}
+
+@media (prefers-reduced-motion:reduce) {
+  .card,
+  .feature-card,
+  .feature-card-new,
+  .subject-card-new,
+  .testimonial-card,
+  #topicsAccordion > .accordion-item,
+  .model-container,
+  .soma-topic-expansion,
+  .soma-note-card,
+  .soma-model-slot,
+  .btn {
+    transition:none!important;
+  }
+}
