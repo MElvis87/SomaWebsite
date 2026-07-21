@@ -1,6 +1,6 @@
 /* Soma SaaS refresh layer. Keeps existing markup and avoids navbar hover motion. */
 :root {
-  --soma-ease-spring:cubic-bezier(.2,1.35,.34,1);
+  --soma-ease-lift:cubic-bezier(.22,.61,.36,1);
   --soma-ease-soft:cubic-bezier(.22,.61,.36,1);
   --soma-app-bg:#f6f8fb;
   --soma-ink:#111827;
@@ -12,6 +12,7 @@
   --soma-amber:#f59e0b;
   --soma-shadow:0 18px 44px rgba(15,23,42,.10);
   --soma-shadow-hover:0 26px 64px rgba(15,23,42,.16);
+  --soma-hover-glow:rgba(37,99,235,.14);
 }
 
 body[data-theme="dark"],
@@ -23,6 +24,7 @@ body[data-theme="dark"],
   --soma-border:rgba(255,255,255,.13);
   --soma-shadow:0 18px 44px rgba(0,0,0,.34);
   --soma-shadow-hover:0 28px 70px rgba(0,0,0,.50);
+  --soma-hover-glow:rgba(56,189,248,.12);
 }
 
 body {
@@ -37,6 +39,8 @@ body {
 }
 
 .navbar {
+  position:relative;
+  isolation:isolate;
   border-radius:14px!important;
   border-color:rgba(15,118,110,.24)!important;
   box-shadow:0 14px 40px rgba(15,23,42,.12)!important;
@@ -48,6 +52,132 @@ body {
   transition-duration:.16s!important;
   transition-timing-function:var(--soma-ease-soft)!important;
   transform:none!important;
+}
+
+.navbar::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:0;
+  border-radius:inherit;
+  background:radial-gradient(circle 260px at var(--soma-glow-x, 50%) var(--soma-glow-y, 50%), var(--soma-hover-glow), transparent 68%);
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .2s var(--soma-ease-lift);
+}
+
+.navbar:hover::before {
+  opacity:1;
+}
+
+.navbar > * {
+  position:relative;
+  z-index:1;
+}
+
+.navbar .container,
+.navbar-collapse {
+  min-width:0;
+}
+
+.profile-dropdown {
+  flex:0 0 auto;
+}
+
+.profile-dropdown > .dropdown-toggle {
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  min-width:42px;
+  height:42px;
+}
+
+@media (min-width:992px) {
+  .navbar .container {
+    flex-wrap:nowrap!important;
+  }
+
+  .navbar-collapse {
+    flex:1 1 auto;
+    align-items:center!important;
+    gap:.75rem;
+  }
+
+  .navbar-nav {
+    flex:1 1 auto;
+    justify-content:center;
+    min-width:0;
+    margin-left:auto!important;
+    margin-right:auto!important;
+    flex-wrap:nowrap!important;
+  }
+
+  .navbar .nav-link {
+    white-space:nowrap;
+  }
+
+  .navbar .d-flex.align-items-center.flex-wrap {
+    flex:0 1 auto;
+    flex-wrap:nowrap!important;
+    align-items:center!important;
+    justify-content:flex-end!important;
+    gap:.5rem;
+    min-width:0;
+    margin-left:auto!important;
+  }
+
+  .navbar .theme-toggle {
+    flex:0 0 auto;
+    margin-right:.25rem!important;
+  }
+
+  .navbar .search-form {
+    flex:1 1 160px;
+    width:clamp(160px, 18vw, 260px)!important;
+    max-width:260px!important;
+    margin-right:.35rem!important;
+  }
+
+  .navbar .input-group {
+    flex-wrap:nowrap;
+  }
+
+  .navbar .input-group .form-control {
+    min-width:0;
+  }
+
+  .navbar .profile-dropdown,
+  .navbar .notepad-dropdown {
+    align-self:center!important;
+    margin-left:0!important;
+  }
+}
+
+@media (min-width:768px) and (max-width:991.98px) {
+  .navbar .d-flex.align-items-center.flex-wrap {
+    flex-direction:row;
+    flex-wrap:nowrap!important;
+    align-items:center!important;
+    justify-content:flex-end!important;
+  }
+
+  .navbar .theme-toggle {
+    flex:0 0 auto;
+    width:auto;
+    justify-content:center;
+  }
+
+  .navbar .search-form {
+    flex:1 1 260px;
+    width:auto!important;
+    max-width:360px!important;
+  }
+
+  .navbar .profile-dropdown,
+  .navbar .notepad-dropdown {
+    align-self:center!important;
+    margin-left:0!important;
+  }
 }
 
 .hero-section,
@@ -122,8 +252,8 @@ body {
 .model-grid-item,
 .btn:not(.nav-link) {
   transition:
-    transform .46s var(--soma-ease-spring),
-    box-shadow .46s var(--soma-ease-spring),
+    transform .24s var(--soma-ease-lift),
+    box-shadow .24s var(--soma-ease-lift),
     border-color .32s var(--soma-ease-soft),
     background-color .32s var(--soma-ease-soft)!important;
 }
@@ -141,12 +271,12 @@ body {
 .comparison-item:hover,
 .process-step:hover,
 .model-grid-item:hover {
-  transform:translateY(-5px) scale(1.006)!important;
+  transform:translateY(-3px)!important;
   box-shadow:var(--soma-shadow-hover)!important;
 }
 
 .btn:not(.nav-link):hover {
-  transform:translateY(-2px) scale(1.025)!important;
+  transform:translateY(-2px)!important;
 }
 
 .navbar .btn,
@@ -160,6 +290,92 @@ body {
   max-width:calc(100% + var(--soma-panel-pad) + var(--soma-panel-pad))!important;
   margin-left:calc(0px - var(--soma-panel-pad))!important;
   margin-right:calc(0px - var(--soma-panel-pad))!important;
+}
+
+:where(
+  #learning-modules.card,
+  .feature-card,
+  .feature-card-new,
+  .subject-card-new,
+  .testimonial-card,
+  #topicsAccordion > .accordion-item,
+  .accordion-body > .subtopic-panel,
+  .model-container,
+  .soma-topic-expansion,
+  .soma-note-card,
+  .soma-model-slot,
+  .comparison-item,
+  .process-step,
+  .model-grid-item
+) {
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+}
+
+:where(
+  #learning-modules.card,
+  .feature-card,
+  .feature-card-new,
+  .subject-card-new,
+  .testimonial-card,
+  #topicsAccordion > .accordion-item,
+  .accordion-body > .subtopic-panel,
+  .model-container,
+  .soma-topic-expansion,
+  .soma-note-card,
+  .soma-model-slot,
+  .comparison-item,
+  .process-step,
+  .model-grid-item
+)::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:0;
+  background:radial-gradient(circle 220px at var(--soma-glow-x, 50%) var(--soma-glow-y, 50%), var(--soma-hover-glow), transparent 68%);
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .2s var(--soma-ease-lift);
+}
+
+:where(
+  #learning-modules.card,
+  .feature-card,
+  .feature-card-new,
+  .subject-card-new,
+  .testimonial-card,
+  #topicsAccordion > .accordion-item,
+  .accordion-body > .subtopic-panel,
+  .model-container,
+  .soma-topic-expansion,
+  .soma-note-card,
+  .soma-model-slot,
+  .comparison-item,
+  .process-step,
+  .model-grid-item
+):hover::before {
+  opacity:1;
+}
+
+:where(
+  #learning-modules.card,
+  .feature-card,
+  .feature-card-new,
+  .subject-card-new,
+  .testimonial-card,
+  #topicsAccordion > .accordion-item,
+  .accordion-body > .subtopic-panel,
+  .model-container,
+  .soma-topic-expansion,
+  .soma-note-card,
+  .soma-model-slot,
+  .comparison-item,
+  .process-step,
+  .model-grid-item
+) > * {
+  position:relative;
+  z-index:1;
 }
 
 .soma-topic-expansion {

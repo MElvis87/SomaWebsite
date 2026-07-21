@@ -511,5 +511,70 @@
     }
   }
 
-  ready(injectNotes);
+  var HOVER_LIGHT_SELECTOR = [
+    ".navbar",
+    "#learning-modules.card",
+    ".feature-card",
+    ".feature-card-new",
+    ".subject-card-new",
+    ".testimonial-card",
+    "#topicsAccordion > .accordion-item",
+    ".accordion-body > .subtopic-panel",
+    ".model-container",
+    ".soma-topic-expansion",
+    ".soma-note-card",
+    ".soma-model-slot",
+    ".comparison-item",
+    ".process-step",
+    ".model-grid-item"
+  ].join(",");
+
+  function updateHoverLight(event) {
+    var target = event.currentTarget;
+    var rect = target.getBoundingClientRect();
+    target.style.setProperty("--soma-glow-x", (event.clientX - rect.left) + "px");
+    target.style.setProperty("--soma-glow-y", (event.clientY - rect.top) + "px");
+  }
+
+  function resetHoverLight(event) {
+    event.currentTarget.style.removeProperty("--soma-glow-x");
+    event.currentTarget.style.removeProperty("--soma-glow-y");
+  }
+
+  function bindHoverLights(root) {
+    var scope = root && root.querySelectorAll ? root : document;
+    var matches = [];
+    if (scope.matches && scope.matches(HOVER_LIGHT_SELECTOR)) {
+      matches.push(scope);
+    }
+    matches = matches.concat(Array.prototype.slice.call(scope.querySelectorAll(HOVER_LIGHT_SELECTOR)));
+
+    matches.forEach(function (element) {
+      if (element.getAttribute("data-soma-hover-light") === "true") return;
+      element.setAttribute("data-soma-hover-light", "true");
+      element.addEventListener("pointermove", updateHoverLight);
+      element.addEventListener("pointerleave", resetHoverLight);
+    });
+  }
+
+  function initHoverLights() {
+    bindHoverLights(document);
+    if (!("MutationObserver" in window) || !document.body) return;
+
+    var observer = new MutationObserver(function (mutations) {
+      mutations.forEach(function (mutation) {
+        Array.prototype.forEach.call(mutation.addedNodes, function (node) {
+          if (node.nodeType === 1) {
+            bindHoverLights(node);
+          }
+        });
+      });
+    });
+    observer.observe(document.body, { childList:true, subtree:true });
+  }
+
+  ready(function () {
+    injectNotes();
+    initHoverLights();
+  });
 }());
