@@ -12,7 +12,7 @@
   --soma-amber:#f59e0b;
   --soma-shadow:0 18px 44px rgba(15,23,42,.10);
   --soma-shadow-hover:0 26px 64px rgba(15,23,42,.16);
-  --soma-hover-glow:rgba(37,99,235,.14);
+  --soma-hover-glow:color-mix(in srgb, var(--soma-blue) 16%, transparent);
   --soma-navbar-top:14px;
   --soma-navbar-offset:112px;
 }
@@ -26,7 +26,7 @@ body[data-theme="dark"],
   --soma-border:rgba(255,255,255,.13);
   --soma-shadow:0 18px 44px rgba(0,0,0,.34);
   --soma-shadow-hover:0 28px 70px rgba(0,0,0,.50);
-  --soma-hover-glow:rgba(56,189,248,.12);
+  --soma-hover-glow:color-mix(in srgb, var(--soma-blue) 20%, transparent);
 }
 
 body {
@@ -108,6 +108,30 @@ body {
   justify-content:center!important;
   min-width:42px;
   height:42px;
+}
+
+.text-primary,
+.card-header .text-primary,
+.card-header .fa-graduation-cap,
+#learning-modules > .card-header h2 i {
+  color:var(--soma-blue)!important;
+}
+
+.theme-toggle input:checked + .slider,
+input#themeToggle:checked + .slider {
+  background:var(--soma-blue)!important;
+  border-color:color-mix(in srgb, var(--soma-blue) 46%, transparent)!important;
+  box-shadow:0 0 0 3px color-mix(in srgb, var(--soma-blue) 13%, transparent)!important;
+}
+
+.theme-toggle input:focus + .slider,
+input#themeToggle:focus + .slider {
+  box-shadow:0 0 0 3px color-mix(in srgb, var(--soma-blue) 16%, transparent)!important;
+}
+
+.theme-toggle input:checked + .slider::before,
+input#themeToggle:checked + .slider::before {
+  box-shadow:0 4px 14px color-mix(in srgb, var(--soma-blue) 34%, transparent)!important;
 }
 
 .soma-account-modal {
