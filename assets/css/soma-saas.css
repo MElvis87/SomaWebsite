@@ -110,6 +110,284 @@ body {
   height:42px;
 }
 
+.soma-account-modal {
+  position:fixed;
+  inset:0;
+  z-index:12000;
+  display:grid;
+  place-items:start center;
+  padding:calc(var(--soma-navbar-offset, 112px) + .75rem) 1rem 1.25rem;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .22s var(--soma-ease-lift);
+}
+
+.soma-account-modal.is-open {
+  opacity:1;
+  pointer-events:auto;
+}
+
+.soma-account-backdrop {
+  position:absolute;
+  inset:0;
+  background:rgba(15,23,42,.24);
+  backdrop-filter:blur(12px);
+}
+
+.soma-account-panel {
+  position:relative;
+  z-index:1;
+  width:min(100%, 560px);
+  max-height:calc(100vh - var(--soma-navbar-offset, 112px) - 2rem);
+  overflow:auto;
+  border:1px solid var(--soma-border);
+  border-radius:18px;
+  background:linear-gradient(180deg, var(--soma-panel), var(--soma-panel-2));
+  color:var(--soma-ink);
+  box-shadow:0 28px 80px rgba(15,23,42,.22);
+  transform:translateY(-10px) scale(.985);
+  transition:
+    transform .26s var(--soma-ease-lift),
+    box-shadow .26s var(--soma-ease-lift);
+}
+
+.soma-account-modal.is-open .soma-account-panel {
+  transform:translateY(0) scale(1);
+}
+
+.soma-account-header {
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:1rem;
+  padding:1.15rem 1.2rem .95rem;
+  border-bottom:1px solid var(--soma-border);
+}
+
+.soma-account-title {
+  margin:0;
+  color:var(--soma-ink);
+  font-size:1.15rem;
+  font-weight:850;
+}
+
+.soma-account-subtitle {
+  margin:.25rem 0 0;
+  color:var(--muted-text);
+  font-size:.92rem;
+}
+
+.soma-account-close {
+  display:inline-grid;
+  flex:0 0 auto;
+  width:38px;
+  height:38px;
+  place-items:center;
+  border:1px solid var(--soma-border);
+  border-radius:50%;
+  background:var(--soma-panel);
+  color:var(--soma-ink);
+  cursor:pointer;
+}
+
+.soma-account-body {
+  display:grid;
+  gap:1rem;
+  padding:1.2rem;
+}
+
+.soma-account-avatar-row {
+  display:grid;
+  grid-template-columns:auto minmax(0, 1fr);
+  gap:1rem;
+  align-items:center;
+  padding:.85rem;
+  border:1px solid var(--soma-border);
+  border-radius:14px;
+  background:rgba(37,99,235,.055);
+}
+
+.soma-account-avatar-preview {
+  width:74px;
+  height:74px;
+  overflow:hidden;
+  border:2px solid rgba(37,99,235,.38);
+  border-radius:50%;
+  background:var(--soma-panel);
+  box-shadow:var(--soma-shadow);
+}
+
+.soma-account-avatar-preview img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.soma-account-upload {
+  display:inline-flex;
+  align-items:center;
+  gap:.45rem;
+  margin-bottom:.35rem;
+  color:var(--soma-blue);
+  font-weight:800;
+  cursor:pointer;
+}
+
+.soma-account-hint {
+  margin:0;
+  color:var(--muted-text);
+  font-size:.86rem;
+}
+
+.soma-account-field {
+  display:grid;
+  gap:.45rem;
+}
+
+.soma-account-label {
+  color:var(--soma-ink);
+  font-weight:800;
+}
+
+.soma-account-input {
+  width:100%;
+  min-height:46px;
+  padding:.68rem .78rem;
+  border:1px solid var(--soma-border);
+  border-radius:12px;
+  background:var(--soma-panel);
+  color:var(--soma-ink);
+  outline:none;
+}
+
+.soma-account-input:focus {
+  border-color:var(--soma-blue);
+  box-shadow:0 0 0 .2rem rgba(37,99,235,.16);
+}
+
+.soma-account-colors {
+  display:flex;
+  flex-wrap:wrap;
+  gap:.55rem;
+  align-items:center;
+}
+
+.soma-account-swatch {
+  width:34px;
+  height:34px;
+  border:2px solid transparent;
+  border-radius:50%;
+  background:var(--swatch);
+  cursor:pointer;
+  box-shadow:0 0 0 1px var(--soma-border);
+}
+
+.soma-account-swatch.is-selected {
+  border-color:var(--soma-panel);
+  box-shadow:0 0 0 3px var(--soma-blue);
+}
+
+.soma-account-color-input {
+  width:46px;
+  height:34px;
+  padding:0;
+  border:1px solid var(--soma-border);
+  border-radius:999px;
+  background:transparent;
+  cursor:pointer;
+}
+
+.soma-account-actions {
+  display:flex;
+  flex-wrap:wrap;
+  gap:.75rem;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 1.2rem 1.2rem;
+}
+
+.soma-account-save,
+.soma-account-deactivate {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:.45rem;
+  min-height:44px;
+  padding:.68rem 1rem;
+  border-radius:12px;
+  font-weight:850;
+  cursor:pointer;
+}
+
+.soma-account-save {
+  border:1px solid var(--soma-blue);
+  background:var(--soma-blue);
+  color:#fff;
+}
+
+.soma-account-deactivate {
+  border:1px solid rgba(225,29,72,.32);
+  background:rgba(225,29,72,.08);
+  color:var(--danger, #e11d48);
+}
+
+.soma-account-status {
+  min-height:1.3rem;
+  margin:0 1.2rem 1.15rem;
+  color:var(--muted-text);
+  font-size:.88rem;
+}
+
+body.soma-account-open {
+  overflow:hidden;
+}
+
+[data-theme="dark"] .soma-account-backdrop,
+body[data-theme="dark"] .soma-account-backdrop {
+  background:rgba(0,0,0,.48);
+}
+
+[data-theme="dark"] .soma-account-avatar-row,
+body[data-theme="dark"] .soma-account-avatar-row {
+  background:rgba(56,189,248,.07);
+}
+
+@media (max-width:575.98px) {
+  .soma-account-modal {
+    padding:calc(var(--soma-navbar-offset, 96px) + .5rem) .75rem 1rem;
+  }
+
+  .soma-account-panel {
+    border-radius:14px;
+  }
+
+  .soma-account-header,
+  .soma-account-body {
+    padding:1rem;
+  }
+
+  .soma-account-avatar-row {
+    grid-template-columns:1fr;
+    justify-items:center;
+    text-align:center;
+  }
+
+  .soma-account-actions {
+    flex-direction:column-reverse;
+    align-items:stretch;
+    padding:0 1rem 1rem;
+  }
+
+  .soma-account-save,
+  .soma-account-deactivate {
+    width:100%;
+  }
+
+  .soma-account-status {
+    margin:0 1rem 1rem;
+  }
+}
+
 @media (min-width:992px) {
   .navbar .container {
     flex-wrap:nowrap!important;
@@ -601,6 +879,8 @@ body {
   .soma-topic-expansion,
   .soma-note-card,
   .soma-model-slot,
+  .soma-account-modal,
+  .soma-account-panel,
   .btn {
     transition:none!important;
   }
