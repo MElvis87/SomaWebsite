@@ -100,6 +100,13 @@
     controls.appendChild(link);
   }
 
+  function setProfileVisibility(isVisible) {
+    document.querySelectorAll(".profile-dropdown").forEach(function (profile) {
+      profile.style.setProperty("display", isVisible ? "block" : "none", "important");
+      profile.setAttribute("aria-hidden", isVisible ? "false" : "true");
+    });
+  }
+
   function removeSignInLink() {
     Array.prototype.slice.call(document.querySelectorAll(".soma-login-link")).forEach(function (link) {
       link.remove();
@@ -111,6 +118,7 @@
     document.body.classList.remove("soma-authenticated");
     document.body.classList.add("soma-auth-guest");
     setThemeColor(DEFAULT_THEME_COLOR);
+    setProfileVisibility(false);
     ensureSignInLink();
   }
 
@@ -125,6 +133,7 @@
     }
 
     removeSignInLink();
+    setProfileVisibility(true);
     applySettings(user.settings || {});
   }
 
