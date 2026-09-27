@@ -1,0 +1,19 @@
+{
+  "name": "soma-education-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Soma 3D education website with MongoDB-backed premium accounts.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "check": "node --check server.js && node --check assets/js/soma-auth-client.js && node --check assets/js/soma-account-settings.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongodb": "^6.12.0"
+  }
+}

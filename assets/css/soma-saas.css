@@ -909,3 +909,46 @@ body[data-theme="dark"] .soma-account-avatar-row {
     transition:none!important;
   }
 }
+
+.soma-login-link {
+  align-items: center;
+  border: 1px solid color-mix(in srgb, var(--soma-blue) 42%, transparent);
+  border-radius: 8px;
+  color: var(--soma-blue) !important;
+  display: inline-flex;
+  font-weight: 700;
+  justify-content: center;
+  min-height: 38px;
+  padding: 0.5rem 0.85rem;
+  text-decoration: none;
+  transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
+}
+
+.soma-login-link:hover,
+.soma-login-link:focus-visible {
+  background: var(--soma-blue);
+  color: #fff !important;
+  transform: translateY(-1px);
+}
+
+.soma-auth-feedback {
+  border: 1px solid color-mix(in srgb, var(--soma-blue) 38%, transparent);
+  border-radius: 8px;
+  color: var(--body-text, #243247);
+  font-size: 0.9rem;
+  margin-top: 0.85rem;
+  padding: 0.7rem 0.85rem;
+}
+
+.soma-auth-feedback.is-error {
+  border-color: color-mix(in srgb, #dc3545 55%, transparent);
+  color: #b42318;
+}
+
+body.dark-mode .soma-auth-feedback {
+  color: #e7edf7;
+}
+
+body.dark-mode .soma-auth-feedback.is-error {
+  color: #ff9a9a;
+}
