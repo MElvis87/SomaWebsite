@@ -952,3 +952,30 @@ body.dark-mode .soma-auth-feedback {
 body.dark-mode .soma-auth-feedback.is-error {
   color: #ff9a9a;
 }
+
+/* Animated moving gradient background */
+@keyframes soma-gradient-shift {
+  0% { background-position:0% 50% }
+  50% { background-position:100% 50% }
+  100% { background-position:0% 50% }
+}
+html body {
+  background:
+    radial-gradient(circle at 18% 0%, rgba(37,99,235,.08), transparent 28rem),
+    radial-gradient(circle at 88% 12%, rgba(15,118,110,.08), transparent 24rem),
+    linear-gradient(120deg,#f6f8fb,#d6e4ff,#d3f0e8,#fdebc8,#f6f8fb)!important;
+  background-size:auto,auto,400% 400%!important;
+  background-attachment:fixed!important;
+  animation:soma-gradient-shift 14s ease infinite
+}
+html body[data-theme="dark"] {
+  background:
+    radial-gradient(circle at 18% 0%, rgba(37,99,235,.08), transparent 28rem),
+    radial-gradient(circle at 88% 12%, rgba(15,118,110,.08), transparent 24rem),
+    linear-gradient(120deg,#0d1217,#13264d,#0f3a35,#33260d,#0d1217)!important;
+  background-size:auto,auto,400% 400%!important;
+  background-attachment:fixed!important
+}
+@media (prefers-reduced-motion:reduce) {
+  html body,html body[data-theme="dark"] { animation:none }
+}

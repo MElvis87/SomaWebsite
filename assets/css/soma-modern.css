@@ -1100,3 +1100,24 @@ body[data-theme="dark"] mark.current-search-match,
     width:auto;
   }
 }
+
+/* Animated moving gradient background */
+@keyframes soma-gradient-shift {
+  0% { background-position:0% 50% }
+  50% { background-position:100% 50% }
+  100% { background-position:0% 50% }
+}
+html body {
+  background:linear-gradient(120deg,#f8fafc,#d6e4ff,#d3f0e8,#fdebc8,#f8fafc)!important;
+  background-size:400% 400%!important;
+  background-attachment:fixed!important;
+  animation:soma-gradient-shift 14s ease infinite
+}
+html body[data-theme="dark"] {
+  background:linear-gradient(120deg,#101418,#13264d,#0f3a35,#33260d,#101418)!important;
+  background-size:400% 400%!important;
+  background-attachment:fixed!important
+}
+@media (prefers-reduced-motion:reduce) {
+  html body,html body[data-theme="dark"] { animation:none }
+}
