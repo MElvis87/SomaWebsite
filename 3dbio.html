@@ -1540,6 +1540,30 @@
 
 
     </style>
+
+    <style>
+        /* Animated moving gradient background */
+        @keyframes soma-gradient-shift {
+            0%   { background-position: 0% 50%; }
+            50%  { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        html body {
+            background: linear-gradient(120deg, #eef2ff, #cfdcff, #e3d4ff, #c9eefa, #eef2ff);
+            background-size: 400% 400%;
+            background-attachment: fixed;
+            animation: soma-gradient-shift 14s ease infinite;
+        }
+        html body[data-theme="dark"] {
+            background: linear-gradient(120deg, #0a0a1a, #1a2260, #3a1470, #0c3a5c, #0a0a1a);
+            background-size: 400% 400%;
+            background-attachment: fixed;
+            animation: soma-gradient-shift 14s ease infinite;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            html body, html body[data-theme="dark"] { animation: none; }
+        }
+    </style>
     <link rel="stylesheet" href="assets/css/soma-modern.css">
     <link rel="stylesheet" href="assets/css/soma-saas.css">
 </head>
