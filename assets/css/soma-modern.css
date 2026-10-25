@@ -1101,23 +1101,26 @@ body[data-theme="dark"] mark.current-search-match,
   }
 }
 
-/* Animated moving gradient background */
+/* Animated moving gradient background (separate fixed layer behind page content) */
 @keyframes soma-gradient-shift {
   0% { background-position:0% 50% }
   50% { background-position:100% 50% }
   100% { background-position:0% 50% }
 }
-html body {
-  background:linear-gradient(120deg,#f8fafc,#d6e4ff,#d3f0e8,#fdebc8,#f8fafc)!important;
-  background-size:400% 400%!important;
-  background-attachment:fixed!important;
+body::before {
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
+  background:linear-gradient(120deg,#dbe7ff,#c7f0e4,#fde7bd,#e3d4ff,#dbe7ff);
+  background-size:400% 400%;
   animation:soma-gradient-shift 14s ease infinite
 }
-html body[data-theme="dark"] {
-  background:linear-gradient(120deg,#101418,#13264d,#0f3a35,#33260d,#101418)!important;
-  background-size:400% 400%!important;
-  background-attachment:fixed!important
+body[data-theme="dark"]::before,[data-theme="dark"] body::before {
+  background:linear-gradient(120deg,#101a33,#0f3a35,#33260d,#2a1458,#101a33);
+  background-size:400% 400%
 }
 @media (prefers-reduced-motion:reduce) {
-  html body,html body[data-theme="dark"] { animation:none }
+  body::before { animation:none!important; background-position:50% 50% }
 }
