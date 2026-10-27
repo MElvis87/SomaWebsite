@@ -558,6 +558,45 @@ body[data-theme="dark"] .soma-account-avatar-row {
     width:fit-content;
   }
 
+  .navbar-collapse > .navbar-nav > .dropdown > .dropdown-menu {
+    left:auto!important;
+    margin:.35rem auto!important;
+    min-width:min(100%, 260px);
+    position:static!important;
+    right:auto!important;
+    text-align:center;
+    transform:none!important;
+    width:fit-content;
+  }
+
+  .navbar-collapse > .navbar-nav > .dropdown > .dropdown-menu .dropdown-item {
+    justify-content:center;
+    text-align:center;
+  }
+
+  .navbar-collapse > .d-flex.align-items-center.flex-wrap {
+    align-items:center!important;
+    justify-content:center!important;
+    width:100%!important;
+  }
+
+  .navbar .profile-dropdown,
+  .navbar .notepad-dropdown {
+    flex:0 0 auto!important;
+    margin-left:0!important;
+    margin-right:0!important;
+    position:relative!important;
+  }
+
+  .navbar .profile-dropdown > .dropdown-menu,
+  .navbar .notepad-dropdown > .dropdown-menu {
+    left:50%!important;
+    margin-top:.5rem!important;
+    right:auto!important;
+    top:100%!important;
+    transform:translateX(-50%)!important;
+  }
+
   .navbar .theme-toggle {
     flex:0 0 auto!important;
     gap:.25rem;
