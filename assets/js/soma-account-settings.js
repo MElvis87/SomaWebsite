@@ -29,6 +29,14 @@
     return safeParse(window.localStorage && window.localStorage.getItem(STORAGE_KEY));
   }
 
+  function activeSettings() {
+    var user = window.SomaAuth && typeof window.SomaAuth.currentUser === "function"
+      ? window.SomaAuth.currentUser()
+      : null;
+
+    return user && user.settings ? user.settings : loadSettings();
+  }
+
   function saveSettings(settings) {
     if (!window.localStorage) return false;
     try {
@@ -58,6 +66,11 @@
       image.alt = settings.displayName ? settings.displayName + " profile" : "Profile";
     });
 
+    var preview = document.getElementById("somaAccountAvatarPreview");
+    if (preview) {
+      preview.src = settings.avatar || DEFAULT_AVATAR;
+    }
+
     Array.prototype.slice.call(document.querySelectorAll("#profileDropdown")).forEach(function (trigger) {
       trigger.setAttribute("aria-label", settings.displayName ? settings.displayName + " account menu" : "Account menu");
     });
@@ -83,7 +96,7 @@
   function createModal() {
     if (modal) return modal;
 
-    var settings = loadSettings();
+    var settings = activeSettings();
     var selectedColor = settings.themeColor || DEFAULT_COLOR;
     avatarData = settings.avatar || "";
 
@@ -342,7 +355,6 @@
   }
 
   ready(function () {
-    applySettings(loadSettings());
     bindAccountTriggers();
 
     document.addEventListener("keydown", function (event) {
