@@ -248,6 +248,10 @@ export async function onRequest(context) {
     if (!user) return json({ error: "Please sign in to continue." }, 401);
 
     if (path === "account/avatar" && method === "POST") {
+  if (!env.AVATARS || !env.ASSET_BASE) {
+    return json({ error: "Image storage is not configured yet." }, 503);
+  }
+
   const form = await request.formData();
   const file = form.get("avatar");
   const allowed = {

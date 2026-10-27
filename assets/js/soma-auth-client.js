@@ -329,6 +329,10 @@
   if (!response.ok) throw new Error(data.error || "Could not upload profile image.");
 
   applyUserState(data.user);
+  var preview = document.getElementById("somaAccountAvatarPreview");
+if (preview && data.user && data.user.settings && data.user.settings.avatar) {
+  preview.src = data.user.settings.avatar;
+}
   accountStatus("Profile image saved.");
 }
 
