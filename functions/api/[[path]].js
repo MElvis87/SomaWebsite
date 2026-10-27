@@ -247,6 +247,47 @@ export async function onRequest(context) {
     const user = await currentUser(request, env);
     if (!user) return json({ error: "Please sign in to continue." }, 401);
 
+    if (path === "account/avatar" && method === "POST") {
+  const form = await request.formData();
+  const file = form.get("avatar");
+  const allowed = {
+    "image/jpeg": "jpg",
+    "image/png": "png",
+    "image/gif": "gif",
+    "image/webp": "webp"
+  };
+
+  if (!file || typeof file === "string" || !allowed[file.type]) {
+    return json({ error: "Choose a PNG, JPEG, GIF, or WebP image." }, 400);
+  }
+
+  if (file.size > 2_000_000) {
+    return json({ error: "Profile images must be 2 MB or smaller." }, 400);
+  }
+
+  const key = `avatars/${user.id}/${crypto.randomUUID()}.${allowed[file.type]}`;
+  await env.AVATARS.put(key, await file.arrayBuffer(), {
+    httpMetadata: {
+      contentType: file.type,
+      cacheControl: "public, max-age=31536000, immutable"
+    }
+  });
+
+  const base = `${env.ASSET_BASE.replace(/\/$/, "")}/`;
+  const avatar = `${base}${key}`;
+  const oldAvatar = user.settings.avatar || "";
+
+  await env.DB.prepare(`
+    UPDATE users SET avatar_url = ?, updated_at = ? WHERE id = ?
+  `).bind(avatar, new Date().toISOString(), user.id).run();
+
+  if (oldAvatar.startsWith(base)) {
+    await env.AVATARS.delete(oldAvatar.slice(base.length));
+  }
+
+  return json({ user: await currentUser(request, env) });
+}
+
     if (path === "account/settings" && method === "PATCH") {
       const input = await body(request);
       const settings = input.settings || input;
@@ -264,13 +305,12 @@ export async function onRequest(context) {
       }
 
       const avatar = String(settings.avatar || "").trim();
-      if (!avatar || /^https?:\/\//i.test(avatar) ||
-        (/^data:image\/(png|jpe?g|gif|webp);base64,/i.test(avatar) && avatar.length <= 500000)) {
-        if ("avatar" in settings) {
-          updates.push("avatar_url = ?");
-          values.push(avatar);
-        }
+     if (!avatar || /^https?:\/\//i.test(avatar)) {
+     if ("avatar" in settings) {
+    updates.push("avatar_url = ?");
+    values.push(avatar);
       }
+    }
 
       if (!updates.length) return json({ error: "No valid settings were supplied." }, 400);
 

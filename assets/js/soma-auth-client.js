@@ -309,6 +309,30 @@
     showAuthFeedback(form, "Social sign-in is not connected yet. Use email and password for now.", "info");
   }
 
+  async function uploadAvatar(file) {
+  if (!state.user || !file) return;
+
+  accountStatus("Uploading profile image...");
+  const form = new FormData();
+  form.append("avatar", file);
+
+  const headers = {};
+  if (state.token) headers.Authorization = "Bearer " + state.token;
+
+  const response = await fetch(API_BASE + "/api/account/avatar", {
+    method: "POST",
+    headers,
+    body: form
+  });
+
+  const data = await response.json().catch(function () { return {}; });
+  if (!response.ok) throw new Error(data.error || "Could not upload profile image.");
+
+  applyUserState(data.user);
+  accountStatus("Profile image saved.");
+}
+
+
   function bindEvents() {
     document.addEventListener("submit", function (event) {
       var form = event.target;
@@ -340,6 +364,21 @@
       handleDropdownAction(event);
       handleSocialAuth(event);
     }, true);
+
+    document.addEventListener("change", function (event) {
+    var input = event.target;
+
+    if (
+      input &&
+      input.id === "somaAccountAvatar" &&
+      input.files &&
+      input.files[0]
+    ) {
+      uploadAvatar(input.files[0]).catch(function (error) {
+        accountStatus(error.message);
+      });
+    }
+  }, true);
   }
 
   async function syncAuthState() {
