@@ -2604,6 +2604,12 @@
     filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.1));
 }
 
+model-viewer.hero-lottie-animation {
+    --poster-color: transparent;
+    --progress-bar-color: transparent;
+    outline: none;
+}
+
 /* Dark Mode Adjustments */
 [data-theme="dark"] .hero-glow-card {
     background: linear-gradient(135deg, var(--primary), var(--secondary));
@@ -2889,6 +2895,7 @@ html, body {
     <link rel="stylesheet" href="assets/css/soma-modern.css">
     <link rel="stylesheet" href="assets/css/soma-saas.css">
     <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js" type="module"></script>
+    <script type="module" src="assets/js/model-viewer.min.js"></script>
 </head>
 <body>
     <!-- Loading Screen -->
@@ -3032,7 +3039,22 @@ html, body {
                     <div class="col-lg-6 order-lg-2 order-1">
                         <div class="hero-gif-container">
                             <div class="hero-gif-wrapper">
-                                <dotlottie-wc src="https://lottie.host/c0783ebe-6814-4ed6-aa7d-5ffd9a359bbb/cFuixkaW1B.lottie" autoplay loop class="hero-lottie-animation"></dotlottie-wc>
+                                <model-viewer
+                                    src="assets/3dmodels/HeroMonkey.glb"
+                                    alt="3D monkey model"
+                                    class="hero-lottie-animation"
+                                    camera-controls
+                                    auto-rotate
+                                    auto-rotate-delay="0"
+                                    rotation-per-second="20deg"
+                                    shadow-intensity="0"
+                                    exposure="1.1"
+                                    environment-image="neutral"
+                                    interaction-prompt="none"
+                                    touch-action="pan-y"
+                                    loading="eager"
+                                    reveal="auto">
+                                </model-viewer>
                             </div>
                         </div>
                     </div>
