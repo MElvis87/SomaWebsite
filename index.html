@@ -2899,7 +2899,10 @@ html, body {
     <link rel="stylesheet" href="assets/css/soma-modern.css">
     <link rel="stylesheet" href="assets/css/soma-saas.css">
     <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js" type="module"></script>
-    <script type="module" src="assets/js/model-viewer.min.js"></script>
+    <script type="module">
+        import { ModelViewerElement } from "./assets/js/model-viewer.min.js";
+        ModelViewerElement.dracoDecoderLocation = "assets/js/draco/";
+    </script>
 </head>
 <body>
     <!-- Loading Screen -->
