@@ -2614,6 +2614,62 @@ model-viewer.hero-lottie-animation {
     outline: none;
 }
 
+/* 3D hero hotspots */
+.Hotspot {
+    background: #fff;
+    border: none;
+    border-radius: 32px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+    box-sizing: border-box;
+    cursor: pointer;
+    height: 24px;
+    padding: 8px;
+    position: relative;
+    transition: opacity 0.3s;
+    width: 24px;
+}
+.Hotspot:not([data-visible]) {
+    background: transparent;
+    border: 4px solid #fff;
+    box-shadow: none;
+    height: 32px;
+    pointer-events: none;
+    width: 32px;
+}
+.Hotspot:focus,
+.Hotspot.active {
+    border: 4px solid rgb(0, 128, 200);
+    height: 32px;
+    outline: none;
+    width: 32px;
+}
+.Hotspot > * {
+    opacity: 1;
+    transform: translateY(-50%);
+}
+.Hotspot:not([data-visible]) > * {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(calc(-50% + 4px));
+    transition: transform 0.3s, opacity 0.3s;
+}
+.HotspotAnnotation {
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+    color: rgba(0, 0, 0, 0.8);
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    left: calc(50% + 12px);
+    max-width: 128px;
+    overflow-wrap: break-word;
+    padding: 0.5em 1em;
+    position: absolute;
+    top: calc(50% + 4px);
+    width: max-content;
+}
+
 /* Dark Mode Adjustments */
 [data-theme="dark"] .hero-glow-card {
     background: linear-gradient(135deg, var(--primary), var(--secondary));
@@ -3047,6 +3103,7 @@ html, body {
                         <div class="hero-gif-container">
                             <div class="hero-gif-wrapper">
                                 <model-viewer
+                                    id="hero-monkey"
                                     src="assets/3dmodels/HeroMonkey.glb"
                                     alt="3D monkey model"
                                     class="hero-lottie-animation"
@@ -3061,6 +3118,38 @@ html, body {
                                     touch-action="pan-y"
                                     loading="eager"
                                     reveal="auto">
+                                <button class="Hotspot" slot="hotspot-5"
+                                    data-position="-0.036605714291654046m -0.8284038053139575m 0.6459450186603477m"
+                                    data-normal="0.056298427548781955m 0.09194108546372577m 0.9941716772566428m"
+                                    data-orbit="3.2deg 84.7deg 60%"
+                                    data-target="-0.037m -0.828m 0.646m"
+                                    data-visibility-attribute="visible">
+                                    <div class="HotspotAnnotation">Mouth: For eating.</div>
+                                </button>
+                                <button class="Hotspot" slot="hotspot-6"
+                                    data-position="-0.3579354260445593m 0.24102685448063188m 0.8165589359603649m"
+                                    data-normal="-0.2848579303625456m -0.041237447559665436m 0.9576823233350039m"
+                                    data-orbit="-16.6deg 92.4deg 60%"
+                                    data-target="-0.358m 0.241m 0.817m"
+                                    data-visibility-attribute="visible">
+                                    <div class="HotspotAnnotation">Eye: For sight / vision.</div>
+                                </button>
+                                <button class="Hotspot" slot="hotspot-7"
+                                    data-position="0.015801887718535523m -0.2207353237208418m 0.8196351036243157m"
+                                    data-normal="-0.0017920211500668073m -0.034944988850714585m 0.9993876307091365m"
+                                    data-orbit="-0.1deg 92.0deg 60%"
+                                    data-target="0.016m -0.221m 0.820m"
+                                    data-visibility-attribute="visible">
+                                    <div class="HotspotAnnotation">Nose: For breathing.</div>
+                                </button>
+                                <button class="Hotspot" slot="hotspot-8"
+                                    data-position="1.0890358753165619m 0.2098608356007826m -0.39709182882454175m"
+                                    data-normal="0.38070322677690377m -0.1676628189493197m 0.9093702393764715m"
+                                    data-orbit="22.7deg 99.7deg 60%"
+                                    data-target="1.089m 0.210m -0.397m"
+                                    data-visibility-attribute="visible">
+                                    <div class="HotspotAnnotation">Ear: For hearing.</div>
+                                </button>
                                 </model-viewer>
                             </div>
                         </div>
@@ -4102,5 +4191,31 @@ html, body {
         });
 
     </script>
+<script>
+    /* Hero 3D hotspots: click to fly the camera to a feature, click again to reset */
+    (function () {
+        var viewer = document.getElementById('hero-monkey');
+        if (!viewer) return;
+        var active = null;
+        viewer.querySelectorAll('.Hotspot').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                if (active === btn) {
+                    btn.classList.remove('active');
+                    active = null;
+                    viewer.cameraTarget = 'auto auto auto';
+                    viewer.cameraOrbit = '0deg 75deg 105%';
+                    viewer.autoRotate = true;
+                    return;
+                }
+                if (active) active.classList.remove('active');
+                active = btn;
+                btn.classList.add('active');
+                viewer.autoRotate = false;
+                viewer.cameraTarget = btn.dataset.target;
+                viewer.cameraOrbit = btn.dataset.orbit;
+            });
+        });
+    })();
+</script>
 </body>
 </html>
