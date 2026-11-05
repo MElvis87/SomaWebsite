@@ -2614,60 +2614,152 @@ model-viewer.hero-lottie-animation {
     outline: none;
 }
 
-/* 3D hero hotspots */
+/* ===== Hero 3D annotations (Sketchfab-style) ===== */
+:root { --anno-accent: #1caad9; }
+
 .Hotspot {
-    background: #fff;
-    border: none;
-    border-radius: 32px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
-    box-sizing: border-box;
-    cursor: pointer;
-    height: 24px;
-    padding: 8px;
     position: relative;
-    transition: opacity 0.3s;
-    width: 24px;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.96);
+    color: #1b1f2a;
+    cursor: pointer;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.35), 0 4px 12px rgba(0, 0, 0, 0.35);
+    transition: opacity 0.25s ease, transform 0.2s ease, background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+    animation: hotspot-pulse 2.4s ease-out infinite;
 }
-.Hotspot:not([data-visible]) {
-    background: transparent;
-    border: 4px solid #fff;
-    box-shadow: none;
-    height: 32px;
+.Hotspot-num {
+    font: 700 13px/28px system-ui, -apple-system, "Segoe UI", sans-serif;
+    display: block;
+    text-align: center;
     pointer-events: none;
-    width: 32px;
 }
-.Hotspot:focus,
-.Hotspot.active {
-    border: 4px solid rgb(0, 128, 200);
-    height: 32px;
+.Hotspot:hover,
+.Hotspot:focus-visible {
+    transform: scale(1.15);
     outline: none;
-    width: 32px;
 }
-.Hotspot > * {
-    opacity: 1;
-    transform: translateY(-50%);
+.Hotspot.active {
+    background: var(--anno-accent);
+    color: #fff;
+    transform: scale(1.15);
+    box-shadow: 0 0 0 4px rgba(28, 170, 217, 0.4), 0 4px 14px rgba(0, 0, 0, 0.4);
+    animation: none;
 }
-.Hotspot:not([data-visible]) > * {
+/* Facing away from camera: fade like Sketchfab */
+.Hotspot:not([data-visible]) {
+    opacity: 0.3;
+    pointer-events: none;
+    animation: none;
+}
+/* Hover title tooltip */
+.Hotspot-label {
+    position: absolute;
+    bottom: calc(100% + 10px);
+    left: 50%;
+    transform: translate(-50%, 4px);
+    background: rgba(15, 18, 32, 0.92);
+    color: #fff;
+    font: 600 12px/1 system-ui, -apple-system, "Segoe UI", sans-serif;
+    padding: 7px 10px;
+    border-radius: 6px;
+    white-space: nowrap;
     opacity: 0;
     pointer-events: none;
-    transform: translateY(calc(-50% + 4px));
-    transition: transform 0.3s, opacity 0.3s;
+    transition: opacity 0.2s ease, transform 0.2s ease;
 }
-.HotspotAnnotation {
-    background: #fff;
-    border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
-    color: rgba(0, 0, 0, 0.8);
-    display: block;
-    font-size: 12px;
-    font-weight: 700;
-    left: calc(50% + 12px);
-    max-width: 128px;
-    overflow-wrap: break-word;
-    padding: 0.5em 1em;
+.Hotspot:hover .Hotspot-label,
+.Hotspot:focus-visible .Hotspot-label {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+.Hotspot.active .Hotspot-label { opacity: 0; }
+
+@keyframes hotspot-pulse {
+    0%   { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.55), 0 4px 12px rgba(0, 0, 0, 0.35); }
+    70%  { box-shadow: 0 0 0 12px rgba(255, 255, 255, 0), 0 4px 12px rgba(0, 0, 0, 0.35); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0), 0 4px 12px rgba(0, 0, 0, 0.35); }
+}
+
+/* Bottom annotation panel */
+.anno-panel {
     position: absolute;
-    top: calc(50% + 4px);
-    width: max-content;
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    background: rgba(15, 18, 32, 0.82);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+    color: #fff;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    opacity: 0;
+    transform: translateY(12px);
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    z-index: 5;
+}
+.anno-panel.open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+.anno-badge {
+    flex: 0 0 auto;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--anno-accent);
+    font: 700 13px/28px system-ui, -apple-system, "Segoe UI", sans-serif;
+    text-align: center;
+}
+.anno-body { flex: 1 1 auto; min-width: 0; }
+.anno-title { font: 700 15px/1.2 system-ui, -apple-system, "Segoe UI", sans-serif; }
+.anno-text {
+    margin-top: 2px;
+    font: 400 13px/1.35 system-ui, -apple-system, "Segoe UI", sans-serif;
+    color: rgba(255, 255, 255, 0.8);
+}
+.anno-nav { flex: 0 0 auto; display: flex; align-items: center; gap: 4px; }
+.anno-count {
+    min-width: 34px;
+    text-align: center;
+    font: 600 12px/1 system-ui, -apple-system, "Segoe UI", sans-serif;
+    color: rgba(255, 255, 255, 0.75);
+}
+.anno-btn {
+    width: 28px;
+    height: 28px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+.anno-btn:hover,
+.anno-btn:focus-visible { background: rgba(255, 255, 255, 0.28); outline: none; }
+.anno-close { flex: 0 0 auto; }
+
+@media (max-width: 576px) {
+    .anno-panel { left: 8px; right: 8px; bottom: 8px; gap: 8px; padding: 8px 10px; }
+    .anno-title { font-size: 14px; }
+    .anno-text { font-size: 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .Hotspot { animation: none; }
 }
 
 /* Dark Mode Adjustments */
@@ -3123,34 +3215,66 @@ html, body {
                                     data-normal="0.056298427548781955m 0.09194108546372577m 0.9941716772566428m"
                                     data-orbit="3.2deg 84.7deg 60%"
                                     data-target="-0.037m -0.828m 0.646m"
-                                    data-visibility-attribute="visible">
-                                    <div class="HotspotAnnotation">Mouth: For eating.</div>
+                                    data-title="Mouth" data-text="For eating."
+                                    data-visibility-attribute="visible"
+                                    aria-label="Annotation 1: Mouth">
+                                    <span class="Hotspot-num">1</span>
+                                    <span class="Hotspot-label">Mouth</span>
                                 </button>
                                 <button class="Hotspot" slot="hotspot-6"
                                     data-position="-0.3579354260445593m 0.24102685448063188m 0.8165589359603649m"
                                     data-normal="-0.2848579303625456m -0.041237447559665436m 0.9576823233350039m"
                                     data-orbit="-16.6deg 92.4deg 60%"
                                     data-target="-0.358m 0.241m 0.817m"
-                                    data-visibility-attribute="visible">
-                                    <div class="HotspotAnnotation">Eye: For sight / vision.</div>
+                                    data-title="Eye" data-text="For sight / vision."
+                                    data-visibility-attribute="visible"
+                                    aria-label="Annotation 2: Eye">
+                                    <span class="Hotspot-num">2</span>
+                                    <span class="Hotspot-label">Eye</span>
                                 </button>
                                 <button class="Hotspot" slot="hotspot-7"
                                     data-position="0.015801887718535523m -0.2207353237208418m 0.8196351036243157m"
                                     data-normal="-0.0017920211500668073m -0.034944988850714585m 0.9993876307091365m"
                                     data-orbit="-0.1deg 92.0deg 60%"
                                     data-target="0.016m -0.221m 0.820m"
-                                    data-visibility-attribute="visible">
-                                    <div class="HotspotAnnotation">Nose: For breathing.</div>
+                                    data-title="Nose" data-text="For breathing."
+                                    data-visibility-attribute="visible"
+                                    aria-label="Annotation 3: Nose">
+                                    <span class="Hotspot-num">3</span>
+                                    <span class="Hotspot-label">Nose</span>
                                 </button>
                                 <button class="Hotspot" slot="hotspot-8"
                                     data-position="1.0890358753165619m 0.2098608356007826m -0.39709182882454175m"
                                     data-normal="0.38070322677690377m -0.1676628189493197m 0.9093702393764715m"
                                     data-orbit="22.7deg 99.7deg 60%"
                                     data-target="1.089m 0.210m -0.397m"
-                                    data-visibility-attribute="visible">
-                                    <div class="HotspotAnnotation">Ear: For hearing.</div>
+                                    data-title="Ear" data-text="For hearing."
+                                    data-visibility-attribute="visible"
+                                    aria-label="Annotation 4: Ear">
+                                    <span class="Hotspot-num">4</span>
+                                    <span class="Hotspot-label">Ear</span>
                                 </button>
                                 </model-viewer>
+                                <!-- Annotation panel (Sketchfab-style) -->
+                                <div class="anno-panel" id="hero-anno-panel" role="status" aria-live="polite">
+                                    <span class="anno-badge" id="anno-badge">1</span>
+                                    <div class="anno-body">
+                                        <div class="anno-title" id="anno-title"></div>
+                                        <div class="anno-text" id="anno-text"></div>
+                                    </div>
+                                    <div class="anno-nav">
+                                        <button type="button" class="anno-btn" id="anno-prev" aria-label="Previous annotation">
+                                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+                                        </button>
+                                        <span class="anno-count" id="anno-count"></span>
+                                        <button type="button" class="anno-btn" id="anno-next" aria-label="Next annotation">
+                                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                                        </button>
+                                    </div>
+                                    <button type="button" class="anno-btn anno-close" id="anno-close" aria-label="Close annotation">
+                                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -4192,28 +4316,63 @@ html, body {
 
     </script>
 <script>
-    /* Hero 3D hotspots: click to fly the camera to a feature, click again to reset */
+    /* Hero 3D annotations: click a numbered marker to fly to it, use arrows to step through, X/Esc to close */
     (function () {
         var viewer = document.getElementById('hero-monkey');
-        if (!viewer) return;
-        var active = null;
-        viewer.querySelectorAll('.Hotspot').forEach(function (btn) {
-            btn.addEventListener('click', function () {
-                if (active === btn) {
-                    btn.classList.remove('active');
-                    active = null;
-                    viewer.cameraTarget = 'auto auto auto';
-                    viewer.cameraOrbit = '0deg 75deg 105%';
-                    viewer.autoRotate = true;
-                    return;
-                }
-                if (active) active.classList.remove('active');
-                active = btn;
-                btn.classList.add('active');
-                viewer.autoRotate = false;
-                viewer.cameraTarget = btn.dataset.target;
-                viewer.cameraOrbit = btn.dataset.orbit;
+        var panel = document.getElementById('hero-anno-panel');
+        if (!viewer || !panel) return;
+
+        var spots = Array.prototype.slice.call(viewer.querySelectorAll('.Hotspot'));
+        var badge = document.getElementById('anno-badge');
+        var title = document.getElementById('anno-title');
+        var text  = document.getElementById('anno-text');
+        var count = document.getElementById('anno-count');
+        var current = -1;
+
+        var DEFAULT_ORBIT = '0deg 75deg 105%';
+        var DEFAULT_TARGET = 'auto auto auto';
+
+        viewer.interpolationDecay = 120;   // slower, smoother camera glide
+
+        function select(i) {
+            i = (i + spots.length) % spots.length;
+            if (current > -1) spots[current].classList.remove('active');
+            current = i;
+            var s = spots[i];
+            s.classList.add('active');
+            badge.textContent = i + 1;
+            title.textContent = s.dataset.title;
+            text.textContent = s.dataset.text;
+            count.textContent = (i + 1) + ' / ' + spots.length;
+            panel.classList.add('open');
+            viewer.autoRotate = false;
+            viewer.cameraTarget = s.dataset.target;
+            viewer.cameraOrbit = s.dataset.orbit;
+        }
+
+        function close() {
+            if (current > -1) spots[current].classList.remove('active');
+            current = -1;
+            panel.classList.remove('open');
+            viewer.cameraTarget = DEFAULT_TARGET;
+            viewer.cameraOrbit = DEFAULT_ORBIT;
+            viewer.autoRotate = true;
+        }
+
+        spots.forEach(function (s, i) {
+            s.addEventListener('click', function () {
+                if (current === i) { close(); } else { select(i); }
             });
+        });
+        document.getElementById('anno-prev').addEventListener('click', function () { select(current - 1); });
+        document.getElementById('anno-next').addEventListener('click', function () { select(current + 1); });
+        document.getElementById('anno-close').addEventListener('click', close);
+
+        document.addEventListener('keydown', function (e) {
+            if (current < 0) return;
+            if (e.key === 'Escape') close();
+            else if (e.key === 'ArrowLeft') select(current - 1);
+            else if (e.key === 'ArrowRight') select(current + 1);
         });
     })();
 </script>
