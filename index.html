@@ -2614,7 +2614,21 @@ model-viewer.hero-lottie-animation {
     outline: none;
 }
 
-/* ===== Hero 3D annotations (Sketchfab-style) ===== */
+/* Floating model: remove the frame so the 3D object sits beside the hero text */
+.hero-gif-container .hero-gif-wrapper {
+    background: transparent !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    overflow: visible !important;
+    padding: 0 !important;
+}
+model-viewer.hero-lottie-animation {
+    background: transparent;
+    filter: none !important;
+}
+
+/* ===== Hero 3D annotations: numbered markers with click tooltips ===== */
 :root { --anno-accent: #1caad9; }
 
 .Hotspot {
@@ -2628,20 +2642,17 @@ model-viewer.hero-lottie-animation {
     color: #1b1f2a;
     cursor: pointer;
     box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.35), 0 4px 12px rgba(0, 0, 0, 0.35);
-    transition: opacity 0.25s ease, transform 0.2s ease, background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+    transition: opacity 0.25s ease, transform 0.2s ease, background 0.2s ease, color 0.2s ease;
     animation: hotspot-pulse 2.4s ease-out infinite;
 }
 .Hotspot-num {
-    font: 700 13px/28px system-ui, -apple-system, "Segoe UI", sans-serif;
     display: block;
     text-align: center;
+    font: 700 13px/28px system-ui, -apple-system, "Segoe UI", sans-serif;
     pointer-events: none;
 }
 .Hotspot:hover,
-.Hotspot:focus-visible {
-    transform: scale(1.15);
-    outline: none;
-}
+.Hotspot:focus-visible { transform: scale(1.15); outline: none; }
 .Hotspot.active {
     background: var(--anno-accent);
     color: #fff;
@@ -2649,118 +2660,76 @@ model-viewer.hero-lottie-animation {
     box-shadow: 0 0 0 4px rgba(28, 170, 217, 0.4), 0 4px 14px rgba(0, 0, 0, 0.4);
     animation: none;
 }
-/* Facing away from camera: fade like Sketchfab */
-.Hotspot:not([data-visible]) {
-    opacity: 0.3;
-    pointer-events: none;
-    animation: none;
-}
-/* Hover title tooltip */
-.Hotspot-label {
+/* Facing away from the camera: fade out like Sketchfab */
+.Hotspot:not([data-visible]) { opacity: 0.3; pointer-events: none; animation: none; }
+.Hotspot:not([data-visible]) .Hotspot-tip { display: none; }
+
+/* Tooltip (shown when a marker is clicked) */
+.Hotspot-tip {
+    --arrow-x: 50%;
     position: absolute;
-    bottom: calc(100% + 10px);
     left: 50%;
-    transform: translate(-50%, 4px);
-    background: rgba(15, 18, 32, 0.92);
+    bottom: calc(100% + 12px);
+    transform: translateX(-50%) translateY(4px);
+    display: block;
+    width: max-content;
+    max-width: 230px;
+    padding: 10px 12px;
+    background: rgba(15, 18, 32, 0.94);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
     color: #fff;
-    font: 600 12px/1 system-ui, -apple-system, "Segoe UI", sans-serif;
-    padding: 7px 10px;
-    border-radius: 6px;
-    white-space: nowrap;
+    text-align: left;
     opacity: 0;
+    visibility: hidden;
     pointer-events: none;
-    transition: opacity 0.2s ease, transform 0.2s ease;
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+    z-index: 10;
 }
-.Hotspot:hover .Hotspot-label,
-.Hotspot:focus-visible .Hotspot-label {
+.Hotspot-tip::after {
+    content: "";
+    position: absolute;
+    left: var(--arrow-x);
+    top: 100%;
+    width: 10px;
+    height: 10px;
+    background: rgba(15, 18, 32, 0.94);
+    border-right: 1px solid rgba(255, 255, 255, 0.12);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+.Hotspot.tip-below .Hotspot-tip { bottom: auto; top: calc(100% + 12px); }
+.Hotspot.tip-below .Hotspot-tip::after {
+    top: 0;
+    border: 0;
+    border-left: 1px solid rgba(255, 255, 255, 0.12);
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+.Hotspot.active .Hotspot-tip {
     opacity: 1;
-    transform: translate(-50%, 0);
+    visibility: visible;
+    transform: translateX(0) translateY(0);
 }
-.Hotspot.active .Hotspot-label { opacity: 0; }
+.Hotspot-tip-title {
+    display: block;
+    font: 700 14px/1.2 system-ui, -apple-system, "Segoe UI", sans-serif;
+    color: var(--anno-accent);
+}
+.Hotspot-tip-text {
+    display: block;
+    margin-top: 4px;
+    font: 400 12.5px/1.4 system-ui, -apple-system, "Segoe UI", sans-serif;
+    color: rgba(255, 255, 255, 0.88);
+}
 
 @keyframes hotspot-pulse {
     0%   { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.55), 0 4px 12px rgba(0, 0, 0, 0.35); }
     70%  { box-shadow: 0 0 0 12px rgba(255, 255, 255, 0), 0 4px 12px rgba(0, 0, 0, 0.35); }
     100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0), 0 4px 12px rgba(0, 0, 0, 0.35); }
 }
-
-/* Bottom annotation panel */
-.anno-panel {
-    position: absolute;
-    left: 12px;
-    right: 12px;
-    bottom: 12px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 10px 12px;
-    background: rgba(15, 18, 32, 0.82);
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 12px;
-    color: #fff;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
-    opacity: 0;
-    transform: translateY(12px);
-    pointer-events: none;
-    transition: opacity 0.25s ease, transform 0.25s ease;
-    z-index: 5;
-}
-.anno-panel.open {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-}
-.anno-badge {
-    flex: 0 0 auto;
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    background: var(--anno-accent);
-    font: 700 13px/28px system-ui, -apple-system, "Segoe UI", sans-serif;
-    text-align: center;
-}
-.anno-body { flex: 1 1 auto; min-width: 0; }
-.anno-title { font: 700 15px/1.2 system-ui, -apple-system, "Segoe UI", sans-serif; }
-.anno-text {
-    margin-top: 2px;
-    font: 400 13px/1.35 system-ui, -apple-system, "Segoe UI", sans-serif;
-    color: rgba(255, 255, 255, 0.8);
-}
-.anno-nav { flex: 0 0 auto; display: flex; align-items: center; gap: 4px; }
-.anno-count {
-    min-width: 34px;
-    text-align: center;
-    font: 600 12px/1 system-ui, -apple-system, "Segoe UI", sans-serif;
-    color: rgba(255, 255, 255, 0.75);
-}
-.anno-btn {
-    width: 28px;
-    height: 28px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    border: 0;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.12);
-    color: #fff;
-    cursor: pointer;
-    transition: background 0.2s ease;
-}
-.anno-btn:hover,
-.anno-btn:focus-visible { background: rgba(255, 255, 255, 0.28); outline: none; }
-.anno-close { flex: 0 0 auto; }
-
-@media (max-width: 576px) {
-    .anno-panel { left: 8px; right: 8px; bottom: 8px; gap: 8px; padding: 8px 10px; }
-    .anno-title { font-size: 14px; }
-    .anno-text { font-size: 12px; }
-}
-@media (prefers-reduced-motion: reduce) {
-    .Hotspot { animation: none; }
-}
+@media (max-width: 576px) { .Hotspot-tip { max-width: 190px; } }
+@media (prefers-reduced-motion: reduce) { .Hotspot { animation: none; } }
 
 /* Dark Mode Adjustments */
 [data-theme="dark"] .hero-glow-card {
@@ -3195,9 +3164,9 @@ html, body {
                         <div class="hero-gif-container">
                             <div class="hero-gif-wrapper">
                                 <model-viewer
-                                    id="hero-monkey"
-                                    src="assets/3dmodels/HeroMonkey.glb"
-                                    alt="3D monkey model"
+                                    id="hero-model"
+                                    src="assets/3dmodels/Heart.glb"
+                                    alt="Interactive 3D model of a human heart"
                                     class="hero-lottie-animation"
                                     camera-controls
                                     auto-rotate
@@ -3210,71 +3179,59 @@ html, body {
                                     touch-action="pan-y"
                                     loading="eager"
                                     reveal="auto">
-                                <button class="Hotspot" slot="hotspot-5"
-                                    data-position="-0.036605714291654046m -0.8284038053139575m 0.6459450186603477m"
-                                    data-normal="0.056298427548781955m 0.09194108546372577m 0.9941716772566428m"
-                                    data-orbit="3.2deg 84.7deg 60%"
-                                    data-target="-0.037m -0.828m 0.646m"
-                                    data-title="Mouth" data-text="For eating."
+                                <button class="Hotspot" slot="hotspot-1"
+                                    data-position="-0.006068223183132437m 0.03703855022734919m -0.0015361549400073199m"
+                                    data-normal="0.2501734279302478m 0.21574676339242105m 0.9438572932617112m"
+                                    data-orbit="14.8deg 77.5deg 60%"
+                                    data-target="-0.006068223183132437m 0.03703855022734919m -0.0015361549400073199m"
                                     data-visibility-attribute="visible"
-                                    aria-label="Annotation 1: Mouth">
+                                    aria-label="Annotation 1: Vena Cava">
                                     <span class="Hotspot-num">1</span>
-                                    <span class="Hotspot-label">Mouth</span>
+                                    <span class="Hotspot-tip" role="tooltip">
+                                        <span class="Hotspot-tip-title">Vena Cava</span>
+                                        <span class="Hotspot-tip-text">Returns deoxygenated blood from the body back to the right atrium of the heart.</span>
+                                    </span>
                                 </button>
-                                <button class="Hotspot" slot="hotspot-6"
-                                    data-position="-0.3579354260445593m 0.24102685448063188m 0.8165589359603649m"
-                                    data-normal="-0.2848579303625456m -0.041237447559665436m 0.9576823233350039m"
-                                    data-orbit="-16.6deg 92.4deg 60%"
-                                    data-target="-0.358m 0.241m 0.817m"
-                                    data-title="Eye" data-text="For sight / vision."
+                                <button class="Hotspot" slot="hotspot-2"
+                                    data-position="-0.017315650155271103m 0.012985536266476985m 0.009126335679376735m"
+                                    data-normal="-0.46750192396254053m 0.5274212444709733m 0.7094143936882116m"
+                                    data-orbit="-33.4deg 60.0deg 60%"
+                                    data-target="-0.017315650155271103m 0.012985536266476985m 0.009126335679376735m"
                                     data-visibility-attribute="visible"
-                                    aria-label="Annotation 2: Eye">
+                                    aria-label="Annotation 2: Right Atrium">
                                     <span class="Hotspot-num">2</span>
-                                    <span class="Hotspot-label">Eye</span>
+                                    <span class="Hotspot-tip" role="tooltip">
+                                        <span class="Hotspot-tip-title">Right Atrium</span>
+                                        <span class="Hotspot-tip-text">Acts as a receiving chamber for deoxygenated blood returning from the rest of the body.</span>
+                                    </span>
                                 </button>
-                                <button class="Hotspot" slot="hotspot-7"
-                                    data-position="0.015801887718535523m -0.2207353237208418m 0.8196351036243157m"
-                                    data-normal="-0.0017920211500668073m -0.034944988850714585m 0.9993876307091365m"
-                                    data-orbit="-0.1deg 92.0deg 60%"
-                                    data-target="0.016m -0.221m 0.820m"
-                                    data-title="Nose" data-text="For breathing."
+                                <button class="Hotspot" slot="hotspot-3"
+                                    data-position="0.017576998556685028m 0.021472559592582253m -0.0064446314181603875m"
+                                    data-normal="0.11074598820066858m 0.46124450242634146m 0.8803345018110639m"
+                                    data-orbit="7.2deg 62.5deg 60%"
+                                    data-target="0.017576998556685028m 0.021472559592582253m -0.0064446314181603875m"
                                     data-visibility-attribute="visible"
-                                    aria-label="Annotation 3: Nose">
+                                    aria-label="Annotation 3: Aorta">
                                     <span class="Hotspot-num">3</span>
-                                    <span class="Hotspot-label">Nose</span>
+                                    <span class="Hotspot-tip" role="tooltip">
+                                        <span class="Hotspot-tip-title">Aorta</span>
+                                        <span class="Hotspot-tip-text">Supplies oxygen to the rest of the body.</span>
+                                    </span>
                                 </button>
-                                <button class="Hotspot" slot="hotspot-8"
-                                    data-position="1.0890358753165619m 0.2098608356007826m -0.39709182882454175m"
-                                    data-normal="0.38070322677690377m -0.1676628189493197m 0.9093702393764715m"
-                                    data-orbit="22.7deg 99.7deg 60%"
-                                    data-target="1.089m 0.210m -0.397m"
-                                    data-title="Ear" data-text="For hearing."
+                                <button class="Hotspot" slot="hotspot-4"
+                                    data-position="0.01928603486165132m -0.0071594425107364195m 0.007740852754860167m"
+                                    data-normal="0.9191016989133775m -0.1085809718000179m 0.37876409494236235m"
+                                    data-orbit="67.6deg 96.2deg 60%"
+                                    data-target="0.01928603486165132m -0.0071594425107364195m 0.007740852754860167m"
                                     data-visibility-attribute="visible"
-                                    aria-label="Annotation 4: Ear">
+                                    aria-label="Annotation 4: Left Ventricle">
                                     <span class="Hotspot-num">4</span>
-                                    <span class="Hotspot-label">Ear</span>
+                                    <span class="Hotspot-tip" role="tooltip">
+                                        <span class="Hotspot-tip-title">Left Ventricle</span>
+                                        <span class="Hotspot-tip-text">Pumps oxygen-rich blood out to the entire body.</span>
+                                    </span>
                                 </button>
                                 </model-viewer>
-                                <!-- Annotation panel (Sketchfab-style) -->
-                                <div class="anno-panel" id="hero-anno-panel" role="status" aria-live="polite">
-                                    <span class="anno-badge" id="anno-badge">1</span>
-                                    <div class="anno-body">
-                                        <div class="anno-title" id="anno-title"></div>
-                                        <div class="anno-text" id="anno-text"></div>
-                                    </div>
-                                    <div class="anno-nav">
-                                        <button type="button" class="anno-btn" id="anno-prev" aria-label="Previous annotation">
-                                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-                                        </button>
-                                        <span class="anno-count" id="anno-count"></span>
-                                        <button type="button" class="anno-btn" id="anno-next" aria-label="Next annotation">
-                                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-                                        </button>
-                                    </div>
-                                    <button type="button" class="anno-btn anno-close" id="anno-close" aria-label="Close annotation">
-                                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-                                    </button>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -4316,44 +4273,47 @@ html, body {
 
     </script>
 <script>
-    /* Hero 3D annotations: click a numbered marker to fly to it, use arrows to step through, X/Esc to close */
+    /* Hero 3D annotations: click a numbered marker to fly to it and show its tooltip */
     (function () {
-        var viewer = document.getElementById('hero-monkey');
-        var panel = document.getElementById('hero-anno-panel');
-        if (!viewer || !panel) return;
-
+        var viewer = document.getElementById('hero-model');
+        if (!viewer) return;
         var spots = Array.prototype.slice.call(viewer.querySelectorAll('.Hotspot'));
-        var badge = document.getElementById('anno-badge');
-        var title = document.getElementById('anno-title');
-        var text  = document.getElementById('anno-text');
-        var count = document.getElementById('anno-count');
-        var current = -1;
-
+        var current = -1, downX = 0, downY = 0;
         var DEFAULT_ORBIT = '0deg 75deg 105%';
         var DEFAULT_TARGET = 'auto auto auto';
 
         viewer.interpolationDecay = 120;   // slower, smoother camera glide
 
+        /* Keep the tooltip inside the viewer: clamp sideways, flip below if no room above */
+        function place(btn) {
+            var tip = btn.querySelector('.Hotspot-tip');
+            var v = viewer.getBoundingClientRect();
+            var b = btn.getBoundingClientRect();
+            var tw = tip.offsetWidth, th = tip.offsetHeight;
+            var cx = b.left + b.width / 2 - v.left;
+            var left = Math.min(Math.max(cx - tw / 2, 8), Math.max(v.width - tw - 8, 8));
+            tip.style.left = (left - (b.left - v.left)) + 'px';
+            tip.style.transform = '';
+            var ax = Math.min(Math.max(cx - left, 14), tw - 14);
+            tip.style.setProperty('--arrow-x', ax + 'px');
+            var roomAbove = (b.top - v.top) - th - 16;
+            btn.classList.toggle('tip-below', roomAbove < 8);
+        }
+
         function select(i) {
-            i = (i + spots.length) % spots.length;
             if (current > -1) spots[current].classList.remove('active');
             current = i;
             var s = spots[i];
             s.classList.add('active');
-            badge.textContent = i + 1;
-            title.textContent = s.dataset.title;
-            text.textContent = s.dataset.text;
-            count.textContent = (i + 1) + ' / ' + spots.length;
-            panel.classList.add('open');
             viewer.autoRotate = false;
             viewer.cameraTarget = s.dataset.target;
             viewer.cameraOrbit = s.dataset.orbit;
+            place(s);
         }
 
         function close() {
             if (current > -1) spots[current].classList.remove('active');
             current = -1;
-            panel.classList.remove('open');
             viewer.cameraTarget = DEFAULT_TARGET;
             viewer.cameraOrbit = DEFAULT_ORBIT;
             viewer.autoRotate = true;
@@ -4364,15 +4324,22 @@ html, body {
                 if (current === i) { close(); } else { select(i); }
             });
         });
-        document.getElementById('anno-prev').addEventListener('click', function () { select(current - 1); });
-        document.getElementById('anno-next').addEventListener('click', function () { select(current + 1); });
-        document.getElementById('anno-close').addEventListener('click', close);
 
-        document.addEventListener('keydown', function (e) {
+        /* The marker moves while the camera glides, so keep the tooltip placed correctly */
+        viewer.addEventListener('camera-change', function () {
+            if (current > -1) place(spots[current]);
+        });
+
+        /* Click empty space (not a drag) or press Esc to dismiss */
+        viewer.addEventListener('pointerdown', function (e) { downX = e.clientX; downY = e.clientY; });
+        viewer.addEventListener('click', function (e) {
             if (current < 0) return;
-            if (e.key === 'Escape') close();
-            else if (e.key === 'ArrowLeft') select(current - 1);
-            else if (e.key === 'ArrowRight') select(current + 1);
+            if (e.target.closest && e.target.closest('.Hotspot')) return;
+            if (Math.hypot(e.clientX - downX, e.clientY - downY) > 5) return;
+            close();
+        });
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && current > -1) close();
         });
     })();
 </script>
