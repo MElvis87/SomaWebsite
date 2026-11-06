@@ -2628,6 +2628,49 @@ model-viewer.hero-lottie-animation {
     filter: none !important;
 }
 
+/* Larger model area: soma-modern.css caps the hero model at 540x340 with !important,
+   so these selectors are more specific to win regardless of load order. */
+model-viewer.hero-lottie-animation {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    height: 420px !important;
+}
+@media (max-width: 767px) {
+    model-viewer.hero-lottie-animation { height: 340px !important; }
+}
+@media (max-width: 575px) {
+    model-viewer.hero-lottie-animation { height: 300px !important; }
+}
+
+/* Desktop: the model area fills the whole right half of the hero card */
+@media (min-width: 992px) {
+    .hero-section-redesigned .cta-section {
+        position: relative !important;
+        display: flex !important;
+        align-items: center !important;
+        min-height: 560px !important;
+    }
+    .hero-section-redesigned .cta-section > .container {
+        width: 100%;
+    }
+    .hero-section-redesigned .hero-gif-container {
+        position: absolute !important;
+        top: 8px;
+        right: 8px;
+        bottom: 8px;
+        width: calc(50% - 8px);
+        height: auto;
+    }
+    .hero-section-redesigned .hero-gif-container .hero-gif-wrapper {
+        height: 100%;
+        min-height: 0 !important;
+    }
+    .hero-section-redesigned model-viewer.hero-lottie-animation {
+        height: 100% !important;
+    }
+}
+
 /* ===== Hero 3D annotations: numbered markers with click tooltips ===== */
 :root { --anno-accent: #1caad9; }
 
