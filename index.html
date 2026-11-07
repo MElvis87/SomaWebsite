@@ -2633,6 +2633,15 @@ model-viewer.hero-lottie-animation {
     filter: none !important;
 }
 
+/* Gap between the fixed navbar and the hero card (desktop only).
+   soma-saas.css reserves --soma-navbar-offset (112px) at the top of the page;
+   subtract the amount below to tighten it. Bigger number = smaller gap. */
+@media (min-width: 992px) {
+    html body {
+        padding-top: calc(var(--soma-navbar-offset, 112px) - 20px) !important;
+    }
+}
+
 /* Larger model area: soma-modern.css caps the hero model at 540x340 with !important,
    so these selectors are more specific to win regardless of load order. */
 model-viewer.hero-lottie-animation {
