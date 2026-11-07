@@ -94,7 +94,7 @@
         html #loading-screen {
             background: linear-gradient(120deg, #010714, #07173a, #0a2463, #061a45, #020b22, #010714) !important;
             background-size: 400% 400% !important;
-            animation: loader-gradient-shift 1s ease infinite;
+            animation: loader-gradient-shift 3s ease infinite;
             overflow: hidden;
         }
         
@@ -114,14 +114,14 @@
             top: -25vmax;
             left: -20vmax;
             background: radial-gradient(circle, rgba(37, 99, 235, 0.30) 0%, rgba(37, 99, 235, 0) 65%);
-            animation: loader-drift-a 14s ease-in-out infinite alternate;
+            animation: loader-drift-a 3.5s ease-in-out infinite alternate;
         }
         
         #loading-screen::after {
             bottom: -30vmax;
             right: -20vmax;
             background: radial-gradient(circle, rgba(30, 64, 175, 0.32) 0%, rgba(30, 64, 175, 0) 65%);
-            animation: loader-drift-b 17s ease-in-out infinite alternate;
+            animation: loader-drift-b 4.5s ease-in-out infinite alternate;
         }
         
         #loading-screen .loading-content {
