@@ -89,6 +89,68 @@
             font-size: 0.9rem;
         }
         
+        /* Loading screen: moving dark navy gradient.
+           soma-modern.css forces a flat background with !important, so "html #loading-screen" is used to win. */
+        html #loading-screen {
+            background: linear-gradient(120deg, #010714, #07173a, #0a2463, #061a45, #020b22, #010714) !important;
+            background-size: 400% 400% !important;
+            animation: loader-gradient-shift 12s ease infinite;
+            overflow: hidden;
+        }
+        
+        /* Two soft glows drifting across the navy background */
+        #loading-screen::before,
+        #loading-screen::after {
+            content: "";
+            position: absolute;
+            width: 70vmax;
+            height: 70vmax;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        #loading-screen::before {
+            top: -25vmax;
+            left: -20vmax;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.30) 0%, rgba(37, 99, 235, 0) 65%);
+            animation: loader-drift-a 14s ease-in-out infinite alternate;
+        }
+        
+        #loading-screen::after {
+            bottom: -30vmax;
+            right: -20vmax;
+            background: radial-gradient(circle, rgba(30, 64, 175, 0.32) 0%, rgba(30, 64, 175, 0) 65%);
+            animation: loader-drift-b 17s ease-in-out infinite alternate;
+        }
+        
+        #loading-screen .loading-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        @keyframes loader-gradient-shift {
+            0%   { background-position: 0% 50%; }
+            50%  { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        @keyframes loader-drift-a {
+            from { transform: translate(0, 0) scale(1); }
+            to   { transform: translate(18vmax, 12vmax) scale(1.15); }
+        }
+        
+        @keyframes loader-drift-b {
+            from { transform: translate(0, 0) scale(1); }
+            to   { transform: translate(-16vmax, -10vmax) scale(1.1); }
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            html #loading-screen,
+            #loading-screen::before,
+            #loading-screen::after { animation: none; }
+        }
+        
         /* Hide content initially */
         body {
             font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
