@@ -2633,12 +2633,27 @@ model-viewer.hero-lottie-animation {
     filter: none !important;
 }
 
-/* Gap between the fixed navbar and the hero card (desktop only).
-   soma-saas.css reserves --soma-navbar-offset (112px) at the top of the page;
-   subtract the amount below to tighten it. Bigger number = smaller gap. */
+/* ===== Gap between the fixed navbar and the hero card =====
+   EDIT THE THREE VALUES BELOW. Bigger number = smaller gap, 0px = original gap.
+   (soma-saas.css reserves 112px / 108px / 102px / 96px under the navbar; these trim that.) */
+:root {
+    --hero-gap-trim-desktop: 30px;   /* screens 992px and wider            */
+    --hero-gap-trim-tablet:  25px;   /* tablets, 768px to 991px            */
+    --hero-gap-trim-phone:    17px;   /* phones and small tablets, up to 767px */
+}
 @media (min-width: 992px) {
     html body {
-        padding-top: calc(var(--soma-navbar-offset, 112px) - 20px) !important;
+        padding-top: calc(var(--soma-navbar-offset, 112px) - var(--hero-gap-trim-desktop)) !important;
+    }
+}
+@media (min-width: 768px) and (max-width: 991.98px) {
+    html body {
+        padding-top: calc(var(--soma-navbar-offset, 108px) - var(--hero-gap-trim-tablet)) !important;
+    }
+}
+@media (max-width: 767.98px) {
+    html body {
+        padding-top: calc(var(--soma-navbar-offset, 100px) - var(--hero-gap-trim-phone)) !important;
     }
 }
 
