@@ -4415,5 +4415,48 @@ html, body {
         });
     })();
 </script>
+<!-- Mobile: show the light/dark toggle in the navbar header, next to the hamburger -->
+<style>
+    @media (max-width: 991.98px) {
+        .navbar > .container > .theme-toggle {
+            display: flex !important;
+            flex: 0 0 auto !important;
+            width: auto !important;
+            margin: 0 0.6rem 0 auto !important;   /* auto left margin pushes toggle + hamburger to the right */
+            padding: 0 !important;
+            border: 0 !important;
+            border-radius: 0 !important;
+            background: transparent !important;
+            box-shadow: none !important;
+            gap: 0.25rem;
+            justify-content: center !important;
+        }
+        .navbar > .container > .theme-toggle .theme-toggle-label {
+            margin: 0 2px !important;
+            font-size: 0.8rem !important;
+        }
+    }
+</style>
+<script>
+    /* Moves the existing theme toggle (same element, same listener) between the collapsed
+       menu (desktop) and the navbar header beside the hamburger (screens under 992px). */
+    (function () {
+        var toggle = document.querySelector('.navbar .theme-toggle');
+        var hamburger = document.querySelector('.navbar-toggler');
+        if (!toggle || !hamburger) return;
+        var homeParent = toggle.parentNode;
+        var homeNext = toggle.nextSibling;
+        var mq = window.matchMedia('(max-width: 991.98px)');
+        function place() {
+            if (mq.matches) {
+                hamburger.parentNode.insertBefore(toggle, hamburger);
+            } else if (toggle.parentNode !== homeParent) {
+                homeParent.insertBefore(toggle, homeNext);
+            }
+        }
+        place();
+        if (mq.addEventListener) { mq.addEventListener('change', place); } else { mq.addListener(place); }
+    })();
+</script>
 </body>
 </html>
