@@ -1470,6 +1470,24 @@
 [data-theme="dark"] .lb-chip{background:rgba(77,225,255,.12)}
 @media(max-width:767.98px){.learn-block{grid-template-columns:1fr}}
 </style>
+<style>
+/* Quizzes */
+.quiz{margin:18px 0;padding:16px;border-radius:12px;border:1px solid rgba(67,97,238,.2);background:rgba(67,97,238,.05)}
+.quiz>h5{font-size:.95rem;font-weight:700;margin:0 0 12px;color:var(--primary,#4361ee)}
+.qz-q{margin:0 0 14px}
+.qz-t{font-weight:600;margin:0 0 8px}
+.qz-opts{display:flex;flex-wrap:wrap;gap:8px}
+.qz-o{flex:1 1 180px;text-align:left;padding:9px 12px;border-radius:10px;border:1px solid rgba(100,116,139,.4);background:transparent;color:inherit;font:inherit;font-size:.92rem;cursor:pointer;transition:background .2s,border-color .2s}
+.qz-o:hover:not(:disabled){background:rgba(67,97,238,.12)}
+.qz-o:disabled{cursor:default}
+.qz-o.qz-ok{background:rgba(22,163,74,.2);border-color:#16a34a}
+.qz-o.qz-no{background:rgba(220,38,38,.18);border-color:#dc2626}
+.qz-fb{margin:8px 0 0;font-size:.88rem;opacity:.9}
+.qz-sc{display:flex;align-items:center;gap:10px;font-weight:700;margin:4px 0 0}
+.qz-r{border:1px solid rgba(100,116,139,.5);background:transparent;color:inherit;border-radius:8px;padding:3px 10px;font-size:.82rem;cursor:pointer}
+[data-theme="dark"] .quiz{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.14)}
+[data-theme="dark"] .quiz>h5{color:#4de1ff}
+</style>
 </head>
 <body>
     <!-- Loading Screen -->
@@ -1652,6 +1670,7 @@
                                                 </p>
                                             </div>
                                         </div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="Gravity accelerates it downward at about 9.8 m/s²."><p class="qz-t">1. What force pulls a projectile back down?</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Magnetism</button><button type="button" class="qz-o" data-c="1">Gravity</button><button type="button" class="qz-o" data-c="0">Sound</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="No horizontal force acts, so it does not change."><p class="qz-t">2. Ignoring air resistance, horizontal speed is:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="1">Constant</button><button type="button" class="qz-o" data-c="0">Increasing</button><button type="button" class="qz-o" data-c="0">Zero</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
                                         
                                         <div class="d-flex justify-content-between align-items-center mt-4">
                                             <div>
@@ -1685,6 +1704,7 @@
                                                 </div>
                                             </div>
                                         </div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="Momentum and energy pass along the line of balls."><p class="qz-t">1. What is conserved when the balls collide?</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Colour</button><button type="button" class="qz-o" data-c="1">Momentum and energy</button><button type="button" class="qz-o" data-c="0">Temperature</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="Equal momentum comes out, so one ball swings out."><p class="qz-t">2. In an ideal cradle, one ball swings in and how many swing out?</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Two</button><button type="button" class="qz-o" data-c="0">All</button><button type="button" class="qz-o" data-c="1">One</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
                                         
                                         <div class="d-flex justify-content-between align-items-center mt-4">
                                             <div>
@@ -1737,6 +1757,7 @@
                           <p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;"> <a href="https://sketchfab.com/3d-models/block-and-tackle-a25fab89be224ff8be071b93b2dc6f73?utm_medium=embed&utm_campaign=share-popup&utm_content=a25fab89be224ff8be071b93b2dc6f73" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> Block and Tackle </a> by <a href="https://sketchfab.com/arloopa?utm_medium=embed&utm_campaign=share-popup&utm_content=a25fab89be224ff8be071b93b2dc6f73" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> arloopa </a> on <a href="https://sketchfab.com?utm_medium=embed&utm_campaign=share-popup&utm_content=a25fab89be224ff8be071b93b2dc6f73" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a></p>
                         </div>
                          </div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="You pull more rope but need less force."><p class="qz-t">1. A pulley system lets you lift a load with:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">More force</button><button type="button" class="qz-o" data-c="1">Less force over more rope</button><button type="button" class="qz-o" data-c="0">No force</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="The load is shared across more segments."><p class="qz-t">2. More rope segments supporting the load means:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="1">Less pull is needed</button><button type="button" class="qz-o" data-c="0">More pull is needed</button><button type="button" class="qz-o" data-c="0">No difference</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
 
 
 
@@ -1780,6 +1801,7 @@
                             </div>
                         </div>
                     </div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="Heat moves from hotter to colder places."><p class="qz-t">1. Heat naturally flows from:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Cold to hot</button><button type="button" class="qz-o" data-c="1">Hot to cold</button><button type="button" class="qz-o" data-c="0">Neither</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="Some energy is always released as waste heat."><p class="qz-t">2. A real heat engine&#x27;s efficiency is:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">100%</button><button type="button" class="qz-o" data-c="0">Over 100%</button><button type="button" class="qz-o" data-c="1">Below 100%</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
                     
                     <div class="d-flex justify-content-between align-items-center mt-4">
                         <div>
@@ -1838,6 +1860,7 @@
                                                 </div>
                                             </div>
                                         </div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="Lines leave positive charges and enter negative ones."><p class="qz-t">1. Electric field lines point away from:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="1">Positive charges</button><button type="button" class="qz-o" data-c="0">Negative charges</button><button type="button" class="qz-o" data-c="0">Neutral objects</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="Closer lines show a stronger field."><p class="qz-t">2. Lines drawn closer together mean:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">No field</button><button type="button" class="qz-o" data-c="0">A weaker field</button><button type="button" class="qz-o" data-c="1">A stronger field</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
                                         
                                         <div class="d-flex justify-content-between align-items-center mt-4">
                                             <div>
@@ -1899,6 +1922,7 @@
                             </div>
                         </div>
                     </div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="Convex lenses converge light."><p class="qz-t">1. A convex lens:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Spreads light out</button><button type="button" class="qz-o" data-c="1">Brings light to a focus</button><button type="button" class="qz-o" data-c="0">Absorbs light</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="Refraction changes the light&#x27;s direction."><p class="qz-t">2. Light bending as it enters a new material is:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="1">Refraction</button><button type="button" class="qz-o" data-c="0">Reflection</button><button type="button" class="qz-o" data-c="0">Diffraction</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
                     
                     <div class="d-flex justify-content-between align-items-center mt-4">
                         <div>
@@ -1965,6 +1989,7 @@
                                                 </div>
                                             </div>
                                         </div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="Orbitals show where an electron is probably located."><p class="qz-t">1. Orbitals are regions where an electron is:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Never found</button><button type="button" class="qz-o" data-c="1">Likely to be found</button><button type="button" class="qz-o" data-c="0">On a fixed circle</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="They absorb or emit photons of light."><p class="qz-t">2. Electrons jump between energy levels by absorbing or releasing:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Water</button><button type="button" class="qz-o" data-c="0">Sound</button><button type="button" class="qz-o" data-c="1">Light</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
                                         
                                         <div class="d-flex justify-content-between align-items-center mt-4">
                                             <div>
@@ -2026,6 +2051,7 @@
                             </div>
                         </div>
                     </div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="This is called wave-particle duality."><p class="qz-t">1. Light and matter behave as:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Particles only</button><button type="button" class="qz-o" data-c="0">Waves only</button><button type="button" class="qz-o" data-c="1">Both waves and particles</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="Crest and trough together cancel, which is destructive interference."><p class="qz-t">2. When a crest meets a trough the waves:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="1">Cancel out (destructive)</button><button type="button" class="qz-o" data-c="0">Add up (constructive)</button><button type="button" class="qz-o" data-c="0">Are unchanged</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
                     
                     <div class="d-flex justify-content-between align-items-center mt-4">
                         <div>
@@ -2066,6 +2092,7 @@
                             </div>
                         </div>
                     </div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="Fission splits nuclei such as uranium and releases energy."><p class="qz-t">1. Splitting a heavy nucleus is called:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Fusion</button><button type="button" class="qz-o" data-c="0">Decay</button><button type="button" class="qz-o" data-c="1">Fission</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="After each half-life, half of the original atoms remain."><p class="qz-t">2. Half-life is the time for:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="1">Half the sample to decay</button><button type="button" class="qz-o" data-c="0">All of it to decay</button><button type="button" class="qz-o" data-c="0">A reactor to cool</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
                     
                     <div class="d-flex justify-content-between align-items-center mt-4">
                         <div>
@@ -2111,6 +2138,7 @@
                             </div>
                         </div>
                     </div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="This is Bernoulli&#x27;s principle."><p class="qz-t">1. Faster-moving air has:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="1">Lower pressure</button><button type="button" class="qz-o" data-c="0">Higher pressure</button><button type="button" class="qz-o" data-c="0">No pressure</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="Wing shape and angle push air down and lower the pressure above."><p class="qz-t">2. A wing produces lift because of:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Its colour</button><button type="button" class="qz-o" data-c="1">Pressure difference and air deflection</button><button type="button" class="qz-o" data-c="0">Gravity alone</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
                     
                     <div class="d-flex justify-content-between align-items-center mt-4">
                         <div>
@@ -2145,6 +2173,7 @@
                             </div>
                         </div>
                     </div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="The regular pattern repeats in three dimensions."><p class="qz-t">1. A crystal lattice is atoms arranged:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Randomly</button><button type="button" class="qz-o" data-c="1">In a repeating pattern</button><button type="button" class="qz-o" data-c="0">As a liquid</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="Silicon is a semiconductor."><p class="qz-t">2. Which material is the base of most computer chips?</p><div class="qz-opts"><button type="button" class="qz-o" data-c="1">Silicon</button><button type="button" class="qz-o" data-c="0">Iron</button><button type="button" class="qz-o" data-c="0">Copper</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
                     
                     <div class="d-flex justify-content-between align-items-center mt-4">
                         <div>
@@ -2185,6 +2214,7 @@
                             </div>
                         </div>
                     </div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="The Sun&#x27;s gravity bends each planet&#x27;s path into an orbit."><p class="qz-t">1. What keeps planets in orbit around the Sun?</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Friction</button><button type="button" class="qz-o" data-c="0">Magnetism</button><button type="button" class="qz-o" data-c="1">Gravity</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="Mercury orbits the Sun in about 88 days."><p class="qz-t">2. Which planet has the shortest year?</p><div class="qz-opts"><button type="button" class="qz-o" data-c="1">Mercury</button><button type="button" class="qz-o" data-c="0">Neptune</button><button type="button" class="qz-o" data-c="0">Earth</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
                     
                     <div class="d-flex justify-content-between align-items-center mt-4">
                         <div>
@@ -2775,5 +2805,23 @@
             });
         });
     </script>
+<script>
+/* Quiz: tap an answer for instant feedback; score shows when every question is answered */
+(function(){
+  document.addEventListener('click',function(e){
+    var r=e.target.closest&&e.target.closest('.qz-r');
+    if(r){var z=r.closest('.quiz');z.dataset.s=0;z.querySelectorAll('.qz-q').forEach(function(q){delete q.dataset.done;q.querySelector('.qz-fb').hidden=true;q.querySelectorAll('.qz-o').forEach(function(o){o.disabled=false;o.classList.remove('qz-ok','qz-no')})});z.querySelector('.qz-sc').hidden=true;return}
+    var b=e.target.closest&&e.target.closest('.qz-o');if(!b)return;
+    var q=b.closest('.qz-q');if(q.dataset.done)return;q.dataset.done='1';
+    var ok=b.dataset.c==='1';b.classList.add(ok?'qz-ok':'qz-no');
+    if(!ok)q.querySelector('[data-c="1"]').classList.add('qz-ok');
+    var fb=q.querySelector('.qz-fb');fb.textContent=(ok?'Correct! ':'Not quite. ')+q.dataset.ex;fb.hidden=false;
+    q.querySelectorAll('.qz-o').forEach(function(o){o.disabled=true});
+    var z=q.closest('.quiz');if(ok)z.dataset.s=(+z.dataset.s||0)+1;
+    var n=z.querySelectorAll('.qz-q').length;
+    if(z.querySelectorAll('.qz-q[data-done]').length===n){var sc=z.querySelector('.qz-sc');sc.firstChild.textContent='Score: '+(+z.dataset.s||0)+' / '+n;sc.hidden=false}
+  });
+})();
+</script>
 </body>
 </html>

@@ -1583,6 +1583,24 @@
 [data-theme="dark"] .lb-chip{background:rgba(77,225,255,.12)}
 @media(max-width:767.98px){.learn-block{grid-template-columns:1fr}}
 </style>
+<style>
+/* Quizzes */
+.quiz{margin:18px 0;padding:16px;border-radius:12px;border:1px solid rgba(67,97,238,.2);background:rgba(67,97,238,.05)}
+.quiz>h5{font-size:.95rem;font-weight:700;margin:0 0 12px;color:var(--primary,#4361ee)}
+.qz-q{margin:0 0 14px}
+.qz-t{font-weight:600;margin:0 0 8px}
+.qz-opts{display:flex;flex-wrap:wrap;gap:8px}
+.qz-o{flex:1 1 180px;text-align:left;padding:9px 12px;border-radius:10px;border:1px solid rgba(100,116,139,.4);background:transparent;color:inherit;font:inherit;font-size:.92rem;cursor:pointer;transition:background .2s,border-color .2s}
+.qz-o:hover:not(:disabled){background:rgba(67,97,238,.12)}
+.qz-o:disabled{cursor:default}
+.qz-o.qz-ok{background:rgba(22,163,74,.2);border-color:#16a34a}
+.qz-o.qz-no{background:rgba(220,38,38,.18);border-color:#dc2626}
+.qz-fb{margin:8px 0 0;font-size:.88rem;opacity:.9}
+.qz-sc{display:flex;align-items:center;gap:10px;font-weight:700;margin:4px 0 0}
+.qz-r{border:1px solid rgba(100,116,139,.5);background:transparent;color:inherit;border-radius:8px;padding:3px 10px;font-size:.82rem;cursor:pointer}
+[data-theme="dark"] .quiz{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.14)}
+[data-theme="dark"] .quiz>h5{color:#4de1ff}
+</style>
 </head>
 <body>
     <!-- Loading Screen -->
@@ -1819,6 +1837,7 @@
         </div>
     </div>
 </div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="Chloroplasts carry out photosynthesis, and animal cells do not have them."><p class="qz-t">1. Which structure is found in plant cells but not animal cells?</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Mitochondria</button><button type="button" class="qz-o" data-c="0">Nucleus</button><button type="button" class="qz-o" data-c="1">Chloroplasts</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="Mitochondria turn food into ATP, the cell&#x27;s energy currency."><p class="qz-t">2. Which organelle releases usable energy from food?</p><div class="qz-opts"><button type="button" class="qz-o" data-c="1">Mitochondria</button><button type="button" class="qz-o" data-c="0">Vacuole</button><button type="button" class="qz-o" data-c="0">Cell wall</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
 
 <!--3D Model Comparison End-->
 
@@ -1909,6 +1928,7 @@
                      <!-- Placeholder for DNA 3D Model end -->
                 </div>
             </div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="A pairs with T and C pairs with G."><p class="qz-t">1. Which bases pair together in DNA?</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">A with C</button><button type="button" class="qz-o" data-c="0">G with T</button><button type="button" class="qz-o" data-c="1">A with T</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="Two strands twist around each other to form a double helix."><p class="qz-t">2. What is the shape of the DNA molecule?</p><div class="qz-opts"><button type="button" class="qz-o" data-c="1">Double helix</button><button type="button" class="qz-o" data-c="0">Single circle</button><button type="button" class="qz-o" data-c="0">Flat sheet</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
         </div>
     </div>
 </div>
@@ -1941,6 +1961,7 @@
                                 <p>Framework of bones providing structure, protection, and movement.</p>
                                 <!-- Add your skeleton 3D model here -->
 <div class="model-container"><div class="model-placeholder"><div class="sketchfab-embed-wrapper"><div class="responsive-iframe-container"><iframe title="Skeleton" loading="lazy" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/4de7b96a351a4a35b1b6e5415277ff07/embed"></iframe></div><p><a href="https://sketchfab.com/3d-models/skeleton-4de7b96a351a4a35b1b6e5415277ff07" target="_blank" rel="nofollow noopener">Skeleton</a> by Diego Luján García on <a href="https://sketchfab.com" target="_blank" rel="nofollow noopener">Sketchfab</a> · licensed <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="nofollow noopener">CC BY 4.0</a></p></div></div></div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="An adult has 206 bones."><p class="qz-t">1. About how many bones does an adult skeleton have?</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">106</button><button type="button" class="qz-o" data-c="1">206</button><button type="button" class="qz-o" data-c="0">306</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="Digestion is done by the digestive system."><p class="qz-t">2. Which is NOT a job of the skeleton?</p><div class="qz-opts"><button type="button" class="qz-o" data-c="1">Digesting food</button><button type="button" class="qz-o" data-c="0">Protecting organs</button><button type="button" class="qz-o" data-c="0">Supporting the body</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
                             </div>
                         </div>
                     </div>
@@ -1969,6 +1990,7 @@
                                     </p>
                                 </div>
                             </div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="The left ventricle sends oxygen-rich blood around the body."><p class="qz-t">1. Which side of the heart pumps oxygen-rich blood to the body?</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Right side</button><button type="button" class="qz-o" data-c="1">Left side</button><button type="button" class="qz-o" data-c="0">Both equally</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="Two atria and two ventricles make four chambers."><p class="qz-t">2. How many chambers does the human heart have?</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Two</button><button type="button" class="qz-o" data-c="0">Three</button><button type="button" class="qz-o" data-c="1">Four</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
                                 <!-- Model of the Human Heart-->
                             </div>
                         </div>
@@ -1986,6 +2008,7 @@
                                 <p>Brain, spinal cord, and nerves - control and communication network.</p>
                                 <!-- Add your brain 3D model here -->
 <div class="model-container"><div class="model-placeholder"><div class="sketchfab-embed-wrapper"><div class="responsive-iframe-container"><iframe title="Brain Model" loading="lazy" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/06b780971c1d474faadc005c1036f1f7/embed"></iframe></div><p><a href="https://sketchfab.com/3d-models/brain-model-06b780971c1d474faadc005c1036f1f7" target="_blank" rel="nofollow noopener">Brain Model</a> by Nahiarapa on <a href="https://sketchfab.com" target="_blank" rel="nofollow noopener">Sketchfab</a> · licensed <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="nofollow noopener">CC BY 4.0</a></p></div></div></div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="Neurons pass electrical and chemical signals."><p class="qz-t">1. The nervous system sends messages using:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Blood only</button><button type="button" class="qz-o" data-c="0">Air</button><button type="button" class="qz-o" data-c="1">Electrical and chemical signals</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="The spinal cord carries signals to and from the brain."><p class="qz-t">2. Which part relays messages between the brain and the body?</p><div class="qz-opts"><button type="button" class="qz-o" data-c="1">Spinal cord</button><button type="button" class="qz-o" data-c="0">Stomach</button><button type="button" class="qz-o" data-c="0">Lungs</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
                             </div>
                         </div>
                     </div>
@@ -2009,6 +2032,7 @@
             <h4>Ecosystems and Interactions</h4>
             <p>Study of relationships between organisms and their environment.</p>
             <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>Ecology looks at how living things interact with each other and with air, water and soil. Nothing in nature lives alone.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Ecosystem:</strong> living things plus their non-living surroundings</li><li><strong>Food chain:</strong> who eats whom, and how energy moves</li><li><strong>Producers:</strong> plants and algae that make food from sunlight</li><li><strong>Biodiversity:</strong> the variety of life in an area</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>1866</b> Ernst Haeckel coined "ecology"</span><span class="lb-chip"><b>~10%</b> of energy passes to the next feeding level</span><span class="lb-chip"><b>3</b> main roles: producers, consumers, decomposers</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>Energy enters most ecosystems as sunlight, is captured by producers and passes to herbivores, then carnivores. A large share is lost as heat at each step, so food chains are usually short and there are fewer predators than prey.</p><p>Matter is recycled instead: decomposers return nutrients to the soil, and carbon, water and nitrogen cycle between living things and the environment.</p></div></div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="Producers make food from sunlight."><p class="qz-t">1. Which organisms are producers?</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Lions</button><button type="button" class="qz-o" data-c="1">Plants and algae</button><button type="button" class="qz-o" data-c="0">Decomposers</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="Roughly 10% is passed on and the rest is lost, mostly as heat."><p class="qz-t">2. About how much energy passes to the next feeding level?</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">About 90%</button><button type="button" class="qz-o" data-c="0">All of it</button><button type="button" class="qz-o" data-c="1">About 10%</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
             
             <div class="new-content">
                 <h5>Key Concepts:</h5>
@@ -2040,6 +2064,7 @@
             <h4>Theory of Evolution</h4>
             <p>Study of how species change over time through natural selection and genetic variation.</p>
             <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>Evolution explains how the variety of life arose from common ancestors over billions of years.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Variation:</strong> individuals in a group differ from each other</li><li><strong>Natural selection:</strong> traits that help survival become more common</li><li><strong>Adaptation:</strong> a trait that suits an organism to its environment</li><li><strong>Common ancestry:</strong> related species share ancestors</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>1859</b> Darwin published On the Origin of Species</span><span class="lb-chip"><b>~4.5 billion</b> years: the age of Earth</span><span class="lb-chip"><b>3.5+ billion</b> years: evidence of life</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>Natural selection needs three things: variation, inheritance and differences in survival or reproduction. Over many generations, helpful traits spread through a population. Evolution acts on populations, not on individuals.</p><p>The evidence is broad: fossils show change through time, similar bone structures appear across different animals, and DNA comparisons match the family trees built from anatomy.</p></div></div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="Individuals with helpful traits survive and reproduce more."><p class="qz-t">1. Which process makes helpful traits more common?</p><div class="qz-opts"><button type="button" class="qz-o" data-c="1">Natural selection</button><button type="button" class="qz-o" data-c="0">Photosynthesis</button><button type="button" class="qz-o" data-c="0">Mitosis</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="Populations change over many generations."><p class="qz-t">2. Evolution acts on:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">A single cell only</button><button type="button" class="qz-o" data-c="0">Individuals in their lifetime</button><button type="button" class="qz-o" data-c="1">Populations over generations</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
             
             <div class="key-points">
                 <h6>Evidence for Evolution:</h6>
@@ -2189,6 +2214,7 @@
 
                 </div>
             </div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="Bacteria are prokaryotes: their DNA is not inside a nucleus."><p class="qz-t">1. Bacteria are:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Eukaryotes with a nucleus</button><button type="button" class="qz-o" data-c="1">Prokaryotes with no nucleus</button><button type="button" class="qz-o" data-c="0">Viruses</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="Antibiotics work on bacteria, not on viruses."><p class="qz-t">2. Antibiotics are used against:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Viruses</button><button type="button" class="qz-o" data-c="1">Bacteria</button><button type="button" class="qz-o" data-c="0">Both equally</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
         </div>
     </div>
 </div>
@@ -2205,6 +2231,7 @@
             <h4>Botany and Plant Science</h4>
             <p>Study of plant life including structure, growth, reproduction, and metabolism.</p>
             <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>Plants make their own food from light and support almost all life on land by providing food and oxygen.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Photosynthesis:</strong> turning light, water and CO₂ into sugar and oxygen</li><li><strong>Roots:</strong> absorb water and minerals and anchor the plant</li><li><strong>Stomata:</strong> tiny leaf pores for gas exchange</li><li><strong>Xylem and phloem:</strong> tubes that carry water and sugars</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>6CO₂ + 6H₂O</b> + light → C₆H₁₂O₆ + 6O₂</span><span class="lb-chip"><b>4,800+ years</b> age of the oldest bristlecone pines</span><span class="lb-chip"><b>Green</b> because chlorophyll reflects green light</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>Photosynthesis happens in chloroplasts. Chlorophyll absorbs mostly red and blue light, and the plant uses that energy to build glucose from carbon dioxide and water, releasing oxygen as a by-product.</p><p>Plants respond to their world too: shoots bend toward light, roots grow down with gravity, and hormones such as auxin coordinate growth.</p></div></div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="Oxygen is released as a by-product."><p class="qz-t">1. Photosynthesis makes glucose and:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Methane</button><button type="button" class="qz-o" data-c="1">Oxygen</button><button type="button" class="qz-o" data-c="0">Nitrogen</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="Phloem carries sugars; xylem carries water."><p class="qz-t">2. Which tubes carry sugars around a plant?</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Xylem</button><button type="button" class="qz-o" data-c="0">Stomata</button><button type="button" class="qz-o" data-c="1">Phloem</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
             
             <div class="key-points">
                 <h6>Plant Systems:</h6>
@@ -2240,6 +2267,7 @@
             <h4>Chemical Processes in Living Organisms</h4>
             <p>Study of chemical substances and vital processes occurring in living organisms.</p>
             <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>Biochemistry is the chemistry of life: how molecules build cells and how cells turn food into energy.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Macromolecules:</strong> proteins, carbohydrates, lipids and nucleic acids</li><li><strong>Enzymes:</strong> proteins that speed up reactions</li><li><strong>ATP:</strong> the cell's energy currency</li><li><strong>Metabolism:</strong> all chemical reactions in an organism</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>20</b> standard amino acids build proteins</span><span class="lb-chip"><b>4</b> major classes of biological macromolecules</span><span class="lb-chip"><b>Millions</b> of ATP molecules used per cell each second</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>A protein's shape decides its job. A chain of amino acids folds into a specific 3D form, and even a small change can stop it working. This is why 3D models are so useful for studying proteins.</p><p>Enzymes lower the energy needed for a reaction, so cells can run chemistry at body temperature. Cellular respiration then converts glucose into ATP, which powers movement, growth and repair.</p></div></div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="ATP stores and delivers energy for cell activities."><p class="qz-t">1. What is the cell&#x27;s energy currency?</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Lipid</button><button type="button" class="qz-o" data-c="1">ATP</button><button type="button" class="qz-o" data-c="0">Cellulose</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="Enzymes lower the energy needed for a reaction."><p class="qz-t">2. Enzymes are:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="1">Proteins that speed up reactions</button><button type="button" class="qz-o" data-c="0">Minerals</button><button type="button" class="qz-o" data-c="0">Sugars</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
             
             <div class="new-content">
                 <h5>Key Molecules:</h5>
@@ -2270,6 +2298,7 @@
             <h4>Growth and Development</h4>
             <p>Study of the process by which organisms grow and develop from zygote to adult.</p>
             <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>Developmental biology follows how one fertilised cell becomes a complete organism with many different tissues.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Zygote:</strong> the first cell, formed at fertilisation</li><li><strong>Differentiation:</strong> cells becoming specialised</li><li><strong>Stem cells:</strong> cells that can become other cell types</li><li><strong>Morphogenesis:</strong> how body shape forms</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>200+</b> cell types arise from one zygote</span><span class="lb-chip"><b>~40 weeks</b> of human pregnancy</span><span class="lb-chip"><b>Hox genes</b> set up the body plan</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>After fertilisation, the zygote divides repeatedly. Early cells can become almost anything; later, signals switch genes on or off so cells become muscle, nerve, skin and more.</p><p>The same genes guide development in many animals, which is why embryos of different species look alike in early stages.</p></div></div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="The zygote divides to build the embryo."><p class="qz-t">1. The first cell formed at fertilisation is the:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Neuron</button><button type="button" class="qz-o" data-c="1">Zygote</button><button type="button" class="qz-o" data-c="0">Platelet</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="Differentiation produces cell types such as muscle and nerve."><p class="qz-t">2. Cells becoming specialised is called:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="1">Differentiation</button><button type="button" class="qz-o" data-c="0">Respiration</button><button type="button" class="qz-o" data-c="0">Replication</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
             
             <div class="key-points">
                 <h6>Developmental Processes:</h6>
@@ -2296,6 +2325,7 @@
             <h4>Applications of Biological Systems</h4>
             <p>Use of living systems and organisms to develop or make products.</p>
             <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>Biotechnology uses living cells and biological molecules to make medicines, foods, fuels and tools.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Recombinant DNA:</strong> combining DNA from different sources</li><li><strong>PCR:</strong> copies a tiny DNA sample millions of times</li><li><strong>CRISPR-Cas9:</strong> a tool for precise gene editing</li><li><strong>Fermentation:</strong> using microbes to make products</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>1983</b> PCR was invented by Kary Mullis</span><span class="lb-chip"><b>2003</b> Human Genome Project completed</span><span class="lb-chip"><b>2020</b> Nobel Prize for CRISPR gene editing</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>Insulin for diabetes was once taken from animals; today bacteria carrying the human insulin gene make it. Similar methods produce vaccines and other medicines.</p><p>Powerful tools raise questions about safety, fairness and consent, so biotechnology is guided by laws and ethics as well as science.</p></div></div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="PCR makes millions of copies of a DNA sample."><p class="qz-t">1. PCR is used to:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="1">Copy DNA</button><button type="button" class="qz-o" data-c="0">Digest proteins</button><button type="button" class="qz-o" data-c="0">Count cells</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="It cuts DNA at a chosen spot so genes can be changed."><p class="qz-t">2. CRISPR-Cas9 is a tool for:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Fermentation</button><button type="button" class="qz-o" data-c="0">Photosynthesis</button><button type="button" class="qz-o" data-c="1">Gene editing</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
             
             <div class="new-content">
                 <h5>Modern Applications:</h5>
@@ -2895,5 +2925,23 @@
             });
         });
     </script>
+<script>
+/* Quiz: tap an answer for instant feedback; score shows when every question is answered */
+(function(){
+  document.addEventListener('click',function(e){
+    var r=e.target.closest&&e.target.closest('.qz-r');
+    if(r){var z=r.closest('.quiz');z.dataset.s=0;z.querySelectorAll('.qz-q').forEach(function(q){delete q.dataset.done;q.querySelector('.qz-fb').hidden=true;q.querySelectorAll('.qz-o').forEach(function(o){o.disabled=false;o.classList.remove('qz-ok','qz-no')})});z.querySelector('.qz-sc').hidden=true;return}
+    var b=e.target.closest&&e.target.closest('.qz-o');if(!b)return;
+    var q=b.closest('.qz-q');if(q.dataset.done)return;q.dataset.done='1';
+    var ok=b.dataset.c==='1';b.classList.add(ok?'qz-ok':'qz-no');
+    if(!ok)q.querySelector('[data-c="1"]').classList.add('qz-ok');
+    var fb=q.querySelector('.qz-fb');fb.textContent=(ok?'Correct! ':'Not quite. ')+q.dataset.ex;fb.hidden=false;
+    q.querySelectorAll('.qz-o').forEach(function(o){o.disabled=true});
+    var z=q.closest('.quiz');if(ok)z.dataset.s=(+z.dataset.s||0)+1;
+    var n=z.querySelectorAll('.qz-q').length;
+    if(z.querySelectorAll('.qz-q[data-done]').length===n){var sc=z.querySelector('.qz-sc');sc.firstChild.textContent='Score: '+(+z.dataset.s||0)+' / '+n;sc.hidden=false}
+  });
+})();
+</script>
 </body>
 </html>
