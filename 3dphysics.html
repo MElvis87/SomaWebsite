@@ -1453,6 +1453,23 @@
     </style>
     <link rel="stylesheet" href="assets/css/soma-modern.css">
     <link rel="stylesheet" href="assets/css/soma-saas.css">
+<style>
+/* Learning blocks (Overview, Key Concepts, Quick Facts, Detailed Notes) */
+.learn-block{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0;content-visibility:auto;contain-intrinsic-size:auto 520px}
+.lb-sec{background:rgba(67,97,238,.07);border:1px solid rgba(67,97,238,.15);border-radius:12px;padding:14px 16px;min-width:0}
+.lb-sec:nth-child(4){grid-column:1/-1}
+.lb-sec h5{font-size:.8rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--primary,#4361ee);margin:0 0 8px}
+.lb-sec p,.lb-sec li{font-size:.95rem;line-height:1.6}
+.lb-sec p:last-child{margin-bottom:0}
+.lb-sec ul{margin:0;padding-left:1.1rem}
+.lb-chips{display:flex;flex-wrap:wrap;gap:8px}
+.lb-chip{flex:1 1 140px;background:rgba(20,184,166,.12);border-radius:10px;padding:8px 10px;font-size:.85rem;line-height:1.35}
+.lb-chip b{display:block;font-size:1rem}
+[data-theme="dark"] .lb-sec{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12)}
+[data-theme="dark"] .lb-sec h5{color:#4de1ff}
+[data-theme="dark"] .lb-chip{background:rgba(77,225,255,.12)}
+@media(max-width:767.98px){.learn-block{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
     <!-- Loading Screen -->
@@ -1541,7 +1558,7 @@
                     <!-- Profile Dropdown -->
                     <div class="dropdown profile-dropdown">
                         <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" id="profileDropdown" data-bs-toggle="dropdown">
-                            <img src="https://i.pravatar.cc/150?img=12" alt="Profile">
+                            <img loading="lazy" decoding="async" src="https://i.pravatar.cc/150?img=12" alt="Profile">
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li><a class="dropdown-item" href="#"><i class="fas fa-user-circle me-2"></i> Account</a></li>
@@ -1601,6 +1618,7 @@
                 <div class="accordion-body">
                     <h4>Classical Mechanics - Motion and Forces</h4>
                     <p>The study of motion, forces, and energy in physical systems. Classical mechanics describes how objects move under the influence of forces and forms the foundation of physics.</p>
+                    <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>Mechanics explains how and why things move, from a rolling ball to a launched rocket. It starts with a simple idea: forces change motion.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Velocity and acceleration:</strong> speed with direction, and how quickly it changes</li><li><strong>Newton's laws:</strong> objects keep moving unless a force acts; F = ma; every action has an equal and opposite reaction</li><li><strong>Momentum:</strong> mass times velocity, conserved in collisions</li><li><strong>Energy:</strong> kinetic and potential energy trade places but the total stays constant</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>1687</b> Newton published the Principia</span><span class="lb-chip"><b>9.8 m/s²</b> acceleration of falling objects on Earth</span><span class="lb-chip"><b>F = ma</b> force equals mass times acceleration</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>A bigger force or a smaller mass means more acceleration. A projectile follows a curved path because gravity pulls it down while it keeps moving forward at a steady horizontal speed.</p><p>In a Newton's cradle, momentum and energy pass through the balls in turn. Simple machines such as a pulley trade distance for force: more rope segments mean less pull is needed.</p></div></div>
                     
                     <!-- Subtopic Accordion -->
                     <div class="card">
@@ -1626,7 +1644,7 @@
                                         <div class="model-container">
                                             <div class="sketchfab-embed-wrapper"> 
                                                 <div class="responsive-iframe-container">   
-                                                    <iframe title="Projectile Motion" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="YOUR_SKETCHFAB_MODEL_URL_HERE"> 
+                                                    <iframe loading="lazy" title="Projectile Motion" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking web-share src="YOUR_SKETCHFAB_MODEL_URL_HERE"> 
                                                     </iframe> 
                                                 </div>
                                                 <p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;">
@@ -1662,7 +1680,7 @@
                                         <div class="model-container">
                                             <div class="sketchfab-embed-wrapper"> 
                                                 <div class="responsive-iframe-container">   
-                                                    <iframe title="Newton's Cradle" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="YOUR_SKETCHFAB_MODEL_URL_HERE"> 
+                                                    <iframe loading="lazy" title="Newton's Cradle" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking web-share src="YOUR_SKETCHFAB_MODEL_URL_HERE"> 
                                                     </iframe> 
                                                 </div>
                                             </div>
@@ -1712,7 +1730,7 @@
                     <div class="model-container">
                         <div class="sketchfab-embed-wrapper">
                             <div class="responsive-iframe-container"> 
-                         <iframe title="Block and Tackle" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/a25fab89be224ff8be071b93b2dc6f73/embed">
+                         <iframe loading="lazy" title="Block and Tackle" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking web-share src="https://sketchfab.com/models/a25fab89be224ff8be071b93b2dc6f73/embed">
                           </iframe>
                           </div> 
 
@@ -1740,6 +1758,7 @@
                 <div class="accordion-body">
                     <h4>Thermodynamics - Heat and Energy Transfer</h4>
                     <p>The study of heat, temperature, and energy transfer, and how these affect matter. Thermodynamics governs the behavior of systems in terms of energy flow and transformation.</p>
+                    <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>Thermodynamics studies how heat and energy move and change form, which is the science behind engines, fridges and weather.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Temperature vs heat:</strong> temperature measures average particle motion; heat is energy in transit</li><li><strong>First law:</strong> energy is never created or destroyed</li><li><strong>Second law:</strong> disorder (entropy) tends to increase</li><li><strong>Heat transfer:</strong> conduction, convection and radiation</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>−273.15 °C</b> absolute zero, the lowest possible temperature</span><span class="lb-chip"><b>100 °C</b> water boils at sea level</span><span class="lb-chip"><b>Below 100%</b> efficiency of any real heat engine</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>A heat engine takes in heat from a hot source, turns part of it into useful work and releases the rest to a cooler place. That wasted share is why no engine is perfectly efficient.</p><p>Heat always flows from hot to cold by itself. Making heat flow the other way, as a refrigerator does, needs extra work.</p></div></div>
                     
                     <!-- Key Points -->
                     <div class="key-points">
@@ -1756,7 +1775,7 @@
                     <div class="model-container">
                         <div class="sketchfab-embed-wrapper">
                             <div class="responsive-iframe-container"> 
-                                <iframe title="Heat Engine" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="YOUR_SKETCHFAB_MODEL_URL_HERE"> 
+                                <iframe loading="lazy" title="Heat Engine" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking web-share src="YOUR_SKETCHFAB_MODEL_URL_HERE"> 
                                 </iframe> 
                             </div>
                         </div>
@@ -1784,6 +1803,7 @@
                 <div class="accordion-body">
                     <h4>Electromagnetism - Electric and Magnetic Phenomena</h4>
                     <p>The study of electric and magnetic fields, their interactions, and electromagnetic waves. This includes electricity, magnetism, and electromagnetic radiation.</p>
+                    <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>Electricity and magnetism are two sides of one force. Together they power lights, motors, phones and the light we see.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Electric charge:</strong> positive and negative; like charges repel, opposites attract</li><li><strong>Electric field:</strong> the region where a charge feels a force</li><li><strong>Magnetic field:</strong> created by moving charges and magnets</li><li><strong>Electromagnetic waves:</strong> travelling electric and magnetic fields, including light</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>299,792,458 m/s</b> speed of light in a vacuum</span><span class="lb-chip"><b>1831</b> Faraday discovered electromagnetic induction</span><span class="lb-chip"><b>1860s</b> Maxwell united electricity, magnetism and light</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>Field lines show the direction of the force: they leave positive charges and enter negative ones. The closer the lines, the stronger the field.</p><p>A changing magnetic field creates an electric current, which is how generators work. A changing electric field creates a magnetic field, and together they form waves such as radio, visible light and X-rays.</p></div></div>
                     
                     <!-- New Research Content -->
                     <div class="new-content">
@@ -1813,7 +1833,7 @@
                                         <div class="model-container">
                                             <div class="sketchfab-embed-wrapper"> 
                                                 <div class="responsive-iframe-container">   
-                                                    <iframe title="Electric Field Lines" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="YOUR_SKETCHFAB_MODEL_URL_HERE"> 
+                                                    <iframe loading="lazy" title="Electric Field Lines" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking web-share src="YOUR_SKETCHFAB_MODEL_URL_HERE"> 
                                                     </iframe> 
                                                 </div>
                                             </div>
@@ -1868,12 +1888,13 @@
                 <div class="accordion-body">
                     <h4>Optics - The Study of Light</h4>
                     <p>The branch of physics that studies the behavior and properties of light, including its interactions with matter and the construction of instruments that use or detect it.</p>
+                    <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>Optics explains how light travels, bends and forms images, from rainbows to cameras and eyeglasses.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Reflection:</strong> light bouncing off a surface</li><li><strong>Refraction:</strong> light bending as it changes material</li><li><strong>Lenses:</strong> curved glass that focuses or spreads light</li><li><strong>Diffraction:</strong> light spreading around edges and openings</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>400–700 nm</b> wavelength range of visible light</span><span class="lb-chip"><b>~8 min</b> for sunlight to reach Earth</span><span class="lb-chip"><b>Rainbow</b> made by refraction and reflection in raindrops</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>Converging (convex) lenses bring light to a focus and are used in magnifiers, cameras and your eye. Diverging (concave) lenses spread light out and are used to correct short-sightedness.</p><p>White light is a mix of colours. Because each colour bends by a slightly different amount, a prism or water droplet separates them.</p></div></div>
                     
                     <!-- 3D Model Placeholder for Lens System -->
                     <div class="model-container">
                         <div class="sketchfab-embed-wrapper"> 
                             <div class="responsive-iframe-container"> 
-                                <iframe title="Optical Lens System" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="YOUR_SKETCHFAB_MODEL_URL_HERE"> 
+                                <iframe loading="lazy" title="Optical Lens System" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking web-share src="YOUR_SKETCHFAB_MODEL_URL_HERE"> 
                                 </iframe> 
                             </div>
                         </div>
@@ -1901,6 +1922,7 @@
                 <div class="accordion-body">
                     <h4>Modern Physics - Beyond Classical Physics</h4>
                     <p>Encompasses relativity, quantum mechanics, nuclear physics, particle physics, and cosmology - the physics developed in the 20th century that revolutionized our understanding of the universe.</p>
+                    <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>Around 1900, experiments revealed that very fast and very small things do not follow everyday rules. Relativity and quantum theory were the answer.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Relativity:</strong> space and time depend on motion and gravity</li><li><strong>Quantum:</strong> energy comes in tiny packets called quanta</li><li><strong>Wave-particle duality:</strong> light and matter act as both waves and particles</li><li><strong>Orbitals:</strong> electrons occupy probability clouds, not fixed paths</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>1900</b> Planck proposed quanta</span><span class="lb-chip"><b>1905</b> Einstein's special relativity and E = mc²</span><span class="lb-chip"><b>Probability</b> is central to quantum predictions</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>In the quantum atom, electrons exist in regions called orbitals where they are likely to be found. Each orbital holds a set amount of energy, and electrons jump between them by absorbing or releasing light.</p><p>Relativity shows that mass and energy are linked and that moving clocks run slow. These effects are tiny in daily life, but GPS satellites must correct for them.</p></div></div>
                     
                     <!-- Key Points -->
                     <div class="key-points">
@@ -1938,7 +1960,7 @@
                                         <div class="model-container">
                                             <div class="sketchfab-embed-wrapper"> 
                                                 <div class="responsive-iframe-container">   
-                                                    <iframe title="Quantum Atom Model" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="YOUR_SKETCHFAB_MODEL_URL_HERE"> 
+                                                    <iframe loading="lazy" title="Quantum Atom Model" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking web-share src="YOUR_SKETCHFAB_MODEL_URL_HERE"> 
                                                     </iframe> 
                                                 </div>
                                             </div>
@@ -1994,12 +2016,13 @@
                 <div class="accordion-body">
                     <h4>Wave Phenomena and Sound</h4>
                     <p>The study of mechanical waves, sound waves, wave interference, diffraction, and resonance phenomena. This includes both sound (acoustics) and other wave phenomena.</p>
+                    <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>Waves carry energy without carrying matter along. Sound, light and water ripples all follow the same wave rules.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Wavelength, frequency, amplitude:</strong> length, repeats per second and height of a wave</li><li><strong>Interference:</strong> waves add up or cancel out</li><li><strong>Resonance:</strong> a strong response at a natural frequency</li><li><strong>Doppler effect:</strong> pitch shifts when the source moves</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>343 m/s</b> speed of sound in air at 20 °C</span><span class="lb-chip"><b>20 Hz–20 kHz</b> typical human hearing range</span><span class="lb-chip"><b>v = fλ</b> wave speed equals frequency times wavelength</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>When two waves meet, crest-on-crest makes a bigger wave (constructive interference) and crest-on-trough cancels it (destructive interference). Noise-cancelling headphones use this to reduce sound.</p><p>Sound is a mechanical wave, so it needs a medium and cannot travel through empty space.</p></div></div>
                     
                     <!-- 3D Model Placeholder for Wave Interference -->
                     <div class="model-container">
                         <div class="sketchfab-embed-wrapper">
                             <div class="responsive-iframe-container"> 
-                                <div class="sketchfab-embed-wrapper"> <iframe title="Particle Wave" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/072b42ac6b8d4c93a55f3c524e44b2f3/embed"> </iframe> <p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;"> <a href="https://sketchfab.com/3d-models/particle-wave-072b42ac6b8d4c93a55f3c524e44b2f3" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> Particle Wave </a> by <a href="https://sketchfab.com/Tycho_Magnetic_Anomaly" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> Tycho Magnetic Anomaly </a> on <a href="https://sketchfab.com" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a></p></div>
+                                <div class="sketchfab-embed-wrapper"> <iframe loading="lazy" title="Particle Wave" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking web-share src="https://sketchfab.com/models/072b42ac6b8d4c93a55f3c524e44b2f3/embed"> </iframe> <p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;"> <a href="https://sketchfab.com/3d-models/particle-wave-072b42ac6b8d4c93a55f3c524e44b2f3" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> Particle Wave </a> by <a href="https://sketchfab.com/Tycho_Magnetic_Anomaly" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> Tycho Magnetic Anomaly </a> on <a href="https://sketchfab.com" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a></p></div>
                             </div>
                         </div>
                     </div>
@@ -2026,6 +2049,7 @@
                 <div class="accordion-body">
                     <h4>Nuclear Structure and Reactions</h4>
                     <p>The study of atomic nuclei, their components and interactions, nuclear reactions, radioactivity, and nuclear energy applications.</p>
+                    <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>The nucleus at the centre of every atom holds nearly all its mass and can release huge amounts of energy.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Protons and neutrons:</strong> particles that make up the nucleus</li><li><strong>Radioactive decay:</strong> unstable nuclei release radiation</li><li><strong>Fission:</strong> a heavy nucleus splits</li><li><strong>Fusion:</strong> light nuclei join, powering the Sun</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>~1/100,000</b> nucleus size compared with the atom</span><span class="lb-chip"><b>1938</b> fission was discovered</span><span class="lb-chip"><b>E = mc²</b> links lost mass to released energy</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>A nuclear reactor controls a chain reaction: neutrons split uranium nuclei, which release heat and more neutrons. Control rods absorb neutrons to keep the rate steady.</p><p>Half-life is the time for half of a radioactive sample to decay. It ranges from fractions of a second to billions of years.</p></div></div>
                     
                     <!-- New Research Content -->
                     <div class="new-content">
@@ -2037,7 +2061,7 @@
                     <div class="model-container">
                         <div class="sketchfab-embed-wrapper">
                             <div class="responsive-iframe-container"> 
-                                <iframe title="Nuclear Reactor Core" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="YOUR_SKETCHFAB_MODEL_URL_HERE"> 
+                                <iframe loading="lazy" title="Nuclear Reactor Core" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking web-share src="YOUR_SKETCHFAB_MODEL_URL_HERE"> 
                                 </iframe> 
                             </div>
                         </div>
@@ -2065,6 +2089,7 @@
                 <div class="accordion-body">
                     <h4>Behavior of Fluids</h4>
                     <p>The study of fluids (liquids and gases) and the forces on them. Includes fluid statics (hydrostatics) and fluid dynamics, describing flow behavior.</p>
+                    <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>Fluids are liquids and gases. They flow, push in all directions and can lift planes and float ships.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Pressure:</strong> force spread over an area</li><li><strong>Buoyancy:</strong> the upward push of a fluid</li><li><strong>Bernoulli's principle:</strong> faster flow means lower pressure</li><li><strong>Viscosity:</strong> a fluid's resistance to flow</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>101,325 Pa</b> average air pressure at sea level</span><span class="lb-chip"><b>3rd century BC</b> Archimedes explained buoyancy</span><span class="lb-chip"><b>1 litre</b> of water has a mass of about 1 kg</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>An object floats when it displaces fluid weighing as much as the object itself. Steel ships float because their hollow shape displaces a large volume of water.</p><p>An aircraft wing is shaped so air moves faster over the top. Together with the angle of the wing, this produces the lift that holds the plane up.</p></div></div>
                     
                     <!-- Key Points -->
                     <div class="key-points">
@@ -2081,7 +2106,7 @@
                     <div class="model-container">
                         <div class="sketchfab-embed-wrapper">
                             <div class="responsive-iframe-container"> 
-                                <iframe title="Aerodynamic Flow" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="YOUR_SKETCHFAB_MODEL_URL_HERE"> 
+                                <iframe loading="lazy" title="Aerodynamic Flow" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking web-share src="YOUR_SKETCHFAB_MODEL_URL_HERE"> 
                                 </iframe> 
                             </div>
                         </div>
@@ -2109,12 +2134,13 @@
                 <div class="accordion-body">
                     <h4>Physics of Solids</h4>
                     <p>The study of rigid matter, or solids, through methods such as quantum mechanics, crystallography, and electromagnetism. This forms the basis for semiconductor physics and materials science.</p>
+                    <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>Solid-state physics explains why materials are hard, shiny, conductive or brittle, and underlies all modern electronics.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Crystal lattice:</strong> atoms arranged in a repeating pattern</li><li><strong>Conductors and insulators:</strong> materials that do or do not carry current</li><li><strong>Semiconductors:</strong> materials whose conductivity can be controlled</li><li><strong>Elasticity:</strong> a solid's ability to spring back</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>14</b> basic 3D crystal lattice types</span><span class="lb-chip"><b>Silicon</b> is the base of most computer chips</span><span class="lb-chip"><b>Carbon</b> forms both diamond and graphite</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>The way atoms are arranged changes properties dramatically. Diamond's rigid 3D network makes it extremely hard, while graphite's sheets slide over each other.</p><p>Adding small amounts of other elements to silicon changes how it conducts electricity. This lets engineers build transistors, the switches inside every chip.</p></div></div>
                     
                     <!-- 3D Model Placeholder for Crystal Lattice -->
                     <div class="model-container">
                         <div class="sketchfab-embed-wrapper">
                             <div class="responsive-iframe-container"> 
-                                <iframe title="Crystal Lattice Structure" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="YOUR_SKETCHFAB_MODEL_URL_HERE"> 
+                                <iframe loading="lazy" title="Crystal Lattice Structure" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking web-share src="YOUR_SKETCHFAB_MODEL_URL_HERE"> 
                                 </iframe> 
                             </div>
                         </div>
@@ -2142,6 +2168,7 @@
                 <div class="accordion-body">
                     <h4>Physics of the Universe</h4>
                     <p>The application of physics principles to astronomical objects and phenomena. Includes stellar physics, galactic structure, black holes, and the evolution of the universe.</p>
+                    <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>Astrophysics applies physics to planets, stars and galaxies. Gravity shapes almost everything we see in space.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Gravity:</strong> the attraction between masses that holds orbits together</li><li><strong>Stellar life cycle:</strong> stars are born, shine and die</li><li><strong>Black holes:</strong> regions where gravity traps even light</li><li><strong>Expanding universe:</strong> space itself is stretching</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>~13.8 billion</b> years since the Big Bang</span><span class="lb-chip"><b>~30 km/s</b> Earth's orbital speed around the Sun</span><span class="lb-chip"><b>99.8%</b> of the Solar System's mass is the Sun</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>Planets stay in orbit because their sideways motion balances the Sun's pull. Closer planets move faster, which is why Mercury's year is only 88 days.</p><p>Stars shine by nuclear fusion. When massive stars run out of fuel they can collapse into neutron stars or black holes.</p></div></div>
                     
                     <!-- New Research Content -->
                     <div class="new-content">
@@ -2153,7 +2180,7 @@
                     <div class="model-container">
                         <div class="sketchfab-embed-wrapper">
                             <div class="responsive-iframe-container"> 
-                                <iframe title="Solar System Model" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="YOUR_SKETCHFAB_MODEL_URL_HERE"> 
+                                <iframe loading="lazy" title="Solar System Model" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking web-share src="https://sketchfab.com/models/ca0a6f6971a94fcc8d47421342dc6f40/embed"> 
                                 </iframe> 
                             </div>
                         </div>
@@ -2181,12 +2208,12 @@
         <div class="modal-popup">
             
             <div class="modal-header">
-                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" alt="About Us" class="modal-image">
+                <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" alt="About Us" class="modal-image">
                 
             </div>
             <div class="modal-body">
                 <h3 class="modal-title">About Soma</h3>
-                <p>Soma is an innovative educational platform that transforms learning through interactive 3D visualization technology. Our mission is to make complex concepts accessible and engaging for students of all ages.</p>
+                <p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;"><a href="https://sketchfab.com/3d-models/solar-system-model-orrery-ca0a6f6971a94fcc8d47421342dc6f40" target="_blank" rel="nofollow noopener" style="font-weight: bold; color: #1CAAD9;">Solar System Model (Orrery)</a> by Smoggybeard on <a href="https://sketchfab.com" target="_blank" rel="nofollow noopener" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a> · licensed <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="nofollow noopener" style="font-weight: bold; color: #1CAAD9;">CC BY 4.0</a></p>
                 
                 <div class="contact-info">
                     <h5>Our Team</h5>
@@ -2219,7 +2246,7 @@
             </button>
         <div class="modal-popup">
             <div class="modal-header">
-                <img src="https://images.unsplash.com/photo-1534536281715-e28d76689b4d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Contact Us" class="modal-image">
+                <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1534536281715-e28d76689b4d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Contact Us" class="modal-image">
                 
             </div>
             <div class="modal-body">
