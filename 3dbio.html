@@ -1566,6 +1566,24 @@
     </style>
     <link rel="stylesheet" href="assets/css/soma-modern.css">
     <link rel="stylesheet" href="assets/css/soma-saas.css">
+<style>
+/* Learning blocks (Overview, Key Concepts, Quick Facts, Detailed Notes) */
+.learn-block{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0;content-visibility:auto;contain-intrinsic-size:auto 520px}
+.lb-sec{background:rgba(67,97,238,.07);border:1px solid rgba(67,97,238,.15);border-radius:12px;padding:14px 16px;min-width:0}
+.lb-sec:nth-child(4){grid-column:1/-1}
+.lb-sec h5{font-size:.8rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--primary,#4361ee);margin:0 0 8px}
+.lb-sec p,.lb-sec li{font-size:.95rem;line-height:1.6}
+.lb-sec p:last-child{margin-bottom:0}
+.lb-sec ul{margin:0;padding-left:1.1rem}
+.lb-chips{display:flex;flex-wrap:wrap;gap:8px}
+.lb-chip{flex:1 1 140px;background:rgba(20,184,166,.12);border-radius:10px;padding:8px 10px;font-size:.85rem;line-height:1.35}
+.lb-chip b{display:block;font-size:1rem}
+[data-theme="dark"] .lb-sec{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12)}
+[data-theme="dark"] .lb-sec h5{color:#4de1ff}
+[data-theme="dark"] .lb-chip{background:rgba(77,225,255,.12)}
+.learn-embed{max-width:760px;margin-left:auto;margin-right:auto}
+@media(max-width:767.98px){.learn-block{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
     <!-- Loading Screen -->
@@ -1654,7 +1672,7 @@
                     <!-- Profile Dropdown -->
                     <div class="dropdown profile-dropdown">
                         <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" id="profileDropdown" data-bs-toggle="dropdown">
-                            <img src="https://i.pravatar.cc/150?img=12" alt="Profile">
+                            <img loading="lazy" decoding="async" src="https://i.pravatar.cc/150?img=12" alt="Profile">
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li><a class="dropdown-item" href="#"><i class="fas fa-user-circle me-2"></i> Account</a></li>
@@ -1714,6 +1732,7 @@
         <div class="accordion-body">
             <h4>Cell Structure and Function</h4>
             <p>The fundamental unit of life. Cells are the basic structural and functional units of all living organisms.</p>
+            <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>Every living thing, from a bacterium to a blue whale, is built from cells. Think of a cell as a tiny factory with a protective wall, a control room and specialised workstations.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Cell theory:</strong> all life is made of cells, and all cells come from existing cells</li><li><strong>Membrane:</strong> a thin barrier that controls what enters and leaves</li><li><strong>Organelles:</strong> tiny structures inside the cell that each do one job</li><li><strong>Two cell types:</strong> prokaryotes have no nucleus; eukaryotes do</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>1665</b> Robert Hooke first used the word "cell"</span><span class="lb-chip"><b>30–40 trillion</b> cells in an adult human body</span><span class="lb-chip"><b>1–100 µm</b> typical cell size, too small to see unaided</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>Prokaryotic cells (bacteria and archaea) are small and simple: their DNA floats freely in the cytoplasm. Eukaryotic cells (animals, plants, fungi) keep DNA in a nucleus and have membrane-bound organelles such as mitochondria, which release usable energy from food.</p><p>Plant cells add a rigid cell wall, chloroplasts for photosynthesis and a large water-filled vacuole. Animal cells lack these but are flexible, which lets them form muscles and nerves. Rotate the plant and animal models below and compare what each cell contains.</p></div></div>
             
             <!-- Subtopic Accordion -->
             <div class="card my-4">
@@ -1779,7 +1798,7 @@
         <div class="sketchfab-embed-wrapper">
             <div class="responsive-iframe-container">
                 <!-- Plant cell 3D model iframe start -->
-                 <div class="sketchfab-embed-wrapper"> <iframe title="Pflanzenzelle/Plant cell" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/72423fbd4e894160aeac61762d9ca592/embed"> </iframe> <p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;"> <a href="https://sketchfab.com/3d-models/pflanzenzelleplant-cell-72423fbd4e894160aeac61762d9ca592" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> Pflanzenzelle/Plant cell </a> by <a href="https://sketchfab.com/video111" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> InfraTrace.ch </a> on <a href="https://sketchfab.com" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a></p></div>
+                 <div class="sketchfab-embed-wrapper"> <iframe loading="lazy" title="Pflanzenzelle/Plant cell" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking web-share src="https://sketchfab.com/models/72423fbd4e894160aeac61762d9ca592/embed"> </iframe> <p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;"> <a href="https://sketchfab.com/3d-models/pflanzenzelleplant-cell-72423fbd4e894160aeac61762d9ca592" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> Pflanzenzelle/Plant cell </a> by <a href="https://sketchfab.com/video111" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> InfraTrace.ch </a> on <a href="https://sketchfab.com" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a></p></div>
                  <!-- Plant cell 3D model iframe end -->
             </div>
         </div>
@@ -1793,7 +1812,7 @@
         <div class="sketchfab-embed-wrapper">
             <div class="responsive-iframe-container">
                 <!-- Animal cell 3D model iframe start-->
-                 <div class="sketchfab-embed-wrapper"> <iframe title="Animal Cell" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/6a178502879d4bdaa768b44832a4069f/embed"> </iframe> <p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;"> <a href="https://sketchfab.com/3d-models/animal-cell-6a178502879d4bdaa768b44832a4069f" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> Animal Cell </a> by <a href="https://sketchfab.com/brubsaqui_" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> brubsaqui </a> on <a href="https://sketchfab.com" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a></p></div>
+                 <div class="sketchfab-embed-wrapper"> <iframe loading="lazy" title="Animal Cell" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking web-share src="https://sketchfab.com/models/6a178502879d4bdaa768b44832a4069f/embed"> </iframe> <p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;"> <a href="https://sketchfab.com/3d-models/animal-cell-6a178502879d4bdaa768b44832a4069f" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> Animal Cell </a> by <a href="https://sketchfab.com/brubsaqui_" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> brubsaqui </a> on <a href="https://sketchfab.com" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a></p></div>
             </div>
         </div>
         <div class="mt-3">
@@ -1867,6 +1886,7 @@
         <div class="accordion-body">
             <h4>Genetics and Heredity</h4>
             <p>Study of genes, genetic variation, and heredity in living organisms.</p>
+            <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>Genetics explains why you resemble your relatives. Instructions for building and running a body are written in DNA, passed from parents to children.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>DNA:</strong> a double-helix molecule that stores genetic information</li><li><strong>Gene:</strong> a section of DNA that holds the instructions for one product, usually a protein</li><li><strong>Chromosome:</strong> a tightly packed bundle of DNA</li><li><strong>Allele:</strong> a version of a gene, such as for eye colour</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>~3 billion</b> base pairs in the human genome</span><span class="lb-chip"><b>46</b> chromosomes in most human cells</span><span class="lb-chip"><b>99.9%</b> of DNA is the same between any two people</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>DNA is written with four letters (A, T, C and G). A always pairs with T and C with G, which is why each strand can serve as a template to copy the other. Cells read genes to make RNA, then proteins, and proteins do most of the work in the body.</p><p>Gregor Mendel showed in the 1860s, using pea plants, that traits are inherited as separate units, with some alleles dominant over others. Explore the DNA model below to see the twisted-ladder shape.</p></div></div>
             
             <div class="key-points">
                 <h6>Major Areas:</h6>
@@ -1886,7 +1906,7 @@
                     <p>3D DNA Double Helix Model</p>
                     <!--<p class="text-muted">Add Sketchfab embed code here.</p>-->
                     <!-- Placeholder for DNA 3D Model embed Start -->
-                     <div class="sketchfab-embed-wrapper"> <iframe title="DNA" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/60e95170b37549e3b45ee490b74bb112/embed"> </iframe> <p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;"> <a href="https://sketchfab.com/3d-models/dna-60e95170b37549e3b45ee490b74bb112" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> DNA </a> by <a href="https://sketchfab.com/holoxica" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> Holoxica </a> on <a href="https://sketchfab.com" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a></p></div>
+                     <div class="sketchfab-embed-wrapper"> <iframe loading="lazy" title="DNA" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking web-share src="https://sketchfab.com/models/60e95170b37549e3b45ee490b74bb112/embed"> </iframe> <p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;"> <a href="https://sketchfab.com/3d-models/dna-60e95170b37549e3b45ee490b74bb112" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> DNA </a> by <a href="https://sketchfab.com/holoxica" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> Holoxica </a> on <a href="https://sketchfab.com" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a></p></div>
                      <!-- Placeholder for DNA 3D Model end -->
                 </div>
             </div>
@@ -1905,6 +1925,7 @@
         <div class="accordion-body">
             <h4>Body Systems and Functions</h4>
             <p>Study of the structure and function of the human body systems.</p>
+            <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>Your body is a team of organ systems that work together. Anatomy describes what each part looks like; physiology explains how it works.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Skeletal system:</strong> bones that support and protect</li><li><strong>Circulatory system:</strong> heart and vessels that carry blood</li><li><strong>Nervous system:</strong> brain and nerves that send signals</li><li><strong>Homeostasis:</strong> keeping conditions inside the body stable</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>206</b> bones in an adult skeleton</span><span class="lb-chip"><b>~100,000</b> heartbeats every day</span><span class="lb-chip"><b>~86 billion</b> neurons in the human brain</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>The heart is a four-chamber pump. The right side sends blood to the lungs to pick up oxygen; the left side sends it around the body. Blood returns through veins and the cycle repeats.</p><p>The nervous system works through electrical and chemical signals. The brain makes decisions, the spinal cord relays messages and nerves reach every part of the body. Use the models in each system below to rotate, zoom and find the parts.</p></div></div>
             
             <!-- Subtopic Accordion for Body Systems -->
             <div class="card my-4">
@@ -1920,6 +1941,7 @@
                             <div class="accordion-body">
                                 <p>Framework of bones providing structure, protection, and movement.</p>
                                 <!-- Add your skeleton 3D model here -->
+<div class="model-container learn-embed"><div class="sketchfab-embed-wrapper"><div class="responsive-iframe-container"><iframe title="Skeleton" loading="lazy" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/4de7b96a351a4a35b1b6e5415277ff07/embed"></iframe></div><p><a href="https://sketchfab.com/3d-models/skeleton-4de7b96a351a4a35b1b6e5415277ff07" target="_blank" rel="nofollow noopener">Skeleton</a> by Diego Luján García on <a href="https://sketchfab.com" target="_blank" rel="nofollow noopener">Sketchfab</a> · licensed <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="nofollow noopener">CC BY 4.0</a></p></div></div>
                             </div>
                         </div>
                     </div>
@@ -1941,7 +1963,7 @@
                                 <!-- UPDATED: Responsive Sketchfab Embedding -->
                                 <div class="sketchfab-embed-wrapper"> 
                                     <div class="responsive-iframe-container"> 
-                                    <iframe title="3d Animated Realistic Human Heart - V2.0" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/168b474fba564f688048212e99b4159d/embed"> 
+                                    <iframe loading="lazy" title="3d Animated Realistic Human Heart - V2.0" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking web-share src="https://sketchfab.com/models/168b474fba564f688048212e99b4159d/embed"> 
                                     </iframe> 
                                 </div>
                                     <p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;"> <a href="https://sketchfab.com/3d-models/3d-animated-realistic-human-heart-v20-168b474fba564f688048212e99b4159d?utm_medium=embed&utm_campaign=share-popup&utm_content=168b474fba564f688048212e99b4159d" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> 3d Animated Realistic Human Heart - V2.0 </a> by <a href="https://sketchfab.com/docjana?utm_medium=embed&utm_campaign=share-popup&utm_content=168b474fba564f688048212e99b4159d" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> Anatomy by Doctor Jana </a> on <a href="https://sketchfab.com?utm_medium=embed&utm_campaign=share-popup&utm_content=168b474fba564f688048212e99b4159d" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a>
@@ -1964,6 +1986,7 @@
                             <div class="accordion-body">
                                 <p>Brain, spinal cord, and nerves - control and communication network.</p>
                                 <!-- Add your brain 3D model here -->
+<div class="model-container learn-embed"><div class="sketchfab-embed-wrapper"><div class="responsive-iframe-container"><iframe title="Brain Model" loading="lazy" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/06b780971c1d474faadc005c1036f1f7/embed"></iframe></div><p><a href="https://sketchfab.com/3d-models/brain-model-06b780971c1d474faadc005c1036f1f7" target="_blank" rel="nofollow noopener">Brain Model</a> by Nahiarapa on <a href="https://sketchfab.com" target="_blank" rel="nofollow noopener">Sketchfab</a> · licensed <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="nofollow noopener">CC BY 4.0</a></p></div></div>
                             </div>
                         </div>
                     </div>
@@ -1986,6 +2009,7 @@
         <div class="accordion-body">
             <h4>Ecosystems and Interactions</h4>
             <p>Study of relationships between organisms and their environment.</p>
+            <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>Ecology looks at how living things interact with each other and with air, water and soil. Nothing in nature lives alone.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Ecosystem:</strong> living things plus their non-living surroundings</li><li><strong>Food chain:</strong> who eats whom, and how energy moves</li><li><strong>Producers:</strong> plants and algae that make food from sunlight</li><li><strong>Biodiversity:</strong> the variety of life in an area</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>1866</b> Ernst Haeckel coined "ecology"</span><span class="lb-chip"><b>~10%</b> of energy passes to the next feeding level</span><span class="lb-chip"><b>3</b> main roles: producers, consumers, decomposers</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>Energy enters most ecosystems as sunlight, is captured by producers and passes to herbivores, then carnivores. A large share is lost as heat at each step, so food chains are usually short and there are fewer predators than prey.</p><p>Matter is recycled instead: decomposers return nutrients to the soil, and carbon, water and nitrogen cycle between living things and the environment.</p></div></div>
             
             <div class="new-content">
                 <h5>Key Concepts:</h5>
@@ -2016,6 +2040,7 @@
         <div class="accordion-body">
             <h4>Theory of Evolution</h4>
             <p>Study of how species change over time through natural selection and genetic variation.</p>
+            <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>Evolution explains how the variety of life arose from common ancestors over billions of years.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Variation:</strong> individuals in a group differ from each other</li><li><strong>Natural selection:</strong> traits that help survival become more common</li><li><strong>Adaptation:</strong> a trait that suits an organism to its environment</li><li><strong>Common ancestry:</strong> related species share ancestors</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>1859</b> Darwin published On the Origin of Species</span><span class="lb-chip"><b>~4.5 billion</b> years: the age of Earth</span><span class="lb-chip"><b>3.5+ billion</b> years: evidence of life</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>Natural selection needs three things: variation, inheritance and differences in survival or reproduction. Over many generations, helpful traits spread through a population. Evolution acts on populations, not on individuals.</p><p>The evidence is broad: fossils show change through time, similar bone structures appear across different animals, and DNA comparisons match the family trees built from anatomy.</p></div></div>
             
             <div class="key-points">
                 <h6>Evidence for Evolution:</h6>
@@ -2052,7 +2077,7 @@
                     </div>
                     <div class="sketchfab-embed-wrapper">
                         <div class="responsive-iframe-container">
-                            <iframe title="Prophase Cell Model" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/YOUR_PROPHASE_MODEL_ID/embed">
+                            <iframe loading="lazy" title="Prophase Cell Model" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/YOUR_PROPHASE_MODEL_ID/embed">
                             </iframe>
                         </div>
                         <p style="font-size: 13px; margin: 5px; color: var(--text-color);">
@@ -2072,7 +2097,7 @@
                     </div>
                     <div class="sketchfab-embed-wrapper">
                         <div class="responsive-iframe-container">
-                            <iframe title="Metaphase Cell Model" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/YOUR_METAPHASE_MODEL_ID/embed">
+                            <iframe loading="lazy" title="Metaphase Cell Model" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/YOUR_METAPHASE_MODEL_ID/embed">
                             </iframe>
                         </div>
                         <p style="font-size: 13px; margin: 5px; color: var(--text-color);">
@@ -2092,7 +2117,7 @@
                     </div>
                     <div class="sketchfab-embed-wrapper">
                         <div class="responsive-iframe-container">
-                            <iframe title="Anaphase Cell Model" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/YOUR_ANAPHASE_MODEL_ID/embed">
+                            <iframe loading="lazy" title="Anaphase Cell Model" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/YOUR_ANAPHASE_MODEL_ID/embed">
                             </iframe>
                         </div>
                         <p style="font-size: 13px; margin: 5px; color: var(--text-color);">
@@ -2147,6 +2172,7 @@
         <div class="accordion-body">
             <h4>Microorganisms</h4>
             <p>Study of microscopic organisms including bacteria, viruses, fungi, and protozoa.</p>
+            <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>Microbes are living things too small to see without a microscope. Most are harmless or helpful, and a few cause disease.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Bacteria:</strong> single-celled prokaryotes</li><li><strong>Viruses:</strong> particles that must infect a cell to multiply</li><li><strong>Fungi:</strong> yeasts and moulds, which decompose matter</li><li><strong>Antibiotics:</strong> medicines that work on bacteria, not viruses</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>1670s</b> Leeuwenhoek first observed microbes</span><span class="lb-chip"><b>~1:1</b> ratio of bacterial to human cells in the body</span><span class="lb-chip"><b>~20 min</b> fastest doubling time for some bacteria</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>Bacteria have a cell wall, DNA in a loop and often tiny tails (flagella) for swimming. They divide by splitting in two, so populations can grow very quickly in good conditions.</p><p>Many microbes help us: gut bacteria aid digestion, yeast makes bread rise, and soil microbes recycle nutrients. Hygiene, vaccines and clean water are the main defences against harmful ones.</p></div></div>
             
             <div class="new-content">
                 <h5>Importance in Medicine and Environment:</h5>
@@ -2159,7 +2185,7 @@
                     <i class="fas fa-bacteria fa-3x mb-3"></i>
                     <p>3D Bacterial Cell Model</p>
                     <!--<p class="text-muted">Add Sketchfab embed code here</p>-->
-                    <div class="sketchfab-embed-wrapper"> <iframe title="Bacterial Cell Model" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/d8d0207a54b443f68c24deb7673d5f55/embed"> </iframe> <p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;"> <a href="https://sketchfab.com/3d-models/bacterial-cell-model-d8d0207a54b443f68c24deb7673d5f55" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> Bacterial Cell Model </a> by <a href="https://sketchfab.com/kurtanthony.cruz.mnl" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> Wen </a> on <a href="https://sketchfab.com" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a></p></div>
+                    <div class="sketchfab-embed-wrapper"> <iframe loading="lazy" title="Bacterial Cell Model" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking web-share src="https://sketchfab.com/models/d8d0207a54b443f68c24deb7673d5f55/embed"> </iframe> <p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;"> <a href="https://sketchfab.com/3d-models/bacterial-cell-model-d8d0207a54b443f68c24deb7673d5f55" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> Bacterial Cell Model </a> by <a href="https://sketchfab.com/kurtanthony.cruz.mnl" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> Wen </a> on <a href="https://sketchfab.com" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a></p></div>
 
 
                 </div>
@@ -2179,6 +2205,7 @@
         <div class="accordion-body">
             <h4>Botany and Plant Science</h4>
             <p>Study of plant life including structure, growth, reproduction, and metabolism.</p>
+            <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>Plants make their own food from light and support almost all life on land by providing food and oxygen.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Photosynthesis:</strong> turning light, water and CO₂ into sugar and oxygen</li><li><strong>Roots:</strong> absorb water and minerals and anchor the plant</li><li><strong>Stomata:</strong> tiny leaf pores for gas exchange</li><li><strong>Xylem and phloem:</strong> tubes that carry water and sugars</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>6CO₂ + 6H₂O</b> + light → C₆H₁₂O₆ + 6O₂</span><span class="lb-chip"><b>4,800+ years</b> age of the oldest bristlecone pines</span><span class="lb-chip"><b>Green</b> because chlorophyll reflects green light</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>Photosynthesis happens in chloroplasts. Chlorophyll absorbs mostly red and blue light, and the plant uses that energy to build glucose from carbon dioxide and water, releasing oxygen as a by-product.</p><p>Plants respond to their world too: shoots bend toward light, roots grow down with gravity, and hormones such as auxin coordinate growth.</p></div></div>
             
             <div class="key-points">
                 <h6>Plant Systems:</h6>
@@ -2213,6 +2240,7 @@
         <div class="accordion-body">
             <h4>Chemical Processes in Living Organisms</h4>
             <p>Study of chemical substances and vital processes occurring in living organisms.</p>
+            <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>Biochemistry is the chemistry of life: how molecules build cells and how cells turn food into energy.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Macromolecules:</strong> proteins, carbohydrates, lipids and nucleic acids</li><li><strong>Enzymes:</strong> proteins that speed up reactions</li><li><strong>ATP:</strong> the cell's energy currency</li><li><strong>Metabolism:</strong> all chemical reactions in an organism</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>20</b> standard amino acids build proteins</span><span class="lb-chip"><b>4</b> major classes of biological macromolecules</span><span class="lb-chip"><b>Millions</b> of ATP molecules used per cell each second</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>A protein's shape decides its job. A chain of amino acids folds into a specific 3D form, and even a small change can stop it working. This is why 3D models are so useful for studying proteins.</p><p>Enzymes lower the energy needed for a reaction, so cells can run chemistry at body temperature. Cellular respiration then converts glucose into ATP, which powers movement, growth and repair.</p></div></div>
             
             <div class="new-content">
                 <h5>Key Molecules:</h5>
@@ -2242,6 +2270,7 @@
         <div class="accordion-body">
             <h4>Growth and Development</h4>
             <p>Study of the process by which organisms grow and develop from zygote to adult.</p>
+            <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>Developmental biology follows how one fertilised cell becomes a complete organism with many different tissues.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Zygote:</strong> the first cell, formed at fertilisation</li><li><strong>Differentiation:</strong> cells becoming specialised</li><li><strong>Stem cells:</strong> cells that can become other cell types</li><li><strong>Morphogenesis:</strong> how body shape forms</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>200+</b> cell types arise from one zygote</span><span class="lb-chip"><b>~40 weeks</b> of human pregnancy</span><span class="lb-chip"><b>Hox genes</b> set up the body plan</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>After fertilisation, the zygote divides repeatedly. Early cells can become almost anything; later, signals switch genes on or off so cells become muscle, nerve, skin and more.</p><p>The same genes guide development in many animals, which is why embryos of different species look alike in early stages.</p></div></div>
             
             <div class="key-points">
                 <h6>Developmental Processes:</h6>
@@ -2267,6 +2296,7 @@
         <div class="accordion-body">
             <h4>Applications of Biological Systems</h4>
             <p>Use of living systems and organisms to develop or make products.</p>
+            <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>Biotechnology uses living cells and biological molecules to make medicines, foods, fuels and tools.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Recombinant DNA:</strong> combining DNA from different sources</li><li><strong>PCR:</strong> copies a tiny DNA sample millions of times</li><li><strong>CRISPR-Cas9:</strong> a tool for precise gene editing</li><li><strong>Fermentation:</strong> using microbes to make products</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>1983</b> PCR was invented by Kary Mullis</span><span class="lb-chip"><b>2003</b> Human Genome Project completed</span><span class="lb-chip"><b>2020</b> Nobel Prize for CRISPR gene editing</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>Insulin for diabetes was once taken from animals; today bacteria carrying the human insulin gene make it. Similar methods produce vaccines and other medicines.</p><p>Powerful tools raise questions about safety, fairness and consent, so biotechnology is guided by laws and ethics as well as science.</p></div></div>
             
             <div class="new-content">
                 <h5>Modern Applications:</h5>
@@ -2299,7 +2329,7 @@
         <div class="modal-popup">
             
             <div class="modal-header">
-                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" alt="About Us" class="modal-image">
+                <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" alt="About Us" class="modal-image">
                 
             </div>
             <div class="modal-body">
@@ -2337,7 +2367,7 @@
             </button>
         <div class="modal-popup">
             <div class="modal-header">
-                <img src="https://images.unsplash.com/photo-1534536281715-e28d76689b4d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Contact Us" class="modal-image">
+                <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1534536281715-e28d76689b4d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Contact Us" class="modal-image">
                 
             </div>
             <div class="modal-body">
