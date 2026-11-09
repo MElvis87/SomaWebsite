@@ -2733,5 +2733,136 @@
   });
 })();
 </script>
+<!-- Mobile navbar: search icon + theme toggle in the header, centered hamburger menu -->
+<style>
+    @media (max-width: 991.98px) {
+        /* Header icons, next to the hamburger */
+        .navbar > .container > .nav-search-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            margin: 0 0.5rem 0 auto;
+            padding: 0;
+            border: 1px solid rgba(128, 128, 128, 0.4);
+            border-radius: 10px;
+            background: transparent;
+            color: inherit;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        .navbar > .container > .nav-search-btn[aria-expanded="true"] {
+            background: var(--primary, #4361ee);
+            border-color: transparent;
+            color: #fff;
+        }
+        .navbar > .container > .theme-toggle {
+            display: flex !important;
+            flex: 0 0 auto !important;
+            width: auto !important;
+            margin: 0 0.6rem 0 0 !important;
+            padding: 0 !important;
+            border: 0 !important;
+            border-radius: 0 !important;
+            background: transparent !important;
+            box-shadow: none !important;
+            gap: 0.25rem;
+            justify-content: center !important;
+        }
+        .navbar > .container > .theme-toggle .theme-toggle-label {
+            margin: 0 2px !important;
+            font-size: 0.8rem !important;
+        }
+        /* Search bar: hidden until the magnifying glass is tapped, then a full-width row under the header */
+        .navbar > .container > #searchForm {
+            display: none !important;
+            flex: 0 0 100% !important;
+            width: 100% !important;
+            margin: 10px 0 0 !important;
+        }
+        .navbar > .container > #searchForm.search-open { display: flex !important; }
+        #searchForm .input-group { width: 100%; flex-wrap: nowrap; }
+
+        /* Centered hamburger menu content */
+        .navbar-collapse { text-align: center; }
+        .navbar-collapse .navbar-nav { align-items: center; width: 100%; }
+        .navbar-collapse .nav-item { width: 100%; text-align: center; }
+        .navbar-collapse .nav-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+        }
+        .navbar-collapse .navbar-nav .dropdown-menu {
+            position: static !important;
+            float: none;
+            width: max-content;
+            min-width: 12rem;
+            max-width: 100%;
+            margin: 0.25rem auto !important;
+            text-align: center;
+        }
+        .navbar-collapse .dropdown-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .navbar-collapse > .d-flex { justify-content: center; width: 100%; margin-top: 0.5rem; }
+        .navbar-collapse .profile-dropdown { margin: 0.5rem auto 0; }
+        .navbar-collapse .profile-dropdown .dropdown-menu {
+            left: 50% !important;
+            right: auto !important;
+            transform: translateX(-50%) !important;
+        }
+    }
+</style>
+<script>
+    /* Under 992px: show a magnifying-glass button and the theme toggle beside the hamburger.
+       The same elements are moved (not copied), so the search and theme scripts keep working.
+       On larger screens everything returns to its original place. */
+    (function () {
+        var nav = document.querySelector('.navbar');
+        if (!nav) return;
+        var container = nav.querySelector('.container');
+        var toggle = nav.querySelector('.theme-toggle');
+        var form = document.getElementById('searchForm');
+        var burger = nav.querySelector('.navbar-toggler');
+        if (!container || !toggle || !form || !burger) return;
+
+        function mark(el) { var m = document.createComment(''); el.parentNode.insertBefore(m, el); return m; }
+        var markToggle = mark(toggle), markForm = mark(form);
+
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'nav-search-btn';
+        btn.setAttribute('aria-label', 'Search');
+        btn.setAttribute('aria-expanded', 'false');
+        btn.innerHTML = '<i class="fas fa-search"></i>';
+        btn.addEventListener('click', function () {
+            var open = form.classList.toggle('search-open');
+            btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+            if (open) { var input = form.querySelector('input'); if (input) input.focus(); }
+        });
+
+        var mq = window.matchMedia('(max-width: 991.98px)');
+        function place() {
+            if (mq.matches) {
+                container.insertBefore(btn, burger);
+                container.insertBefore(toggle, burger);
+                container.insertBefore(form, burger.nextSibling);
+            } else {
+                form.classList.remove('search-open');
+                btn.setAttribute('aria-expanded', 'false');
+                if (btn.parentNode) btn.parentNode.removeChild(btn);
+                markToggle.parentNode.insertBefore(toggle, markToggle.nextSibling);
+                markForm.parentNode.insertBefore(form, markForm.nextSibling);
+            }
+        }
+        place();
+        if (mq.addEventListener) { mq.addEventListener('change', place); } else { mq.addListener(place); }
+    })();
+</script>
 </body>
 </html>
