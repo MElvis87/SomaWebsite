@@ -2447,8 +2447,8 @@ html, body {
 
                     <!-- Notepad Dropdown Button -->
 <div class="dropdown notepad-dropdown">
-    <button class="btn notepad-btn" type="button" id="notepadDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-        <i class="fas fa-book"></i>
+    <button title="Premium Access" aria-label="Premium Access" class="btn notepad-btn" type="button" id="notepadDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+        <svg class="bevel-star" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><polygon points="12.00,1.00 14.88,8.04 22.46,8.60 16.66,13.51 18.47,20.90 12.00,16.90 5.53,20.90 7.34,13.51 1.54,8.60 9.12,8.04" fill="currentColor"/><polygon points="12.00,12.00 12.00,1.00 14.88,8.04" fill="#fff" fill-opacity="0.24"/><polygon points="12.00,12.00 14.88,8.04 22.46,8.60" fill="#000" fill-opacity="0.12"/><polygon points="12.00,12.00 22.46,8.60 16.66,13.51" fill="#000" fill-opacity="0.26"/><polygon points="12.00,12.00 16.66,13.51 18.47,20.90" fill="#000" fill-opacity="0.42"/><polygon points="12.00,12.00 18.47,20.90 12.00,16.90" fill="#000" fill-opacity="0.39"/><polygon points="12.00,12.00 12.00,16.90 5.53,20.90" fill="#000" fill-opacity="0.14"/><polygon points="12.00,12.00 5.53,20.90 7.34,13.51" fill="#fff" fill-opacity="0.01"/><polygon points="12.00,12.00 7.34,13.51 1.54,8.60" fill="#fff" fill-opacity="0.33"/><polygon points="12.00,12.00 1.54,8.60 9.12,8.04" fill="#fff" fill-opacity="0.40"/><polygon points="12.00,12.00 9.12,8.04 12.00,1.00" fill="#fff" fill-opacity="0.35"/><polygon points="12.00,1.00 14.88,8.04 22.46,8.60 16.66,13.51 18.47,20.90 12.00,16.90 5.53,20.90 7.34,13.51 1.54,8.60 9.12,8.04" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width=".5" stroke-linejoin="round"/></svg>
     </button>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="notepadDropdown">
         <li><a class="dropdown-item" href="#"><i class="fas fa-sign-in-alt me-2"></i> Premium Access</a></li>
@@ -3229,6 +3229,10 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
     </script>
+<style>
+    /* Premium Access button: beveled star icon (distinct from the book icon used for Subjects) */
+    .notepad-btn .bevel-star { display: block; width: 1.15em; height: 1.15em; filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.35)); }
+</style>
 <!-- Mobile navbar: book-icon subjects dropdown + theme toggle in the header, centered hamburger menu -->
 <style>
     @media (max-width: 991.98px) {
