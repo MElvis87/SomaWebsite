@@ -1418,6 +1418,41 @@
     </style>
     <link rel="stylesheet" href="assets/css/soma-modern.css">
     <link rel="stylesheet" href="assets/css/soma-saas.css">
+<style>
+/* Learning blocks (Overview, Key Concepts, Quick Facts, Detailed Notes) */
+.learn-block{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0;content-visibility:auto;contain-intrinsic-size:auto 520px}
+.lb-sec{background:rgba(67,97,238,.07);border:1px solid rgba(67,97,238,.15);border-radius:12px;padding:14px 16px;min-width:0}
+.lb-sec:nth-child(4){grid-column:1/-1}
+.lb-sec h5{font-size:.8rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--primary,#4361ee);margin:0 0 8px}
+.lb-sec p,.lb-sec li{font-size:.95rem;line-height:1.6}
+.lb-sec p:last-child{margin-bottom:0}
+.lb-sec ul{margin:0;padding-left:1.1rem}
+.lb-chips{display:flex;flex-wrap:wrap;gap:8px}
+.lb-chip{flex:1 1 140px;background:rgba(20,184,166,.12);border-radius:10px;padding:8px 10px;font-size:.85rem;line-height:1.35}
+.lb-chip b{display:block;font-size:1rem}
+[data-theme="dark"] .lb-sec{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12)}
+[data-theme="dark"] .lb-sec h5{color:#4de1ff}
+[data-theme="dark"] .lb-chip{background:rgba(77,225,255,.12)}
+@media(max-width:767.98px){.learn-block{grid-template-columns:1fr}}
+</style>
+<style>
+/* Quizzes */
+.quiz{margin:18px 0;padding:16px;border-radius:12px;border:1px solid rgba(67,97,238,.2);background:rgba(67,97,238,.05)}
+.quiz>h5{font-size:.95rem;font-weight:700;margin:0 0 12px;color:var(--primary,#4361ee)}
+.qz-q{margin:0 0 14px}
+.qz-t{font-weight:600;margin:0 0 8px}
+.qz-opts{display:flex;flex-wrap:wrap;gap:8px}
+.qz-o{flex:1 1 180px;text-align:left;padding:9px 12px;border-radius:10px;border:1px solid rgba(100,116,139,.4);background:transparent;color:inherit;font:inherit;font-size:.92rem;cursor:pointer;transition:background .2s,border-color .2s}
+.qz-o:hover:not(:disabled){background:rgba(67,97,238,.12)}
+.qz-o:disabled{cursor:default}
+.qz-o.qz-ok{background:rgba(22,163,74,.2);border-color:#16a34a}
+.qz-o.qz-no{background:rgba(220,38,38,.18);border-color:#dc2626}
+.qz-fb{margin:8px 0 0;font-size:.88rem;opacity:.9}
+.qz-sc{display:flex;align-items:center;gap:10px;font-weight:700;margin:4px 0 0}
+.qz-r{border:1px solid rgba(100,116,139,.5);background:transparent;color:inherit;border-radius:8px;padding:3px 10px;font-size:.82rem;cursor:pointer}
+[data-theme="dark"] .quiz{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.14)}
+[data-theme="dark"] .quiz>h5{color:#4de1ff}
+</style>
 </head>
 <body>
     <!-- Loading Screen -->
@@ -1506,7 +1541,7 @@
                     <!-- Profile Dropdown -->
                     <div class="dropdown profile-dropdown">
                         <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" id="profileDropdown" data-bs-toggle="dropdown">
-                            <img src="https://i.pravatar.cc/150?img=12" alt="Profile">
+                            <img loading="lazy" decoding="async" src="https://i.pravatar.cc/150?img=12" alt="Profile">
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li><a class="dropdown-item" href="#"><i class="fas fa-user-circle me-2"></i> Account</a></li>
@@ -1566,6 +1601,8 @@
                 <div class="accordion-body">
                     <h4>What is a Computer?</h4>
                     <p>A computer is an electronic device that processes data according to a set of instructions called a program.</p>
+            <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>A computer is a machine that takes in data, processes it using instructions and produces useful results.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Input, process, output:</strong> the basic cycle of every computer</li><li><strong>Hardware and software:</strong> the physical parts and the programs that run on them</li><li><strong>Data and information:</strong> raw facts become meaningful when processed</li><li><strong>Binary:</strong> computers store everything as 0s and 1s</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>8 bits</b> make 1 byte</span><span class="lb-chip"><b>1945</b> ENIAC, an early general-purpose electronic computer</span><span class="lb-chip"><b>Billions</b> of operations per second in modern processors</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>Computers come in many forms, from phones and laptops to servers and the chips inside cars. They are fast and accurate but only do what their programs tell them to do.</p></div></div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="Programs tell the hardware what to do."><p class="qz-t">1. A computer works by following:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Only electricity</button><button type="button" class="qz-o" data-c="1">A set of instructions called a program</button><button type="button" class="qz-o" data-c="0">The screen</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="1 byte = 8 bits."><p class="qz-t">2. How many bits make one byte?</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">4</button><button type="button" class="qz-o" data-c="0">16</button><button type="button" class="qz-o" data-c="1">8</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
                     
                     <!-- Subtopic Accordion -->
                     <div class="card my-4">
@@ -1642,6 +1679,9 @@
                 <div class="accordion-body">
                     <h4>Physical Components of a Computer</h4>
                     <p>Hardware refers to the physical, tangible parts of a computer system.</p>
+            <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>Hardware is everything you can touch. Each part has a job, and they work together on the motherboard.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>CPU:</strong> processes instructions</li><li><strong>RAM:</strong> temporary memory for data in use</li><li><strong>Storage:</strong> keeps files when power is off</li><li><strong>Motherboard:</strong> the circuit board linking all parts</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>GHz</b> unit for CPU clock speed</span><span class="lb-chip"><b>Volatile</b> RAM loses its contents without power</span><span class="lb-chip"><b>Input / output</b> devices bring data in and show results</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>The CPU follows the fetch, decode, execute cycle: it fetches an instruction from memory, works out what it means and carries it out. The motherboard's circuits carry data between the CPU, memory and other parts. Explore the motherboard and chip models below.</p></div></div>
+            <div class="model-container"><div class="sketchfab-embed-wrapper"><div class="responsive-iframe-container"><iframe loading="lazy" title="Asus Z170-P Motherboard" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/b998596cfc4945a0bc7b016005c39321/embed"></iframe></div><p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;"><a href="https://sketchfab.com/3d-models/asus-z170-p-motherboard-b998596cfc4945a0bc7b016005c39321" target="_blank" rel="nofollow noopener" style="font-weight: bold; color: #1CAAD9;">Asus Z170-P Motherboard</a> by Lassi Kaukonen on <a href="https://sketchfab.com" target="_blank" rel="nofollow noopener" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a> · licensed <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="nofollow noopener" style="font-weight: bold; color: #1CAAD9;">CC BY 4.0</a></p></div></div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="CPU, memory and other parts all plug into the motherboard."><p class="qz-t">1. The motherboard:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Prints documents</button><button type="button" class="qz-o" data-c="0">Stores web pages</button><button type="button" class="qz-o" data-c="1">Connects the computer&#x27;s main components</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="RAM is fast, temporary working memory."><p class="qz-t">2. Which part temporarily holds data in use?</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Monitor</button><button type="button" class="qz-o" data-c="1">RAM</button><button type="button" class="qz-o" data-c="0">Keyboard</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
                     
                     <div class="key-points">
                         <h6>Main Hardware Categories:</h6>
@@ -1735,14 +1775,13 @@
                                             <!-- UPDATED: Responsive Sketchfab Embedding -->
                                             <div class="sketchfab-embed-wrapper"> 
                                                 <div class="responsive-iframe-container"> 
-                                                    <iframe title="3D CPU Model Placeholder" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/..."> 
+                                                    <iframe loading="lazy" title="Microchip - Prototype" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking web-share src="https://sketchfab.com/models/7d00abe914664a17b4bf18c6e851e7eb/embed"> 
                                                     </iframe> 
                                                 </div>
-                                                <p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;"> 
-                                                    <a href="#" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">3D CPU Model</a>
-                                                </p>
+                                                <p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;"><a href="https://sketchfab.com/3d-models/microchip-prototype-7d00abe914664a17b4bf18c6e851e7eb" target="_blank" rel="nofollow noopener" style="font-weight: bold; color: #1CAAD9;">Microchip - Prototype</a> by re1monsen on <a href="https://sketchfab.com" target="_blank" rel="nofollow noopener" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a> · licensed <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="nofollow noopener" style="font-weight: bold; color: #1CAAD9;">CC BY 4.0</a></p>
                                             </div>
                                         </div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="It carries out the fetch, decode, execute cycle."><p class="qz-t">1. The CPU is the computer&#x27;s:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Screen</button><button type="button" class="qz-o" data-c="0">Speaker</button><button type="button" class="qz-o" data-c="1">Brain that processes instructions</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="GHz shows billions of cycles per second."><p class="qz-t">2. CPU speed is usually measured in:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Pixels</button><button type="button" class="qz-o" data-c="1">Gigahertz (GHz)</button><button type="button" class="qz-o" data-c="0">Litres</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
                                         <div class="key-points">
                                             <h6>CPU Components:</h6>
                                             <ul>
@@ -1772,6 +1811,8 @@
                 <div class="accordion-body">
                     <h4>Programs and Applications</h4>
                     <p>Software refers to the instructions that tell hardware what to do.</p>
+            <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>Software is a set of instructions that tells hardware what to do. Applications are programs people use to get tasks done.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Application software:</strong> word processors, browsers, games</li><li><strong>Programming language:</strong> a way to write instructions</li><li><strong>Algorithm:</strong> steps that solve a problem</li><li><strong>Debugging:</strong> finding and fixing errors</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>1843</b> Ada Lovelace published the first algorithm intended for a machine</span><span class="lb-chip"><b>Compiler</b> translates a whole program at once</span><span class="lb-chip"><b>Interpreter</b> runs a program line by line</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>Programmers write source code in languages such as Python or JavaScript, which is translated into machine code the CPU understands. Good programs break a problem into small, clear steps.</p></div></div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="Algorithms are the core of programs."><p class="qz-t">1. A step-by-step set of instructions to solve a problem is an:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Icon</button><button type="button" class="qz-o" data-c="0">Browser</button><button type="button" class="qz-o" data-c="1">Algorithm</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="Bugs are errors; debugging removes them."><p class="qz-t">2. Finding and fixing errors in code is called:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Formatting</button><button type="button" class="qz-o" data-c="1">Debugging</button><button type="button" class="qz-o" data-c="0">Printing</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
                     
                     <div class="new-content">
                         <h5>Types of Software:</h5>
@@ -1802,6 +1843,8 @@
                 <div class="accordion-body">
                     <h4>System Software</h4>
                     <p>An operating system manages computer hardware and software resources.</p>
+            <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>System software runs the computer itself and provides the platform for other programs.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Operating system:</strong> manages hardware, files and programs</li><li><strong>Drivers:</strong> let the OS talk to devices</li><li><strong>Utilities:</strong> tools for maintenance and security</li><li><strong>Firmware:</strong> built-in software on hardware chips</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>Windows, macOS, Linux, Android</b> are common systems</span><span class="lb-chip"><b>1991</b> Linux kernel first released</span><span class="lb-chip"><b>Multitasking</b> lets several programs run together</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>When you open a file, the operating system finds it on storage, loads it into memory and gives the program time on the CPU. Without drivers, a printer or camera would not work with the computer.</p></div></div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="Excel and Chrome are applications."><p class="qz-t">1. Which of these is an operating system?</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Excel</button><button type="button" class="qz-o" data-c="0">Chrome</button><button type="button" class="qz-o" data-c="1">Linux</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="A driver is the translator for a device."><p class="qz-t">2. Drivers let the OS communicate with:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="1">Hardware devices</button><button type="button" class="qz-o" data-c="0">The weather</button><button type="button" class="qz-o" data-c="0">Paper</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
                     
                     <div class="key-points">
                         <h6>Popular Operating Systems:</h6>
@@ -1837,6 +1880,8 @@
                 <div class="accordion-body">
                     <h4>Data Storage and Retrieval</h4>
                     <p>Memory stores data and instructions for processing.</p>
+            <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>Computers keep data in memory while working and on storage devices for the long term.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>RAM vs storage:</strong> short-term working space vs long-term keeping</li><li><strong>HDD and SSD:</strong> spinning disks vs flash memory</li><li><strong>Cloud storage:</strong> files kept on internet servers</li><li><strong>Backup:</strong> extra copies to prevent loss</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>SSD</b> has no moving parts</span><span class="lb-chip"><b>1 TB</b> is 1,000 GB</span><span class="lb-chip"><b>3-2-1</b> rule: 3 copies, 2 media types, 1 off-site</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>Hard disk drives read data with a moving head, while solid-state drives use electronic memory chips, which makes them faster and more shock-resistant. Files are organised in folders so they can be found quickly.</p></div></div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="SSDs use flash memory."><p class="qz-t">1. Which storage has no moving parts?</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">HDD</button><button type="button" class="qz-o" data-c="1">SSD</button><button type="button" class="qz-o" data-c="0">Floppy disk</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="It protects against most data loss."><p class="qz-t">2. The 3-2-1 backup rule means:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="1">3 copies, 2 media types, 1 off-site</button><button type="button" class="qz-o" data-c="0">3 files, 2 days, 1 hour</button><button type="button" class="qz-o" data-c="0">One copy only</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
                     
                     <!-- Subtopic Accordion -->
                     <div class="card my-4">
@@ -1912,6 +1957,7 @@
                 <div class="accordion-body">
                     <h4>Connecting Computers</h4>
                     <p>A network connects computers to share resources and communicate.</p>
+            <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>A network lets computers share files, printers and internet access.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>LAN and WAN:</strong> local and wide area networks</li><li><strong>Router:</strong> sends data between networks</li><li><strong>Switch:</strong> connects devices inside a network</li><li><strong>IP address and protocol:</strong> a device's address and the rules for communication</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>Radio waves</b> carry Wi-Fi signals</span><span class="lb-chip"><b>~4.3 billion</b> possible IPv4 addresses</span><span class="lb-chip"><b>Packets</b> are small chunks of data sent across a network</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>Data is split into packets that travel separately and are reassembled at the destination. A home router connects your devices to the internet and directs each packet to the right device. Explore the router model below.</p></div></div>
                     
                     <div class="new-content">
                         <h5>Network Types:</h5>
@@ -1934,13 +1980,14 @@
                     <div class="model-container">
                         <div class="sketchfab-embed-wrapper"> 
                             <div class="responsive-iframe-container"> 
-                            <iframe title="Router" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/ac86d8ae65a54f4aa99d7d624f71e5f4/embed"> 
+                            <iframe loading="lazy" title="Router" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking web-share src="https://sketchfab.com/models/ac86d8ae65a54f4aa99d7d624f71e5f4/embed"> 
                             </iframe> 
                         </div>
                             <p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;"> 
                                 <a href="https://sketchfab.com/3d-models/router-ac86d8ae65a54f4aa99d7d624f71e5f4?utm_medium=embed&utm_campaign=share-popup&utm_content=ac86d8ae65a54f4aa99d7d624f71e5f4" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> Router </a> by <a href="https://sketchfab.com/Rasmus82?utm_medium=embed&utm_campaign=share-popup&utm_content=ac86d8ae65a54f4aa99d7d624f71e5f4" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> Rasmus </a> on <a href="https://sketchfab.com?utm_medium=embed&utm_campaign=share-popup&utm_content=ac86d8ae65a54f4aa99d7d624f71e5f4" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a></p>
                             </div>
                          </div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="It sends packets to the right destination."><p class="qz-t">1. A router:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Prints pages</button><button type="button" class="qz-o" data-c="1">Directs data between networks</button><button type="button" class="qz-o" data-c="0">Stores videos</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="Each device on a network needs an address."><p class="qz-t">2. An IP address:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="1">Identifies a device on a network</button><button type="button" class="qz-o" data-c="0">Is a type of virus</button><button type="button" class="qz-o" data-c="0">Cools the CPU</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
 
 
                 </div>
@@ -1958,6 +2005,8 @@
                 <div class="accordion-body">
                     <h4>The World Wide Web</h4>
                     <p>The Internet is a global network connecting millions of computers.</p>
+            <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>The Web is a collection of linked pages and services that run on top of the Internet.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Internet vs Web:</strong> the Internet is the network; the Web is a service on it</li><li><strong>Browser:</strong> software for viewing web pages</li><li><strong>URL:</strong> a web page's address</li><li><strong>HTTP and HTTPS:</strong> rules for sending pages; HTTPS is encrypted</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>1969</b> ARPANET, an early ancestor of the Internet</span><span class="lb-chip"><b>1989</b> Tim Berners-Lee proposed the Web</span><span class="lb-chip"><b>HTTPS</b> protects data in transit</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>Typing a URL asks a server to send a page, and the browser displays it. Search engines index pages so people can find them. Always check for HTTPS before entering personal information.</p></div></div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="The Internet is the network; the Web runs on it."><p class="qz-t">1. The World Wide Web is:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">The same as the Internet</button><button type="button" class="qz-o" data-c="1">A service that runs on the Internet</button><button type="button" class="qz-o" data-c="0">A type of computer</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="HTTPS protects data in transit."><p class="qz-t">2. HTTPS means traffic is:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="1">Encrypted</button><button type="button" class="qz-o" data-c="0">Deleted</button><button type="button" class="qz-o" data-c="0">Always slower</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
                     
                     <div class="key-points">
                         <h6>Internet Services:</h6>
@@ -1993,6 +2042,8 @@
                 <div class="accordion-body">
                     <h4>Protecting Computer Systems</h4>
                     <p>Measures to protect computer systems from unauthorized access or attacks.</p>
+            <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>Computer security protects devices and data from theft, damage and unauthorised access.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Malware:</strong> viruses, ransomware and spyware</li><li><strong>Strong passwords:</strong> long, unique and hard to guess</li><li><strong>Firewall:</strong> filters network traffic</li><li><strong>Phishing:</strong> tricks that steal information</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>2FA</b> adds a second proof of identity</span><span class="lb-chip"><b>Updates</b> fix known security holes</span><span class="lb-chip"><b>Backups</b> help recover from attacks</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>Most attacks target people rather than machines, for example fake emails asking you to log in. Keep software updated, avoid unknown attachments and use two-factor authentication where possible.</p></div></div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="Never click suspicious links."><p class="qz-t">1. Phishing tries to:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Speed up your PC</button><button type="button" class="qz-o" data-c="1">Trick you into giving personal information</button><button type="button" class="qz-o" data-c="0">Back up files</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="Even a stolen password is not enough."><p class="qz-t">2. Two-factor authentication adds:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="1">A second proof of identity</button><button type="button" class="qz-o" data-c="0">A bigger monitor</button><button type="button" class="qz-o" data-c="0">Faster Wi-Fi</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
                     
                     <div class="new-content">
                         <h5>Security Threats:</h5>
@@ -2024,6 +2075,8 @@
                 <div class="accordion-body">
                     <h4>Additional Computer Devices</h4>
                     <p>External devices that connect to and work with the computer.</p>
+            <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>Peripherals and modern devices extend what computers can do.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Input devices:</strong> keyboard, mouse, scanner, microphone</li><li><strong>Output devices:</strong> monitor, printer, speakers</li><li><strong>Mobile devices:</strong> phones and tablets</li><li><strong>IoT:</strong> everyday objects connected to the Internet</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>1964</b> Douglas Engelbart invented the mouse</span><span class="lb-chip"><b>3D printers</b> build objects layer by layer</span><span class="lb-chip"><b>Sensors</b> feed real-world data to computers</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>Touchscreens act as both input and output. Smart home devices, fitness trackers and connected cars all use small computers and sensors that share data over networks.</p></div></div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="A keyboard sends data to the computer."><p class="qz-t">1. Which is an input device?</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Speaker</button><button type="button" class="qz-o" data-c="0">Printer</button><button type="button" class="qz-o" data-c="1">Keyboard</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="Everyday objects connected to the Internet."><p class="qz-t">2. IoT stands for:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="1">Internet of Things</button><button type="button" class="qz-o" data-c="0">Input of Text</button><button type="button" class="qz-o" data-c="0">Index of Tables</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
                     
                     <div class="key-points">
                         <h6>Common Peripherals:</h6>
@@ -2059,6 +2112,8 @@
                 <div class="accordion-body">
                     <h4>Emerging Computer Technologies</h4>
                     <p>New technologies shaping the future of computing.</p>
+            <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>New technologies are changing how we work, learn and live.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Artificial intelligence:</strong> systems that learn patterns from data</li><li><strong>Cloud computing:</strong> using remote servers over the Internet</li><li><strong>Quantum computing:</strong> computing with qubits</li><li><strong>Internet of Things:</strong> many connected devices</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>Qubits</b> can hold 0 and 1 at once (superposition)</span><span class="lb-chip"><b>5G</b> brings faster mobile networks</span><span class="lb-chip"><b>Machine learning</b> improves with more data</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>AI tools can recognise images, translate languages and suggest actions, but they need good data and human oversight. Cloud services let people use powerful computers without owning them.</p></div></div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="Machine learning finds patterns in data."><p class="qz-t">1. AI systems mostly learn by:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Being unplugged</button><button type="button" class="qz-o" data-c="1">Finding patterns in data</button><button type="button" class="qz-o" data-c="0">Guessing</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="Qubits can be in superposition."><p class="qz-t">2. Quantum computers use:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="1">Qubits</button><button type="button" class="qz-o" data-c="0">Floppy disks</button><button type="button" class="qz-o" data-c="0">Bytes only</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
                     
                     <div class="new-content">
                         <h5>Trending Technologies:</h5>
@@ -2090,7 +2145,7 @@
         <div class="modal-popup">
             
             <div class="modal-header">
-                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" alt="About Us" class="modal-image">
+                <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" alt="About Us" class="modal-image">
                 
             </div>
             <div class="modal-body">
@@ -2128,7 +2183,7 @@
             </button>
         <div class="modal-popup">
             <div class="modal-header">
-                <img src="https://images.unsplash.com/photo-1534536281715-e28d76689b4d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Contact Us" class="modal-image">
+                <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1534536281715-e28d76689b4d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Contact Us" class="modal-image">
                 
             </div>
             <div class="modal-body">
@@ -2657,5 +2712,23 @@
             });
         });
     </script>
+<script>
+/* Quiz: tap an answer for instant feedback; score shows when every question is answered */
+(function(){
+  document.addEventListener('click',function(e){
+    var r=e.target.closest&&e.target.closest('.qz-r');
+    if(r){var z=r.closest('.quiz');z.dataset.s=0;z.querySelectorAll('.qz-q').forEach(function(q){delete q.dataset.done;q.querySelector('.qz-fb').hidden=true;q.querySelectorAll('.qz-o').forEach(function(o){o.disabled=false;o.classList.remove('qz-ok','qz-no')})});z.querySelector('.qz-sc').hidden=true;return}
+    var b=e.target.closest&&e.target.closest('.qz-o');if(!b)return;
+    var q=b.closest('.qz-q');if(q.dataset.done)return;q.dataset.done='1';
+    var ok=b.dataset.c==='1';b.classList.add(ok?'qz-ok':'qz-no');
+    if(!ok)q.querySelector('[data-c="1"]').classList.add('qz-ok');
+    var fb=q.querySelector('.qz-fb');fb.textContent=(ok?'Correct! ':'Not quite. ')+q.dataset.ex;fb.hidden=false;
+    q.querySelectorAll('.qz-o').forEach(function(o){o.disabled=true});
+    var z=q.closest('.quiz');if(ok)z.dataset.s=(+z.dataset.s||0)+1;
+    var n=z.querySelectorAll('.qz-q').length;
+    if(z.querySelectorAll('.qz-q[data-done]').length===n){var sc=z.querySelector('.qz-sc');sc.firstChild.textContent='Score: '+(+z.dataset.s||0)+' / '+n;sc.hidden=false}
+  });
+})();
+</script>
 </body>
 </html>

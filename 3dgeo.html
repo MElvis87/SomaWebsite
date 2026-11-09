@@ -1414,6 +1414,41 @@
     </style>
     <link rel="stylesheet" href="assets/css/soma-modern.css">
     <link rel="stylesheet" href="assets/css/soma-saas.css">
+<style>
+/* Learning blocks (Overview, Key Concepts, Quick Facts, Detailed Notes) */
+.learn-block{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0;content-visibility:auto;contain-intrinsic-size:auto 520px}
+.lb-sec{background:rgba(67,97,238,.07);border:1px solid rgba(67,97,238,.15);border-radius:12px;padding:14px 16px;min-width:0}
+.lb-sec:nth-child(4){grid-column:1/-1}
+.lb-sec h5{font-size:.8rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--primary,#4361ee);margin:0 0 8px}
+.lb-sec p,.lb-sec li{font-size:.95rem;line-height:1.6}
+.lb-sec p:last-child{margin-bottom:0}
+.lb-sec ul{margin:0;padding-left:1.1rem}
+.lb-chips{display:flex;flex-wrap:wrap;gap:8px}
+.lb-chip{flex:1 1 140px;background:rgba(20,184,166,.12);border-radius:10px;padding:8px 10px;font-size:.85rem;line-height:1.35}
+.lb-chip b{display:block;font-size:1rem}
+[data-theme="dark"] .lb-sec{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12)}
+[data-theme="dark"] .lb-sec h5{color:#4de1ff}
+[data-theme="dark"] .lb-chip{background:rgba(77,225,255,.12)}
+@media(max-width:767.98px){.learn-block{grid-template-columns:1fr}}
+</style>
+<style>
+/* Quizzes */
+.quiz{margin:18px 0;padding:16px;border-radius:12px;border:1px solid rgba(67,97,238,.2);background:rgba(67,97,238,.05)}
+.quiz>h5{font-size:.95rem;font-weight:700;margin:0 0 12px;color:var(--primary,#4361ee)}
+.qz-q{margin:0 0 14px}
+.qz-t{font-weight:600;margin:0 0 8px}
+.qz-opts{display:flex;flex-wrap:wrap;gap:8px}
+.qz-o{flex:1 1 180px;text-align:left;padding:9px 12px;border-radius:10px;border:1px solid rgba(100,116,139,.4);background:transparent;color:inherit;font:inherit;font-size:.92rem;cursor:pointer;transition:background .2s,border-color .2s}
+.qz-o:hover:not(:disabled){background:rgba(67,97,238,.12)}
+.qz-o:disabled{cursor:default}
+.qz-o.qz-ok{background:rgba(22,163,74,.2);border-color:#16a34a}
+.qz-o.qz-no{background:rgba(220,38,38,.18);border-color:#dc2626}
+.qz-fb{margin:8px 0 0;font-size:.88rem;opacity:.9}
+.qz-sc{display:flex;align-items:center;gap:10px;font-weight:700;margin:4px 0 0}
+.qz-r{border:1px solid rgba(100,116,139,.5);background:transparent;color:inherit;border-radius:8px;padding:3px 10px;font-size:.82rem;cursor:pointer}
+[data-theme="dark"] .quiz{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.14)}
+[data-theme="dark"] .quiz>h5{color:#4de1ff}
+</style>
 </head>
 <body>
     <!-- Loading Screen -->
@@ -1502,7 +1537,7 @@
                     <!-- Profile Dropdown -->
                     <div class="dropdown profile-dropdown">
                         <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" id="profileDropdown" data-bs-toggle="dropdown">
-                            <img src="https://i.pravatar.cc/150?img=12" alt="Profile">
+                            <img loading="lazy" decoding="async" src="https://i.pravatar.cc/150?img=12" alt="Profile">
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li><a class="dropdown-item" href="#"><i class="fas fa-user-circle me-2"></i> Account</a></li>
@@ -1562,6 +1597,7 @@
         <div class="accordion-body">
             <h4>Exploring Earth's Physical Features</h4>
             <p>Physical geography examines natural processes and features of the Earth's surface, atmosphere, and hydrosphere.</p>
+            <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>Earth's surface is shaped by forces from inside the planet that build land and by forces on the surface that wear it down.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Plate tectonics:</strong> the crust is split into slowly moving plates</li><li><strong>Weathering and erosion:</strong> breaking down and carrying away rock</li><li><strong>Landforms:</strong> mountains, valleys, plains, plateaus and coasts</li><li><strong>Volcanoes and earthquakes:</strong> energy released at plate boundaries</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>A few cm/year</b> typical plate movement</span><span class="lb-chip"><b>8,849 m</b> height of Mount Everest</span><span class="lb-chip"><b>Ring of Fire</b> holds about three-quarters of the world's volcanoes</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>Mountains form when plates collide and push rock upward, while rifts and ocean trenches form where plates pull apart or one slides under another. Rivers, ice, wind and waves then carve these landforms over millions of years.</p><p>Volcanoes appear where molten rock reaches the surface. Mount Etna in Sicily lies where the African and Eurasian plates meet. Explore the mountain and volcano models below.</p></div></div>
             
             <!-- Subtopics -->
             <div class="key-points">
@@ -1582,7 +1618,7 @@
                 <!-- 3D MODEL WILL BE PLACED HERE -->
                 <div class="sketchfab-embed-wrapper"> 
                 <div class="responsive-iframe-container"> 
-                    <iframe title="Lush Mountain V1" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/2eec0a89325049d19afc33dafcd46071/embed"> 
+                    <iframe loading="lazy" title="Lush Mountain V1" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking web-share src="https://sketchfab.com/models/2eec0a89325049d19afc33dafcd46071/embed"> 
                     </iframe> 
                 </div>
                     <p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;"> 
@@ -1591,6 +1627,9 @@
                 </div>
 
             </div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="Colliding plates push rock upward to build mountains."><p class="qz-t">1. What process forms many mountain ranges?</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Wind alone</button><button type="button" class="qz-o" data-c="0">Rainfall alone</button><button type="button" class="qz-o" data-c="1">Plates colliding</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="They break rock apart and move it elsewhere."><p class="qz-t">2. Weathering and erosion:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Only build land</button><button type="button" class="qz-o" data-c="1">Wear down and carry away rock</button><button type="button" class="qz-o" data-c="0">Have no effect</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
+            <div class="model-container"><div class="sketchfab-embed-wrapper"><div class="responsive-iframe-container"><iframe loading="lazy" title="Mt. Etna - Geological Map" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/630d92f5d1204a9b83df65424add7863/embed"></iframe></div><p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;"><a href="https://sketchfab.com/3d-models/mt-etna-geological-map-630d92f5d1204a9b83df65424add7863" target="_blank" rel="nofollow noopener" style="font-weight: bold; color: #1CAAD9;">Mt. Etna - Geological Map</a> by Loïc Norgeot on <a href="https://sketchfab.com" target="_blank" rel="nofollow noopener" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a> · licensed <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="nofollow noopener" style="font-weight: bold; color: #1CAAD9;">CC BY 4.0</a></p></div></div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="Etna is one of the world&#x27;s most active volcanoes."><p class="qz-t">1. Mount Etna is a:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Glacier</button><button type="button" class="qz-o" data-c="1">Volcano</button><button type="button" class="qz-o" data-c="0">River delta</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="The Ring of Fire follows plate boundaries around the Pacific."><p class="qz-t">2. Most of the world&#x27;s volcanoes lie around the:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Equator</button><button type="button" class="qz-o" data-c="0">Prime Meridian</button><button type="button" class="qz-o" data-c="1">Pacific Ring of Fire</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
             
             <div class="d-flex justify-content-between align-items-center mt-4">
                 <div>
@@ -1614,6 +1653,8 @@
         <div class="accordion-body">
             <h4>Human Impact and Settlement Patterns</h4>
             <p>Human geography studies the relationship between people and their environments, focusing on cultural, political, and economic aspects.</p>
+            <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>Where people live depends on water, food, trade routes and safety, and people in turn reshape the land.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Population density:</strong> people per square kilometre</li><li><strong>Urbanisation:</strong> growth of towns and cities</li><li><strong>Settlement patterns:</strong> nucleated (clustered), linear (along roads or rivers), dispersed</li><li><strong>Migration:</strong> people moving between places</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>~8 billion</b> people on Earth</span><span class="lb-chip"><b>Over half</b> of people live in cities</span><span class="lb-chip"><b>Rivers</b> hosted many of the first cities</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>Early settlements grew near fresh water and fertile soil. Today, cities grow around trade, jobs and services, which draws people from rural areas.</p><p>Growth brings pressures such as traffic, housing shortages, pollution and loss of farmland, so planners study patterns to design better cities.</p></div></div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="Urbanisation is the growth of urban areas."><p class="qz-t">1. Urbanisation means:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="1">More people living in towns and cities</button><button type="button" class="qz-o" data-c="0">Fewer buildings</button><button type="button" class="qz-o" data-c="0">Growth of farming</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="Linear settlements follow a line feature."><p class="qz-t">2. A settlement that stretches along a road or river is:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Dispersed</button><button type="button" class="qz-o" data-c="1">Linear</button><button type="button" class="qz-o" data-c="0">Nucleated</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
             
             <div class="key-points">
                 <h6>Major Subtopics:</h6>
@@ -1659,6 +1700,8 @@
         <div class="accordion-body">
             <h4>Sustainability and Resource Management</h4>
             <p>Environmental geography examines the complex relationships between human societies and their natural surroundings, focusing on sustainability.</p>
+            <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>Sustainability means using resources so that future generations can meet their needs too.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Renewable resources:</strong> replaced naturally, like sun, wind and water</li><li><strong>Non-renewable resources:</strong> finite, like coal, oil and gas</li><li><strong>Conservation:</strong> protecting and using resources wisely</li><li><strong>Carbon footprint:</strong> greenhouse gases caused by an activity or person</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>1987</b> Brundtland report defined sustainable development</span><span class="lb-chip"><b>17</b> UN Sustainable Development Goals</span><span class="lb-chip"><b>2015</b> goals adopted by all UN members</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>Fossil fuels took millions of years to form and release carbon dioxide when burned. Solar, wind, hydro and geothermal energy produce far fewer emissions.</p><p>Individuals and governments can cut waste by reducing, reusing and recycling, protecting forests and wetlands, and managing water carefully.</p></div></div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="The Sun keeps supplying energy."><p class="qz-t">1. Which energy source is renewable?</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Coal</button><button type="button" class="qz-o" data-c="1">Solar power</button><button type="button" class="qz-o" data-c="0">Oil</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="It balances present and future needs."><p class="qz-t">2. Sustainable development meets today&#x27;s needs without:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="1">Harming future generations&#x27; needs</button><button type="button" class="qz-o" data-c="0">Using any energy</button><button type="button" class="qz-o" data-c="0">Building cities</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
             
             <div class="key-points">
                 <h6>Major Subtopics:</h6>
@@ -1704,6 +1747,8 @@
         <div class="accordion-body">
             <h4>Modern Geographic Analysis</h4>
             <p>Geographic techniques include various tools and methods used to collect, analyze, and present geographic data.</p>
+            <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>Modern geography uses satellites and computers to collect, map and analyse information about places.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>GIS:</strong> software that layers map data</li><li><strong>Remote sensing:</strong> collecting data from satellites and aircraft</li><li><strong>GPS:</strong> satellite positioning</li><li><strong>Map scale:</strong> the ratio of map distance to real distance</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>4+</b> satellites needed for a GPS position in 3D</span><span class="lb-chip"><b>1:50,000</b> means 1 cm on the map is 500 m on the ground</span><span class="lb-chip"><b>Layers</b> let GIS combine roads, rivers and population</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>A GIS stacks layers, such as rivers, roads, land use and population, so patterns become visible. This helps with flood planning, choosing sites for schools, and tracking deforestation.</p><p>Satellite images show change over time, allowing scientists to compare the same place across years.</p></div></div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="GIS layers and analyses map data."><p class="qz-t">1. GIS stands for:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Global Image System</button><button type="button" class="qz-o" data-c="1">Geographic Information System</button><button type="button" class="qz-o" data-c="0">Ground Imaging Service</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="50,000 cm equals 500 m."><p class="qz-t">2. On a 1:50,000 map, 1 cm represents:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">50 m</button><button type="button" class="qz-o" data-c="0">5 km</button><button type="button" class="qz-o" data-c="1">500 m</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
             
             <div class="key-points">
                 <h6>Major Subtopics:</h6>
@@ -1749,6 +1794,8 @@
         <div class="accordion-body">
             <h4>Study of World Regions</h4>
             <p>Regional geography focuses on the unique characteristics of specific areas, analyzing both physical and human features.</p>
+            <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>Regional geography groups places by shared physical and human features such as climate, landscape, language and culture.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Continents:</strong> seven large landmasses</li><li><strong>Climate regions:</strong> areas with similar temperature and rainfall</li><li><strong>Cultural regions:</strong> shared language, religion or traditions</li><li><strong>Interdependence:</strong> regions linked by trade and travel</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>7</b> continents</span><span class="lb-chip"><b>~71%</b> of Earth's surface is ocean</span><span class="lb-chip"><b>Asia</b> is the largest continent by area and population</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>The seven continents are Asia, Africa, North America, South America, Antarctica, Europe and Australia/Oceania. Regions can also be defined by climate, such as tropical, desert, temperate and polar.</p><p>Comparing regions helps explain why some places are densely populated while others are almost empty.</p></div></div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="Asia, Africa, the Americas, Antarctica, Europe and Australia/Oceania."><p class="qz-t">1. How many continents are usually recognised?</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Five</button><button type="button" class="qz-o" data-c="0">Six</button><button type="button" class="qz-o" data-c="1">Seven</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="Oceans cover roughly 71%."><p class="qz-t">2. About how much of Earth&#x27;s surface is ocean?</p><div class="qz-opts"><button type="button" class="qz-o" data-c="1">About 71%</button><button type="button" class="qz-o" data-c="0">About 30%</button><button type="button" class="qz-o" data-c="0">About 50%</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
             
             <div class="key-points">
                 <h6>Major Subtopics:</h6>
@@ -1794,6 +1841,8 @@
         <div class="accordion-body">
             <h4>Atmospheric Science and Climate Patterns</h4>
             <p>The study of weather patterns, climate zones, and atmospheric phenomena that shape our planet's environments.</p>
+            <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>The atmosphere is a layer of gases that protects life, shapes weather and keeps Earth warm.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Weather vs climate:</strong> weather is short-term; climate is the long-term average</li><li><strong>Atmospheric layers:</strong> troposphere, stratosphere, mesosphere, thermosphere, exosphere</li><li><strong>Greenhouse effect:</strong> gases trapping heat</li><li><strong>Water cycle:</strong> evaporation, condensation, precipitation</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>78% / 21%</b> nitrogen / oxygen in air</span><span class="lb-chip"><b>~12 km</b> average top of the troposphere</span><span class="lb-chip"><b>30 years</b> typical period used to describe climate</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>Most weather happens in the troposphere, the lowest layer. Warm air rises, cools and forms clouds, while differences in air pressure create wind.</p><p>The greenhouse effect is natural and keeps the planet warm enough for life, but adding more greenhouse gases strengthens it and warms the climate.</p></div></div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="Nitrogen makes up about 78%."><p class="qz-t">1. Which gas is most abundant in the air?</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Oxygen</button><button type="button" class="qz-o" data-c="1">Nitrogen</button><button type="button" class="qz-o" data-c="0">Carbon dioxide</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="Climate is measured over about 30 years."><p class="qz-t">2. Climate is the:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Weather today</button><button type="button" class="qz-o" data-c="0">Wind speed</button><button type="button" class="qz-o" data-c="1">Long-term average of weather</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
             
             <div class="key-points">
                 <h6>Major Subtopics:</h6>
@@ -1840,7 +1889,7 @@
         <div class="modal-popup">
             
             <div class="modal-header">
-                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" alt="About Us" class="modal-image">
+                <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" alt="About Us" class="modal-image">
                 
             </div>
             <div class="modal-body">
@@ -1878,7 +1927,7 @@
             </button>
         <div class="modal-popup">
             <div class="modal-header">
-                <img src="https://images.unsplash.com/photo-1534536281715-e28d76689b4d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Contact Us" class="modal-image">
+                <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1534536281715-e28d76689b4d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Contact Us" class="modal-image">
                 
             </div>
             <div class="modal-body">
@@ -2407,5 +2456,23 @@
             });
         });
     </script>
+<script>
+/* Quiz: tap an answer for instant feedback; score shows when every question is answered */
+(function(){
+  document.addEventListener('click',function(e){
+    var r=e.target.closest&&e.target.closest('.qz-r');
+    if(r){var z=r.closest('.quiz');z.dataset.s=0;z.querySelectorAll('.qz-q').forEach(function(q){delete q.dataset.done;q.querySelector('.qz-fb').hidden=true;q.querySelectorAll('.qz-o').forEach(function(o){o.disabled=false;o.classList.remove('qz-ok','qz-no')})});z.querySelector('.qz-sc').hidden=true;return}
+    var b=e.target.closest&&e.target.closest('.qz-o');if(!b)return;
+    var q=b.closest('.qz-q');if(q.dataset.done)return;q.dataset.done='1';
+    var ok=b.dataset.c==='1';b.classList.add(ok?'qz-ok':'qz-no');
+    if(!ok)q.querySelector('[data-c="1"]').classList.add('qz-ok');
+    var fb=q.querySelector('.qz-fb');fb.textContent=(ok?'Correct! ':'Not quite. ')+q.dataset.ex;fb.hidden=false;
+    q.querySelectorAll('.qz-o').forEach(function(o){o.disabled=true});
+    var z=q.closest('.quiz');if(ok)z.dataset.s=(+z.dataset.s||0)+1;
+    var n=z.querySelectorAll('.qz-q').length;
+    if(z.querySelectorAll('.qz-q[data-done]').length===n){var sc=z.querySelector('.qz-sc');sc.firstChild.textContent='Score: '+(+z.dataset.s||0)+' / '+n;sc.hidden=false}
+  });
+})();
+</script>
 </body>
 </html>

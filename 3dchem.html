@@ -1417,6 +1417,41 @@
     </style>
     <link rel="stylesheet" href="assets/css/soma-modern.css">
     <link rel="stylesheet" href="assets/css/soma-saas.css">
+<style>
+/* Learning blocks (Overview, Key Concepts, Quick Facts, Detailed Notes) */
+.learn-block{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0;content-visibility:auto;contain-intrinsic-size:auto 520px}
+.lb-sec{background:rgba(67,97,238,.07);border:1px solid rgba(67,97,238,.15);border-radius:12px;padding:14px 16px;min-width:0}
+.lb-sec:nth-child(4){grid-column:1/-1}
+.lb-sec h5{font-size:.8rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--primary,#4361ee);margin:0 0 8px}
+.lb-sec p,.lb-sec li{font-size:.95rem;line-height:1.6}
+.lb-sec p:last-child{margin-bottom:0}
+.lb-sec ul{margin:0;padding-left:1.1rem}
+.lb-chips{display:flex;flex-wrap:wrap;gap:8px}
+.lb-chip{flex:1 1 140px;background:rgba(20,184,166,.12);border-radius:10px;padding:8px 10px;font-size:.85rem;line-height:1.35}
+.lb-chip b{display:block;font-size:1rem}
+[data-theme="dark"] .lb-sec{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12)}
+[data-theme="dark"] .lb-sec h5{color:#4de1ff}
+[data-theme="dark"] .lb-chip{background:rgba(77,225,255,.12)}
+@media(max-width:767.98px){.learn-block{grid-template-columns:1fr}}
+</style>
+<style>
+/* Quizzes */
+.quiz{margin:18px 0;padding:16px;border-radius:12px;border:1px solid rgba(67,97,238,.2);background:rgba(67,97,238,.05)}
+.quiz>h5{font-size:.95rem;font-weight:700;margin:0 0 12px;color:var(--primary,#4361ee)}
+.qz-q{margin:0 0 14px}
+.qz-t{font-weight:600;margin:0 0 8px}
+.qz-opts{display:flex;flex-wrap:wrap;gap:8px}
+.qz-o{flex:1 1 180px;text-align:left;padding:9px 12px;border-radius:10px;border:1px solid rgba(100,116,139,.4);background:transparent;color:inherit;font:inherit;font-size:.92rem;cursor:pointer;transition:background .2s,border-color .2s}
+.qz-o:hover:not(:disabled){background:rgba(67,97,238,.12)}
+.qz-o:disabled{cursor:default}
+.qz-o.qz-ok{background:rgba(22,163,74,.2);border-color:#16a34a}
+.qz-o.qz-no{background:rgba(220,38,38,.18);border-color:#dc2626}
+.qz-fb{margin:8px 0 0;font-size:.88rem;opacity:.9}
+.qz-sc{display:flex;align-items:center;gap:10px;font-weight:700;margin:4px 0 0}
+.qz-r{border:1px solid rgba(100,116,139,.5);background:transparent;color:inherit;border-radius:8px;padding:3px 10px;font-size:.82rem;cursor:pointer}
+[data-theme="dark"] .quiz{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.14)}
+[data-theme="dark"] .quiz>h5{color:#4de1ff}
+</style>
 </head>
 <body>
     <!-- Loading Screen -->
@@ -1505,7 +1540,7 @@
                     <!-- Profile Dropdown -->
                     <div class="dropdown profile-dropdown">
                         <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" id="profileDropdown" data-bs-toggle="dropdown">
-                            <img src="https://i.pravatar.cc/150?img=12" alt="Profile">
+                            <img loading="lazy" decoding="async" src="https://i.pravatar.cc/150?img=12" alt="Profile">
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li><a class="dropdown-item" href="#"><i class="fas fa-user-circle me-2"></i> Account</a></li>
@@ -1565,6 +1600,8 @@
         <div class="accordion-body">
             <h4>Basic Concepts and Fundamentals</h4>
             <p>Chemistry is the study of matter, its properties, how and why substances combine or separate to form other substances, and how substances interact with energy.</p>
+            <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>Chemistry is the study of matter: what it is made of, how it behaves and how it changes.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Matter:</strong> anything with mass that takes up space</li><li><strong>Element:</strong> one kind of atom</li><li><strong>Compound:</strong> two or more elements chemically joined</li><li><strong>Chemical change:</strong> a new substance is formed</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>118</b> known elements</span><span class="lb-chip"><b>1789</b> Lavoisier showed mass is conserved</span><span class="lb-chip"><b>Physical vs chemical</b> melting is physical, burning is chemical</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>Physical changes alter form but not identity, such as ice melting. Chemical changes make new substances, such as iron rusting, and are signalled by gas bubbles, colour change, heat or light.</p></div></div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="Burning makes new substances."><p class="qz-t">1. Burning wood is a:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Physical change</button><button type="button" class="qz-o" data-c="1">Chemical change</button><button type="button" class="qz-o" data-c="0">Phase change</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="Compounds have fixed chemical formulas."><p class="qz-t">2. A compound is made of:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">One type of atom</button><button type="button" class="qz-o" data-c="0">A physical mixture</button><button type="button" class="qz-o" data-c="1">Two or more elements chemically joined</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
             
             <!-- Subtopic Accordion -->
             <div class="card my-4">
@@ -1640,6 +1677,7 @@
         <div class="accordion-body">
             <h4>Structure of the Atom</h4>
             <p>The atom is the basic unit of matter, consisting of a nucleus surrounded by electrons.</p>
+            <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>Atoms are the building blocks of matter. Each has a tiny dense nucleus surrounded by moving electrons.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Protons:</strong> positive, in the nucleus</li><li><strong>Neutrons:</strong> neutral, in the nucleus</li><li><strong>Electrons:</strong> negative, in shells around the nucleus</li><li><strong>Isotopes:</strong> atoms of one element with different neutron counts</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>~10⁻¹⁰ m</b> typical atom size</span><span class="lb-chip"><b>Atomic number</b> equals the number of protons</span><span class="lb-chip"><b>~1/1836</b> electron mass compared with a proton</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>An atom's element is set by its proton count. Electrons fill shells from the inside out, and the outer (valence) electrons decide how the atom bonds.</p></div></div>
             
             <div class="key-points">
                 <h6>Major Components:</h6>
@@ -1657,7 +1695,7 @@
 
                 <div class="sketchfab-embed-wrapper"> 
                 <div class="responsive-iframe-container">
-                    <iframe title="Atom" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/8ea2315dc6ae40a4b7c1d2eb75305d2c/embed"> 
+                    <iframe loading="lazy" title="Atom" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking web-share src="https://sketchfab.com/models/8ea2315dc6ae40a4b7c1d2eb75305d2c/embed"> 
                     </iframe> 
                 </div>
 
@@ -1666,6 +1704,7 @@
                 </div>
 
             </div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="Protons are positive, electrons negative and neutrons neutral."><p class="qz-t">1. Which particle has a positive charge?</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Electron</button><button type="button" class="qz-o" data-c="0">Neutron</button><button type="button" class="qz-o" data-c="1">Proton</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="The proton count defines the element."><p class="qz-t">2. The atomic number of an element equals its number of:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="1">Protons</button><button type="button" class="qz-o" data-c="0">Neutrons</button><button type="button" class="qz-o" data-c="0">Shells</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
         </div>
     </div>
 </div>
@@ -1681,6 +1720,8 @@
         <div class="accordion-body">
             <h4>Organization of Elements</h4>
             <p>The periodic table organizes chemical elements based on their atomic structure and properties.</p>
+            <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>The periodic table arranges elements by atomic number so that patterns in their behaviour become clear.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Groups:</strong> columns whose elements react alike</li><li><strong>Periods:</strong> rows that fill successive electron shells</li><li><strong>Metals and non-metals:</strong> two broad families with a few metalloids between</li><li><strong>Trends:</strong> size, reactivity and electronegativity change across the table</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>1869</b> Mendeleev published his table</span><span class="lb-chip"><b>Group 18</b> noble gases rarely react</span><span class="lb-chip"><b>Group 1</b> alkali metals react strongly with water</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>Elements in the same group have the same number of outer electrons, so they behave similarly. Reactivity rises down Group 1 and falls down Group 17.</p></div></div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="Equal valence electrons give similar behaviour."><p class="qz-t">1. Elements in the same group have similar:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="1">Outer electron counts</button><button type="button" class="qz-o" data-c="0">Masses</button><button type="button" class="qz-o" data-c="0">Colours</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="Noble gases have full outer shells."><p class="qz-t">2. Which group contains the noble gases?</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Group 1</button><button type="button" class="qz-o" data-c="0">Group 17</button><button type="button" class="qz-o" data-c="1">Group 18</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
             
             <!-- Subtopic Accordion -->
             <div class="card my-4">
@@ -1757,6 +1798,8 @@
         <div class="accordion-body">
             <h4>Forces that Hold Atoms Together</h4>
             <p>Chemical bonding is the physical process responsible for the attractive interactions between atoms and molecules.</p>
+            <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>Atoms bond to reach a more stable arrangement of electrons.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Ionic bond:</strong> electrons transferred, forming oppositely charged ions</li><li><strong>Covalent bond:</strong> electrons shared between atoms</li><li><strong>Metallic bond:</strong> a sea of shared electrons</li><li><strong>Intermolecular forces:</strong> weaker attractions between molecules</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>104.5°</b> bond angle in a water molecule</span><span class="lb-chip"><b>NaCl</b> table salt, an ionic compound</span><span class="lb-chip"><b>Hydrogen bonds</b> give water its special properties</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>Ionic compounds usually form crystals with high melting points. Covalent substances range from gases like oxygen to hard solids like diamond. Hydrogen bonds between water molecules explain its high boiling point and why ice floats.</p></div></div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="Atoms share electron pairs."><p class="qz-t">1. A covalent bond involves:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Transferring electrons</button><button type="button" class="qz-o" data-c="1">Sharing electrons</button><button type="button" class="qz-o" data-c="0">Sharing protons</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="Sodium transfers an electron to chlorine."><p class="qz-t">2. NaCl is held together by:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Covalent bonds</button><button type="button" class="qz-o" data-c="1">Ionic bonds</button><button type="button" class="qz-o" data-c="0">Hydrogen bonds</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
             
             <div class="new-content">
                 <h5>Types of Chemical Bonds:</h5>
@@ -1797,6 +1840,8 @@
         <div class="accordion-body">
             <h4>Transformation of Substances</h4>
             <p>Chemical reactions involve the rearrangement of atoms to form new substances with different properties.</p>
+            <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>A chemical reaction rearranges atoms into new substances. Atoms are never created or destroyed.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Reactants and products:</strong> what goes in and what comes out</li><li><strong>Balancing:</strong> equal atoms on both sides of the equation</li><li><strong>Reaction types:</strong> combination, decomposition, displacement, combustion</li><li><strong>Catalyst:</strong> speeds up a reaction without being used up</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>Conservation</b> of mass in every reaction</span><span class="lb-chip"><b>2H₂ + O₂ → 2H₂O</b> a balanced equation</span><span class="lb-chip"><b>Rusting</b> is slow oxidation of iron</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>To balance an equation, change the coefficients in front of formulas, never the small subscripts inside them. Counting atoms of each element on both sides checks the result.</p></div></div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="Atoms are conserved."><p class="qz-t">1. In a balanced equation the total number of atoms is:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Greater on the left</button><button type="button" class="qz-o" data-c="0">Greater on the right</button><button type="button" class="qz-o" data-c="1">Equal on both sides</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="It lowers the activation energy."><p class="qz-t">2. A catalyst:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Is used up</button><button type="button" class="qz-o" data-c="1">Speeds a reaction without being used up</button><button type="button" class="qz-o" data-c="0">Stops reactions</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
             
             <div class="key-points">
                 <h6>Types of Reactions:</h6>
@@ -1833,6 +1878,8 @@
         <div class="accordion-body">
             <h4>Calculations in Chemistry</h4>
             <p>Stoichiometry deals with the quantitative relationships between reactants and products in chemical reactions.</p>
+            <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>Chemists count particles by weighing them, using the mole as a bridge between atoms and grams.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Mole:</strong> a fixed number of particles</li><li><strong>Molar mass:</strong> mass of one mole in grams</li><li><strong>Stoichiometry:</strong> amounts of reactants and products from an equation</li><li><strong>Concentration:</strong> amount of solute per litre (molarity)</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>6.022×10²³</b> particles in one mole</span><span class="lb-chip"><b>12 g</b> of carbon-12 is one mole</span><span class="lb-chip"><b>M = n / V</b> molarity is moles per litre</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>To convert grams to moles, divide by molar mass. The coefficients in a balanced equation give mole ratios, which let you predict how much product a reaction makes.</p></div></div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="One mole contains 6.022×10²³ particles."><p class="qz-t">1. Avogadro&#x27;s number is about:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="1">6.022×10²³</button><button type="button" class="qz-o" data-c="0">3×10⁸</button><button type="button" class="qz-o" data-c="0">9.8</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="Moles = mass ÷ molar mass."><p class="qz-t">2. To convert grams to moles, divide by:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Volume</button><button type="button" class="qz-o" data-c="1">Molar mass</button><button type="button" class="qz-o" data-c="0">Temperature</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
             
             <div class="new-content">
                 <h5>Key Calculations:</h5>
@@ -1862,6 +1909,10 @@
         <div class="accordion-body">
             <h4>Properties of Different States</h4>
             <p>Study of solids, liquids, gases, and plasma including phase changes and kinetic theory.</p>
+            <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>Matter exists as solid, liquid or gas depending on how fast its particles move and how strongly they attract.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Solid:</strong> particles vibrate in fixed positions</li><li><strong>Liquid:</strong> particles slide past each other</li><li><strong>Gas:</strong> particles move freely and far apart</li><li><strong>Phase change:</strong> melting, freezing, boiling, condensing</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>0 °C / 100 °C</b> water freezes / boils at sea level</span><span class="lb-chip"><b>Plasma</b> is a fourth state found in stars</span><span class="lb-chip"><b>Ice</b> is less dense than liquid water</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>Heating adds energy, so particles move faster until they overcome the attractions between them. In ice, hydrogen bonds hold molecules in an open hexagonal pattern, which is why ice is less dense than water.</p></div></div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="Gas particles have little attraction."><p class="qz-t">1. Which state has particles that move freely and far apart?</p><div class="qz-opts"><button type="button" class="qz-o" data-c="1">Gas</button><button type="button" class="qz-o" data-c="0">Solid</button><button type="button" class="qz-o" data-c="0">Liquid</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="The boiling point is 100 °C."><p class="qz-t">2. Water boils at sea level at:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">0 °C</button><button type="button" class="qz-o" data-c="0">50 °C</button><button type="button" class="qz-o" data-c="1">100 °C</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
+            <div class="model-container"><div class="sketchfab-embed-wrapper"><div class="responsive-iframe-container"><iframe loading="lazy" title="Ice - Water molecules" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/be7495bb85b84bc18c615cc4e91103a2/embed"></iframe></div><p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;"><a href="https://sketchfab.com/3d-models/ice-water-molecules-be7495bb85b84bc18c615cc4e91103a2" target="_blank" rel="nofollow noopener" style="font-weight: bold; color: #1CAAD9;">Ice - Water molecules</a> by EfrenR on <a href="https://sketchfab.com" target="_blank" rel="nofollow noopener" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a> · licensed <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="nofollow noopener" style="font-weight: bold; color: #1CAAD9;">CC BY 4.0</a></p></div></div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="Hydrogen bonds hold ice molecules in an open pattern, making it less dense."><p class="qz-t">1. Why does ice float on liquid water?</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Ice is hotter</button><button type="button" class="qz-o" data-c="1">It is less dense</button><button type="button" class="qz-o" data-c="0">Ice has no molecules</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="Hydrogen bonds link neighbouring water molecules."><p class="qz-t">2. What holds water molecules to each other in ice?</p><div class="qz-opts"><button type="button" class="qz-o" data-c="1">Hydrogen bonds</button><button type="button" class="qz-o" data-c="0">Ionic bonds</button><button type="button" class="qz-o" data-c="0">Metallic bonds</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
             
             <div class="key-points">
                 <h6>Key Concepts:</h6>
@@ -1896,6 +1947,8 @@
         <div class="accordion-body">
             <h4>Mixtures and Their Properties</h4>
             <p>Study of homogeneous mixtures (solutions) and heterogeneous mixtures (colloids, suspensions).</p>
+            <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>A mixture contains two or more substances that are not chemically joined, so they can be separated physically.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Homogeneous:</strong> uniform throughout, like salt water</li><li><strong>Heterogeneous:</strong> visibly different parts, like sand in water</li><li><strong>Solution:</strong> solute dissolved in a solvent</li><li><strong>Colloid:</strong> tiny particles that stay suspended, like milk</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>Air</b> is a mixture of gases</span><span class="lb-chip"><b>Alloys</b> are solid solutions of metals</span><span class="lb-chip"><b>Solubility</b> usually rises with temperature for solids</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>In a solution the solute spreads out evenly as individual particles. Unlike compounds, mixtures can have any proportions and keep the properties of their parts.</p></div></div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="Salt dissolves evenly."><p class="qz-t">1. Salt water is an example of a:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Compound</button><button type="button" class="qz-o" data-c="1">Homogeneous mixture</button><button type="button" class="qz-o" data-c="0">Element</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="The solvent does the dissolving."><p class="qz-t">2. In a solution, the substance that dissolves is the:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="1">Solute</button><button type="button" class="qz-o" data-c="0">Solvent</button><button type="button" class="qz-o" data-c="0">Filtrate</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
             
             <div class="new-content">
                 <h5>Solution Chemistry:</h5>
@@ -1927,6 +1980,8 @@
         <div class="accordion-body">
             <h4>Properties of Acids and Bases</h4>
             <p>Study of acidic, basic, and neutral substances and their reactions.</p>
+            <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>Acids and bases are chemicals with opposite properties, measured on the pH scale.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Acid:</strong> donates hydrogen ions (H⁺)</li><li><strong>Base:</strong> accepts H⁺ or releases OH⁻</li><li><strong>pH:</strong> a scale from 0 to 14</li><li><strong>Neutralisation:</strong> acid and base form a salt and water</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>pH 7</b> is neutral at 25 °C</span><span class="lb-chip"><b>10×</b> change in H⁺ for each pH step</span><span class="lb-chip"><b>Indicators</b> change colour with pH</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>Strong acids such as hydrochloric acid ionise fully in water, while weak acids such as vinegar ionise only partly. Antacids are bases that neutralise stomach acid.</p></div></div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="pH 7 is neutral at 25 °C."><p class="qz-t">1. A solution with pH 7 is:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Acidic</button><button type="button" class="qz-o" data-c="0">Basic</button><button type="button" class="qz-o" data-c="1">Neutral</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="This is neutralisation."><p class="qz-t">2. Acid + base produces:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="1">Salt and water</button><button type="button" class="qz-o" data-c="0">Only gas</button><button type="button" class="qz-o" data-c="0">Only metal</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
             
             <div class="key-points">
                 <h6>Key Theories:</h6>
@@ -1962,6 +2017,8 @@
         <div class="accordion-body">
             <h4>Energy Changes in Chemical Reactions</h4>
             <p>Study of heat energy changes during chemical and physical processes.</p>
+            <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>Reactions absorb or release energy as bonds break and form.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Exothermic:</strong> releases heat</li><li><strong>Endothermic:</strong> absorbs heat</li><li><strong>Activation energy:</strong> the push needed to start a reaction</li><li><strong>Reaction rate:</strong> how fast reactants become products</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>Combustion</b> is exothermic</span><span class="lb-chip"><b>Joule</b> is the unit of energy</span><span class="lb-chip"><b>Higher temperature</b> usually speeds up reactions</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>Breaking bonds takes energy and forming bonds releases it. If more is released than absorbed, the reaction is exothermic. Catalysts lower the activation energy.</p></div></div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="Exothermic reactions warm their surroundings."><p class="qz-t">1. A reaction that releases heat is:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Endothermic</button><button type="button" class="qz-o" data-c="1">Exothermic</button><button type="button" class="qz-o" data-c="0">Inert</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="Reactants must get over this energy barrier."><p class="qz-t">2. Activation energy is the energy needed to:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Cool the reaction</button><button type="button" class="qz-o" data-c="1">Start the reaction</button><button type="button" class="qz-o" data-c="0">Weigh the products</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
             
             <div class="new-content">
                 <h5>Energy Concepts:</h5>
@@ -1993,6 +2050,8 @@
         <div class="accordion-body">
             <h4>Chemistry of Electricity</h4>
             <p>Study of the relationship between electrical energy and chemical change.</p>
+            <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>Many reactions transfer electrons, and that movement can create or use electricity.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Oxidation:</strong> loss of electrons</li><li><strong>Reduction:</strong> gain of electrons</li><li><strong>Galvanic cell:</strong> a reaction that produces current</li><li><strong>Electrolysis:</strong> current that drives a reaction</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>OIL RIG</b> Oxidation Is Loss, Reduction Is Gain</span><span class="lb-chip"><b>1800</b> Volta built the first battery</span><span class="lb-chip"><b>H₂ and O₂</b> made by electrolysing water</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>In a battery, oxidation at one electrode and reduction at the other push electrons through an external circuit. Electrolysis runs this in reverse, for example to plate metals or extract aluminium.</p></div></div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="OIL RIG: Reduction Is Gain."><p class="qz-t">1. Reduction means:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="1">Gain of electrons</button><button type="button" class="qz-o" data-c="0">Loss of electrons</button><button type="button" class="qz-o" data-c="0">Gain of protons</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="Redox reactions drive electrons through a circuit."><p class="qz-t">2. A battery turns:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Light into heat</button><button type="button" class="qz-o" data-c="0">Sound into motion</button><button type="button" class="qz-o" data-c="1">Chemical energy into electrical energy</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
             
             <div class="key-points">
                 <h6>Major Areas:</h6>
@@ -2029,6 +2088,8 @@
         <div class="accordion-body">
             <h4>Chemistry of Carbon Compounds</h4>
             <p>Study of carbon-containing compounds, their structure, properties, and reactions.</p>
+            <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>Carbon forms four bonds and long chains, which allows millions of different compounds, the basis of organic chemistry.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Hydrocarbons:</strong> compounds of only carbon and hydrogen</li><li><strong>Functional groups:</strong> groups of atoms that set a molecule's behaviour</li><li><strong>Isomers:</strong> same formula, different structure</li><li><strong>Polymers:</strong> long chains of repeating units</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>4</b> bonds per carbon atom</span><span class="lb-chip"><b>CH₄</b> methane, the simplest alkane</span><span class="lb-chip"><b>Diamond and graphite</b> are both pure carbon</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>Alkanes have single bonds, alkenes have a double bond and alcohols contain an –OH group. Small changes in structure can change properties completely.</p></div></div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="Carbon has four valence electrons."><p class="qz-t">1. How many bonds does a carbon atom usually form?</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Two</button><button type="button" class="qz-o" data-c="1">Four</button><button type="button" class="qz-o" data-c="0">Six</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="Methane is the simplest alkane."><p class="qz-t">2. Methane is:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="1">CH₄</button><button type="button" class="qz-o" data-c="0">C₂H₆</button><button type="button" class="qz-o" data-c="0">CO₂</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
             
             <!-- Subtopic Accordion -->
             <div class="card my-4">
@@ -2106,6 +2167,8 @@
         <div class="accordion-body">
             <h4>Chemistry of Living Organisms</h4>
             <p>Study of chemical processes within and relating to living organisms.</p>
+            <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>Biochemistry shows that living things run on a small set of large molecules.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Carbohydrates:</strong> sugars and starches for energy</li><li><strong>Lipids:</strong> fats for storage and membranes</li><li><strong>Proteins:</strong> chains of amino acids that do most jobs</li><li><strong>Nucleic acids:</strong> DNA and RNA store information</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>20</b> common amino acids</span><span class="lb-chip"><b>50–65%</b> of adult body mass is water</span><span class="lb-chip"><b>Enzymes</b> are protein catalysts</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>Enzymes have a specific active site that fits one substrate, like a key in a lock. Heat or extreme pH can change an enzyme's shape and stop it working.</p></div></div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="Amino acids join to form proteins."><p class="qz-t">1. Proteins are chains of:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Fatty acids</button><button type="button" class="qz-o" data-c="0">Sugars</button><button type="button" class="qz-o" data-c="1">Amino acids</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="They speed up biochemical reactions."><p class="qz-t">2. Enzymes work as:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="1">Catalysts</button><button type="button" class="qz-o" data-c="0">Reactants</button><button type="button" class="qz-o" data-c="0">Solvents</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
             
             <div class="new-content">
                 <h5>Biomolecules:</h5>
@@ -2146,6 +2209,8 @@
         <div class="accordion-body">
             <h4>Chemistry of the Atomic Nucleus</h4>
             <p>Study of changes in atomic nuclei including radioactive decay, fission, and fusion.</p>
+            <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>Some nuclei are unstable and change, releasing energy and radiation.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Radioactivity:</strong> spontaneous nuclear decay</li><li><strong>Alpha, beta, gamma:</strong> three types of radiation</li><li><strong>Half-life:</strong> time for half the nuclei to decay</li><li><strong>Fission and fusion:</strong> splitting or joining nuclei</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>1896</b> Becquerel discovered radioactivity</span><span class="lb-chip"><b>5,730 years</b> half-life of carbon-14</span><span class="lb-chip"><b>Fusion</b> powers the Sun</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>Alpha particles are stopped by paper, beta by thin metal and gamma needs thick lead or concrete. Carbon-14 dating uses half-life to estimate the age of once-living material.</p></div></div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="After one half-life, half remain."><p class="qz-t">1. Half-life is the time for:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">All nuclei to decay</button><button type="button" class="qz-o" data-c="1">Half the nuclei to decay</button><button type="button" class="qz-o" data-c="0">A nucleus to form</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="Alpha particles are large and slow."><p class="qz-t">2. Which radiation is stopped by paper?</p><div class="qz-opts"><button type="button" class="qz-o" data-c="1">Alpha</button><button type="button" class="qz-o" data-c="0">Beta</button><button type="button" class="qz-o" data-c="0">Gamma</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
             
             <div class="key-points">
                 <h6>Major Topics:</h6>
@@ -2181,6 +2246,8 @@
         <div class="accordion-body">
             <h4>Separation and Analysis of Matter</h4>
             <p>Study of methods and techniques to identify, separate, and quantify chemical components.</p>
+            <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>Chemists use differences in properties to separate mixtures and identify what is in a sample.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Filtration:</strong> separates solids from liquids</li><li><strong>Distillation:</strong> separates by boiling point</li><li><strong>Chromatography:</strong> separates by travel speed</li><li><strong>Spectroscopy:</strong> identifies substances using light</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>Paper</b> chromatography separates inks</span><span class="lb-chip"><b>Boiling point</b> drives distillation</span><span class="lb-chip"><b>Mass spectrometry</b> measures mass-to-charge ratio</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>In chromatography, substances that dissolve better in the moving solvent travel further. Comparing how far each spot travels helps identify the components.</p></div></div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="Different boiling points let each liquid evaporate separately."><p class="qz-t">1. Distillation separates liquids by their:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Colour</button><button type="button" class="qz-o" data-c="1">Boiling points</button><button type="button" class="qz-o" data-c="0">Mass only</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="The filter traps undissolved solids."><p class="qz-t">2. Filtration separates:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Gases from gases</button><button type="button" class="qz-o" data-c="0">Dissolved salt from water</button><button type="button" class="qz-o" data-c="1">Solids from liquids</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
             
             <div class="new-content">
                 <h5>Analytical Techniques:</h5>
@@ -2212,6 +2279,8 @@
         <div class="accordion-body">
             <h4>Chemistry of the Environment</h4>
             <p>Study of chemical processes occurring in the environment and their impacts.</p>
+            <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>Environmental chemistry looks at how chemicals move through air, water and soil, and how they affect life.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Greenhouse gases:</strong> trap heat in the atmosphere</li><li><strong>Ozone layer:</strong> absorbs harmful ultraviolet light</li><li><strong>Acid rain:</strong> rain made acidic by pollutants</li><li><strong>Water treatment:</strong> removing contaminants to make water safe</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>420+ ppm</b> carbon dioxide in the atmosphere today</span><span class="lb-chip"><b>pH below 5.6</b> counts as acid rain</span><span class="lb-chip"><b>Photosynthesis</b> removes CO₂ from air</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>Burning fossil fuels releases carbon dioxide and sulfur and nitrogen oxides. The first adds to warming, and the others dissolve in rain to form acids.</p></div></div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="CO₂ traps heat in the atmosphere."><p class="qz-t">1. Which gas is a major greenhouse gas?</p><div class="qz-opts"><button type="button" class="qz-o" data-c="1">Carbon dioxide</button><button type="button" class="qz-o" data-c="0">Argon</button><button type="button" class="qz-o" data-c="0">Helium</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="It shields life from harmful UV."><p class="qz-t">2. The ozone layer absorbs:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Radio waves</button><button type="button" class="qz-o" data-c="1">Ultraviolet light</button><button type="button" class="qz-o" data-c="0">Sound</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
             
             <div class="key-points">
                 <h6>Key Areas:</h6>
@@ -2247,6 +2316,8 @@
         <div class="accordion-body">
             <h4>Chemistry in Industry</h4>
             <p>Application of chemical principles to industrial processes and manufacturing.</p>
+            <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>Industrial chemistry turns raw materials into fuels, fertilisers, plastics and medicines at large scale.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Haber process:</strong> makes ammonia from nitrogen and hydrogen</li><li><strong>Contact process:</strong> makes sulfuric acid</li><li><strong>Cracking:</strong> breaks large hydrocarbons into smaller ones</li><li><strong>Catalysts:</strong> speed up reactions and save energy</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>1909</b> Haber demonstrated ammonia synthesis</span><span class="lb-chip"><b>Sulfuric acid</b> is among the most produced chemicals</span><span class="lb-chip"><b>Green chemistry</b> aims to cut waste and hazards</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>Factories choose temperature, pressure and catalysts to balance speed and yield. Recycling heat and unused reactants cuts both cost and pollution.</p></div></div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="It combines nitrogen and hydrogen."><p class="qz-t">1. The Haber process makes:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="1">Ammonia</button><button type="button" class="qz-o" data-c="0">Ethanol</button><button type="button" class="qz-o" data-c="0">Steel</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="They speed reactions without being used up."><p class="qz-t">2. Industrial catalysts help by:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="1">Speeding reactions and saving energy</button><button type="button" class="qz-o" data-c="0">Making reactions slower</button><button type="button" class="qz-o" data-c="0">Adding mass</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
             
             <div class="new-content">
                 <h5>Industrial Processes:</h5>
@@ -2280,7 +2351,7 @@
         <div class="modal-popup">
             
             <div class="modal-header">
-                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" alt="About Us" class="modal-image">
+                <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" alt="About Us" class="modal-image">
                 
             </div>
             <div class="modal-body">
@@ -2318,7 +2389,7 @@
             </button>
         <div class="modal-popup">
             <div class="modal-header">
-                <img src="https://images.unsplash.com/photo-1534536281715-e28d76689b4d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Contact Us" class="modal-image">
+                <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1534536281715-e28d76689b4d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Contact Us" class="modal-image">
                 
             </div>
             <div class="modal-body">
@@ -2847,5 +2918,23 @@
             });
         });
     </script>
+<script>
+/* Quiz: tap an answer for instant feedback; score shows when every question is answered */
+(function(){
+  document.addEventListener('click',function(e){
+    var r=e.target.closest&&e.target.closest('.qz-r');
+    if(r){var z=r.closest('.quiz');z.dataset.s=0;z.querySelectorAll('.qz-q').forEach(function(q){delete q.dataset.done;q.querySelector('.qz-fb').hidden=true;q.querySelectorAll('.qz-o').forEach(function(o){o.disabled=false;o.classList.remove('qz-ok','qz-no')})});z.querySelector('.qz-sc').hidden=true;return}
+    var b=e.target.closest&&e.target.closest('.qz-o');if(!b)return;
+    var q=b.closest('.qz-q');if(q.dataset.done)return;q.dataset.done='1';
+    var ok=b.dataset.c==='1';b.classList.add(ok?'qz-ok':'qz-no');
+    if(!ok)q.querySelector('[data-c="1"]').classList.add('qz-ok');
+    var fb=q.querySelector('.qz-fb');fb.textContent=(ok?'Correct! ':'Not quite. ')+q.dataset.ex;fb.hidden=false;
+    q.querySelectorAll('.qz-o').forEach(function(o){o.disabled=true});
+    var z=q.closest('.quiz');if(ok)z.dataset.s=(+z.dataset.s||0)+1;
+    var n=z.querySelectorAll('.qz-q').length;
+    if(z.querySelectorAll('.qz-q[data-done]').length===n){var sc=z.querySelector('.qz-sc');sc.firstChild.textContent='Score: '+(+z.dataset.s||0)+' / '+n;sc.hidden=false}
+  });
+})();
+</script>
 </body>
 </html>

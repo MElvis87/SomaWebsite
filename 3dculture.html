@@ -1411,6 +1411,41 @@
     </style>
     <link rel="stylesheet" href="assets/css/soma-modern.css">
     <link rel="stylesheet" href="assets/css/soma-saas.css">
+<style>
+/* Learning blocks (Overview, Key Concepts, Quick Facts, Detailed Notes) */
+.learn-block{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0;content-visibility:auto;contain-intrinsic-size:auto 520px}
+.lb-sec{background:rgba(67,97,238,.07);border:1px solid rgba(67,97,238,.15);border-radius:12px;padding:14px 16px;min-width:0}
+.lb-sec:nth-child(4){grid-column:1/-1}
+.lb-sec h5{font-size:.8rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--primary,#4361ee);margin:0 0 8px}
+.lb-sec p,.lb-sec li{font-size:.95rem;line-height:1.6}
+.lb-sec p:last-child{margin-bottom:0}
+.lb-sec ul{margin:0;padding-left:1.1rem}
+.lb-chips{display:flex;flex-wrap:wrap;gap:8px}
+.lb-chip{flex:1 1 140px;background:rgba(20,184,166,.12);border-radius:10px;padding:8px 10px;font-size:.85rem;line-height:1.35}
+.lb-chip b{display:block;font-size:1rem}
+[data-theme="dark"] .lb-sec{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12)}
+[data-theme="dark"] .lb-sec h5{color:#4de1ff}
+[data-theme="dark"] .lb-chip{background:rgba(77,225,255,.12)}
+@media(max-width:767.98px){.learn-block{grid-template-columns:1fr}}
+</style>
+<style>
+/* Quizzes */
+.quiz{margin:18px 0;padding:16px;border-radius:12px;border:1px solid rgba(67,97,238,.2);background:rgba(67,97,238,.05)}
+.quiz>h5{font-size:.95rem;font-weight:700;margin:0 0 12px;color:var(--primary,#4361ee)}
+.qz-q{margin:0 0 14px}
+.qz-t{font-weight:600;margin:0 0 8px}
+.qz-opts{display:flex;flex-wrap:wrap;gap:8px}
+.qz-o{flex:1 1 180px;text-align:left;padding:9px 12px;border-radius:10px;border:1px solid rgba(100,116,139,.4);background:transparent;color:inherit;font:inherit;font-size:.92rem;cursor:pointer;transition:background .2s,border-color .2s}
+.qz-o:hover:not(:disabled){background:rgba(67,97,238,.12)}
+.qz-o:disabled{cursor:default}
+.qz-o.qz-ok{background:rgba(22,163,74,.2);border-color:#16a34a}
+.qz-o.qz-no{background:rgba(220,38,38,.18);border-color:#dc2626}
+.qz-fb{margin:8px 0 0;font-size:.88rem;opacity:.9}
+.qz-sc{display:flex;align-items:center;gap:10px;font-weight:700;margin:4px 0 0}
+.qz-r{border:1px solid rgba(100,116,139,.5);background:transparent;color:inherit;border-radius:8px;padding:3px 10px;font-size:.82rem;cursor:pointer}
+[data-theme="dark"] .quiz{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.14)}
+[data-theme="dark"] .quiz>h5{color:#4de1ff}
+</style>
 </head>
 <body>
     <!-- Loading Screen -->
@@ -1499,7 +1534,7 @@
                     <!-- Profile Dropdown -->
                     <div class="dropdown profile-dropdown">
                         <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" id="profileDropdown" data-bs-toggle="dropdown">
-                            <img src="https://i.pravatar.cc/150?img=12" alt="Profile">
+                            <img loading="lazy" decoding="async" src="https://i.pravatar.cc/150?img=12" alt="Profile">
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li><a class="dropdown-item" href="#"><i class="fas fa-user-circle me-2"></i> Account</a></li>
@@ -1559,6 +1594,8 @@
         <div class="accordion-body">
             <h4>Exploring Cultural Diversity</h4>
             <p>Culture encompasses the social behavior, institutions, norms, knowledge, beliefs, arts, laws, customs, capabilities, and habits of individuals in human societies. This module introduces the fundamental concepts of cultural studies.</p>
+            <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>Culture is the shared way of life of a group: its beliefs, language, customs, arts and values, passed from one generation to the next.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Values and norms:</strong> what a group considers important and acceptable</li><li><strong>Language:</strong> the main carrier of culture</li><li><strong>Heritage:</strong> traditions and objects inherited from the past</li><li><strong>Cultural relativism:</strong> understanding a culture on its own terms</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>7,000+</b> languages spoken worldwide</span><span class="lb-chip"><b>1972</b> UNESCO World Heritage Convention</span><span class="lb-chip"><b>2003</b> UNESCO convention on intangible heritage</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>Culture is learned, not inherited biologically, and it changes as people meet and exchange ideas. Some heritage is physical, such as buildings and artefacts, and some is intangible, such as songs, festivals and recipes. Studying objects in 3D helps us see details that photographs hide.</p></div></div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="Culture covers the whole shared way of life."><p class="qz-t">1. Culture includes:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Only art</button><button type="button" class="qz-o" data-c="1">Beliefs, customs, language and arts</button><button type="button" class="qz-o" data-c="0">Only food</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="It means judging practices within their own context."><p class="qz-t">2. Cultural relativism means understanding a culture:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">By your own standards</button><button type="button" class="qz-o" data-c="0">By its wealth</button><button type="button" class="qz-o" data-c="1">On its own terms</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
             
             <div class="key-points">
                 <h6>Key Learning Objectives:</h6>
@@ -1602,6 +1639,7 @@
         <div class="accordion-body">
             <h4>Diverse Traditions of the African Continent</h4>
             <p>Africa is home to over 3,000 distinct ethnic groups and more than 2,000 languages. This module explores the rich tapestry of African cultural expressions.</p>
+            <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>Africa's cultures are among the most varied in the world, shaped by thousands of ethnic groups, languages and histories.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Oral tradition:</strong> history and wisdom passed on by speaking</li><li><strong>Music and drums:</strong> rhythm used for celebration, ritual and communication</li><li><strong>Textiles:</strong> woven and dyed cloth with symbolic patterns</li><li><strong>Masks and sculpture:</strong> objects used in ceremonies</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>54</b> countries in Africa</span><span class="lb-chip"><b>2,000+</b> languages</span><span class="lb-chip"><b>Talking drums</b> imitate the tones of speech</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>In many West African societies, griots are storytellers, musicians and historians who keep a community's memory alive. Drums are more than instruments: a talking drum can copy the rising and falling tones of a language to send messages across distance. Examine the drum model below.</p></div></div>
             
             <div class="new-content">
                 <h5>Subtopic: East African Culture</h5>
@@ -1629,13 +1667,14 @@
             <div class="model-container">
                 <div class="sketchfab-embed-wrapper"> 
                     <div class="responsive-iframe-container">
-                    <iframe title="African Drum" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/3b09e1d365be4f069417b2f54ba4e7c4/embed"> 
+                    <iframe loading="lazy" title="African Drum" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking web-share src="https://sketchfab.com/models/3b09e1d365be4f069417b2f54ba4e7c4/embed"> 
                     </iframe> 
                 </div>
                     <p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;"> <a href="https://sketchfab.com/3d-models/african-drum-3b09e1d365be4f069417b2f54ba4e7c4?utm_medium=embed&utm_campaign=share-popup&utm_content=3b09e1d365be4f069417b2f54ba4e7c4" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> African Drum </a> by <a href="https://sketchfab.com/Megalith.Dreidee?utm_medium=embed&utm_campaign=share-popup&utm_content=3b09e1d365be4f069417b2f54ba4e7c4" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> Megalith3D </a> on <a href="https://sketchfab.com?utm_medium=embed&utm_campaign=share-popup&utm_content=3b09e1d365be4f069417b2f54ba4e7c4" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a>
                     </p>
                 </div>
             </div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="Talking drums copy the rising and falling tones of tonal languages."><p class="qz-t">1. A talking drum can imitate:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="1">The tones of speech</button><button type="button" class="qz-o" data-c="0">Only silence</button><button type="button" class="qz-o" data-c="0">Thunder only</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="Griots are musicians, historians and storytellers."><p class="qz-t">2. West African storytellers who keep oral history are called:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Scribes</button><button type="button" class="qz-o" data-c="1">Griots</button><button type="button" class="qz-o" data-c="0">Monks</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
             
             <div class="d-flex justify-content-between align-items-center mt-4">
                 <div>
@@ -1659,6 +1698,8 @@
         <div class="accordion-body">
             <h4>Ancient Civilizations and Modern Traditions</h4>
             <p>Asia, the largest and most populous continent, hosts ancient civilizations with rich cultural heritage spanning thousands of years.</p>
+            <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>Asia has produced some of the world's oldest civilisations, and many of their traditions are still alive today.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>River valley civilisations:</strong> Mesopotamia, Indus Valley and the Yellow River</li><li><strong>Religions and philosophies:</strong> Hinduism, Buddhism, Confucianism, Islam and more</li><li><strong>Festivals:</strong> celebrations such as Diwali and Lunar New Year</li><li><strong>Silk Road:</strong> trade routes that spread goods and ideas</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>~60%</b> of the world's people live in Asia</span><span class="lb-chip"><b>c. 3400 BCE</b> earliest writing in Mesopotamia</span><span class="lb-chip"><b>Silk Road</b> linked East and West for centuries</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>Early farming societies grew along great rivers, which made large cities and writing possible. The Silk Road carried silk, spices, paper and also religions and technologies, so cultures across Asia and beyond influenced one another.</p></div></div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="It carried goods and ideas across Asia and beyond."><p class="qz-t">1. The Silk Road was a network for:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Air travel</button><button type="button" class="qz-o" data-c="1">Trade between East and West</button><button type="button" class="qz-o" data-c="0">Mining</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="The Indus Valley civilisation is one of the oldest in the world."><p class="qz-t">2. Which civilisation grew along the Indus River?</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Inca</button><button type="button" class="qz-o" data-c="0">Roman</button><button type="button" class="qz-o" data-c="1">Indus Valley</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
             
             <div class="new-content">
                 <h5>Regional Focus Areas:</h5>
@@ -1712,6 +1753,7 @@
         <div class="accordion-body">
             <h4>From Classical Antiquity to Modern Expressions</h4>
             <p>Europe's cultural heritage spans from ancient Greek and Roman civilizations to Renaissance art and modern design movements.</p>
+            <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>European culture is built on layers: ancient Greece and Rome, the Middle Ages, the Renaissance and the modern era.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Classical antiquity:</strong> Greek and Roman art, philosophy and law</li><li><strong>Renaissance:</strong> a revival of art and learning</li><li><strong>Medieval period:</strong> Romanesque and Gothic architecture</li><li><strong>Modern movements:</strong> movements such as Impressionism and Bauhaus</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>776 BCE</b> first recorded Olympic Games</span><span class="lb-chip"><b>14th century</b> Renaissance began in Italy</span><span class="lb-chip"><b>24</b> official languages of the EU</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>Ancient Greek pottery tells stories: red-figure and black-figure vases show myths, sports and daily life. Amphorae like the one in the model below stored and transported wine, olive oil and grain across the Mediterranean.</p></div></div>
             
             <div class="new-content">
                 <h5>Cultural Highlights:</h5>
@@ -1739,11 +1781,13 @@
                 <div class="sketchfab-embed-wrapper"> 
                     <!-- Replace with your 3D model embed code -->
                     <div class="responsive-iframe-container"> 
-                        <iframe title="European Artifact" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/your-model-id/embed"> 
+                        <iframe loading="lazy" title="European Artifact" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking web-share src="https://sketchfab.com/models/f8d95e9ae0324e69b257a5e50adeca0e/embed"> 
                         </iframe> 
                     </div>
+                    <p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;"><a href="https://sketchfab.com/3d-models/greek-jar-f8d95e9ae0324e69b257a5e50adeca0e" target="_blank" rel="nofollow noopener" style="font-weight: bold; color: #1CAAD9;">Greek Jar</a> by Davide Specchi on <a href="https://sketchfab.com" target="_blank" rel="nofollow noopener" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a> · licensed <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="nofollow noopener" style="font-weight: bold; color: #1CAAD9;">CC BY 4.0</a></p>
                 </div>
             </div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="They carried food and drink across the Mediterranean."><p class="qz-t">1. Greek amphorae were used to store and carry:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Fuel only</button><button type="button" class="qz-o" data-c="1">Wine, oil and grain</button><button type="button" class="qz-o" data-c="0">Electronics</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="Scenes include gods, heroes, sport and everyday activities."><p class="qz-t">2. Greek vase paintings often show:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Maps</button><button type="button" class="qz-o" data-c="0">Recipes only</button><button type="button" class="qz-o" data-c="1">Myths and daily life</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
             
             <div class="d-flex justify-content-between align-items-center mt-4">
                 <div>
@@ -1767,6 +1811,8 @@
         <div class="accordion-body">
             <h4>Native Traditions and Contemporary Expressions</h4>
             <p>Explore the rich cultural heritage of Native American tribes, First Nations, and the diverse cultural expressions of North America.</p>
+            <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>Indigenous peoples of North America have diverse nations, languages and living traditions that continue today.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Oral storytelling:</strong> teaching history and values by speaking</li><li><strong>Sovereignty:</strong> Indigenous nations govern themselves</li><li><strong>Crafts:</strong> beadwork, basketry, pottery and weaving</li><li><strong>Land and ceremony:</strong> strong ties between place and tradition</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>570+</b> federally recognised tribes in the US</span><span class="lb-chip"><b>3</b> Indigenous groups in Canada: First Nations, Métis, Inuit</span><span class="lb-chip"><b>Living</b> cultures, not only history</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>Many nations share knowledge through stories, songs and dances rather than books. Art and craft often carry meaning, with patterns and materials linked to clan, place and ceremony. Contemporary artists and writers keep these traditions evolving.</p></div></div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="Stories are told and retold."><p class="qz-t">1. Oral tradition passes stories on:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Only by printing</button><button type="button" class="qz-o" data-c="1">By speaking across generations</button><button type="button" class="qz-o" data-c="0">Only by film</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="These are the three recognised groups."><p class="qz-t">2. Indigenous groups in Canada are First Nations, Métis and:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="1">Inuit</button><button type="button" class="qz-o" data-c="0">Maya</button><button type="button" class="qz-o" data-c="0">Celts</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
             
             <div class="new-content">
                 <h5>Indigenous Cultural Regions:</h5>
@@ -1820,6 +1866,7 @@
         <div class="accordion-body">
             <h4>Ancient Civilizations and Vibrant Traditions</h4>
             <p>From the Inca Empire to Amazonian tribes, South America boasts diverse cultural expressions with deep historical roots.</p>
+            <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>South America holds great ancient civilisations such as the Inca and many Amazonian peoples with deep ties to their environment.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Inca Empire:</strong> a large Andean state centred on Cusco</li><li><strong>Quipu:</strong> knotted cords used to record information</li><li><strong>Terrace farming:</strong> steps cut into mountainsides to grow crops</li><li><strong>Amazonian cultures:</strong> forest peoples with detailed ecological knowledge</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>~1450</b> Machu Picchu built</span><span class="lb-chip"><b>Thousands</b> of potato varieties originate in the Andes</span><span class="lb-chip"><b>Quechua</b> is still spoken by millions</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>The Inca had no written alphabet but used quipu to track goods, people and calendars, and built roads and terraces across steep mountains. Andean farmers domesticated potatoes, quinoa and many other crops now eaten worldwide.</p></div></div>
             
             <div class="new-content">
                 <h5>Cultural Regions:</h5>
@@ -1847,11 +1894,12 @@
                 <div class="sketchfab-embed-wrapper"> 
                     <!-- Replace with your 3D model embed code -->
                     <div class="responsive-iframe-container"> 
-                        <iframe title="South American Artifact" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/your-model-id/embed"> 
+                        <iframe loading="lazy" title="South American Artifact" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking web-share src="https://sketchfab.com/models/your-model-id/embed"> 
                         </iframe> 
                     </div>
                 </div>
             </div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="Knots and colours stored numbers and records."><p class="qz-t">1. A quipu was used by the Inca to:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Cook food</button><button type="button" class="qz-o" data-c="1">Record information with knotted cords</button><button type="button" class="qz-o" data-c="0">Dye cloth</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="Andean farmers developed thousands of potato varieties."><p class="qz-t">2. Which crop was first domesticated in the Andes?</p><div class="qz-opts"><button type="button" class="qz-o" data-c="1">Potato</button><button type="button" class="qz-o" data-c="0">Rice</button><button type="button" class="qz-o" data-c="0">Wheat</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
             
             <div class="d-flex justify-content-between align-items-center mt-4">
                 <div>
@@ -1875,6 +1923,8 @@
         <div class="accordion-body">
             <h4>Cultural Identity Through Cuisine</h4>
             <p>Food is a fundamental aspect of cultural identity. Explore traditional cooking methods, utensils, and dining customs from around the world.</p>
+            <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>What people eat, how they cook it and how they share it expresses who they are.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Staple foods:</strong> basic foods eaten regularly, like rice, maize or wheat</li><li><strong>Cooking methods:</strong> steaming, grilling, fermenting and more</li><li><strong>Dining customs:</strong> manners and shared meals</li><li><strong>Food and trade:</strong> spices and crops moving between regions</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>Over half</b> of the world relies on rice</span><span class="lb-chip"><b>2010</b> French gastronomic meal listed by UNESCO</span><span class="lb-chip"><b>2013</b> Washoku (Japanese cuisine) listed</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>Climate and available crops shape cuisine, while trade and migration spread ingredients. Foods like chilli and tomatoes travelled from the Americas to Asia and Europe and transformed local cooking.</p></div></div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="Staples include rice, maize and wheat."><p class="qz-t">1. A staple food is:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">A rare delicacy</button><button type="button" class="qz-o" data-c="1">A basic food eaten regularly</button><button type="button" class="qz-o" data-c="0">A kitchen tool</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="Demand for spices drove long-distance trade."><p class="qz-t">2. Spices helped shape:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="1">Trade routes</button><button type="button" class="qz-o" data-c="0">Satellites</button><button type="button" class="qz-o" data-c="0">Mountain ranges</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
             
             <div class="new-content">
                 <h5>Regional Culinary Tools:</h5>
@@ -1928,6 +1978,7 @@
         <div class="accordion-body">
             <h4>Weaving Cultural Identity Through Fabric</h4>
             <p>Traditional clothing represents cultural identity, social status, and historical continuity. Explore textiles, weaving techniques, and garment construction worldwide.</p>
+            <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>Clothing and textiles show identity, status and tradition, and their patterns often carry meaning.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Fibres:</strong> cotton, wool, silk, linen and more</li><li><strong>Weaving:</strong> interlacing threads on a loom</li><li><strong>Dyeing:</strong> colouring cloth with natural or synthetic dyes</li><li><strong>Symbolism:</strong> colours and patterns that tell stories</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>Kente</b> is woven by the Asante and Ewe of Ghana</span><span class="lb-chip"><b>Silk</b> comes from silkworm cocoons and began in China</span><span class="lb-chip"><b>Indigo</b> has been used as a dye for thousands of years</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>Weaving techniques are often taught within families. A single garment can show a person's region, age, marital status or role in ceremony, so textiles are valuable records of culture.</p></div></div>
             
             <div class="new-content">
                 <h5>Textile Traditions:</h5>
@@ -1955,11 +2006,12 @@
                 <div class="sketchfab-embed-wrapper"> 
                     <!-- Replace with your 3D model embed code -->
                     <div class="responsive-iframe-container"> 
-                        <iframe title="Traditional Garment" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/your-model-id/embed"> 
+                        <iframe loading="lazy" title="Traditional Garment" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking web-share src="https://sketchfab.com/models/your-model-id/embed"> 
                         </iframe> 
                     </div>
                 </div>
             </div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="Silk threads are unwound from silkworm cocoons."><p class="qz-t">1. Silk comes from:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Cotton plants</button><button type="button" class="qz-o" data-c="1">Silkworm cocoons</button><button type="button" class="qz-o" data-c="0">Sheep wool</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="Patterns and colours often signal region, role or rank."><p class="qz-t">2. Traditional clothing can show a person&#x27;s:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="1">Identity and status</button><button type="button" class="qz-o" data-c="0">Only the weather</button><button type="button" class="qz-o" data-c="0">Nothing</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
             
             <div class="d-flex justify-content-between align-items-center mt-4">
                 <div>
@@ -1983,6 +2035,9 @@
         <div class="accordion-body">
             <h4>Sacred Objects and Ritual Practices</h4>
             <p>Explore the ceremonial objects used in religious practices, rites of passage, and cultural rituals across different societies.</p>
+            <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>Rituals mark important moments and beliefs, and special objects help carry out the ceremony.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Ritual:</strong> a set of actions with symbolic meaning</li><li><strong>Sacred object:</strong> an item used in worship or ceremony</li><li><strong>Rites of passage:</strong> ceremonies for life changes</li><li><strong>Symbolism:</strong> objects standing for ideas or beings</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>4</b> common rites: birth, adulthood, marriage, death</span><span class="lb-chip"><b>Masks</b> are used in ceremonies worldwide</span><span class="lb-chip"><b>Maya ceramics</b> often show gods and rulers</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>Sacred objects may be kept in temples, homes or museums. Studying them in 3D lets us see carved and painted details closely, such as the figure on the Maya jar below, which may show an ancient deity.</p></div></div>
+            <div class="model-container"><div class="sketchfab-embed-wrapper"><div class="responsive-iframe-container"><iframe loading="lazy" title="Jar with Ancient Deity" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/4632650bcf034b0f8802081e924769a9/embed"></iframe></div><p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;"><a href="https://sketchfab.com/3d-models/jar-with-ancient-deity-ncma-explore-4632650bcf034b0f8802081e924769a9" target="_blank" rel="nofollow noopener" style="font-weight: bold; color: #1CAAD9;">Jar with Ancient Deity | NCMA Explore</a> by NCMA Explore | North Carolina Museum of Art on <a href="https://sketchfab.com" target="_blank" rel="nofollow noopener" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a> · licensed <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="nofollow noopener" style="font-weight: bold; color: #1CAAD9;">CC BY 4.0</a></p></div></div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="Examples are birth, adulthood, marriage and death."><p class="qz-t">1. A rite of passage marks:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">A harvest</button><button type="button" class="qz-o" data-c="1">A change in life stage</button><button type="button" class="qz-o" data-c="0">A trade deal</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="Painted and carved scenes depict deities, rulers and ceremonies."><p class="qz-t">2. Maya ceramics often show:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="1">Gods and rulers</button><button type="button" class="qz-o" data-c="0">Cars</button><button type="button" class="qz-o" data-c="0">Computers</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
             
             <div class="new-content">
                 <h5>Types of Ritual Objects:</h5>
@@ -2036,6 +2091,7 @@
         <div class="accordion-body">
             <h4>Stories That Shape Societies</h4>
             <p>Explore the myths, legends, folktales, and oral histories that transmit cultural values, explain natural phenomena, and preserve collective memory.</p>
+            <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>Myths, legends and folktales explain the world, teach values and keep memory alive.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Myth:</strong> a sacred story about origins or gods</li><li><strong>Legend:</strong> a story based on real people or events</li><li><strong>Folktale:</strong> a traditional story, often with a lesson</li><li><strong>Oral tradition:</strong> stories retold from person to person</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>4,000+ years</b> age of some of the earliest known stories</span><span class="lb-chip"><b>Anansi</b> spider tales come from the Akan of West Africa</span><span class="lb-chip"><b>Aesop</b> fables come from ancient Greece</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>Stories change a little each time they are told, yet keep their core message. Similar tales appear in different cultures, such as flood myths and trickster characters, showing shared human questions.</p></div></div>
             
             <div class="new-content">
                 <h5>Storytelling Traditions:</h5>
@@ -2063,11 +2119,12 @@
                 <div class="sketchfab-embed-wrapper"> 
                     <!-- Replace with your 3D model embed code -->
                     <div class="responsive-iframe-container"> 
-                        <iframe title="Folklore Character" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/your-model-id/embed"> 
+                        <iframe loading="lazy" title="Folklore Character" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking web-share src="https://sketchfab.com/models/your-model-id/embed"> 
                         </iframe> 
                     </div>
                 </div>
             </div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="Myths explain how the world and its customs began."><p class="qz-t">1. A myth usually explains:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Bus schedules</button><button type="button" class="qz-o" data-c="1">Origins and natural events</button><button type="button" class="qz-o" data-c="0">Tax law</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="Oral retelling keeps folktales alive."><p class="qz-t">2. A folktale is passed on mainly by:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="1">Retelling by people</button><button type="button" class="qz-o" data-c="0">Maps</button><button type="button" class="qz-o" data-c="0">Contracts</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
             
             <div class="d-flex justify-content-between align-items-center mt-4">
                 <div>
@@ -2091,7 +2148,7 @@
         <div class="modal-popup">
             
             <div class="modal-header">
-                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" alt="About Us" class="modal-image">
+                <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" alt="About Us" class="modal-image">
                 
             </div>
             <div class="modal-body">
@@ -2129,7 +2186,7 @@
             </button>
         <div class="modal-popup">
             <div class="modal-header">
-                <img src="https://images.unsplash.com/photo-1534536281715-e28d76689b4d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Contact Us" class="modal-image">
+                <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1534536281715-e28d76689b4d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Contact Us" class="modal-image">
                 
             </div>
             <div class="modal-body">
@@ -2658,5 +2715,23 @@
             });
         });
     </script>
+<script>
+/* Quiz: tap an answer for instant feedback; score shows when every question is answered */
+(function(){
+  document.addEventListener('click',function(e){
+    var r=e.target.closest&&e.target.closest('.qz-r');
+    if(r){var z=r.closest('.quiz');z.dataset.s=0;z.querySelectorAll('.qz-q').forEach(function(q){delete q.dataset.done;q.querySelector('.qz-fb').hidden=true;q.querySelectorAll('.qz-o').forEach(function(o){o.disabled=false;o.classList.remove('qz-ok','qz-no')})});z.querySelector('.qz-sc').hidden=true;return}
+    var b=e.target.closest&&e.target.closest('.qz-o');if(!b)return;
+    var q=b.closest('.qz-q');if(q.dataset.done)return;q.dataset.done='1';
+    var ok=b.dataset.c==='1';b.classList.add(ok?'qz-ok':'qz-no');
+    if(!ok)q.querySelector('[data-c="1"]').classList.add('qz-ok');
+    var fb=q.querySelector('.qz-fb');fb.textContent=(ok?'Correct! ':'Not quite. ')+q.dataset.ex;fb.hidden=false;
+    q.querySelectorAll('.qz-o').forEach(function(o){o.disabled=true});
+    var z=q.closest('.quiz');if(ok)z.dataset.s=(+z.dataset.s||0)+1;
+    var n=z.querySelectorAll('.qz-q').length;
+    if(z.querySelectorAll('.qz-q[data-done]').length===n){var sc=z.querySelector('.qz-sc');sc.firstChild.textContent='Score: '+(+z.dataset.s||0)+' / '+n;sc.hidden=false}
+  });
+})();
+</script>
 </body>
 </html>
