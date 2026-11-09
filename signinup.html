@@ -3229,5 +3229,136 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
     </script>
+<!-- Mobile navbar: book-icon subjects dropdown + theme toggle in the header, centered hamburger menu -->
+<style>
+    @media (max-width: 991.98px) {
+        /* Compact header so logo, subjects, toggle and hamburger stay on one line */
+        .navbar > .container > .navbar-brand { flex: 0 1 auto; min-width: 0; margin-right: 0.25rem; }
+        .navbar > .container > .navbar-brand img { height: 28px !important; width: auto; max-width: 100%; }
+        .navbar > .container > .navbar-toggler { flex: 0 0 auto; padding: 0.2rem 0.4rem; margin: 0; }
+
+        /* Subjects: book-icon dropdown (the hamburger's Subjects item is hidden on mobile) */
+        .navbar-collapse .navbar-nav > .subjects-desktop-only { display: none !important; }
+        .navbar > .container > .nav-subjects-dd { flex: 0 0 auto; position: relative; margin: 0 0.35rem 0 auto; }
+        .navbar > .container > .nav-subjects-dd > .nav-subjects-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 34px;
+            height: 34px;
+            padding: 0;
+            border: 1px solid rgba(128, 128, 128, 0.4);
+            border-radius: 8px;
+            background: transparent;
+            color: inherit;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+        .navbar > .container > .nav-subjects-dd > .nav-subjects-btn[aria-expanded="true"] {
+            background: var(--primary, #4361ee);
+            border-color: transparent;
+            color: #fff;
+        }
+        .navbar > .container > .nav-subjects-dd > .dropdown-menu {
+            min-width: 13rem;
+            max-width: calc(100vw - 24px);
+            margin-top: 0.5rem;
+        }
+
+        /* Theme toggle in the header */
+        .navbar > .container > .theme-toggle {
+            display: flex !important;
+            flex: 0 0 auto !important;
+            width: auto !important;
+            margin: 0 0.3rem 0 0 !important;
+            padding: 0 !important;
+            border: 0 !important;
+            border-radius: 0 !important;
+            background: transparent !important;
+            box-shadow: none !important;
+            gap: 0.1rem;
+            justify-content: center !important;
+        }
+        .navbar > .container > .theme-toggle .theme-toggle-label { margin: 0 !important; font-size: 0.7rem !important; }
+        .navbar > .container > .theme-toggle .switch { transform: scale(0.75); margin: 0 -6px; }
+
+        /* Centered hamburger menu content */
+        .navbar-collapse { text-align: center; }
+        .navbar-collapse .navbar-nav { align-items: center; width: 100%; }
+        .navbar-collapse .nav-item { width: 100%; text-align: center; }
+        .navbar-collapse .nav-link { display: flex; align-items: center; justify-content: center; gap: 0.4rem; }
+        .navbar-collapse .navbar-nav .dropdown-menu {
+            position: static !important;
+            float: none;
+            width: max-content;
+            min-width: 12rem;
+            max-width: 100%;
+            margin: 0.25rem auto !important;
+            text-align: center;
+        }
+        .navbar-collapse .dropdown-item { display: flex; align-items: center; justify-content: center; text-align: center; }
+        .navbar-collapse > .d-flex { justify-content: center; width: 100%; margin-top: 0.5rem; }
+        .navbar-collapse .profile-dropdown { margin: 0.5rem auto 0; }
+        .navbar-collapse .profile-dropdown .dropdown-menu {
+            left: 50% !important;
+            right: auto !important;
+            transform: translateX(-50%) !important;
+        }
+    }
+    @media (max-width: 399.98px) {
+        /* Narrow phones: slightly smaller button and logo */
+        .navbar > .container > .nav-subjects-dd > .nav-subjects-btn { width: 32px; height: 32px; }
+        .navbar > .container > .navbar-brand img { height: 26px !important; }
+    }
+    @media (max-width: 767.98px) {
+        /* Phones: hide the sun and moon icons to save room (tablets and larger keep them) */
+        .navbar > .container > .theme-toggle .theme-toggle-label { display: none !important; }
+        .navbar > .container > .theme-toggle .switch { transform: scale(0.85); margin: 0 -3px; }
+    }
+</style>
+<script>
+    /* Under 992px: show a book-icon Subjects dropdown and the theme toggle beside the hamburger.
+       The theme toggle is moved (not copied), so its script keeps working; the Subjects menu is a copy
+       of the navbar's own links. On larger screens everything returns to its original place. */
+    (function () {
+        var nav = document.querySelector('.navbar');
+        if (!nav) return;
+        var container = nav.querySelector('.container');
+        var toggle = nav.querySelector('.theme-toggle');
+        var burger = nav.querySelector('.navbar-toggler');
+        if (!container || !toggle || !burger) return;
+
+        var markToggle = document.createComment('');
+        toggle.parentNode.insertBefore(markToggle, toggle);
+
+        var subjLink = nav.querySelector('#navbarDropdown');
+        var subjItem = subjLink ? subjLink.closest('li') : null;
+        var subjMenu = subjItem ? subjItem.querySelector('.dropdown-menu') : null;
+        var dd = null;
+        if (subjItem && subjMenu) {
+            subjItem.classList.add('subjects-desktop-only');
+            dd = document.createElement('div');
+            dd.className = 'dropdown nav-subjects-dd';
+            dd.innerHTML = '<button type="button" class="nav-subjects-btn" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Subjects"><i class="fas fa-book"></i></button>';
+            var menu = subjMenu.cloneNode(true);
+            menu.removeAttribute('aria-labelledby');
+            menu.classList.add('dropdown-menu-end');
+            dd.appendChild(menu);
+        }
+
+        var mq = window.matchMedia('(max-width: 991.98px)');
+        function place() {
+            if (mq.matches) {
+                if (dd) container.insertBefore(dd, burger);
+                container.insertBefore(toggle, burger);
+            } else {
+                if (dd && dd.parentNode) dd.parentNode.removeChild(dd);
+                markToggle.parentNode.insertBefore(toggle, markToggle.nextSibling);
+            }
+        }
+        place();
+        if (mq.addEventListener) { mq.addEventListener('change', place); } else { mq.addListener(place); }
+    })();
+</script>
 </body>
 </html>
