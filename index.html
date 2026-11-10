@@ -4612,5 +4612,24 @@ html, body {
         if (mq.addEventListener) { mq.addEventListener('change', place); } else { mq.addListener(place); }
     })();
 </script>
+<!-- Elfsight Website Translator (test run) -->
+<style>
+    /* Keeps the translator tidy in the bottom-left corner, clear of the scroll-to-top button (bottom-right).
+       Move it by changing left/bottom, or switch left to right. Remove this whole block to remove the widget. */
+    .translator-widget {
+        position: fixed;
+        left: 16px;
+        bottom: 16px;
+        z-index: 1040;          /* above the navbar (1030), below modals (1100) */
+        max-width: calc(100vw - 32px);
+    }
+    @media (max-width: 575.98px) {
+        .translator-widget { left: 10px; bottom: 10px; }
+    }
+</style>
+<div class="translator-widget" translate="no">
+    <script src="https://elfsightcdn.com/platform.js" async></script>
+    <div class="elfsight-app-9de416c3-da55-4d08-aa99-90ed6a0370a3" data-elfsight-app-lazy></div>
+</div>
 </body>
 </html>
