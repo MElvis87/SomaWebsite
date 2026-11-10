@@ -11,6 +11,15 @@
     token: window.localStorage ? window.localStorage.getItem(TOKEN_KEY) || "" : ""
   };
 
+  // Premium Access (star) button: hidden for signed-in users. The "pending" class hides it right away
+  // when a saved session exists, so it does not flash while the session is being verified.
+  (function () {
+    var css = document.createElement("style");
+    css.textContent = "body.soma-authenticated .notepad-dropdown, html.soma-auth-pending .notepad-dropdown { display: none !important; }";
+    document.head.appendChild(css);
+    if (state.token) document.documentElement.classList.add("soma-auth-pending");
+  }());
+
   function ready(callback) {
     if (document.readyState === "loading") {
       document.addEventListener("DOMContentLoaded", callback);
@@ -114,6 +123,7 @@
   }
 
   function applyGuestState() {
+    document.documentElement.classList.remove("soma-auth-pending");
     state.user = null;
     document.body.classList.remove("soma-authenticated");
     document.body.classList.add("soma-auth-guest");
@@ -123,6 +133,7 @@
   }
 
   function applyUserState(user) {
+    document.documentElement.classList.remove("soma-auth-pending");
     state.user = user || null;
     document.body.classList.toggle("soma-authenticated", Boolean(user));
     document.body.classList.toggle("soma-auth-guest", !user);
