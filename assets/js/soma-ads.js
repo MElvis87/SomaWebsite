@@ -11,27 +11,34 @@
     { src: "assets/ads/ad-2.jpg", alt: "Advertisement", href: "" }
   ];
   var INTERVAL = 20000;   // wait between ads (ms), counted from when the last one closed
-  var DURATION = 5000;    // how long an ad stays on screen (ms)
+  var DURATION = 5000;    // how long an ad stays on screen (ms), shown by the countdown
+  var FADE = 700;         // fade in / fade out time (ms)
   /* ===================== */
 
   var css = [
     ".soma-ad-overlay{position:fixed;inset:0;z-index:2000;display:flex;align-items:center;justify-content:center;padding:16px;",
-    "background:rgba(10,14,30,.38);opacity:0;transition:opacity .25s ease}",
+    "background:rgba(10,14,30,.38);opacity:0;transition:opacity " + FADE + "ms ease-in-out}",
     ".soma-ad-overlay.is-open{opacity:1}",
     ".soma-ad-card{--soma-ad-radius:22px;position:relative;max-width:100%;max-height:100%;border-radius:var(--soma-ad-radius);overflow:hidden;",
-    "background:#fff;box-shadow:0 18px 50px rgba(0,0,0,.45);transform:scale(.96);transition:transform .25s ease}",
-    ".soma-ad-overlay.is-open .soma-ad-card{transform:scale(1)}",
+    "background:#fff;box-shadow:0 18px 50px rgba(0,0,0,.45);opacity:0;transform:scale(.95);",
+    "transition:opacity " + FADE + "ms ease-in-out,transform " + FADE + "ms ease-in-out}",
+    ".soma-ad-overlay.is-open .soma-ad-card{opacity:1;transform:scale(1)}",
     ".soma-ad-card a{display:block;line-height:0}",
     ".soma-ad-card img{display:block;width:auto;height:auto;max-width:min(92vw,720px);max-height:min(78vh,720px)}",
-    ".soma-ad-close{position:absolute;top:10px;right:10px;width:34px;height:34px;padding:0;border:0;border-radius:50%;",
-    "background:rgba(255,255,255,.92);color:#1b1f2a;font:700 18px/34px system-ui,sans-serif;text-align:center;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.3)}",
-    ".soma-ad-close:hover,.soma-ad-close:focus-visible{background:#fff;outline:2px solid #f97316}",
+    ".soma-ad-count{position:absolute;top:10px;right:10px;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.92);",
+    "color:#1b1f2a;font:700 15px/34px system-ui,sans-serif;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.3);pointer-events:none}",
+    ".soma-ad-count svg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg)}",
+    ".soma-ad-count circle{fill:none;stroke-width:3}",
+    ".soma-ad-count .track{stroke:rgba(0,0,0,.12)}",
+    ".soma-ad-count .bar{stroke:#f97316;stroke-linecap:round;stroke-dasharray:94.25;stroke-dashoffset:0;animation:soma-ad-ring linear forwards}",
+    ".soma-ad-count span{position:relative}",
+    "@keyframes soma-ad-ring{to{stroke-dashoffset:94.25}}",
     ".soma-ad-tag{position:absolute;top:10px;left:10px;padding:2px 8px;border-radius:999px;background:rgba(0,0,0,.55);color:#fff;",
     "font:600 11px/18px system-ui,sans-serif;letter-spacing:.04em;pointer-events:none}",
-    "@media (prefers-reduced-motion:reduce){.soma-ad-overlay,.soma-ad-card{transition:none}}"
+    "@media (prefers-reduced-motion:reduce){.soma-ad-overlay,.soma-ad-card{transition:none}.soma-ad-count .bar{animation:none}}"
   ].join("");
 
-  var timer = 0, hideTimer = 0, overlay = null, bag = [], last = -1, pending = null;
+  var timer = 0, hideTimer = 0, countTimer = 0, overlay = null, bag = [], last = -1, pending = null;
 
   function signedIn() {
     return document.body.classList.contains("soma-authenticated") ||
@@ -105,33 +112,44 @@
     tag.className = "soma-ad-tag";
     tag.textContent = "Ad";
 
-    var close = document.createElement("button");
-    close.type = "button";
-    close.className = "soma-ad-close";
-    close.setAttribute("aria-label", "Close ad");
-    close.textContent = "\u00d7";
-    close.addEventListener("click", function () { hide(); });
+    var count = document.createElement("div");
+    count.className = "soma-ad-count";
+    count.setAttribute("role", "timer");
+    count.setAttribute("aria-label", "Ad closing soon");
+    count.innerHTML = '<svg viewBox="0 0 34 34" aria-hidden="true"><circle class="track" cx="17" cy="17" r="15"/>' +
+      '<circle class="bar" cx="17" cy="17" r="15" style="animation-duration:' + DURATION + 'ms"/></svg><span></span>';
+    var num = count.querySelector("span");
+    var endAt = Date.now() + DURATION;
+    function tick() { num.textContent = Math.max(1, Math.ceil((endAt - Date.now()) / 1000)); }
+    tick();
+    countTimer = window.setInterval(tick, 200);
 
     card.appendChild(tag);
-    card.appendChild(close);
+    card.appendChild(count);
     overlay.appendChild(card);
     overlay.addEventListener("click", function (event) { if (event.target === overlay) hide(); });
     document.body.appendChild(overlay);
 
+    // Two frames so the browser registers the hidden state first, which makes the fade-in smooth.
     window.requestAnimationFrame(function () {
-      if (overlay) overlay.classList.add("is-open");
+      window.requestAnimationFrame(function () {
+        if (overlay) overlay.classList.add("is-open");
+      });
     });
     hideTimer = window.setTimeout(hide, DURATION);
   }
 
   function hide() {
     window.clearTimeout(hideTimer);
+    window.clearInterval(countTimer);
     if (!overlay) return;
     var node = overlay;
     overlay = null;
     node.classList.remove("is-open");
-    window.setTimeout(function () { if (node.parentNode) node.parentNode.removeChild(node); }, 260);
-    schedule();
+    window.setTimeout(function () {
+      if (node.parentNode) node.parentNode.removeChild(node);
+      schedule();
+    }, FADE + 50);
   }
 
   function init() {
