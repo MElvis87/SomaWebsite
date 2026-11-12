@@ -1,7 +1,6 @@
 /* Soma SaaS refresh layer. Keeps existing markup and avoids navbar hover motion. */
 :root {
   --soma-ease-lift:cubic-bezier(.22,.61,.36,1);
-  --soma-ease-soft:cubic-bezier(.22,.61,.36,1);
   --soma-app-bg:#f6f8fb;
   --soma-ink:#111827;
   --soma-panel:#ffffff;
@@ -62,7 +61,7 @@ body {
 .navbar *:hover,
 .navbar *:focus {
   transition-duration:.16s!important;
-  transition-timing-function:var(--soma-ease-soft)!important;
+  transition-timing-function:var(--soma-ease-lift)!important;
   transform:none!important;
 }
 
@@ -701,8 +700,8 @@ body[data-theme="dark"] .soma-account-avatar-row {
   transition:
     transform .24s var(--soma-ease-lift),
     box-shadow .24s var(--soma-ease-lift),
-    border-color .32s var(--soma-ease-soft),
-    background-color .32s var(--soma-ease-soft)!important;
+    border-color .32s var(--soma-ease-lift),
+    background-color .32s var(--soma-ease-lift)!important;
 }
 
 .card:not(.navbar):hover,
