@@ -3138,5 +3138,76 @@
         if (mq.addEventListener) { mq.addEventListener('change', place); } else { mq.addListener(place); }
     })();
 </script>
+<!-- RagmyAI chat assistant (test on the Biology page) -->
+<style>
+    /* Theme: follows the site's accent colour (--primary), light/dark mode, and the other floating buttons */
+    #chat-container { z-index: 1045 !important; bottom: 20px; right: 20px; }   /* above the navbar, below ads */
+    #chat-container #chat-bubble {
+        background: var(--primary, #0a2463) !important;
+        box-shadow: 0 6px 20px rgba(10, 36, 99, 0.45);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    #chat-container #chat-bubble:hover { transform: translateY(-2px) scale(1.05); }
+    #chat-container #chat-bubble:focus-visible { outline: 3px solid #fff; outline-offset: 2px; box-shadow: 0 0 0 6px var(--primary, #0a2463); }
+    #chat-container #chat-box {
+        width: min(380px, calc(100vw - 32px)) !important;
+        height: min(600px, calc(100vh - 112px)) !important;
+        overflow: hidden;
+        border-radius: 20px;
+        border: 1px solid rgba(67, 97, 238, 0.25);
+        box-shadow: 0 18px 50px rgba(10, 20, 50, 0.35);
+    }
+    @supports (height: 100dvh) {
+        #chat-container #chat-box { height: min(600px, calc(100dvh - 112px)) !important; }
+    }
+    [data-theme="dark"] #chat-container #chat-box { background: #0f172a; border-color: rgba(255, 255, 255, 0.14); }
+    [data-theme="dark"] #chat-container #chat-loading { background: #0f172a; }
+
+    /* The scroll-to-top button moves up so it stacks neatly above the chat button */
+    .scroll-to-top { right: 25px; bottom: 92px; }
+
+    @media (max-width: 768px) {
+        #chat-container { bottom: 14px; right: 14px; }
+        #chat-container #chat-bubble { width: 54px !important; height: 54px !important; }
+        #chat-container #chat-box {
+            position: fixed !important;
+            left: 10px;
+            right: 10px;
+            bottom: 80px;
+            width: auto !important;
+            height: min(75vh, 620px) !important;
+        }
+        .scroll-to-top { right: 16px; bottom: 78px; }
+    }
+</style>
+<script data-page-id="93d0663a-1112-4481-91bd-6e2199d70eb2" button-background-color="#0a2463" src="https://chat.ragmyai.com/chat-widget.min.js"></script>
+<script>
+    /* Keeps the chat inside the site on phones (the widget normally sends mobile visitors to a separate
+       full-page chat) and closes it with Esc. If the widget changes and these hooks are missing, it does nothing. */
+    (function () {
+        var bubble = document.getElementById('chat-bubble');
+        if (!bubble || typeof createChatIframe !== 'function' || typeof toggleChat !== 'function') return;
+        var box = document.getElementById('chat-box');
+        function isOpen() { return box && box.classList.contains('open'); }
+        function openChat() { createChatIframe(); toggleChat(); }
+        window.handleChatClick = openChat;
+        bubble.onclick = openChat;
+
+        bubble.setAttribute('aria-expanded', 'false');
+        if (box && window.MutationObserver) {
+            new MutationObserver(function () { bubble.setAttribute('aria-expanded', isOpen() ? 'true' : 'false'); })
+                .observe(box, { attributes: true, attributeFilter: ['class'] });
+        }
+
+        // On phones the widget ignores the chat's own close button, so handle it here.
+        window.addEventListener('message', function (event) {
+            if (event.origin !== 'https://chat.ragmyai.com' || !event.data || event.data.type !== 'handleChatClose') return;
+            if (typeof isMobile === 'function' && isMobile() && isOpen()) toggleChat();
+        });
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape' && isOpen()) toggleChat();
+        });
+    })();
+</script>
 </body>
 </html>
