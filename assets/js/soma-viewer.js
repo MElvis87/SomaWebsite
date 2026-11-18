@@ -13,6 +13,7 @@
   var BASE = script && script.src ? script.src.replace(/[^\/]*$/, "") : "assets/js/";
   var LIB_URL = BASE + "model-viewer.min.js";
   var DRACO_URL = BASE + "draco/";
+  var VR_URL = BASE + "soma-vr.js";
   var libPromise = null;
 
   var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -36,7 +37,10 @@
     reset: '<path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/>',
     ar:    '<path d="M12 2 3 7v10l9 5 9-5V7z"/><path d="M3 7l9 5 9-5M12 12v10"/>',
     full:  '<path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/>',
-    exit:  '<path d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5"/>'
+    exit:  '<path d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5"/>',
+    vr:    '<path d="M3 8h18a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1h-5l-2-3h-4l-2 3H3a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/>',
+    help:  '<circle cx="12" cy="12" r="9"/><path d="M9.6 9.2a2.5 2.5 0 1 1 3.5 2.3c-.7.4-1.1 1-1.1 1.8"/><circle cx="12" cy="17" r=".9" fill="currentColor" stroke="none"/>',
+    close: '<path d="M6 6l12 12M18 6 6 18"/>'
   };
   function icon(name, filled) {
     return '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + I[name] + "</svg>";
@@ -61,7 +65,7 @@
     ".sv-progress{position:absolute;left:0;right:0;bottom:0;height:4px;background:rgba(255,255,255,.12);transition:opacity .4s ease}",
     ".sv-progress i{display:block;height:100%;width:0;background:#1caad9;transition:width .15s linear}",
     ".sv-progress.sv-done{opacity:0}",
-    ".sv-tools{position:absolute;right:10px;bottom:10px;display:flex;gap:6px;z-index:5}",
+    ".sv-tools{position:absolute;right:10px;bottom:10px;display:flex;flex-wrap:wrap;justify-content:flex-end;gap:6px;max-width:calc(100% - 20px);z-index:5}",
     ".sv-btn{width:36px;height:36px;padding:0;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;color:#fff;cursor:pointer;",
     "background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.24);backdrop-filter:blur(8px);transition:background .2s ease}",
     ".sv-btn:hover,.sv-btn:focus-visible{background:rgba(255,255,255,.28);outline:none}",
@@ -87,6 +91,17 @@
     ".sv-hot.sv-on .sv-tip{opacity:1;visibility:visible;transform:translateX(0) translateY(0)}",
     ".sv-tip strong{display:block;font-size:14px;color:#1caad9}",
     ".sv-tip span{display:block;margin-top:4px;font-size:12.5px;line-height:1.4;color:rgba(255,255,255,.9)}",
+    ".sv-help{position:absolute;right:10px;bottom:56px;width:min(340px,calc(100% - 20px));max-height:calc(100% - 70px);overflow:auto;padding:12px 14px;",
+    "border-radius:14px;background:rgba(15,18,32,.95);border:1px solid rgba(255,255,255,.16);box-shadow:0 10px 30px rgba(0,0,0,.45);z-index:8;font-size:13px}",
+    ".sv-help-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px}",
+    ".sv-help-head strong{font-size:14px;color:#1caad9}",
+    ".sv-help .sv-btn{width:28px;height:28px}",
+    ".sv-help-row{display:flex;gap:10px;align-items:flex-start;margin:8px 0;line-height:1.35}",
+    ".sv-help-ico{flex:0 0 28px;height:28px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(255,255,255,.14)}",
+    ".sv-help-row b{display:block}.sv-help-row span span{opacity:.85}",
+    ".sv-help-foot{margin:8px 0 0;padding-top:8px;border-top:1px solid rgba(255,255,255,.14);opacity:.85}",
+    ".sv-toast{position:absolute;left:50%;bottom:56px;transform:translateX(-50%);max-width:90%;padding:8px 14px;border-radius:999px;background:rgba(15,18,32,.95);",
+    "border:1px solid rgba(255,255,255,.16);font-size:13px;z-index:9;text-align:center}",
     "@media (max-width:575.98px){.sv-btn{width:34px;height:34px}.sv-tip{max-width:190px}.sv-hint{display:none}}",
     "@media (prefers-reduced-motion:reduce){.sv-hot,.sv-tip,.sv-progress,.sv-hint{transition:none}}"
   ].join("");
@@ -239,10 +254,11 @@
       this._hint.textContent = "Drag to rotate · scroll or pinch to zoom" + (this._notes.length ? " · tap the numbers" : "");
       var tools = document.createElement("div");
       tools.className = "sv-tools";
-      var mk = function (name, label, onclick, pressed) {
+      var mk = function (name, label, onclick, pressed, key) {
         var b = document.createElement("button");
         b.type = "button";
         b.className = "sv-btn";
+        if (key) b.setAttribute("data-k", key);
         b.title = label;
         b.setAttribute("aria-label", label);
         b.innerHTML = icon(name);
@@ -255,24 +271,34 @@
         self._mv.autoRotate = !self._mv.autoRotate;
         self._spin = self._mv.autoRotate;
         self._syncSpin();
-      }, this._spin);
+      }, this._spin, "spin");
       this._syncSpin();
       if (this._notes.length) {
         mk("pin", "Show or hide notes", function (e) {
           var off = self.classList.toggle("sv-notes-off");
           e.currentTarget.setAttribute("aria-pressed", String(!off));
           self._closeNote(false);
-        }, true);
+        }, true, "notes");
       }
-      mk("reset", "Reset view", function () { self._reset(); });
-      var arBtn = mk("ar", "View in your space (AR)", function () { if (self._mv.activateAR) self._mv.activateAR(); });
+      mk("reset", "Reset view", function () { self._reset(); }, undefined, "reset");
+      var arBtn = mk("ar", "View in your space (AR)", function () { if (self._mv.activateAR) self._mv.activateAR(); }, undefined, "ar");
       arBtn.hidden = !self._mv.canActivateAR;
-      this._fsBtn = mk("full", "Full screen", function () { self._fullscreen(); }, false);
+      this._vrBtn = mk("vr", "Enter VR (headset)", function () { self._vr(); }, undefined, "vr");
+      this._vrBtn.hidden = true;
+      if (this.getAttribute("vr") !== "false" && navigator.xr && navigator.xr.isSessionSupported) {
+        navigator.xr.isSessionSupported("immersive-vr").then(function (ok) { if (ok && self._vrBtn) self._vrBtn.hidden = false; }).catch(function () {});
+        var warmVR = function () { SomaViewer.loadVR().catch(function () {}); };
+        this._vrBtn.addEventListener("pointerenter", warmVR, { once: true });
+        this._vrBtn.addEventListener("focus", warmVR, { once: true });
+        this._vrBtn.addEventListener("touchstart", warmVR, { once: true, passive: true });
+      }
+      this._fsBtn = mk("full", "Full screen", function () { self._fullscreen(); }, false, "full");
+      this._helpBtn = mk("help", "Help: what do the buttons do?", function () { self._toggleHelp(); }, false, "help");
       this.appendChild(t);
       this.appendChild(this._hint);
       this.appendChild(tools);
 
-      this._onKey = function (e) { if (e.key === "Escape") { if (self._cur) self._closeNote(true); else if (self.classList.contains("sv-expanded")) self._fullscreen(); } };
+      this._onKey = function (e) { if (e.key === "Escape") { if (self._help) self._toggleHelp(); else if (self._cur) self._closeNote(true); else if (self.classList.contains("sv-expanded")) self._fullscreen(); } };
       document.addEventListener("keydown", this._onKey);
       this._onFs = function () { self._syncFs(); };
       document.addEventListener("fullscreenchange", this._onFs);
@@ -299,6 +325,82 @@
       } else {
         this.classList.add("sv-expanded");   // iPhone Safari has no element fullscreen, so fill the screen instead
         this._syncFs();
+      }
+    }
+
+    _toast(message) {
+      var self = this;
+      if (this._toastEl) this._toastEl.remove();
+      var t = document.createElement("div");
+      t.className = "sv-toast";
+      t.setAttribute("role", "status");
+      t.textContent = message;
+      this.appendChild(t);
+      this._toastEl = t;
+      window.setTimeout(function () { if (self._toastEl === t) { t.remove(); self._toastEl = null; } }, 3500);
+    }
+
+    _toggleHelp() {
+      if (this._help) {
+        this._help.remove();
+        this._help = null;
+        this._helpBtn.setAttribute("aria-pressed", "false");
+        return;
+      }
+      var rows = [
+        ["spin", "play", "Auto-rotate", "Starts or stops the slow spin."],
+        ["notes", "pin", "Notes", "Shows or hides the numbered markers."],
+        ["reset", "reset", "Reset view", "Returns the camera to the starting view."],
+        ["ar", "ar", "AR", "Places the model in your room using your phone camera."],
+        ["vr", "vr", "VR", "Opens the model in your VR headset."],
+        ["full", "full", "Full screen", "Makes the viewer fill the screen."]
+      ];
+      var html = '<div class="sv-help-head"><strong>What the buttons do</strong><button type="button" class="sv-btn" aria-label="Close help">' + icon("close") + "</button></div>";
+      for (var i = 0; i < rows.length; i++) {
+        var b = this.querySelector('.sv-btn[data-k="' + rows[i][0] + '"]');
+        if (!b || b.hidden) continue;
+        html += '<div class="sv-help-row"><span class="sv-help-ico">' + icon(rows[i][1]) + "</span><span><b>" + rows[i][2] + "</b><span>" + rows[i][3] + "</span></span></div>";
+      }
+      html += '<p class="sv-help-foot">Drag to rotate · scroll or pinch to zoom' + (this._notes.length ? " · tap a number to read its note" : "") + "</p>";
+      var h = document.createElement("div");
+      h.className = "sv-help";
+      h.setAttribute("role", "dialog");
+      h.setAttribute("aria-label", "Viewer help");
+      h.innerHTML = html;
+      h.querySelector(".sv-help-head .sv-btn").addEventListener("click", this._toggleHelp.bind(this));
+      this.appendChild(h);
+      this._help = h;
+      this._helpBtn.setAttribute("aria-pressed", "true");
+    }
+
+    // True VR: loads the separate VR module only on headsets, then opens the model in an immersive scene.
+    async _vr() {
+      var self = this, btn = this._vrBtn;
+      if (this._vrBusy) return;
+      this._vrBusy = true;
+      btn.setAttribute("aria-busy", "true");
+      try {
+        if (!this._vrPrepared) {
+          this._toast("Preparing VR…");
+          var mod = await SomaViewer.loadVR();
+          this._vrPrepared = await mod.prepare({
+            src: new URL(this.getAttribute("src"), location.href).href,
+            dracoUrl: DRACO_URL,
+            notes: this._notes
+          });
+        }
+        await this._vrPrepared.enter(function () {
+          self._vrPrepared = null;
+          if (self._mv) self._mv.style.display = "";
+        });
+        if (this._mv) this._mv.style.display = "none";   // pauses the page's own 3D scene while in VR
+      } catch (err) {
+        var blocked = err && (err.name === "SecurityError" || err.name === "NotAllowedError");
+        this._toast(blocked && this._vrPrepared ? "Ready. Tap the VR button again to enter." : "VR could not start on this device.");
+        if (this._vrPrepared && !blocked) { try { this._vrPrepared.dispose(); } catch (e) {} this._vrPrepared = null; }
+      } finally {
+        this._vrBusy = false;
+        btn.removeAttribute("aria-busy");
       }
     }
 
@@ -371,6 +473,8 @@
       if (!this._init) return;
       if (this._mv) { this._mv.removeAttribute("src"); this._mv.remove(); }
       this._mv = null; this._cur = null; this._busy = false; this._hint = null; this._progress = null;
+      if (this._vrPrepared) { try { this._vrPrepared.dispose(); } catch (e) {} this._vrPrepared = null; }
+      this._help = null; this._toastEl = null;
       if (this._onKey) document.removeEventListener("keydown", this._onKey);
       if (this._onFs) document.removeEventListener("fullscreenchange", this._onFs);
       this.classList.remove("sv-expanded", "sv-notes-off");
@@ -381,6 +485,7 @@
 
   SomaViewer.active = null;
   SomaViewer.loadLib = loadLib;
+  SomaViewer.loadVR = function () { return import(VR_URL); };
   window.SomaViewer = SomaViewer;
   if (!customElements.get("soma-viewer")) customElements.define("soma-viewer", SomaViewer);
 }());
