@@ -4,7 +4,8 @@
        <soma-note position="x y z" normal="x y z" title="Nucleus">Text shown in the tooltip.</soma-note>
      </soma-viewer>
    Optional attributes: poster (preview image), autoload (load when scrolled into view), camera-orbit, exposure,
-   shadow-intensity, environment-image, ar="false" (hide the AR button), auto-rotate="false".
+   shadow-intensity, environment-image, ar="false" (hide the AR button), auto-rotate="false",
+   vr="false", idle-timeout="180" (seconds of no interaction before the viewer returns to its preview; 0 turns it off).
    Nothing heavy loads (not the viewer library, not the model) until the visitor taps "View in 3D". */
 (function () {
   "use strict";
@@ -14,6 +15,7 @@
   var LIB_URL = BASE + "model-viewer.min.js";
   var DRACO_URL = BASE + "draco/";
   var VR_URL = BASE + "soma-vr.js";
+  var IDLE_DEFAULT = 180;   // seconds
   var libPromise = null;
 
   var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -71,6 +73,7 @@
     ".sv-btn:hover,.sv-btn:focus-visible{background:rgba(255,255,255,.28);outline:none}",
     ".sv-btn[aria-pressed='true']{background:#1caad9;border-color:transparent}",
     ".sv-btn[hidden]{display:none}",
+    ".sv-close{position:absolute;top:10px;right:10px;z-index:6}",
     ".sv-error{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:16px;text-align:center;background:rgba(7,14,34,.85)}",
     ".sv-error button{padding:6px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.4);background:transparent;color:#fff;cursor:pointer}",
     ".sv-hot{position:relative;width:28px;height:28px;padding:0;border:0;border-radius:50%;background:rgba(255,255,255,.96);color:#1b1f2a;cursor:pointer;",
@@ -130,6 +133,10 @@
       });
       this._name = this.getAttribute("title") || "3D model";
       this._buildStart();
+      var act = this._bump.bind(this);
+      ["pointerdown", "pointermove", "wheel", "keydown", "touchstart"].forEach(function (name) {
+        this.addEventListener(name, act, { passive: true });
+      }, this);
       if (this.hasAttribute("autoload") && "IntersectionObserver" in window && !lowData) {
         this._io = new IntersectionObserver(function (entries) {
           if (entries[0].isIntersecting) { this._io.disconnect(); this._activate(); }
@@ -171,7 +178,9 @@
       this._busy = true;
       this._start.disabled = true;
       this._start.querySelector("strong").textContent = "Loading…";
-      SomaViewer.loadLib().then(this._mount.bind(this)).catch(this._fail.bind(this));
+      var self = this, tok = this._tok = (this._tok || 0) + 1;   // lets a close tap cancel a load that is still in flight
+      SomaViewer.loadLib().then(function () { if (self._tok === tok && self._busy) self._mount(); })
+                          .catch(function () { if (self._tok === tok) self._fail(); });
     }
 
     _attr(name, fallback) { return this.getAttribute(name) || fallback; }
@@ -221,7 +230,7 @@
       mv.addEventListener("load", function () { self._ready(); }, { once: true });
       mv.addEventListener("error", function () { self._fail(); }, { once: true });
       mv.addEventListener("camera-change", function (e) {
-        if (e.detail && e.detail.source === "user-interaction" && self._hint) self._hint.classList.add("sv-gone");
+        if (e.detail && e.detail.source === "user-interaction") { self._bump(); if (self._hint) self._hint.classList.add("sv-gone"); }
         if (self._cur) self._place(self._cur);
       });
       var down = [0, 0];
@@ -238,6 +247,20 @@
       this._progress.innerHTML = "<i></i>";
       this._bar = this._progress.firstChild;
       this.appendChild(this._progress);
+
+      // Close (X): back to the preview with the play button, which frees the 3D scene and its GPU memory.
+      var x = document.createElement("button");
+      x.type = "button";
+      x.className = "sv-btn sv-close";
+      x.setAttribute("data-k", "close");
+      x.title = "Close 3D view";
+      x.setAttribute("aria-label", "Close 3D view");
+      x.innerHTML = icon("close");
+      x.addEventListener("click", function () {
+        self._release();
+        if (self._start) self._start.focus();
+      });
+      this.appendChild(x);
     }
 
     _ready() {
@@ -302,6 +325,7 @@
       document.addEventListener("keydown", this._onKey);
       this._onFs = function () { self._syncFs(); };
       document.addEventListener("fullscreenchange", this._onFs);
+      this._startIdle();
       this.dispatchEvent(new CustomEvent("sv-ready", { bubbles: true }));
     }
 
@@ -328,7 +352,46 @@
       }
     }
 
-    _toast(message) {
+    // Idle: after a few minutes with no interaction the viewer returns to its preview and frees its memory.
+    _startIdle() {
+      var seconds = parseFloat(this.getAttribute("idle-timeout"));
+      if (isNaN(seconds)) seconds = IDLE_DEFAULT;
+      this._idleMs = seconds > 0 ? seconds * 1000 : 0;
+      this._lastBump = 0;
+      this._bump(true);
+    }
+
+    _stopIdle() {
+      window.clearTimeout(this._idleT);
+      window.clearTimeout(this._warnT);
+      this._idleMs = 0;
+      this._idleToast = null;
+    }
+
+    _bump(force) {
+      if (!this._idleMs || !this._mv) return;
+      var now = Date.now();
+      if (force !== true && now - this._lastBump < 1000) return;   // movement events are frequent, so check once a second
+      this._lastBump = now;
+      window.clearTimeout(this._idleT);
+      window.clearTimeout(this._warnT);
+      if (this._idleToast && this._toastEl === this._idleToast) { this._toastEl.remove(); this._toastEl = null; }
+      this._idleToast = null;
+      var self = this, lead = Math.min(10000, this._idleMs / 4);
+      this._warnT = window.setTimeout(function () {
+        self._toast("Still there? This 3D view will close soon to save memory. Tap to keep it open.", lead);
+        self._idleToast = self._toastEl;
+      }, this._idleMs - lead);
+      this._idleT = window.setTimeout(function () { self._idle(); }, this._idleMs);
+    }
+
+    _idle() {
+      if (this._inVR || this._vrBusy) { this._bump(true); return; }   // never close during a headset session
+      this._release();
+      this.dispatchEvent(new CustomEvent("sv-idle", { bubbles: true }));
+    }
+
+    _toast(message, ms) {
       var self = this;
       if (this._toastEl) this._toastEl.remove();
       var t = document.createElement("div");
@@ -337,7 +400,7 @@
       t.textContent = message;
       this.appendChild(t);
       this._toastEl = t;
-      window.setTimeout(function () { if (self._toastEl === t) { t.remove(); self._toastEl = null; } }, 3500);
+      window.setTimeout(function () { if (self._toastEl === t) { t.remove(); self._toastEl = null; } }, ms || 3500);
     }
 
     _toggleHelp() {
@@ -353,7 +416,8 @@
         ["reset", "reset", "Reset view", "Returns the camera to the starting view."],
         ["ar", "ar", "AR", "Places the model in your room using your phone camera."],
         ["vr", "vr", "VR", "Opens the model in your VR headset."],
-        ["full", "full", "Full screen", "Makes the viewer fill the screen."]
+        ["full", "full", "Full screen", "Makes the viewer fill the screen."],
+        ["close", "close", "Close (X)", "Closes the 3D view and returns to the preview. Tap the play button to open it again."]
       ];
       var html = '<div class="sv-help-head"><strong>What the buttons do</strong><button type="button" class="sv-btn" aria-label="Close help">' + icon("close") + "</button></div>";
       for (var i = 0; i < rows.length; i++) {
@@ -391,8 +455,11 @@
         }
         await this._vrPrepared.enter(function () {
           self._vrPrepared = null;
+          self._inVR = false;
+          self._bump();
           if (self._mv) self._mv.style.display = "";
         });
+        this._inVR = true;
         if (this._mv) this._mv.style.display = "none";   // pauses the page's own 3D scene while in VR
       } catch (err) {
         var blocked = err && (err.name === "SecurityError" || err.name === "NotAllowedError");
@@ -471,6 +538,10 @@
     // Frees the 3D scene (GPU memory) and shows the start screen again.
     _release() {
       if (!this._init) return;
+      this._tok = (this._tok || 0) + 1;
+      this._stopIdle();
+      this._inVR = false;
+      if (document.fullscreenElement === this && document.exitFullscreen) { try { document.exitFullscreen().catch(function () {}); } catch (e) {} }
       if (this._mv) { this._mv.removeAttribute("src"); this._mv.remove(); }
       this._mv = null; this._cur = null; this._busy = false; this._hint = null; this._progress = null;
       if (this._vrPrepared) { try { this._vrPrepared.dispose(); } catch (e) {} this._vrPrepared = null; }
