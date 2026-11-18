@@ -1,0 +1,3252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soma 3D Education</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <script src="https://kit.fontawesome.com/3579b6ac8a.js" crossorigin="anonymous"></script>
+    <!-- Animate.css for bouncy animations -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.png">
+    <style>
+        html {
+  scroll-behavior: smooth;
+  }
+        :root {
+            --primary: #4361ee;
+            --secondary: #3a0ca3;
+            --accent: #4cc9f0;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #4bb543;
+            --bg-color: #f5f7fb;
+            --text-color: #212529;
+            --card-bg: #ffffff;
+            --header-bg: rgba(255, 255, 255, 0.95);
+            --footer-bg: #212529;
+            --footer-text: rgba(255, 255, 255, 0.7);
+            --muted-text: #6c757d;
+        }
+        
+        [data-theme="dark"] {
+            --bg-color: #121212;
+            --text-color: #e9ecef;
+            --card-bg: #1e1e1e;
+            --header-bg: rgba(30, 30, 30, 0.95);
+            --footer-bg: #0a0a0a;
+            --footer-text: rgba(255, 255, 255, 0.7);
+            --light: #2d2d2d;
+            --muted-text: #a0a0a0;
+        }
+        
+        /* Loading Screen Styles */
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+           background: linear-gradient(135deg, #0a2463 0%, #011e61 50%, #000b2e 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+        
+        .loading-content {
+            text-align: center;
+            max-width: 300px;
+        }
+        
+        .loading-gif {
+            width: 150px;
+            height: auto;
+            margin-bottom: 5px;
+        }
+        
+        .loading-text {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .loading-subtext {
+            color: var(--muted-text);
+            font-size: 0.9rem;
+        }
+        
+        /* Hide content initially */
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /*font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;*/
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            padding-top: 120px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            /* opacity: 0;*/
+            
+        }
+        
+        body.content-loaded {
+            opacity: 1;
+        }
+        
+        /* Navigation Bar - UPDATED: Floating Sticky Navbar */
+        .navbar {
+            background: var(--header-bg);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 12px 0;
+            transition: all 0.3s ease;
+            margin: 0 auto;
+            max-width: 1400px;
+            border-radius: 16px;
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 40px);
+            z-index: 1030;
+        }
+
+        /* Navbar width - Tablet specific */
+@media (min-width: 768px) and (max-width: 991px) {
+    .navbar {
+        width: calc(100% - 60px);
+        max-width: 720px;
+    }
+}
+
+/* Navbar width - Desktop specific */
+@media (min-width: 992px) {
+    .navbar {
+        width: calc(100% - 100px);
+        max-width: 1200px;
+    }
+}
+
+
+        /*LIGHT MODE BORDER START*/
+.navbar:not([data-theme="dark"]) {
+    border: 2px solid rgba(67, 97, 238, 0.85);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05), 
+                0 0 0 1px rgba(67, 97, 238, 0.1),
+                0 0 10px rgba(67, 97, 238, 0.05);
+}
+
+.navbar:not([data-theme="dark"]) {
+    animation: pulseBorderLight 3s infinite;
+}
+
+@keyframes pulseBorderLight {
+    0%, 100% {
+        border-color: rgba(67, 97, 238, 0.85);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05), 
+                    0 0 0 1px rgba(67, 97, 238, 0.1),
+                    0 0 10px rgba(67, 97, 238, 0.05);
+    }
+    50% {
+        border-color: rgba(67, 97, 238, 0.85);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05), 
+                    0 0 0 1px rgba(67, 97, 238, 0.15),
+                    0 0 12px rgba(67, 97, 238, 0.08);
+    }
+}
+/*LIGHT MODE BORDER CODE END*/
+        
+        .navbar-brand img {
+            height: 40px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link {
+            font-weight: 500;
+            margin: 0 4px;
+            color: var(--text-color) !important;
+            transition: all 0.2s ease;
+            border-radius: 6px;
+            padding: 8px 12px !important;
+            white-space: nowrap;
+            font-size: 0.95rem;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            background-color: rgba(67, 97, 238, 0.1);
+            color: var(--primary) !important;
+        }
+        
+                       /* Updated Dropdown Styles */
+            .dropdown-menu {
+                border: none;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                border-radius: 12px;
+                padding: 8px;
+                background-color: var(--card-bg);
+                position: absolute;
+                top: 100%;
+                left: 0;
+                margin-top: 8px;
+                min-width: 200px;
+                z-index: 1000;
+                
+                /* Animation properties - FIXED */
+                opacity: 0;
+                transform: translateY(-10px);
+                visibility: hidden;
+                transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+                display: block; /* Add this */
+            }
+
+            .dropdown-menu.show {
+                opacity: 1;
+                transform: translateY(0);
+                visibility: visible;
+            }
+
+            /* Make sure the dropdown item styling is correct */
+            .dropdown-item {
+                border-radius: 8px;
+                padding: 10px 16px;
+                margin: 2px 0;
+                color: var(--text-color);
+                cursor: pointer;
+                transition: all 0.2s;
+                display: block;
+                text-decoration: none;
+            }
+
+            .dropdown-item:hover {
+                background-color: rgba(67, 97, 238, 0.1);
+                color: var(--primary);
+            }
+
+            /* Fix for mobile dropdown spacing */
+            @media (max-width: 991.98px) {
+                .navbar-nav .dropdown-menu {
+                    position: static;
+                    float: none;
+                    margin-top: 0;
+                    border: none;
+                    box-shadow: none;
+                    background-color: transparent;
+                    padding-left: 20px;
+                }
+                
+                .navbar-nav .dropdown-item {
+                    padding: 8px 15px;
+                    color: var(--text-color);
+                }
+                
+                .navbar-nav .dropdown-item:hover {
+                    background-color: rgba(67, 97, 238, 0.1);
+                }
+            }
+
+            /* Fix for mobile dropdown spacing */
+    @media (max-width: 991.98px) {
+        .navbar-nav .dropdown-menu {
+            position: static;
+            float: none;
+            margin-top: 0;
+            border: none;
+            box-shadow: none;
+            background-color: transparent;
+            padding-left: 20px;
+            
+            /* FIX: Use opacity/visibility instead of display:none */
+            opacity: 0;
+            visibility: hidden;
+            height: 0;
+            overflow: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s;
+            margin-bottom: 0;
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+        
+        /* Show dropdown when parent has show class */
+        .dropdown.show .dropdown-menu,
+        .navbar-nav .dropdown-menu.show {
+            opacity: 1;
+            visibility: visible;
+            height: auto;
+            overflow: visible;
+        }
+        
+        .navbar-nav .dropdown-item {
+            padding: 8px 15px;
+            color: var(--text-color);
+            margin: 0;
+        }
+        
+        .navbar-nav .dropdown-item:hover {
+            background-color: rgba(67, 97, 238, 0.1);
+        }
+    }
+
+    /*Dropdown Dark Shade for Mobile view*/
+@media (max-width: 991.98px) {
+    .navbar-nav .dropdown-menu {
+        position: static;
+        float: none;
+        margin-top: 0;
+        border: none;
+        box-shadow: none;
+        background-color: transparent;
+        padding-left: 20px;
+        
+        /* Existing animation properties */
+        opacity: 0;
+        visibility: hidden;
+        height: 0;
+        overflow: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s;
+        margin-bottom: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+        
+        /* NEW: Dark shade background */
+        background-color: rgba(0, 0, 0, 0.05); /* Light dark shade for light mode */
+        border-radius: 8px;
+        margin: 5px 0;
+    }
+    
+    /* Dark mode support */
+    [data-theme="dark"] .navbar-nav .dropdown-menu {
+        background-color: rgba(255, 255, 255, 0.05); /* Light shade for dark mode */
+    }
+    
+    /* Show dropdown when parent has show class */
+    .dropdown.show .dropdown-menu,
+    .navbar-nav .dropdown-menu.show {
+        opacity: 1;
+        visibility: visible;
+        height: auto;
+        overflow: visible;
+    }
+    
+    .navbar-nav .dropdown-item {
+        padding: 8px 15px;
+        color: var(--text-color);
+        margin: 0;
+        border-radius: 6px; /* Rounded corners for items */
+    }
+    
+    .navbar-nav .dropdown-item:hover {
+        background-color: rgba(67, 97, 238, 0.1);
+    }
+}
+        
+        .search-form {
+            max-width: 280px;
+            min-width: 200px;
+        }
+        
+        .search-form .form-control {
+            border-radius: 50px;
+            padding: 10px 20px;
+            border: 1px solid #e0e0e0;
+            transition: all 0.3s ease;
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            font-size: 0.9rem;
+        }
+        
+        .search-form .form-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 0.25rem rgba(67, 97, 238, 0.25);
+        }
+        
+        .profile-dropdown img {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .profile-dropdown:hover img {
+            border-color: var(--primary);
+        }
+        
+        /* Theme Toggle Switch */
+        .theme-toggle {
+            display: flex;
+            align-items: center;
+            margin-right: 10px;
+        }
+        
+        .theme-toggle-label {
+            margin: 0 6px;
+            font-size: 0.85rem;
+            color: var(--text-color);
+        }
+        
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 46px;
+            height: 22px;
+        }
+        
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 24px;
+        }
+        
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .slider {
+            background-color: var(--primary);
+        }
+        
+        input:checked + .slider:before {
+            transform: translateX(24px);
+        }
+        
+        /* Navbar Icons for Mobile */
+        .nav-icon {
+            display: none;
+        }
+        
+        /* Main Content */
+        .hero-section {
+            background: url('assets/images/bio.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center center;
+            color: white;
+            border-radius: 20px;
+            padding: 60px 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(67, 97, 238, 0.3);
+            text-shadow: 
+            2px 2px 4px rgba(0, 0, 0, 0.3), /* Main shadow for lift */
+            -1px -1px 2px rgba(255, 255, 255, 0.5); /* Lighter shadow for highlight */
+        }
+        
+        .card {
+            border: none;
+            border-radius: 16px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            margin-bottom: 24px;
+            overflow: hidden;
+            background-color: var(--card-bg);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-header {
+            background-color: white;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            padding: 20px 25px;
+            color: var(--text-color);
+        }
+
+        [data-theme="dark"] .card-header {
+            background-color: #0057a8;
+            color: #4de1ff;
+        }
+
+        [data-theme="dark"] .card-header h2 {
+            color: #4de1ff;
+        }
+
+        [data-theme="dark"] .card-header .text-muted {
+            color: black;
+        }
+
+        [data-theme="dark"] .card-header .fa-graduation-cap {
+            color: #4de1ff;
+        }
+        
+        .accordion-button {
+            background-color: var(--card-bg);
+            padding: 18px 25px;
+            font-weight: 600;
+            color: var(--text-color);
+            border: none;
+            box-shadow: none;
+        }
+        
+        .accordion-button:not(.collapsed) {
+            background-color: rgba(67, 97, 238, 0.05);
+            color: var(--primary);
+        }
+        
+        .accordion-button:focus {
+            box-shadow: none;
+            border-color: rgba(0,0,0,.125);
+        }
+        
+        .accordion-body {
+            padding: 25px;
+            color: var(--text-color);
+        }
+
+        [data-theme="dark"] .accordion-body {
+            background-color: #091c47;
+            color: white;
+            border-top: 1px solid #333;
+        }
+        
+        /* UPDATED: Sketchfab Model Container - RESPONSIVE DIMENSIONS */
+        .model-container {
+            background-color: var(--light);
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        /* UPDATED: Responsive iframe container */
+        .responsive-iframe-container {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            overflow: hidden;
+            border-radius: 8px;
+            background: var(--light);
+        }
+        
+        .responsive-iframe-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        /* UPDATED: Sketchfab embed wrapper styling */
+        .sketchfab-embed-wrapper {
+            width: 100%;
+        }
+        
+        .sketchfab-embed-wrapper p {
+            font-size: 13px;
+            font-weight: normal;
+            margin: 5px 0;
+            color: var(--text-color);
+            text-align: center;
+            padding: 10px;
+        }
+        
+        .sketchfab-embed-wrapper a {
+            font-weight: bold;
+            color: #1CAAD9;
+            text-decoration: none;
+        }
+        
+        .sketchfab-embed-wrapper a:hover {
+            text-decoration: underline;
+        }
+        
+        .model-placeholder {
+            color: var(--text-color);
+            text-align: center;
+            padding: 20px;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .model-placeholder i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .highlight {
+            background-color: #fff9c4;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+        
+        .subject-badge {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        
+        /* Search Navigation Controls - UPDATED: Sticky Search Navigator */
+        .search-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 12px 20px;
+            background-color: var(--light);
+            border-radius: 12px;
+            position: sticky;
+            top: 90px;
+            z-index: 1020;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .search-info {
+            font-size: 0.95rem;
+            color: var(--text-color);
+            font-weight: 500;
+        }
+        
+        .search-nav-buttons button {
+            margin-left: 8px;
+        }
+        
+        /* Scroll to Top Button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .scroll-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .scroll-to-top:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        /* Mobile adjustments */
+        @media (max-width: 768px) {
+            .model-placeholder {
+                height: 300px;
+            }
+            
+            .search-navigation {
+                flex-direction: column;
+                gap: 10px;
+                padding: 15px;
+            }
+            
+            .search-nav-buttons {
+                display: flex;
+                justify-content: center;
+                width: 100%;
+            }
+            
+            .search-nav-buttons button {
+                flex: 1;
+                margin: 0 4px;
+            }
+        }
+        
+        /* Small mobile adjustments */
+        @media (max-width: 576px) {
+            .model-placeholder {
+                height: 250px;
+            }
+            
+            .theme-toggle {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: var(--footer-bg);
+            color: white;
+            padding: 60px 0 30px;
+            margin-top: 60px;
+        }
+        
+        .footer h5 {
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .footer a {
+            color: var(--footer-text);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer a:hover {
+            color: white;
+        }
+        
+        .social-icons a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        /* Responsive Adjustments - UPDATED FOR TABLET NAVBAR */
+        @media (max-width: 1199px) and (min-width: 992px) {
+            /* Tablet landscape optimizations */
+            .nav-link {
+                font-size: 0.9rem;
+                padding: 8px 10px !important;
+                margin: 0 3px;
+            }
+            
+            .navbar-nav {
+                gap: 5px;
+            }
+            
+            .search-form {
+                max-width: 220px;
+                min-width: 180px;
+            }
+            
+            .theme-toggle {
+                margin-right: 8px;
+            }
+            
+            .theme-toggle-label {
+                margin: 0 4px;
+                font-size: 0.8rem;
+            }
+            
+            .switch {
+                width: 42px;
+                height: 20px;
+            }
+            
+            .slider:before {
+                height: 14px;
+                width: 14px;
+            }
+            
+            input:checked + .slider:before {
+                transform: translateX(22px);
+            }
+        }
+        
+        @media (max-width: 991px) {
+            /* Tablet portrait and mobile */
+            .search-form {
+                max-width: 100%;
+                margin: 15px 0;
+                order: 3;
+                width: 100%;
+            }
+            
+            .hero-section {
+                padding: 40px 20px;
+            }
+            
+            .navbar {
+                width: calc(100% - 30px);
+                padding: 10px 0;
+            }
+            
+            .navbar-collapse {
+                padding-top: 15px;
+            }
+            
+            .nav-link {
+                padding: 10px 15px !important;
+                margin: 2px 0;
+            }
+            
+            .navbar-nav {
+                margin-bottom: 10px;
+            }
+            
+            .theme-toggle {
+                margin: 10px 0;
+                justify-content: center;
+            }
+            
+            .nav-icon {
+                display: inline-block;
+                width: 20px;
+                text-align: center;
+                margin-right: 8px;
+            }
+            
+            .nav-text {
+                display: inline;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .navbar-brand img {
+                height: 32px;
+            }
+            
+            .hero-section {
+                text-align: center;
+                padding: 30px 20px;
+            }
+            
+            .navbar {
+                width: calc(100% - 20px);
+                top: 10px;
+            }
+            
+            body {
+                padding-top: 90px;
+            }
+            
+            .search-navigation {
+                top: 80px;
+            }
+            
+            /* Hide text on mobile, show only icons */
+            .nav-text {
+                display: inline;
+            }
+            
+            .nav-link {
+                font-size: 0.9rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            /* Extra small devices */
+            .nav-text {
+                display: inline;
+            }
+            
+            .nav-link {
+                font-size: 0.85rem;
+                padding: 8px 12px !important;
+            }
+            
+            .navbar-brand img {
+                height: 28px;
+            }
+        }
+        
+        /* Search result styling */
+        .search-match {
+            background-color: #fff9c4 !important;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            padding: 1px 3px;
+            border-radius: 3px;
+        }
+        
+        .current-search-match {
+            background-color: #ffeb3b !important;
+            box-shadow: 0 0 0 2px var(--primary);
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(67, 97, 238, 0.7); }
+            70% { box-shadow: 0 0 0 6px rgba(67, 97, 238, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(67, 97, 238, 0); }
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            color: var(--muted-text);
+        }
+
+
+        /* Search result styling - Night Mode */
+        [data-theme="dark"] .search-match {
+            background-color: #6d28d9 !important;
+        }
+
+        [data-theme="dark"] .current-search-match {
+            background-color: #8b5cf6 !important;
+        }
+
+        /* Teal theme */
+        [data-theme="dark"] .search-match {
+            background-color: #0f766e !important;
+        }
+
+        [data-theme="dark"] .current-search-match {
+            background-color: #14b8a6 !important;
+        }
+
+        /* Orange theme */
+        [data-theme="dark"] .search-match {
+            background-color: #33e307 !important;
+        }
+
+        [data-theme="dark"] .current-search-match {
+            background-color: #fb923c !important;
+        }
+                
+        /* Demo new content styles */
+        .new-content {
+            background-color: #e8f4fd;
+            border-left: 4px solid var(--primary);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+
+        [data-theme="dark"] .new-content {
+            background-color: #1a3a5f;
+            border-left: 4px solid var(--accent);
+            color: #4de1ff;
+        }
+        
+        .key-points {
+            background-color: #f0f9ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        [data-theme="dark"] .key-points {
+            background-color: #1a3a5f;
+            border-left: 4px solid var(--accent);
+            color: #4de1ff;
+        }
+        
+        .key-points ul {
+            margin-bottom: 0;
+        }
+        
+        /* Text Muted Fix for Dark Mode */
+        .text-muted {
+            color: var(--muted-text) !important;
+        }
+        
+        /* Navbar Toggler Icon Fix for Dark Mode */
+        .navbar-toggler {
+            border-color: var(--text-color);
+        }
+        
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2833, 37, 41, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+        
+        [data-theme="dark"] .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28233, 236, 239, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+
+
+        /* Light blue edge border for navbar in dark mode */
+[data-theme="dark"] .navbar {
+    border: 2px solid #4cc9f0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1), 
+                0 0 0 1px rgba(76, 201, 240, 0.3), /* Inner shadow for depth */
+                0 0 15px rgba(76, 201, 240, 0.2); /* Glow effect */
+}
+
+/* Optional: Add a subtle animation for the border */
+[data-theme="dark"] .navbar {
+    animation: pulseBorder 3s infinite;
+}
+
+@keyframes pulseBorder {
+    0%, 100% {
+        border-color: #4cc9f0;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1), 
+                    0 0 0 1px rgba(76, 201, 240, 0.3),
+                    0 0 15px rgba(76, 201, 240, 0.2);
+    }
+    50% {
+        border-color: #63d6ff;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1), 
+                    0 0 0 1px rgba(99, 214, 255, 0.4),
+                    0 0 20px rgba(99, 214, 255, 0.3);
+    }
+}
+
+/* Alternative simpler version without animation - uncomment if you prefer */
+/*
+[data-theme="dark"] .navbar {
+    border: 2px solid #4cc9f0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1), 
+                0 0 10px rgba(76, 201, 240, 0.3);
+}
+*/
+        
+        /* NEW: Modal Overlay and Popup Styles */
+                /* NEW: Improved Modal Overlay and Popup Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1100;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-popup {
+            background-color: var(--card-bg);
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            width: 90%;
+            max-width: 1000px; /* Increased max-width for larger screens */
+            height: auto;
+            max-height: 85vh; /* Better height for rectangular shape */
+            overflow-y: auto;
+            position: relative;
+            transform: scale(0.9);
+            opacity: 0;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-overlay.active .modal-popup {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            left: auto;
+            transform: none;
+            background-color: var(--card-bg);
+            border: none;
+            font-size: 24px;
+            color: var(--text-color);
+            cursor: pointer;
+            z-index: 10;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-close:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .modal-header {
+            padding: 0;
+            text-align: center;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .modal-image {
+            width: 100%;
+            height: 200px; /* Fixed height for consistent rectangular shape */
+            object-fit: cover;
+            border-radius: 20px 20px 0 0;
+        }
+
+        .modal-body {
+            padding: 30px;
+            flex: 1; /* Takes remaining space */
+            overflow-y: auto;
+        }
+
+        .modal-title {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 20px;
+            margin-top: 0;
+            font-size: 1.8rem;
+        }
+
+        .contact-info {
+            margin-top: 25px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            color: var(--text-color);
+            font-size: 1.05rem;
+        }
+
+        .contact-item i {
+            width: 30px;
+            color: var(--primary);
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        /* Improved responsive adjustments for modals */
+        @media (min-width: 768px) {
+            .modal-popup {
+                max-width: 900px;
+                max-height: 80vh;
+            }
+            
+            .modal-body {
+                padding: 40px;
+            }
+            
+            .modal-image {
+                height: 250px; /* Taller image on larger screens */
+            }
+            
+            .modal-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .modal-popup {
+                max-width: 1000px;
+                max-height: 85vh;
+                flex-direction: row; /* Side-by-side layout on large screens */
+            }
+            
+            .modal-header {
+                flex: 0 0 45%; /* Image takes 45% of width */
+                border-radius: 20px 0 0 20px;
+            }
+            
+            .modal-body {
+                flex: 0 0 55%; /* Content takes 55% of width */
+                padding: 40px;
+            }
+            
+            .modal-image {
+                height: 100%; /* Full height on desktop */
+                border-radius: 20px 0 0 20px;
+                object-fit: cover;
+            }
+            
+            .modal-close {
+                top: 25px;
+                right: 25px;
+                background-color: rgba(255, 255, 255, 0.9);
+            }
+            
+            [data-theme="dark"] .modal-close {
+                background-color: rgba(30, 30, 30, 0.9);
+            }
+        }
+
+        @media (max-width: 767px) {
+            .modal-popup {
+                width: 95%;
+                max-height: 90vh;
+            }
+            
+            .modal-body {
+                padding: 25px;
+            }
+            
+            .modal-image {
+                height: 180px;
+            }
+            
+            .modal-close {
+                top: 15px;
+                right: 15px;
+                width: 45px;
+                height: 45px;
+                font-size: 20px;
+            }
+        }
+
+        /* Extra small devices */
+        @media (max-width: 480px) {
+            .modal-overlay {
+                padding: 10px;
+            }
+            
+            .modal-popup {
+                width: 100%;
+                max-height: 95vh;
+            }
+            
+            .modal-body {
+                padding: 20px;
+            }
+            
+            .modal-image {
+                height: 150px;
+            }
+        }
+
+        /*--------------------------Centering Navbar Mobile Content Start-----------------------------*/
+
+/* Navigation Links */
+.navbar-nav {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (max-width: 991.98px) {
+    .navbar-nav {
+        text-align: center;
+        width: 100%;
+    }
+    
+    .nav-item {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .nav-link {
+        justify-content: center;
+        padding: 12px 15px !important;
+    }
+}
+
+/* Fix for mobile dropdown spacing */
+@media (max-width: 991.98px) {
+    .navbar-nav .dropdown-menu {
+        position: static;
+        float: none;
+        margin-top: 0;
+        border: none;
+        box-shadow: none;
+        background-color: transparent;
+        padding-left: 0;
+        text-align: center;
+        width: 100%;
+        
+        /* Animation properties */
+        opacity: 0;
+        visibility: hidden;
+        height: 0;
+        overflow: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s;
+        margin-bottom: 0;
+    }
+    
+    /* Show dropdown when parent has show class */
+    .dropdown.show .dropdown-menu,
+    .navbar-nav .dropdown-menu.show {
+        opacity: 1;
+        visibility: visible;
+        height: auto;
+        overflow: visible;
+        background-color: rgba(0, 0, 0, 0.05);
+        border-radius: 8px;
+        margin: 5px 0;
+        padding: 10px 0;
+    }
+    
+    /* Dark mode support */
+    [data-theme="dark"] .navbar-nav .dropdown-menu {
+        background-color: rgba(255, 255, 255, 0.05);
+    }
+    
+    .navbar-nav .dropdown-item {
+        padding: 10px 15px;
+        color: var(--text-color);
+        margin: 0;
+        border-radius: 6px;
+        text-align: center;
+        justify-content: center;
+    }
+    
+    .navbar-nav .dropdown-item:hover {
+        background-color: rgba(67, 97, 238, 0.1);
+    }
+    
+    /* Center the dropdown toggle */
+    .dropdown > .nav-link {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+/* Mobile adjustments for notepad */
+@media (max-width: 991.98px) {
+    .notepad-dropdown {
+        margin-right: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    
+    .notepad-btn {
+        width: 50px;
+        height: 50px;
+        border-radius: 12px;
+    }
+    
+    .notepad-btn i {
+        font-size: 1.3rem;
+    }
+    
+    .notepad-dropdown .dropdown-menu {
+        position: absolute !important;
+        transform: translate3d(0px, 50px, 0px) !important;
+        text-align: center;
+        width: 200px;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        top: 100% !important;
+    }
+    
+    /* Ensure notepad dropdown appears below the button */
+    .notepad-dropdown {
+        position: relative;
+    }
+}
+
+@media (max-width: 991.98px) {
+    #navbarContent {
+        text-align: center;
+    }
+    
+    .d-flex.align-items-center.flex-wrap {
+        justify-content: center;
+        width: 100%;
+    }
+    
+    .theme-toggle {
+        justify-content: center;
+        margin: 10px 0;
+    }
+}
+/*--------------------------Centering Navbar Mobile Content End-----------------------------*/
+
+/*3D Model Grid Start*/
+/* Responsive 3D Model Grid */
+.model-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin: 25px 0;
+}
+
+.model-grid-item {
+    background-color: var(--light);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.model-grid-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.model-grid-header {
+    padding: 15px;
+    background-color: var(--card-bg);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.model-grid-header h5 {
+    margin: 0;
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+.model-grid-header .phase-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin-top: 5px;
+}
+
+/* Dark mode adjustments */
+[data-theme="dark"] .model-grid-item {
+    background-color: #2d2d2d;
+}
+
+[data-theme="dark"] .model-grid-header {
+    background-color: #1e1e1e;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Mobile adjustments for model grid */
+@media (max-width: 768px) {
+    .model-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .model-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* For 3 models in a row on large screens */
+.model-grid-3 {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+}
+
+@media (min-width: 1400px) {
+    .model-grid-3 {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+/*3D Model Grid End*/
+
+/*3D Model Comparison Start*/
+/* Side-by-side comparison layout */
+.comparison-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin: 25px 0;
+}
+
+.comparison-item {
+    text-align: center;
+}
+
+.comparison-title {
+    font-weight: 600;
+    margin-bottom: 15px;
+    padding: 10px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+    .comparison-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
+/*3d Model Comparison End*/
+
+/*3D Model Process Start*/
+/* Sequential process steps */
+.process-steps {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin: 25px 0;
+}
+
+.process-step {
+    flex: 1;
+    min-width: 300px;
+    background-color: var(--light);
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+}
+
+.step-number {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: var(--primary);
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    z-index: 1;
+}
+/*3D Model Process End*/
+
+
+
+    </style>
+
+    <style>
+        /* Animated moving gradient background */
+        @keyframes soma-gradient-shift {
+            0%   { background-position: 0% 50%; }
+            50%  { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        html body {
+            background: linear-gradient(120deg, #eef2ff, #cfdcff, #e3d4ff, #c9eefa, #eef2ff);
+            background-size: 400% 400%;
+            background-attachment: fixed;
+            animation: soma-gradient-shift 14s ease infinite;
+        }
+        html body[data-theme="dark"] {
+            background: linear-gradient(120deg, #0a0a1a, #1a2260, #3a1470, #0c3a5c, #0a0a1a);
+            background-size: 400% 400%;
+            background-attachment: fixed;
+            animation: soma-gradient-shift 14s ease infinite;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            html body, html body[data-theme="dark"] { animation: none; }
+        }
+    </style>
+    <link rel="stylesheet" href="assets/css/soma-modern.css">
+    <link rel="stylesheet" href="assets/css/soma-saas.css">
+<style>
+/* Learning blocks (Overview, Key Concepts, Quick Facts, Detailed Notes) */
+.learn-block{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0;content-visibility:auto;contain-intrinsic-size:auto 520px}
+.lb-sec{background:rgba(67,97,238,.07);border:1px solid rgba(67,97,238,.15);border-radius:12px;padding:14px 16px;min-width:0}
+.lb-sec:nth-child(4){grid-column:1/-1}
+.lb-sec h5{font-size:.8rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--primary,#4361ee);margin:0 0 8px}
+.lb-sec p,.lb-sec li{font-size:.95rem;line-height:1.6}
+.lb-sec p:last-child{margin-bottom:0}
+.lb-sec ul{margin:0;padding-left:1.1rem}
+.lb-chips{display:flex;flex-wrap:wrap;gap:8px}
+.lb-chip{flex:1 1 140px;background:rgba(20,184,166,.12);border-radius:10px;padding:8px 10px;font-size:.85rem;line-height:1.35}
+.lb-chip b{display:block;font-size:1rem}
+[data-theme="dark"] .lb-sec{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12)}
+[data-theme="dark"] .lb-sec h5{color:#4de1ff}
+[data-theme="dark"] .lb-chip{background:rgba(77,225,255,.12)}
+@media(max-width:767.98px){.learn-block{grid-template-columns:1fr}}
+</style>
+<style>
+/* Quizzes */
+.quiz{margin:18px 0;padding:16px;border-radius:12px;border:1px solid rgba(67,97,238,.2);background:rgba(67,97,238,.05)}
+.quiz>h5{font-size:.95rem;font-weight:700;margin:0 0 12px;color:var(--primary,#4361ee)}
+.qz-q{margin:0 0 14px}
+.qz-t{font-weight:600;margin:0 0 8px}
+.qz-opts{display:flex;flex-wrap:wrap;gap:8px}
+.qz-o{flex:1 1 180px;text-align:left;padding:9px 12px;border-radius:10px;border:1px solid rgba(100,116,139,.4);background:transparent;color:inherit;font:inherit;font-size:.92rem;cursor:pointer;transition:background .2s,border-color .2s}
+.qz-o:hover:not(:disabled){background:rgba(67,97,238,.12)}
+.qz-o:disabled{cursor:default}
+.qz-o.qz-ok{background:rgba(22,163,74,.2);border-color:#16a34a}
+.qz-o.qz-no{background:rgba(220,38,38,.18);border-color:#dc2626}
+.qz-fb{margin:8px 0 0;font-size:.88rem;opacity:.9}
+.qz-sc{display:flex;align-items:center;gap:10px;font-weight:700;margin:4px 0 0}
+.qz-r{border:1px solid rgba(100,116,139,.5);background:transparent;color:inherit;border-radius:8px;padding:3px 10px;font-size:.82rem;cursor:pointer}
+[data-theme="dark"] .quiz{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.14)}
+[data-theme="dark"] .quiz>h5{color:#4de1ff}
+</style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="loading-content">
+            <img src="assets/images/somagif.gif" alt="Loading..." class="loading-gif">
+            <div class="loading-text">Wrapping it up.</div>
+            <!--<div class="loading-subtext">Preparing your 3D learning experience...</div>-->
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+            <!-- Logo -->
+            <a class="navbar-brand" href="index.html">
+                <img src="assets/images/logo.png" alt="Solo Learn Logo">
+            </a>
+            
+            <!-- Mobile Toggle Button -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <!-- Navbar Content -->
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <!-- Navigation Links -->
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">
+                            <i class="fas fa-home nav-icon"></i>
+                            <span class="nav-text">Home</span>
+                        </a>
+                    </li>
+                    
+                    <!-- Subjects Dropdown - UPDATED -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-book nav-icon"></i>
+                            <span class="nav-text">Subjects</span>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="3dbio.html"><i class="fas fa-dna me-2"></i> Biology</a></li>
+                            <li><a class="dropdown-item" href="3dphysics.html"><i class="fas fa-atom me-2"></i> Physics</a></li>
+                            <li><a class="dropdown-item" href="3dchem.html"><i class="fa-solid fa-flask me-2"></i> Chemistry</a></li>
+                            <li><a class="dropdown-item" href="3dgeo.html"><i class="fas fa-globe-americas me-2"></i> Geography</a></li>
+                            <li><a class="dropdown-item" href="3dculture.html"><i class="fas fa-users me-2"></i> Culture</a></li>
+                            <li><a class="dropdown-item" href="3dcomp.html"><i class="fa-solid fa-computer me-2"></i> Computer Studies</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="aboutUsLink">
+                            <i class="fas fa-address-card nav-icon"></i>
+                            <span class="nav-text">About</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="contactUsLink">
+                            <i class="fas fa-envelope nav-icon"></i>
+                            <span class="nav-text">Contact</span>
+                        </a>
+                    </li>
+                </ul>
+                
+                <!-- Right side elements -->
+                <div class="d-flex align-items-center flex-wrap">
+                    <!-- Theme Toggle -->
+                    <div class="theme-toggle">
+                        <span class="theme-toggle-label"><i class="fas fa-sun"></i></span>
+                        <label class="switch">
+                            <input type="checkbox" id="themeToggle">
+                            <span class="slider"></span>
+                        </label>
+                        <span class="theme-toggle-label"><i class="fas fa-moon"></i></span>
+                    </div>
+                    
+                    <!-- Search Bar -->
+                    <form class="d-flex search-form me-3" id="searchForm">
+                        <div class="input-group">
+                            <input class="form-control" type="search" placeholder="Search..." id="searchInput">
+                            <button class="btn btn-outline-primary" type="submit"><i class="fas fa-search"></i></button>
+                        </div>
+                    </form>
+                    
+                    <!-- Profile Dropdown -->
+                    <div class="dropdown profile-dropdown">
+                        <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" id="profileDropdown" data-bs-toggle="dropdown">
+                            <img loading="lazy" decoding="async" src="https://i.pravatar.cc/150?img=12" alt="Profile">
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-user-circle me-2"></i> Account</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i> Settings</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt me-2"></i> Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h1 class="display-4 fw-bold mb-3">Biology, but from an another angle.</h1>
+                    <p class="lead mb-4">Zoom past the microscope. Explore interactive, cinematic 3D models of cells, DNA, and complex ecosystems that bring textbook biology to life.</p>
+                    <a href="#learning-modules" class="btn btn-light btn-lg px-4 py-2 fw-bold">Start Learning Now</a>
+                </div>
+                <div class="col-lg-4 text-center">
+                    <i class="fas fa-cube" style="font-size: 10rem; opacity: 0.8;"></i>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Search Navigation (initially hidden) -->
+        <div class="search-navigation" id="searchNavigation" style="display: none;">
+            <div class="search-info" id="searchInfo">0 results found</div>
+            <div class="search-nav-buttons">
+                <button class="btn btn-sm btn-outline-primary" id="prevResult"><i class="fas fa-chevron-up me-1"></i> Previous</button>
+                <button class="btn btn-sm btn-outline-primary" id="nextResult">Next <i class="fas fa-chevron-down ms-1"></i></button>
+                <button class="btn btn-sm btn-outline-secondary" id="clearSearch">Clear Search</button>
+            </div>
+        </div>
+        
+        <!-- Main Card -->
+        <div class="card" id="learning-modules">
+            <div class="card-header">
+                <h2 class="h3 mb-0"><i class="fas fa-graduation-cap me-2 text-primary"></i> Learning Modules</h2>
+                <p class="text-muted mb-0 mt-2">Browse through our interactive learning modules with embedded 3D models</p>
+            </div>
+            
+            <!-- Accordion -->
+            <div class="accordion accordion-flush" id="topicsAccordion">
+                <!-- Topic 1: Cell Biology -->
+<div class="accordion-item" data-topic="biology">
+    <h2 class="accordion-header" id="headingCell">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCell">
+            <span class="subject-badge me-3">Biology</span> Cell Biology
+        </button>
+    </h2>
+    <div id="collapseCell" class="accordion-collapse collapse">
+        <div class="accordion-body">
+            <h4>Cell Structure and Function</h4>
+            <p>The fundamental unit of life. Cells are the basic structural and functional units of all living organisms.</p>
+            <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>Every living thing, from a bacterium to a blue whale, is built from cells. Think of a cell as a tiny factory with a protective wall, a control room and specialised workstations.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Cell theory:</strong> all life is made of cells, and all cells come from existing cells</li><li><strong>Membrane:</strong> a thin barrier that controls what enters and leaves</li><li><strong>Organelles:</strong> tiny structures inside the cell that each do one job</li><li><strong>Two cell types:</strong> prokaryotes have no nucleus; eukaryotes do</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>1665</b> Robert Hooke first used the word "cell"</span><span class="lb-chip"><b>30–40 trillion</b> cells in an adult human body</span><span class="lb-chip"><b>1–100 µm</b> typical cell size, too small to see unaided</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>Prokaryotic cells (bacteria and archaea) are small and simple: their DNA floats freely in the cytoplasm. Eukaryotic cells (animals, plants, fungi) keep DNA in a nucleus and have membrane-bound organelles such as mitochondria, which release usable energy from food.</p><p>Plant cells add a rigid cell wall, chloroplasts for photosynthesis and a large water-filled vacuole. Animal cells lack these but are flexible, which lets them form muscles and nerves. Rotate the plant and animal models below and compare what each cell contains.</p></div></div>
+            
+            <!-- Subtopic Accordion -->
+            <div class="card my-4">
+                <div class="accordion accordion-flush" id="cellSubtopicAccordion">
+                    <!-- Prokaryotic vs Eukaryotic -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="cellHeadingOne">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#cellCollapseOne">
+                                <span class="subject-badge me-3">Subtopic</span> Prokaryotic vs Eukaryotic Cells
+                            </button>
+                        </h2>
+                        <div id="cellCollapseOne" class="accordion-collapse collapse" aria-labelledby="cellHeadingOne">
+                            <div class="accordion-body">
+                                <p>Understanding the differences between simple prokaryotic cells (bacteria) and complex eukaryotic cells (plants, animals).</p>
+                                <div class="key-points">
+                                    <h6>Key Concepts:</h6>
+                                    <ul>
+                                        <li>Presence of nucleus and membrane-bound organelles</li>
+                                        <li>Size and complexity comparison</li>
+                                        <li>Evolutionary relationships</li>
+                                    </ul>
+                                </div>
+                                <!-- Placeholder for 3D Model -->
+                                <div class="model-container mt-3">
+                                    <div class="model-placeholder">
+                                        <i class="fas fa-microscope fa-3x mb-3"></i>
+                                        <p>3D Cell Model Placeholder</p>
+                                        <p class="text-muted">Add Sketchfab embed code here</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Cell Organelles -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="cellHeadingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#cellCollapseTwo">
+                                <span class="subject-badge me-3">Subtopic</span> Cell Organelles
+                            </button>
+                        </h2>
+                        <div id="cellCollapseTwo" class="accordion-collapse collapse" aria-labelledby="cellHeadingTwo">
+                            <div class="accordion-body">
+                                <p>Detailed study of cellular components and their functions.</p>
+                                <div class="key-points">
+                                    <h6>Major Organelles:</h6>
+                                    <ul>
+                                        <li>Nucleus - Genetic control center</li>
+                                        <li>Mitochondria - Powerhouse of the cell</li>
+                                        <li>Endoplasmic Reticulum - Protein synthesis and transport</li>
+                                        <li>Golgi Apparatus - Modification and packaging</li>
+                                        <li>Lysosomes - Cellular digestion</li>
+                                        <li>Chloroplasts - Photosynthesis (plant cells)</li>
+                                    </ul>
+                                </div>
+
+
+<!--3D Model Comparison Start-->
+<!-- Example: Plant vs Animal Cell Comparison -->
+<div class="comparison-container">
+    <div class="comparison-item">
+        <div class="comparison-title">Plant Cell</div>
+        <div class="sketchfab-embed-wrapper">
+            <div class="responsive-iframe-container">
+                <!-- Plant cell 3D model iframe start -->
+                 <div class="sketchfab-embed-wrapper"> <iframe loading="lazy" title="Pflanzenzelle/Plant cell" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking web-share src="https://sketchfab.com/models/72423fbd4e894160aeac61762d9ca592/embed"> </iframe> <p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;"> <a href="https://sketchfab.com/3d-models/pflanzenzelleplant-cell-72423fbd4e894160aeac61762d9ca592" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> Pflanzenzelle/Plant cell </a> by <a href="https://sketchfab.com/video111" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> InfraTrace.ch </a> on <a href="https://sketchfab.com" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a></p></div>
+                 <!-- Plant cell 3D model iframe end -->
+            </div>
+        </div>
+        <div class="mt-3">
+            <p><strong>Features:</strong> Cell wall, chloroplasts, large central vacuole</p>
+        </div>
+    </div>
+    
+    <div class="comparison-item">
+        <div class="comparison-title">Animal Cell</div>
+        <div class="sketchfab-embed-wrapper">
+            <div class="responsive-iframe-container">
+                <!-- Animal cell 3D model iframe start-->
+                 <div class="sketchfab-embed-wrapper"> <iframe loading="lazy" title="Animal Cell" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking web-share src="https://sketchfab.com/models/6a178502879d4bdaa768b44832a4069f/embed"> </iframe> <p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;"> <a href="https://sketchfab.com/3d-models/animal-cell-6a178502879d4bdaa768b44832a4069f" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> Animal Cell </a> by <a href="https://sketchfab.com/brubsaqui_" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> brubsaqui </a> on <a href="https://sketchfab.com" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a></p></div>
+            </div>
+        </div>
+        <div class="mt-3">
+            <p><strong>Features:</strong> No cell wall, centrioles, lysosomes</p>
+        </div>
+    </div>
+</div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="Chloroplasts carry out photosynthesis, and animal cells do not have them."><p class="qz-t">1. Which structure is found in plant cells but not animal cells?</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Mitochondria</button><button type="button" class="qz-o" data-c="0">Nucleus</button><button type="button" class="qz-o" data-c="1">Chloroplasts</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="Mitochondria turn food into ATP, the cell&#x27;s energy currency."><p class="qz-t">2. Which organelle releases usable energy from food?</p><div class="qz-opts"><button type="button" class="qz-o" data-c="1">Mitochondria</button><button type="button" class="qz-o" data-c="0">Vacuole</button><button type="button" class="qz-o" data-c="0">Cell wall</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
+
+<!--3D Model Comparison End-->
+
+
+
+                                     </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+
+
+<!--3d Model Process Start-->
+<!-- Example: DNA Replication Process -->
+<h5>Process for the metamorphosis.</h5>
+<div class="process-steps">
+    <div class="process-step">
+        <span class="step-number">1</span>
+        <div class="sketchfab-embed-wrapper">
+            <div class="responsive-iframe-container">
+                <!-- DNA unwinding model -->
+            </div>
+        </div>
+        <div class="p-3">
+            <h6>Step 1: Unwinding</h6>
+            <p class="small">DNA helix unwinds at the replication fork</p>
+        </div>
+    </div>
+    
+    <div class="process-step">
+        <span class="step-number">2</span>
+        <div class="sketchfab-embed-wrapper">
+            <div class="responsive-iframe-container">
+                <!-- Primer binding model -->
+            </div>
+        </div>
+        <div class="p-3">
+            <h6>Step 2: Primer Binding</h6>
+            <p class="small">RNA primers bind to DNA strands</p>
+        </div>
+    </div>
+    
+    <!-- Add more steps -->
+</div>
+<!--3D Model Process End-->
+
+
+                        
+          
+            <!-- End Subtopic Accordion -->
+        </div>
+    </div>
+</div>
+
+<!-- Topic 2: Genetics -->
+<div class="accordion-item" data-topic="biology">
+    <h2 class="accordion-header" id="headingGenetics">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseGenetics">
+            <span class="subject-badge me-3">Biology</span> Genetics
+        </button>
+    </h2>
+    <div id="collapseGenetics" class="accordion-collapse collapse">
+        <div class="accordion-body">
+            <h4>Genetics and Heredity</h4>
+            <p>Study of genes, genetic variation, and heredity in living organisms.</p>
+            <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>Genetics explains why you resemble your relatives. Instructions for building and running a body are written in DNA, passed from parents to children.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>DNA:</strong> a double-helix molecule that stores genetic information</li><li><strong>Gene:</strong> a section of DNA that holds the instructions for one product, usually a protein</li><li><strong>Chromosome:</strong> a tightly packed bundle of DNA</li><li><strong>Allele:</strong> a version of a gene, such as for eye colour</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>~3 billion</b> base pairs in the human genome</span><span class="lb-chip"><b>46</b> chromosomes in most human cells</span><span class="lb-chip"><b>99.9%</b> of DNA is the same between any two people</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>DNA is written with four letters (A, T, C and G). A always pairs with T and C with G, which is why each strand can serve as a template to copy the other. Cells read genes to make RNA, then proteins, and proteins do most of the work in the body.</p><p>Gregor Mendel showed in the 1860s, using pea plants, that traits are inherited as separate units, with some alleles dominant over others. Explore the DNA model below to see the twisted-ladder shape.</p></div></div>
+            
+            <div class="key-points">
+                <h6>Major Areas:</h6>
+                <ul>
+                    <li>DNA Structure and Replication</li>
+                    <li>Mendelian Inheritance</li>
+                    <li>Molecular Genetics</li>
+                    <li>Genetic Engineering</li>
+                    <li>Evolutionary Genetics</li>
+                </ul>
+            </div>
+            
+            <!-- Placeholder for DNA 3D Model -->
+            <div class="model-container">
+                <div class="model-placeholder">
+                    <i class="fas fa-dna fa-3x mb-3"></i>
+                    <p>3D DNA Double Helix Model</p>
+                    <!--<p class="text-muted">Add Sketchfab embed code here.</p>-->
+                    <!-- Placeholder for DNA 3D Model embed Start -->
+                     <div class="sketchfab-embed-wrapper"> <iframe loading="lazy" title="DNA" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking web-share src="https://sketchfab.com/models/60e95170b37549e3b45ee490b74bb112/embed"> </iframe> <p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;"> <a href="https://sketchfab.com/3d-models/dna-60e95170b37549e3b45ee490b74bb112" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> DNA </a> by <a href="https://sketchfab.com/holoxica" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> Holoxica </a> on <a href="https://sketchfab.com" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a></p></div>
+                     <!-- Placeholder for DNA 3D Model end -->
+                </div>
+            </div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="A pairs with T and C pairs with G."><p class="qz-t">1. Which bases pair together in DNA?</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">A with C</button><button type="button" class="qz-o" data-c="0">G with T</button><button type="button" class="qz-o" data-c="1">A with T</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="Two strands twist around each other to form a double helix."><p class="qz-t">2. What is the shape of the DNA molecule?</p><div class="qz-opts"><button type="button" class="qz-o" data-c="1">Double helix</button><button type="button" class="qz-o" data-c="0">Single circle</button><button type="button" class="qz-o" data-c="0">Flat sheet</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
+        </div>
+    </div>
+</div>
+
+<!-- Topic 3: Human Anatomy & Physiology -->
+<div class="accordion-item" data-topic="biology">
+    <h2 class="accordion-header" id="headingAnatomy">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAnatomy">
+            <span class="subject-badge me-3">Biology</span> Human Anatomy & Physiology
+        </button>
+    </h2>
+    <div id="collapseAnatomy" class="accordion-collapse collapse">
+        <div class="accordion-body">
+            <h4>Body Systems and Functions</h4>
+            <p>Study of the structure and function of the human body systems.</p>
+            <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>Your body is a team of organ systems that work together. Anatomy describes what each part looks like; physiology explains how it works.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Skeletal system:</strong> bones that support and protect</li><li><strong>Circulatory system:</strong> heart and vessels that carry blood</li><li><strong>Nervous system:</strong> brain and nerves that send signals</li><li><strong>Homeostasis:</strong> keeping conditions inside the body stable</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>206</b> bones in an adult skeleton</span><span class="lb-chip"><b>~100,000</b> heartbeats every day</span><span class="lb-chip"><b>~86 billion</b> neurons in the human brain</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>The heart is a four-chamber pump. The right side sends blood to the lungs to pick up oxygen; the left side sends it around the body. Blood returns through veins and the cycle repeats.</p><p>The nervous system works through electrical and chemical signals. The brain makes decisions, the spinal cord relays messages and nerves reach every part of the body. Use the models in each system below to rotate, zoom and find the parts.</p></div></div>
+            
+            <!-- Subtopic Accordion for Body Systems -->
+            <div class="card my-4">
+                <div class="accordion accordion-flush" id="anatomySubtopicAccordion">
+                    <!-- Skeletal System -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="anatomyHeadingOne">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#anatomyCollapseOne">
+                                <span class="subject-badge me-3">System</span> Skeletal System
+                            </button>
+                        </h2>
+                        <div id="anatomyCollapseOne" class="accordion-collapse collapse" aria-labelledby="anatomyHeadingOne">
+                            <div class="accordion-body">
+                                <p>Framework of bones providing structure, protection, and movement.</p>
+                                <!-- Add your skeleton 3D model here -->
+<div class="model-container"><div class="model-placeholder"><div class="sketchfab-embed-wrapper"><div class="responsive-iframe-container"><iframe title="Skeleton" loading="lazy" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/4de7b96a351a4a35b1b6e5415277ff07/embed"></iframe></div><p><a href="https://sketchfab.com/3d-models/skeleton-4de7b96a351a4a35b1b6e5415277ff07" target="_blank" rel="nofollow noopener">Skeleton</a> by Diego Luján García on <a href="https://sketchfab.com" target="_blank" rel="nofollow noopener">Sketchfab</a> · licensed <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="nofollow noopener">CC BY 4.0</a></p></div></div></div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="An adult has 206 bones."><p class="qz-t">1. About how many bones does an adult skeleton have?</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">106</button><button type="button" class="qz-o" data-c="1">206</button><button type="button" class="qz-o" data-c="0">306</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="Digestion is done by the digestive system."><p class="qz-t">2. Which is NOT a job of the skeleton?</p><div class="qz-opts"><button type="button" class="qz-o" data-c="1">Digesting food</button><button type="button" class="qz-o" data-c="0">Protecting organs</button><button type="button" class="qz-o" data-c="0">Supporting the body</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Circulatory System -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="anatomyHeadingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#anatomyCollapseTwo">
+                                <span class="subject-badge me-3">System</span> Circulatory System
+                            </button>
+                        </h2>
+                        <div id="anatomyCollapseTwo" class="accordion-collapse collapse" aria-labelledby="anatomyHeadingTwo">
+                            <div class="accordion-body">
+                                <p>Heart, blood vessels, and blood - transportation of nutrients and oxygen.</p>
+                                <!-- Add your heart 3D model here -->
+                                <h4> Model of a Human Heart.</h4>
+                            <div class="model-container">
+                                
+                                <!-- UPDATED: Responsive Sketchfab Embedding -->
+                                <div class="sketchfab-embed-wrapper"> 
+                                    <div class="responsive-iframe-container"> 
+                                    <iframe loading="lazy" title="3d Animated Realistic Human Heart - V2.0" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking web-share src="https://sketchfab.com/models/168b474fba564f688048212e99b4159d/embed"> 
+                                    </iframe> 
+                                </div>
+                                    <p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;"> <a href="https://sketchfab.com/3d-models/3d-animated-realistic-human-heart-v20-168b474fba564f688048212e99b4159d?utm_medium=embed&utm_campaign=share-popup&utm_content=168b474fba564f688048212e99b4159d" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> 3d Animated Realistic Human Heart - V2.0 </a> by <a href="https://sketchfab.com/docjana?utm_medium=embed&utm_campaign=share-popup&utm_content=168b474fba564f688048212e99b4159d" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> Anatomy by Doctor Jana </a> on <a href="https://sketchfab.com?utm_medium=embed&utm_campaign=share-popup&utm_content=168b474fba564f688048212e99b4159d" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a>
+                                    </p>
+                                </div>
+                            </div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="The left ventricle sends oxygen-rich blood around the body."><p class="qz-t">1. Which side of the heart pumps oxygen-rich blood to the body?</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Right side</button><button type="button" class="qz-o" data-c="1">Left side</button><button type="button" class="qz-o" data-c="0">Both equally</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="Two atria and two ventricles make four chambers."><p class="qz-t">2. How many chambers does the human heart have?</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Two</button><button type="button" class="qz-o" data-c="0">Three</button><button type="button" class="qz-o" data-c="1">Four</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
+                                <!-- Model of the Human Heart-->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Nervous System -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="anatomyHeadingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#anatomyCollapseThree">
+                                <span class="subject-badge me-3">System</span> Nervous System
+                            </button>
+                        </h2>
+                        <div id="anatomyCollapseThree" class="accordion-collapse collapse" aria-labelledby="anatomyHeadingThree">
+                            <div class="accordion-body">
+                                <p>Brain, spinal cord, and nerves - control and communication network.</p>
+                                <!-- Add your brain 3D model here -->
+<div class="model-container"><div class="model-placeholder"><div class="sketchfab-embed-wrapper"><div class="responsive-iframe-container"><iframe title="Brain Model" loading="lazy" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/06b780971c1d474faadc005c1036f1f7/embed"></iframe></div><p><a href="https://sketchfab.com/3d-models/brain-model-06b780971c1d474faadc005c1036f1f7" target="_blank" rel="nofollow noopener">Brain Model</a> by Nahiarapa on <a href="https://sketchfab.com" target="_blank" rel="nofollow noopener">Sketchfab</a> · licensed <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="nofollow noopener">CC BY 4.0</a></p></div></div></div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="Neurons pass electrical and chemical signals."><p class="qz-t">1. The nervous system sends messages using:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Blood only</button><button type="button" class="qz-o" data-c="0">Air</button><button type="button" class="qz-o" data-c="1">Electrical and chemical signals</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="The spinal cord carries signals to and from the brain."><p class="qz-t">2. Which part relays messages between the brain and the body?</p><div class="qz-opts"><button type="button" class="qz-o" data-c="1">Spinal cord</button><button type="button" class="qz-o" data-c="0">Stomach</button><button type="button" class="qz-o" data-c="0">Lungs</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Additional Systems can be added similarly -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Topic 4: Ecology -->
+<div class="accordion-item" data-topic="biology">
+    <h2 class="accordion-header" id="headingEcology">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEcology">
+            <span class="subject-badge me-3">Biology</span> Ecology
+        </button>
+    </h2>
+    <div id="collapseEcology" class="accordion-collapse collapse">
+        <div class="accordion-body">
+            <h4>Ecosystems and Interactions</h4>
+            <p>Study of relationships between organisms and their environment.</p>
+            <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>Ecology looks at how living things interact with each other and with air, water and soil. Nothing in nature lives alone.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Ecosystem:</strong> living things plus their non-living surroundings</li><li><strong>Food chain:</strong> who eats whom, and how energy moves</li><li><strong>Producers:</strong> plants and algae that make food from sunlight</li><li><strong>Biodiversity:</strong> the variety of life in an area</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>1866</b> Ernst Haeckel coined "ecology"</span><span class="lb-chip"><b>~10%</b> of energy passes to the next feeding level</span><span class="lb-chip"><b>3</b> main roles: producers, consumers, decomposers</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>Energy enters most ecosystems as sunlight, is captured by producers and passes to herbivores, then carnivores. A large share is lost as heat at each step, so food chains are usually short and there are fewer predators than prey.</p><p>Matter is recycled instead: decomposers return nutrients to the soil, and carbon, water and nitrogen cycle between living things and the environment.</p></div></div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="Producers make food from sunlight."><p class="qz-t">1. Which organisms are producers?</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Lions</button><button type="button" class="qz-o" data-c="1">Plants and algae</button><button type="button" class="qz-o" data-c="0">Decomposers</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="Roughly 10% is passed on and the rest is lost, mostly as heat."><p class="qz-t">2. About how much energy passes to the next feeding level?</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">About 90%</button><button type="button" class="qz-o" data-c="0">All of it</button><button type="button" class="qz-o" data-c="1">About 10%</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
+            
+            <div class="new-content">
+                <h5>Key Concepts:</h5>
+                <p>Energy flow, nutrient cycling, population dynamics, and biodiversity.</p>
+            </div>
+            
+            <div class="key-points">
+                <h6>Ecological Levels:</h6>
+                <ul>
+                    <li>Organism → Population → Community → Ecosystem → Biome → Biosphere</li>
+                    <li>Food chains and food webs</li>
+                    <li>Biogeochemical cycles (water, carbon, nitrogen)</li>
+                    <li>Conservation biology</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Topic 5: Evolution -->
+<div class="accordion-item" data-topic="biology">
+    <h2 class="accordion-header" id="headingEvolution">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEvolution">
+            <span class="subject-badge me-3">Biology</span> Evolution
+        </button>
+    </h2>
+    <div id="collapseEvolution" class="accordion-collapse collapse">
+        <div class="accordion-body">
+            <h4>Theory of Evolution</h4>
+            <p>Study of how species change over time through natural selection and genetic variation.</p>
+            <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>Evolution explains how the variety of life arose from common ancestors over billions of years.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Variation:</strong> individuals in a group differ from each other</li><li><strong>Natural selection:</strong> traits that help survival become more common</li><li><strong>Adaptation:</strong> a trait that suits an organism to its environment</li><li><strong>Common ancestry:</strong> related species share ancestors</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>1859</b> Darwin published On the Origin of Species</span><span class="lb-chip"><b>~4.5 billion</b> years: the age of Earth</span><span class="lb-chip"><b>3.5+ billion</b> years: evidence of life</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>Natural selection needs three things: variation, inheritance and differences in survival or reproduction. Over many generations, helpful traits spread through a population. Evolution acts on populations, not on individuals.</p><p>The evidence is broad: fossils show change through time, similar bone structures appear across different animals, and DNA comparisons match the family trees built from anatomy.</p></div></div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="Individuals with helpful traits survive and reproduce more."><p class="qz-t">1. Which process makes helpful traits more common?</p><div class="qz-opts"><button type="button" class="qz-o" data-c="1">Natural selection</button><button type="button" class="qz-o" data-c="0">Photosynthesis</button><button type="button" class="qz-o" data-c="0">Mitosis</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="Populations change over many generations."><p class="qz-t">2. Evolution acts on:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">A single cell only</button><button type="button" class="qz-o" data-c="0">Individuals in their lifetime</button><button type="button" class="qz-o" data-c="1">Populations over generations</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
+            
+            <div class="key-points">
+                <h6>Evidence for Evolution:</h6>
+                <ul>
+                    <li>Fossil records</li>
+                    <li>Comparative anatomy</li>
+                    <li>Molecular biology</li>
+                    <li>Biogeography</li>
+                    <li>Embryology</li>
+                </ul>
+            </div>
+
+            <!--3d model grid start-->
+            <!-- Example: Mitosis Process -->
+<div class="accordion-item" data-topic="biology">
+    <h2 class="accordion-header" id="headingMitosis">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMitosis">
+            <span class="subject-badge me-3">Biology</span> Cell Division: Mitosis
+        </button>
+    </h2>
+    <div id="collapseMitosis" class="accordion-collapse collapse">
+        <div class="accordion-body">
+            <h4>The Process of Mitosis</h4>
+            <p>Mitosis is the process where a single cell divides to produce two identical daughter cells. The process consists of several distinct phases:</p>
+            
+            <!-- Responsive Grid of 3D Models -->
+            <div class="model-grid model-grid-3">
+                
+                <!-- Phase 1: Prophase -->
+                <div class="model-grid-item">
+                    <div class="model-grid-header">
+                        <h5>Prophase</h5>
+                        <span class="phase-badge">Phase 1</span>
+                    </div>
+                    <div class="sketchfab-embed-wrapper">
+                        <div class="responsive-iframe-container">
+                            <iframe loading="lazy" title="Prophase Cell Model" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/YOUR_PROPHASE_MODEL_ID/embed">
+                            </iframe>
+                        </div>
+                        <p style="font-size: 13px; margin: 5px; color: var(--text-color);">
+                            <a href="https://sketchfab.com/YOUR_LINK" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">Prophase Cell</a>
+                        </p>
+                    </div>
+                    <div class="p-3">
+                        <p class="small mb-0"><strong>Key Events:</strong> Chromosomes condense, nuclear envelope begins to break down, spindle fibers form.</p>
+                    </div>
+                </div>
+                
+                <!-- Phase 2: Metaphase -->
+                <div class="model-grid-item">
+                    <div class="model-grid-header">
+                        <h5>Metaphase</h5>
+                        <span class="phase-badge">Phase 2</span>
+                    </div>
+                    <div class="sketchfab-embed-wrapper">
+                        <div class="responsive-iframe-container">
+                            <iframe loading="lazy" title="Metaphase Cell Model" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/YOUR_METAPHASE_MODEL_ID/embed">
+                            </iframe>
+                        </div>
+                        <p style="font-size: 13px; margin: 5px; color: var(--text-color);">
+                            <a href="https://sketchfab.com/YOUR_LINK" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">Metaphase Cell</a>
+                        </p>
+                    </div>
+                    <div class="p-3">
+                        <p class="small mb-0"><strong>Key Events:</strong> Chromosomes align at the metaphase plate, spindle fibers attach to centromeres.</p>
+                    </div>
+                </div>
+                
+                <!-- Phase 3: Anaphase -->
+                <div class="model-grid-item">
+                    <div class="model-grid-header">
+                        <h5>Anaphase</h5>
+                        <span class="phase-badge">Phase 3</span>
+                    </div>
+                    <div class="sketchfab-embed-wrapper">
+                        <div class="responsive-iframe-container">
+                            <iframe loading="lazy" title="Anaphase Cell Model" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/YOUR_ANAPHASE_MODEL_ID/embed">
+                            </iframe>
+                        </div>
+                        <p style="font-size: 13px; margin: 5px; color: var(--text-color);">
+                            <a href="https://sketchfab.com/YOUR_LINK" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">Anaphase Cell</a>
+                        </p>
+                    </div>
+                    <div class="p-3">
+                        <p class="small mb-0"><strong>Key Events:</strong> Sister chromatids separate and move to opposite poles of the cell.</p>
+                    </div>
+                </div>
+                
+                <!-- Add more phases as needed -->
+                
+            </div>
+            
+            <div class="key-points mt-4">
+                <h6>Process Summary:</h6>
+                <ul>
+                    <li><strong>Prophase:</strong> Chromosomes condense and become visible</li>
+                    <li><strong>Metaphase:</strong> Chromosomes align at the cell's equator</li>
+                    <li><strong>Anaphase:</strong> Chromatids separate and move to opposite poles</li>
+                    <li><strong>Telophase:</strong> Nuclear membranes reform around the separated chromosomes</li>
+                    <li><strong>Cytokinesis:</strong> Cell divides into two daughter cells</li>
+                </ul>
+            </div>
+            
+        </div>
+    </div>
+</div>
+            <!--3d model grid end-->
+            
+            <!-- Placeholder for Evolutionary Tree 3D Model -->
+            <div class="model-container">
+                <div class="model-placeholder">
+                    <i class="fas fa-project-diagram fa-3x mb-3"></i>
+                    <p>3D Phylogenetic Tree Model</p>
+                    <p class="text-muted">Add Sketchfab embed code here</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Topic 6: Microbiology -->
+<div class="accordion-item" data-topic="biology">
+    <h2 class="accordion-header" id="headingMicro">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMicro">
+            <span class="subject-badge me-3">Biology</span> Microbiology
+        </button>
+    </h2>
+    <div id="collapseMicro" class="accordion-collapse collapse">
+        <div class="accordion-body">
+            <h4>Microorganisms</h4>
+            <p>Study of microscopic organisms including bacteria, viruses, fungi, and protozoa.</p>
+            <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>Microbes are living things too small to see without a microscope. Most are harmless or helpful, and a few cause disease.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Bacteria:</strong> single-celled prokaryotes</li><li><strong>Viruses:</strong> particles that must infect a cell to multiply</li><li><strong>Fungi:</strong> yeasts and moulds, which decompose matter</li><li><strong>Antibiotics:</strong> medicines that work on bacteria, not viruses</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>1670s</b> Leeuwenhoek first observed microbes</span><span class="lb-chip"><b>~1:1</b> ratio of bacterial to human cells in the body</span><span class="lb-chip"><b>~20 min</b> fastest doubling time for some bacteria</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>Bacteria have a cell wall, DNA in a loop and often tiny tails (flagella) for swimming. They divide by splitting in two, so populations can grow very quickly in good conditions.</p><p>Many microbes help us: gut bacteria aid digestion, yeast makes bread rise, and soil microbes recycle nutrients. Hygiene, vaccines and clean water are the main defences against harmful ones.</p></div></div>
+            
+            <div class="new-content">
+                <h5>Importance in Medicine and Environment:</h5>
+                <p>Microbes play crucial roles in disease, decomposition, and biotechnology.</p>
+            </div>
+            
+            <!-- Placeholder for Microbe 3D Model -->
+            <div class="model-container">
+                <div class="model-placeholder">
+                    <i class="fas fa-bacteria fa-3x mb-3"></i>
+                    <p>3D Bacterial Cell Model</p>
+                    <!--<p class="text-muted">Add Sketchfab embed code here</p>-->
+                    <div class="sketchfab-embed-wrapper"> <iframe loading="lazy" title="Bacterial Cell Model" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking web-share src="https://sketchfab.com/models/d8d0207a54b443f68c24deb7673d5f55/embed"> </iframe> <p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;"> <a href="https://sketchfab.com/3d-models/bacterial-cell-model-d8d0207a54b443f68c24deb7673d5f55" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> Bacterial Cell Model </a> by <a href="https://sketchfab.com/kurtanthony.cruz.mnl" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> Wen </a> on <a href="https://sketchfab.com" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a></p></div>
+
+
+                </div>
+            </div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="Bacteria are prokaryotes: their DNA is not inside a nucleus."><p class="qz-t">1. Bacteria are:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Eukaryotes with a nucleus</button><button type="button" class="qz-o" data-c="1">Prokaryotes with no nucleus</button><button type="button" class="qz-o" data-c="0">Viruses</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="Antibiotics work on bacteria, not on viruses."><p class="qz-t">2. Antibiotics are used against:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Viruses</button><button type="button" class="qz-o" data-c="1">Bacteria</button><button type="button" class="qz-o" data-c="0">Both equally</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
+        </div>
+    </div>
+</div>
+
+<!-- Topic 7: Plant Biology -->
+<div class="accordion-item" data-topic="biology">
+    <h2 class="accordion-header" id="headingPlants">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePlants">
+            <span class="subject-badge me-3">Biology</span> Plant Biology
+        </button>
+    </h2>
+    <div id="collapsePlants" class="accordion-collapse collapse">
+        <div class="accordion-body">
+            <h4>Botany and Plant Science</h4>
+            <p>Study of plant life including structure, growth, reproduction, and metabolism.</p>
+            <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>Plants make their own food from light and support almost all life on land by providing food and oxygen.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Photosynthesis:</strong> turning light, water and CO₂ into sugar and oxygen</li><li><strong>Roots:</strong> absorb water and minerals and anchor the plant</li><li><strong>Stomata:</strong> tiny leaf pores for gas exchange</li><li><strong>Xylem and phloem:</strong> tubes that carry water and sugars</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>6CO₂ + 6H₂O</b> + light → C₆H₁₂O₆ + 6O₂</span><span class="lb-chip"><b>4,800+ years</b> age of the oldest bristlecone pines</span><span class="lb-chip"><b>Green</b> because chlorophyll reflects green light</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>Photosynthesis happens in chloroplasts. Chlorophyll absorbs mostly red and blue light, and the plant uses that energy to build glucose from carbon dioxide and water, releasing oxygen as a by-product.</p><p>Plants respond to their world too: shoots bend toward light, roots grow down with gravity, and hormones such as auxin coordinate growth.</p></div></div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="Oxygen is released as a by-product."><p class="qz-t">1. Photosynthesis makes glucose and:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Methane</button><button type="button" class="qz-o" data-c="1">Oxygen</button><button type="button" class="qz-o" data-c="0">Nitrogen</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="Phloem carries sugars; xylem carries water."><p class="qz-t">2. Which tubes carry sugars around a plant?</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Xylem</button><button type="button" class="qz-o" data-c="0">Stomata</button><button type="button" class="qz-o" data-c="1">Phloem</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
+            
+            <div class="key-points">
+                <h6>Plant Systems:</h6>
+                <ul>
+                    <li>Photosynthesis and respiration</li>
+                    <li>Plant anatomy and morphology</li>
+                    <li>Plant reproduction and life cycles</li>
+                    <li>Plant hormones and responses</li>
+                </ul>
+            </div>
+            
+            <!-- Placeholder for Plant Cell 3D Model -->
+            <div class="model-container">
+                <div class="model-placeholder">
+                    <i class="fas fa-seedling fa-3x mb-3"></i>
+                    <p>3D Plant Cell Model</p>
+                    <p class="text-muted">Add Sketchfab embed code here</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Topic 8: Biochemistry -->
+<div class="accordion-item" data-topic="biology">
+    <h2 class="accordion-header" id="headingBiochem">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseBiochem">
+            <span class="subject-badge me-3">Biology</span> Biochemistry
+        </button>
+    </h2>
+    <div id="collapseBiochem" class="accordion-collapse collapse">
+        <div class="accordion-body">
+            <h4>Chemical Processes in Living Organisms</h4>
+            <p>Study of chemical substances and vital processes occurring in living organisms.</p>
+            <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>Biochemistry is the chemistry of life: how molecules build cells and how cells turn food into energy.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Macromolecules:</strong> proteins, carbohydrates, lipids and nucleic acids</li><li><strong>Enzymes:</strong> proteins that speed up reactions</li><li><strong>ATP:</strong> the cell's energy currency</li><li><strong>Metabolism:</strong> all chemical reactions in an organism</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>20</b> standard amino acids build proteins</span><span class="lb-chip"><b>4</b> major classes of biological macromolecules</span><span class="lb-chip"><b>Millions</b> of ATP molecules used per cell each second</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>A protein's shape decides its job. A chain of amino acids folds into a specific 3D form, and even a small change can stop it working. This is why 3D models are so useful for studying proteins.</p><p>Enzymes lower the energy needed for a reaction, so cells can run chemistry at body temperature. Cellular respiration then converts glucose into ATP, which powers movement, growth and repair.</p></div></div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="ATP stores and delivers energy for cell activities."><p class="qz-t">1. What is the cell&#x27;s energy currency?</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Lipid</button><button type="button" class="qz-o" data-c="1">ATP</button><button type="button" class="qz-o" data-c="0">Cellulose</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="Enzymes lower the energy needed for a reaction."><p class="qz-t">2. Enzymes are:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="1">Proteins that speed up reactions</button><button type="button" class="qz-o" data-c="0">Minerals</button><button type="button" class="qz-o" data-c="0">Sugars</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
+            
+            <div class="new-content">
+                <h5>Key Molecules:</h5>
+                <p>Proteins, carbohydrates, lipids, nucleic acids, enzymes, and metabolic pathways.</p>
+            </div>
+            
+            <!-- Placeholder for Protein Structure 3D Model -->
+            <div class="model-container">
+                <div class="model-placeholder">
+                    <i class="fas fa-atom fa-3x mb-3"></i>
+                    <p>3D Protein Structure Model</p>
+                    <p class="text-muted">Add Sketchfab embed code here</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Topic 9: Developmental Biology -->
+<div class="accordion-item" data-topic="biology">
+    <h2 class="accordion-header" id="headingDevelop">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDevelop">
+            <span class="subject-badge me-3">Biology</span> Developmental Biology
+        </button>
+    </h2>
+    <div id="collapseDevelop" class="accordion-collapse collapse">
+        <div class="accordion-body">
+            <h4>Growth and Development</h4>
+            <p>Study of the process by which organisms grow and develop from zygote to adult.</p>
+            <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>Developmental biology follows how one fertilised cell becomes a complete organism with many different tissues.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Zygote:</strong> the first cell, formed at fertilisation</li><li><strong>Differentiation:</strong> cells becoming specialised</li><li><strong>Stem cells:</strong> cells that can become other cell types</li><li><strong>Morphogenesis:</strong> how body shape forms</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>200+</b> cell types arise from one zygote</span><span class="lb-chip"><b>~40 weeks</b> of human pregnancy</span><span class="lb-chip"><b>Hox genes</b> set up the body plan</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>After fertilisation, the zygote divides repeatedly. Early cells can become almost anything; later, signals switch genes on or off so cells become muscle, nerve, skin and more.</p><p>The same genes guide development in many animals, which is why embryos of different species look alike in early stages.</p></div></div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="The zygote divides to build the embryo."><p class="qz-t">1. The first cell formed at fertilisation is the:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Neuron</button><button type="button" class="qz-o" data-c="1">Zygote</button><button type="button" class="qz-o" data-c="0">Platelet</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="Differentiation produces cell types such as muscle and nerve."><p class="qz-t">2. Cells becoming specialised is called:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="1">Differentiation</button><button type="button" class="qz-o" data-c="0">Respiration</button><button type="button" class="qz-o" data-c="0">Replication</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
+            
+            <div class="key-points">
+                <h6>Developmental Processes:</h6>
+                <ul>
+                    <li>Embryogenesis and organogenesis</li>
+                    <li>Cell differentiation</li>
+                    <li>Morphogenesis</li>
+                    <li>Regeneration and aging</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Topic 10: Biotechnology -->
+<div class="accordion-item" data-topic="biology">
+    <h2 class="accordion-header" id="headingBiotech">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseBiotech">
+            <span class="subject-badge me-3">Biology</span> Biotechnology
+        </button>
+    </h2>
+    <div id="collapseBiotech" class="accordion-collapse collapse">
+        <div class="accordion-body">
+            <h4>Applications of Biological Systems</h4>
+            <p>Use of living systems and organisms to develop or make products.</p>
+            <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>Biotechnology uses living cells and biological molecules to make medicines, foods, fuels and tools.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Recombinant DNA:</strong> combining DNA from different sources</li><li><strong>PCR:</strong> copies a tiny DNA sample millions of times</li><li><strong>CRISPR-Cas9:</strong> a tool for precise gene editing</li><li><strong>Fermentation:</strong> using microbes to make products</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>1983</b> PCR was invented by Kary Mullis</span><span class="lb-chip"><b>2003</b> Human Genome Project completed</span><span class="lb-chip"><b>2020</b> Nobel Prize for CRISPR gene editing</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>Insulin for diabetes was once taken from animals; today bacteria carrying the human insulin gene make it. Similar methods produce vaccines and other medicines.</p><p>Powerful tools raise questions about safety, fairness and consent, so biotechnology is guided by laws and ethics as well as science.</p></div></div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="PCR makes millions of copies of a DNA sample."><p class="qz-t">1. PCR is used to:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="1">Copy DNA</button><button type="button" class="qz-o" data-c="0">Digest proteins</button><button type="button" class="qz-o" data-c="0">Count cells</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="It cuts DNA at a chosen spot so genes can be changed."><p class="qz-t">2. CRISPR-Cas9 is a tool for:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Fermentation</button><button type="button" class="qz-o" data-c="0">Photosynthesis</button><button type="button" class="qz-o" data-c="1">Gene editing</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
+            
+            <div class="new-content">
+                <h5>Modern Applications:</h5>
+                <p>Genetic engineering, CRISPR technology, synthetic biology, biofuels, and pharmaceuticals.</p>
+            </div>
+            
+            <div class="key-points">
+                <h6>Biotechnological Tools:</h6>
+                <ul>
+                    <li>PCR (Polymerase Chain Reaction)</li>
+                    <li>Gel electrophoresis</li>
+                    <li>DNA sequencing</li>
+                    <li>Recombinant DNA technology</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- TWO CLOSING DIV TAGS -->
+</div>  <!-- Closes the accordion -->
+</div>  <!-- Closes the card -->
+</div>  <!-- Closes the container -->
+
+    <!-- NEW: About Us Modal -->
+    <div class="modal-overlay" id="aboutUsModal">
+        <button class="modal-close" id="closeAboutUs">
+                <i class="fas fa-times"></i>
+            </button>
+        <div class="modal-popup">
+            
+            <div class="modal-header">
+                <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" alt="About Us" class="modal-image">
+                
+            </div>
+            <div class="modal-body">
+                <h3 class="modal-title">About Soma</h3>
+                <p>Soma is an innovative educational platform that transforms learning through interactive 3D visualization technology. Our mission is to make complex concepts accessible and engaging for students of all ages.</p>
+                
+                <div class="contact-info">
+                    <h5>Our Team</h5>
+                    <div class="contact-item">
+                        <i class="fas fa-users"></i>
+                        <span>Founded by educators and 3D visualization experts</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Based in Africa with team members worldwide</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>Serving over 50,000 students across 120 countries</span>
+                    </div>
+                </div>
+                
+                <div class="contact-info mt-4">
+                    <h5>Our Vision</h5>
+                    <p>We believe that immersive learning experiences can transform education. By integrating 3D models directly into our learning management system, we help students visualize and understand complex topics in ways that traditional textbooks cannot provide.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- NEW: Contact Us Modal -->
+    <div class="modal-overlay" id="contactUsModal">
+        <button class="modal-close" id="closeContactUs">
+                <i class="fas fa-times"></i>
+            </button>
+        <div class="modal-popup">
+            <div class="modal-header">
+                <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1534536281715-e28d76689b4d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Contact Us" class="modal-image">
+                
+            </div>
+            <div class="modal-body">
+                <h3 class="modal-title">Contact Us</h3>
+                <p>We'd love to hear from you! Whether you have questions about our platform, need technical support, or want to explore partnership opportunities, our team is here to help.</p>
+                
+                <div class="contact-info">
+                    <h5>Get in Touch</h5>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@somaorbit.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>(+256) 783 004 831</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Entebbe, Uganda</span>
+                    </div>
+                </div>
+                
+                <div class="contact-info mt-4">
+                    <h5>Office Hours</h5>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <span>Monday - Friday: 9:00 AM - 6:00 PM EAT</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <span>Saturday: 10:00 AM - 4:00 PM EAT</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <span>Sunday: Closed</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+                    <h5>Soma</h5>
+                    <p>Transforming education through immersive 3D learning experiences. Making complex concepts accessible and engaging for students worldwide.</p>
+                    <div class="social-icons mt-4">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+                    <h5>Subjects</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="3dbio.html">Biology</a></li>
+                        <li><a href="3dphysics.html">Physics</a></li>
+                        <li><a href="3dchem.html">Chemistry</a></li>
+                        <li><a href="3dgeo.html">Geography</a></li>
+                        <li><a href="3dculture.html">Culture</a></li>
+                        <li><a href="3dcomp.html">Computer Studies</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+                    <h5>Resources</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">Tutorials</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Webinars</a></li>
+                        <li><a href="#">Support</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <h5>Newsletter</h5>
+                    <p>Subscribe to our newsletter for the latest updates and educational resources.</p>
+                    <form class="mt-3">
+                        <div class="input-group">
+                            <input type="email" class="form-control" placeholder="Your email address">
+                            <button class="btn btn-primary" type="submit">Subscribe</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2026 Soma. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="text-decoration-none me-3">Privacy Policy</a>
+                    <a href="#" class="text-decoration-none me-3">Terms of Service</a>
+                    <a href="#" class="text-decoration-none">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" id="scrollToTop">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+        <script src="assets/js/soma-model-organizer.js"></script>
+            <script src="assets/js/soma-topic-notes.js"></script>
+    <script src="assets/js/soma-account-settings.js"></script>
+    <script src="assets/js/soma-auth-client.js"></script>
+    <script src="assets/js/soma-search.js"></script>
+    <script src="assets/js/soma-ads.js" defer></script>
+    <script>
+        // Loading Screen Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const loadingScreen = document.getElementById('loading-screen');
+            const body = document.body;
+            
+            setTimeout(function() {
+    // Fade out loading screen
+    loadingScreen.style.opacity = '0';
+    
+    // Remove loading screen and show content with animations immediately
+    loadingScreen.style.display = 'none';
+    body.classList.add('content-loaded');
+    
+    // Add bouncy animations to main sections immediately
+    const heroSection = document.querySelector('.hero-section');
+    const mainCard = document.querySelector('.card');
+    
+    if (heroSection) {
+        heroSection.classList.add('animate__animated', 'animate__bounceInDown');
+    }
+    
+    if (mainCard) {
+        mainCard.classList.add('animate__animated', 'animate__bounceInUp');
+    }
+    
+    // Add animation to footer
+    const footer = document.querySelector('.footer');
+    if (footer) {
+        footer.classList.add('animate__animated', 'animate__fadeInUp');
+    }
+}, 2000); // Reduce loading time to 1 second or even less
+            
+            // Theme Toggle Functionality
+            const themeToggle = document.getElementById('themeToggle');
+            
+            // Check for saved theme preference or default to light
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            if (savedTheme === 'dark') {
+                body.setAttribute('data-theme', 'dark');
+                themeToggle.checked = true;
+            }
+            
+            // Theme toggle event listener
+            themeToggle.addEventListener('change', function() {
+                if (this.checked) {
+                    body.setAttribute('data-theme', 'dark');
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    body.removeAttribute('data-theme');
+                    localStorage.setItem('theme', 'light');
+                }
+            });
+            
+            // Search Functionality
+            const searchForm = document.getElementById('searchForm');
+            const searchInput = document.getElementById('searchInput');
+            const searchNavigation = document.getElementById('searchNavigation');
+            const searchInfo = document.getElementById('searchInfo');
+            const prevResult = document.getElementById('prevResult');
+            const nextResult = document.getElementById('nextResult');
+            const clearSearch = document.getElementById('clearSearch');
+            
+            let searchResults = [];
+            let currentResultIndex = -1;
+            let originalTextNodes = new Map(); // Store original text nodes for restoration
+            
+            searchForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                performSearch();
+            });
+            
+            // Add keyboard shortcuts for search navigation
+            document.addEventListener('keydown', function(e) {
+                // Ctrl+F or Cmd+F to focus search
+                if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
+                    e.preventDefault();
+                    searchInput.focus();
+                    searchInput.select();
+                }
+                
+                // F3 or Enter to find next result
+                if (e.key === 'F3' || (e.key === 'Enter' && !e.shiftKey)) {
+                    e.preventDefault();
+                    if (searchResults.length > 0) {
+                        navigateToResult((currentResultIndex + 1) % searchResults.length);
+                    } else if (searchInput.value.trim()) {
+                        performSearch();
+                    }
+                }
+                
+                // Shift+F3 or Shift+Enter to find previous result
+                if ((e.key === 'F3' && e.shiftKey) || (e.key === 'Enter' && e.shiftKey)) {
+                    e.preventDefault();
+                    if (searchResults.length > 0) {
+                        navigateToResult((currentResultIndex - 1 + searchResults.length) % searchResults.length);
+                    } else if (searchInput.value.trim()) {
+                        performSearch();
+                    }
+                }
+                
+                // Escape to clear search
+                if (e.key === 'Escape' && searchInput.value.trim()) {
+                    clearSearchResults();
+                    searchInput.blur();
+                }
+            });
+            
+            function performSearch() {
+                const searchTerm = searchInput.value.trim().toLowerCase();
+                
+                if (searchTerm === '') {
+                    clearSearchResults();
+                    return;
+                }
+                
+                // Clear previous highlights
+                clearSearchResults();
+                
+                // Search in all content (accordion headers and bodies)
+                const searchableElements = document.querySelectorAll('.accordion-button, .accordion-body, .card-header');
+                searchResults = [];
+                
+                searchableElements.forEach((element) => {
+                    const textContent = element.textContent.toLowerCase();
+                    if (textContent.includes(searchTerm)) {
+                        // Count how many matches are in this element
+                        const regex = new RegExp(searchTerm, 'gi');
+                        const matches = textContent.match(regex);
+                        if (matches) {
+                            // Add the element once for each match
+                            for (let i = 0; i < matches.length; i++) {
+                                searchResults.push({
+                                    element: element,
+                                    matchIndex: i
+                                });
+                            }
+                        }
+                    }
+                });
+                
+                if (searchResults.length > 0) {
+                    // Show search navigation
+                    searchNavigation.style.display = 'flex';
+                    searchInfo.textContent = `${searchResults.length} result${searchResults.length > 1 ? 's' : ''} found for "${searchTerm}"`;
+                    
+                    // Highlight first result
+                    currentResultIndex = 0;
+                    highlightCurrentResult();
+                    
+                    // Expand accordion for first result if it's in a collapsed section
+                    const accordionItem = searchResults[0].element.closest('.accordion-item');
+                    if (accordionItem) {
+                        const collapseElement = accordionItem.querySelector('.accordion-collapse');
+                        if (collapseElement && collapseElement.classList.contains('collapse')) {
+                            const bsCollapse = new bootstrap.Collapse(collapseElement, {
+                                toggle: false
+                            });
+                            bsCollapse.show();
+                        }
+                    }
+                } else {
+                    searchNavigation.style.display = 'flex';
+                    searchInfo.textContent = `No results found for "${searchTerm}"`;
+                }
+            }
+            
+            function navigateToResult(index) {
+                if (index < 0 || index >= searchResults.length) return;
+                
+                currentResultIndex = index;
+                highlightCurrentResult();
+                
+                // Expand accordion for current result if needed
+                const accordionItem = searchResults[currentResultIndex].element.closest('.accordion-item');
+                if (accordionItem) {
+                    const collapseElement = accordionItem.querySelector('.accordion-collapse');
+                    if (collapseElement && collapseElement.classList.contains('collapse')) {
+                        const bsCollapse = new bootstrap.Collapse(collapseElement, {
+                            toggle: false
+                        });
+                        bsCollapse.show();
+                    }
+                }
+            }
+            
+            function highlightCurrentResult() {
+                if (currentResultIndex < 0 || currentResultIndex >= searchResults.length) return;
+                
+                // Remove previous highlights
+                document.querySelectorAll('.search-match').forEach(el => {
+                    el.classList.remove('search-match');
+                    el.classList.remove('current-search-match');
+                });
+                
+                // Restore original text
+                restoreOriginalText();
+                
+                // Highlight all results
+                const searchTerm = searchInput.value.trim().toLowerCase();
+                searchResults.forEach((result, index) => {
+                    highlightText(result.element, searchTerm, index === currentResultIndex, result.matchIndex);
+                });
+                
+                // Scroll to current result with proper centering
+                const currentMatchElement = document.querySelector('.current-search-match');
+                if (currentMatchElement) {
+                    // Calculate the position to center the match
+                    const elementRect = currentMatchElement.getBoundingClientRect();
+                    const absoluteElementTop = elementRect.top + window.pageYOffset;
+                    const middle = absoluteElementTop - (window.innerHeight / 2) + (elementRect.height / 2);
+                    
+                    // Scroll to center the match
+                    window.scrollTo({
+                        top: middle,
+                        behavior: 'smooth'
+                    });
+                }
+                
+                // Update search info
+                searchInfo.textContent = `${currentResultIndex + 1} of ${searchResults.length} results for "${searchTerm}"`;
+            }
+            
+            function highlightText(element, searchTerm, isCurrent, matchIndex) {
+                const textNodes = getTextNodes(element);
+                let currentMatch = 0;
+                
+                textNodes.forEach(node => {
+                    // Store original text if not already stored
+                    if (!originalTextNodes.has(node)) {
+                        originalTextNodes.set(node, node.textContent);
+                    }
+                    
+                    const text = node.textContent;
+                    const regex = new RegExp(`(${escapeRegExp(searchTerm)})`, 'gi');
+                    
+                    // Replace each match with highlighted span
+                    let newText = text;
+                    let match;
+                    let lastIndex = 0;
+                    let result = '';
+                    
+                    while ((match = regex.exec(text)) !== null) {
+                        // Add text before the match
+                        result += text.substring(lastIndex, match.index);
+                        
+                        // Check if this is the specific match we're looking for
+                        const isThisMatch = (currentMatch === matchIndex);
+                        
+                        // Add the highlighted match
+                        result += `<span class="search-match ${isThisMatch && isCurrent ? 'current-search-match' : ''}">${match[0]}</span>`;
+                        
+                        lastIndex = regex.lastIndex;
+                        currentMatch++;
+                    }
+                    
+                    // Add remaining text
+                    result += text.substring(lastIndex);
+                    
+                    if (result !== text) {
+                        const newSpan = document.createElement('span');
+                        newSpan.innerHTML = result;
+                        node.parentNode.replaceChild(newSpan, node);
+                    }
+                });
+            }
+            
+            function restoreOriginalText() {
+                originalTextNodes.forEach((originalText, node) => {
+                    if (node.parentNode) {
+                        const parent = node.parentNode;
+                        parent.replaceChild(document.createTextNode(originalText), node);
+                        parent.normalize();
+                    }
+                });
+                originalTextNodes.clear();
+            }
+            
+            function getTextNodes(element) {
+                const textNodes = [];
+                
+                function findTextNodes(node) {
+                    if (node.nodeType === Node.TEXT_NODE && node.textContent.trim() !== '') {
+                        textNodes.push(node);
+                    } else {
+                        for (let child of node.childNodes) {
+                            // Skip script and style elements
+                            if (child.nodeType === Node.ELEMENT_NODE && 
+                                (child.tagName === 'SCRIPT' || child.tagName === 'STYLE')) {
+                                continue;
+                            }
+                            findTextNodes(child);
+                        }
+                    }
+                }
+                
+                findTextNodes(element);
+                return textNodes;
+            }
+            
+            function escapeRegExp(string) {
+                return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            }
+            
+            function clearSearchResults() {
+                // Remove all search-match and current-search-match classes
+                document.querySelectorAll('.search-match, .current-search-match').forEach(el => {
+                    el.classList.remove('search-match');
+                    el.classList.remove('current-search-match');
+                });
+                
+                // Restore original text content
+                restoreOriginalText();
+                
+                // Hide search navigation
+                searchNavigation.style.display = 'none';
+                
+                // Reset search variables
+                searchResults = [];
+                currentResultIndex = -1;
+            }
+            
+            prevResult.addEventListener('click', function() {
+                if (searchResults.length === 0) return;
+                navigateToResult((currentResultIndex - 1 + searchResults.length) % searchResults.length);
+            });
+            
+            nextResult.addEventListener('click', function() {
+                if (searchResults.length === 0) return;
+                navigateToResult((currentResultIndex + 1) % searchResults.length);
+            });
+            
+            clearSearch.addEventListener('click', function() {
+                searchInput.value = '';
+                clearSearchResults();
+            });
+            
+            // Scroll to Top Functionality
+            const scrollToTopBtn = document.getElementById('scrollToTop');
+            
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    scrollToTopBtn.classList.add('show');
+                } else {
+                    scrollToTopBtn.classList.remove('show');
+                }
+            });
+            
+            scrollToTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // NEW: Modal Functionality
+            const aboutUsLink = document.getElementById('aboutUsLink');
+            const contactUsLink = document.getElementById('contactUsLink');
+            const aboutUsModal = document.getElementById('aboutUsModal');
+            const contactUsModal = document.getElementById('contactUsModal');
+            const closeAboutUs = document.getElementById('closeAboutUs');
+            const closeContactUs = document.getElementById('closeContactUs');
+            
+            // Open About Us modal
+            aboutUsLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                aboutUsModal.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            });
+            
+            // Open Contact Us modal
+            contactUsLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                contactUsModal.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            });
+            
+            // Close About Us modal
+            closeAboutUs.addEventListener('click', function() {
+                aboutUsModal.classList.remove('active');
+                document.body.style.overflow = ''; // Restore scrolling
+            });
+            
+            // Close Contact Us modal
+            closeContactUs.addEventListener('click', function() {
+                contactUsModal.classList.remove('active');
+                document.body.style.overflow = ''; // Restore scrolling
+            });
+            
+            // Close modals when clicking on overlay
+            aboutUsModal.addEventListener('click', function(e) {
+                if (e.target === aboutUsModal) {
+                    aboutUsModal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+            
+            contactUsModal.addEventListener('click', function(e) {
+                if (e.target === contactUsModal) {
+                    contactUsModal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+            
+            // Close modals with Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    aboutUsModal.classList.remove('active');
+                    contactUsModal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+    </script>
+<script>
+/* Quiz: tap an answer for instant feedback; score shows when every question is answered */
+(function(){
+  document.addEventListener('click',function(e){
+    var r=e.target.closest&&e.target.closest('.qz-r');
+    if(r){var z=r.closest('.quiz');z.dataset.s=0;z.querySelectorAll('.qz-q').forEach(function(q){delete q.dataset.done;q.querySelector('.qz-fb').hidden=true;q.querySelectorAll('.qz-o').forEach(function(o){o.disabled=false;o.classList.remove('qz-ok','qz-no')})});z.querySelector('.qz-sc').hidden=true;return}
+    var b=e.target.closest&&e.target.closest('.qz-o');if(!b)return;
+    var q=b.closest('.qz-q');if(q.dataset.done)return;q.dataset.done='1';
+    var ok=b.dataset.c==='1';b.classList.add(ok?'qz-ok':'qz-no');
+    if(!ok)q.querySelector('[data-c="1"]').classList.add('qz-ok');
+    var fb=q.querySelector('.qz-fb');fb.textContent=(ok?'Correct! ':'Not quite. ')+q.dataset.ex;fb.hidden=false;
+    q.querySelectorAll('.qz-o').forEach(function(o){o.disabled=true});
+    var z=q.closest('.quiz');if(ok)z.dataset.s=(+z.dataset.s||0)+1;
+    var n=z.querySelectorAll('.qz-q').length;
+    if(z.querySelectorAll('.qz-q[data-done]').length===n){var sc=z.querySelector('.qz-sc');sc.firstChild.textContent='Score: '+(+z.dataset.s||0)+' / '+n;sc.hidden=false}
+  });
+})();
+</script>
+<!-- Mobile navbar: search icon + theme toggle in the header, centered hamburger menu -->
+<style>
+    @media (max-width: 991.98px) {
+        /* Header icons, next to the hamburger */
+        .navbar > .container > .nav-search-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex: 0 0 auto;
+            width: 34px;
+            height: 34px;
+            margin: 0 0.35rem 0 auto;
+            padding: 0;
+            border: 1px solid rgba(128, 128, 128, 0.4);
+            border-radius: 8px;
+            background: transparent;
+            color: inherit;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+        .navbar > .container > .nav-search-btn[aria-expanded="true"] {
+            background: var(--primary, #4361ee);
+            border-color: transparent;
+            color: #fff;
+        }
+        .navbar > .container > .theme-toggle {
+            display: flex !important;
+            flex: 0 0 auto !important;
+            width: auto !important;
+            margin: 0 0.3rem 0 0 !important;
+            padding: 0 !important;
+            border: 0 !important;
+            border-radius: 0 !important;
+            background: transparent !important;
+            box-shadow: none !important;
+            gap: 0.1rem;
+            justify-content: center !important;
+        }
+        .navbar > .container > .theme-toggle .theme-toggle-label {
+            margin: 0 !important;
+            font-size: 0.7rem !important;
+        }
+        /* Compact header so logo, search, toggle and hamburger stay on one line */
+        .navbar > .container > .theme-toggle .switch { transform: scale(0.75); margin: 0 -6px; }
+        .navbar > .container > .navbar-brand { flex: 0 1 auto; min-width: 0; margin-right: 0.25rem; }
+        .navbar > .container > .navbar-brand img { height: 28px !important; width: auto; max-width: 100%; }
+        .navbar > .container > .navbar-toggler { flex: 0 0 auto; padding: 0.2rem 0.4rem; margin: 0; }
+        /* Subjects: book-icon dropdown in the header (the hamburger's Subjects item is hidden on mobile) */
+        .navbar-collapse .navbar-nav > .subjects-desktop-only { display: none !important; }
+        .navbar > .container > .nav-subjects-dd { flex: 0 0 auto; position: relative; margin: 0 0.35rem 0 auto; }
+        .navbar > .container > .nav-subjects-dd + .nav-search-btn { margin-left: 0; }
+        .navbar > .container > .nav-subjects-dd > .nav-subjects-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 34px;
+            height: 34px;
+            padding: 0;
+            border: 1px solid rgba(128, 128, 128, 0.4);
+            border-radius: 8px;
+            background: transparent;
+            color: inherit;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+        .navbar > .container > .nav-subjects-dd > .nav-subjects-btn[aria-expanded="true"] {
+            background: var(--primary, #4361ee);
+            border-color: transparent;
+            color: #fff;
+        }
+        .navbar > .container > .nav-subjects-dd > .dropdown-menu {
+            min-width: 13rem;
+            max-width: calc(100vw - 24px);
+            margin-top: 0.5rem;
+        }
+
+        /* Search bar: hidden until the magnifying glass is tapped, then a full-width row under the header */
+        .navbar > .container > #searchForm {
+            display: none !important;
+            flex: 0 0 100% !important;
+            width: 100% !important;
+            margin: 10px 0 0 !important;
+        }
+        .navbar > .container > #searchForm.search-open { display: flex !important; }
+        #searchForm .input-group { width: 100%; flex-wrap: nowrap; }
+
+        /* Centered hamburger menu content */
+        .navbar-collapse { text-align: center; }
+        .navbar-collapse .navbar-nav { align-items: center; width: 100%; }
+        .navbar-collapse .nav-item { width: 100%; text-align: center; }
+        .navbar-collapse .nav-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+        }
+        .navbar-collapse .navbar-nav .dropdown-menu {
+            position: static !important;
+            float: none;
+            width: max-content;
+            min-width: 12rem;
+            max-width: 100%;
+            margin: 0.25rem auto !important;
+            text-align: center;
+        }
+        .navbar-collapse .dropdown-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .navbar-collapse > .d-flex { justify-content: center; width: 100%; margin-top: 0.5rem; }
+        .navbar-collapse .profile-dropdown { margin: 0.5rem auto 0; }
+        .navbar-collapse .profile-dropdown .dropdown-menu {
+            left: 50% !important;
+            right: auto !important;
+            transform: translateX(-50%) !important;
+        }
+    }
+    @media (max-width: 399.98px) {
+        /* Narrow phones: slightly smaller buttons and logo so everything stays on one line */
+        .navbar > .container > .nav-subjects-dd > .nav-subjects-btn,
+        .navbar > .container > .nav-search-btn { width: 32px; height: 32px; }
+        .navbar > .container > .navbar-brand img { height: 26px !important; }
+    }
+    @media (max-width: 767.98px) {
+        /* Phones: hide the sun and moon icons to save room (tablets and larger keep them) */
+        .navbar > .container > .theme-toggle .theme-toggle-label { display: none !important; }
+        .navbar > .container > .theme-toggle .switch { transform: scale(0.85); margin: 0 -3px; }
+    }
+</style>
+<script>
+    /* Under 992px: show a magnifying-glass button and the theme toggle beside the hamburger.
+       The same elements are moved (not copied), so the search and theme scripts keep working.
+       On larger screens everything returns to its original place. */
+    (function () {
+        var nav = document.querySelector('.navbar');
+        if (!nav) return;
+        var container = nav.querySelector('.container');
+        var toggle = nav.querySelector('.theme-toggle');
+        var form = document.getElementById('searchForm');
+        var burger = nav.querySelector('.navbar-toggler');
+        if (!container || !toggle || !form || !burger) return;
+
+        function mark(el) { var m = document.createComment(''); el.parentNode.insertBefore(m, el); return m; }
+        var markToggle = mark(toggle), markForm = mark(form);
+
+        var subjLink = nav.querySelector('#navbarDropdown');
+        var subjItem = subjLink ? subjLink.closest('li') : null;
+        var subjMenu = subjItem ? subjItem.querySelector('.dropdown-menu') : null;
+        var dd = null;
+        if (subjItem && subjMenu) {
+            subjItem.classList.add('subjects-desktop-only');
+            dd = document.createElement('div');
+            dd.className = 'dropdown nav-subjects-dd';
+            dd.innerHTML = '<button type="button" class="nav-subjects-btn" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Subjects"><i class="fas fa-book"></i></button>';
+            var menu = subjMenu.cloneNode(true);
+            menu.removeAttribute('aria-labelledby');
+            menu.classList.add('dropdown-menu-end');
+            dd.appendChild(menu);
+        }
+
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'nav-search-btn';
+        btn.setAttribute('aria-label', 'Search');
+        btn.setAttribute('aria-expanded', 'false');
+        btn.innerHTML = '<i class="fas fa-search"></i>';
+        btn.addEventListener('click', function () {
+            var open = form.classList.toggle('search-open');
+            btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+            if (open) { var input = form.querySelector('input'); if (input) input.focus(); }
+        });
+
+        var mq = window.matchMedia('(max-width: 991.98px)');
+        function place() {
+            if (mq.matches) {
+                if (dd) container.insertBefore(dd, burger);
+                container.insertBefore(btn, burger);
+                container.insertBefore(toggle, burger);
+                container.insertBefore(form, burger.nextSibling);
+            } else {
+                form.classList.remove('search-open');
+                btn.setAttribute('aria-expanded', 'false');
+                if (btn.parentNode) btn.parentNode.removeChild(btn);
+                if (dd && dd.parentNode) dd.parentNode.removeChild(dd);
+                markToggle.parentNode.insertBefore(toggle, markToggle.nextSibling);
+                markForm.parentNode.insertBefore(form, markForm.nextSibling);
+            }
+        }
+        place();
+        if (mq.addEventListener) { mq.addEventListener('change', place); } else { mq.addListener(place); }
+    })();
+</script>
+<!-- RagmyAI chat assistant: signed-in users only (test on the Biology page) -->
+<style>
+    /* Floating buttons: chat sits bottom-right, scroll-to-top stacks above it. Both are the same size and shape.
+       (soma-modern.css forces the scroll button's size and position with !important, so these rules are more specific.) */
+    :root { --float-size: 56px; --float-edge: 20px; --float-gap: 12px; }
+    @media (max-width: 768px) { :root { --float-size: 50px; --float-edge: 14px; --float-gap: 10px; } }
+
+    /* Guests: no chat button at all */
+    body:not(.soma-authenticated) #chat-container { display: none !important; }
+
+    html body #chat-container { z-index: 1045 !important; right: var(--float-edge); bottom: var(--float-edge); }
+    html body #chat-container #chat-bubble {
+        width: var(--float-size) !important;
+        height: var(--float-size) !important;
+        border-radius: 50% !important;
+        background: var(--primary, #0a2463) !important;
+        box-shadow: 0 6px 20px rgba(10, 36, 99, 0.45);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    html body #chat-container #chat-bubble:hover { transform: translateY(-2px) scale(1.05); }
+    html body #chat-container #chat-bubble:focus-visible { outline: 3px solid #fff; outline-offset: 2px; box-shadow: 0 0 0 6px var(--primary, #0a2463); }
+
+    /* Scroll-to-top: same size and edge as the chat button; sits at the corner for guests, above the chat when signed in */
+    html body .scroll-to-top {
+        width: var(--float-size) !important;
+        height: var(--float-size) !important;
+        border-radius: 50% !important;
+        right: var(--float-edge) !important;
+        bottom: var(--float-edge) !important;
+    }
+    html body.soma-authenticated .scroll-to-top {
+        bottom: calc(var(--float-edge) + var(--float-size) + var(--float-gap)) !important;
+    }
+
+    /* Chat window */
+    html body #chat-container #chat-box {
+        bottom: calc(var(--float-size) + var(--float-gap));
+        width: min(380px, calc(100vw - 32px)) !important;
+        height: min(600px, calc(100vh - 112px)) !important;
+        overflow: hidden;
+        border-radius: 20px;
+        border: 1px solid rgba(67, 97, 238, 0.25);
+        box-shadow: 0 18px 50px rgba(10, 20, 50, 0.35);
+    }
+    @supports (height: 100dvh) {
+        html body #chat-container #chat-box { height: min(600px, calc(100dvh - 112px)) !important; }
+    }
+    [data-theme="dark"] #chat-container #chat-box { background: #0f172a; border-color: rgba(255, 255, 255, 0.14); }
+    [data-theme="dark"] #chat-container #chat-loading { background: #0f172a; }
+
+    @media (max-width: 768px) {
+        html body #chat-container #chat-box {
+            position: fixed !important;
+            left: 10px;
+            right: 10px;
+            bottom: calc(var(--float-edge) + var(--float-size) + var(--float-gap) + 6px);
+            width: auto !important;
+            height: min(75vh, 620px) !important;
+        }
+    }
+</style>
+<script>
+    /* Loads the RagmyAI widget only for signed-in visitors (guests never download it), keeps the chat inside the
+       site on phones instead of sending them to a separate page, closes it with Esc, and closes it on sign-out. */
+    (function () {
+        var PAGE_ID = '93d0663a-1112-4481-91bd-6e2199d70eb2';
+        var loaded = false;
+
+        function signedIn() { return document.body.classList.contains('soma-authenticated'); }
+        function box() { return document.getElementById('chat-box'); }
+        function isOpen() { var b = box(); return !!(b && b.classList.contains('open')); }
+        function closeChat() { if (isOpen() && typeof toggleChat === 'function') toggleChat(); }
+
+        function hooks() {
+            var bubble = document.getElementById('chat-bubble');
+            if (!bubble || typeof createChatIframe !== 'function' || typeof toggleChat !== 'function') return;
+            function openChat() { createChatIframe(); toggleChat(); }
+            window.handleChatClick = openChat;
+            bubble.onclick = openChat;
+
+            bubble.setAttribute('aria-expanded', 'false');
+            if (box() && window.MutationObserver) {
+                new MutationObserver(function () { bubble.setAttribute('aria-expanded', isOpen() ? 'true' : 'false'); })
+                    .observe(box(), { attributes: true, attributeFilter: ['class'] });
+            }
+            // On phones the widget ignores the chat's own close button, so handle it here.
+            window.addEventListener('message', function (event) {
+                if (event.origin !== 'https://chat.ragmyai.com' || !event.data || event.data.type !== 'handleChatClose') return;
+                if (typeof isMobile === 'function' && isMobile() && isOpen()) toggleChat();
+            });
+            document.addEventListener('keydown', function (event) { if (event.key === 'Escape') closeChat(); });
+        }
+
+        function load() {
+            if (loaded) return;
+            loaded = true;
+            var script = document.createElement('script');
+            script.setAttribute('data-page-id', PAGE_ID);
+            script.setAttribute('button-background-color', '#0a2463');
+            script.src = 'https://chat.ragmyai.com/chat-widget.min.js';
+            script.onload = hooks;
+            document.body.appendChild(script);
+        }
+
+        function sync() { if (signedIn()) { load(); } else { closeChat(); } }
+
+        new MutationObserver(sync).observe(document.body, { attributes: true, attributeFilter: ['class'] });
+        sync();
+    })();
+</script>
+</body>
+</html>

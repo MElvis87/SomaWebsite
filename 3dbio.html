@@ -1601,6 +1601,7 @@
 [data-theme="dark"] .quiz{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.14)}
 [data-theme="dark"] .quiz>h5{color:#4de1ff}
 </style>
+<style>soma-note { display: none; }</style>
 </head>
 <body>
     <!-- Loading Screen -->
@@ -2215,6 +2216,20 @@
                 </div>
             </div>
             <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="Bacteria are prokaryotes: their DNA is not inside a nucleus."><p class="qz-t">1. Bacteria are:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Eukaryotes with a nucleus</button><button type="button" class="qz-o" data-c="1">Prokaryotes with no nucleus</button><button type="button" class="qz-o" data-c="0">Viruses</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="Antibiotics work on bacteria, not on viruses."><p class="qz-t">2. Antibiotics are used against:</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Viruses</button><button type="button" class="qz-o" data-c="1">Bacteria</button><button type="button" class="qz-o" data-c="0">Both equally</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
+            <h6 class="mt-4 mb-2">Amoeba: a shape-shifting single cell</h6>
+            <div class="learn-block"><div class="lb-sec"><h5>Overview</h5><p>The amoeba is a single-celled organism with no fixed shape. It stretches and flows across surfaces, hunting bacteria and algae, and is a classic example of a protozoan.</p></div><div class="lb-sec"><h5>Key Concepts</h5><ul><li><strong>Pseudopodia:</strong> temporary, finger-like extensions used to move and capture food</li><li><strong>Nucleus:</strong> the control centre that holds the cell's DNA</li><li><strong>Food vacuole:</strong> a bubble where engulfed food is digested</li><li><strong>Contractile vacuole:</strong> pumps out excess water (freshwater species)</li><li><strong>Binary fission:</strong> reproduction by splitting into two cells</li></ul></div><div class="lb-sec"><h5>Quick Facts</h5><div class="lb-chips"><span class="lb-chip"><b>Phagocytosis</b> engulfing food with pseudopodia</span><span class="lb-chip"><b>~0.5 mm</b> Amoeba proteus is just visible to the eye</span><span class="lb-chip"><b>1 cell</b> does everything: moving, feeding, reproducing</span></div></div><div class="lb-sec"><h5>Detailed Notes</h5><p>An amoeba moves by streaming its cytoplasm into a pseudopodium, which anchors and pulls the rest of the cell forward. To feed, it wraps pseudopodia around prey and encloses it in a food vacuole, where enzymes break it down.</p><p>Freshwater amoebae constantly absorb water by osmosis, so a contractile vacuole collects and expels the excess. When it is ready to reproduce, the nucleus divides and the cell splits in two. Most amoebae are harmless, but a few, such as <em>Entamoeba histolytica</em>, cause disease. Rotate the model below and tap the numbers to find the pseudopodia and the nucleus.</p></div></div>
+            <div class="model-container">
+                <div class="sketchfab-embed-wrapper">
+                    <div class="responsive-iframe-container">
+                        <soma-viewer src="assets/3dmodels/Amoeba.glb" title="Amoeba" alt="Interactive 3D model of an amoeba">
+                            <soma-note position="0.43684300760438965m -0.049212697231957314m 1.3482297630307634m" normal="-0.253584869490748 0.7021086293788992 0.6653857426463571" title="Pseudopodia">Temporary, finger-like projections of the cytoplasm pushed outward by the cell.</soma-note>
+                            <soma-note position="0.5832518691166824m 0.17045436177712792m -0.10310048896560753m" normal="0.07422776090549676 0.995739317960775 -0.054712431658328" title="Nucleus">The control center of the cell that holds the genetic material (DNA) and directs growth, metabolism, and reproduction.</soma-note>
+                        </soma-viewer>
+                    </div>
+                    <p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;">Amoeba 3D model · Soma Orbit viewer: drag to rotate, scroll or pinch to zoom, tap the numbers for notes</p>
+                </div>
+            </div>
+            <div class="quiz"><h5>&#10067; Check your understanding</h5><div class="qz-q" data-ex="It extends pseudopodia to crawl and to wrap around prey."><p class="qz-t">1. How does an amoeba move and capture food?</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">With flagella</button><button type="button" class="qz-o" data-c="1">With pseudopodia</button><button type="button" class="qz-o" data-c="0">By jet propulsion</button></div><p class="qz-fb" hidden></p></div><div class="qz-q" data-ex="The nucleus directs the cell&#x27;s activities and stores its DNA."><p class="qz-t">2. What does the nucleus of an amoeba do?</p><div class="qz-opts"><button type="button" class="qz-o" data-c="0">Digests food</button><button type="button" class="qz-o" data-c="0">Pumps out water</button><button type="button" class="qz-o" data-c="1">Controls the cell and holds its DNA</button></div><p class="qz-fb" hidden></p></div><div class="qz-sc" hidden><span></span><button type="button" class="qz-r">Try again</button></div></div>
         </div>
     </div>
 </div>
@@ -2511,6 +2526,7 @@
     <script src="assets/js/soma-account-settings.js"></script>
     <script src="assets/js/soma-auth-client.js"></script>
     <script src="assets/js/soma-search.js"></script>
+    <script src="assets/js/soma-viewer.js" defer></script>
     <script src="assets/js/soma-ads.js" defer></script>
     <script>
         // Loading Screen Functionality
