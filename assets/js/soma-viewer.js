@@ -5,7 +5,8 @@
      </soma-viewer>
    Optional attributes: poster (preview image), autoload (load when scrolled into view), camera-orbit, exposure,
    shadow-intensity, environment-image, ar="false" (hide the AR button), auto-rotate="false",
-   vr="false", idle-timeout="180" (seconds of no interaction before the viewer returns to its preview; 0 turns it off).
+   vr="false", animation-name="Walk", ios-src="model.usdz" (iPhone AR file), ar-modes, ar-scale, ar-placement,
+   idle-timeout="180" (seconds of no interaction before the viewer returns to its preview; 0 turns it off).
    Nothing heavy loads (not the viewer library, not the model) until the visitor taps "View in 3D". */
 (function () {
   "use strict";
@@ -15,6 +16,8 @@
   var LIB_URL = BASE + "model-viewer.min.js";
   var DRACO_URL = BASE + "draco/";
   var VR_URL = BASE + "soma-vr.js";
+  var MESHOPT_URL = BASE + "meshopt_decoder.js";
+  var BASIS_URL = BASE + "basis/";   // KTX2 texture transcoder (basis_transcoder.js + .wasm)
   var IDLE_DEFAULT = 180;   // seconds
   var libPromise = null;
 
@@ -22,12 +25,44 @@
   var conn = navigator.connection;
   var lowData = !!(conn && (conn.saveData || /(^|-)2g$/.test(conn.effectiveType || "")));
 
+  // Teaches the viewer to read Draco and Meshopt compressed models and KTX2 textures (it picks the right one from the file itself).
+  // The Meshopt decoder is only switched on if its file is really there, so a missing file can never break Draco models.
+  // Runs the Meshopt decoder script once, before model-viewer is told about it. If the file is missing, broken or
+  // too slow, Meshopt simply stays off and Draco / plain models keep working exactly as before.
+  function checkDecoderScript(url) {
+    return new Promise(function (resolve) {
+      var done = false, tag = document.createElement("script");
+      var finish = function (ok) { if (!done) { done = true; window.clearTimeout(timer); resolve(ok); } };
+      var timer = window.setTimeout(function () { finish(false); }, 8000);
+      tag.async = true;
+      tag.src = url;
+      tag.onerror = function () { finish(false); };
+      tag.onload = function () {
+        var d = window.MeshoptDecoder;
+        if (!d || d.supported === false) { finish(false); return; }
+        Promise.resolve(d.ready).then(function () { finish(true); }, function () { finish(false); });
+      };
+      document.head.appendChild(tag);
+    });
+  }
+
+  function configure(m) {
+    var el = m && m.ModelViewerElement;
+    if (!el) return;
+    el.dracoDecoderLocation = DRACO_URL;
+    var probe = function (url, apply) {
+      return fetch(url, { method: "HEAD" }).then(function (r) { if (r.ok) apply(); }, function () {});
+    };
+    return Promise.all([
+      checkDecoderScript(MESHOPT_URL).then(function (ok) { if (ok) el.meshoptDecoderLocation = MESHOPT_URL; }),
+      // KTX2 textures: use our own copy of the transcoder instead of the default one on Google's servers
+      probe(BASIS_URL + "basis_transcoder.wasm", function () { el.ktx2TranscoderLocation = BASIS_URL; })
+    ]);
+  }
+
   function loadLib() {
     if (!libPromise) {
-      libPromise = import(LIB_URL).then(function (m) {
-        if (m && m.ModelViewerElement) m.ModelViewerElement.dracoDecoderLocation = DRACO_URL;
-        return customElements.whenDefined("model-viewer");
-      });
+      libPromise = import(LIB_URL).then(configure).then(function () { return customElements.whenDefined("model-viewer"); });
     }
     return libPromise;
   }
@@ -42,7 +77,8 @@
     exit:  '<path d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5"/>',
     vr:    '<path d="M3 8h18a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1h-5l-2-3h-4l-2 3H3a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/>',
     help:  '<circle cx="12" cy="12" r="9"/><path d="M9.6 9.2a2.5 2.5 0 1 1 3.5 2.3c-.7.4-1.1 1-1.1 1.8"/><circle cx="12" cy="17" r=".9" fill="currentColor" stroke="none"/>',
-    close: '<path d="M6 6l12 12M18 6 6 18"/>'
+    close: '<path d="M6 6l12 12M18 6 6 18"/>',
+    anim:  '<path d="M2 12c2.2-6.5 4.2-6.5 6.4 0s4.2 6.5 6.4 0 4.2-6.5 7.2 0"/>'
   };
   function icon(name, filled) {
     return '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + I[name] + "</svg>";
@@ -201,7 +237,15 @@
       mv.setAttribute("loading", "eager");
       mv.setAttribute("reveal", "auto");
       if (this.getAttribute("camera-orbit")) mv.setAttribute("camera-orbit", this.getAttribute("camera-orbit"));
-      if (this.getAttribute("ar") !== "false") { mv.setAttribute("ar", ""); mv.setAttribute("ar-modes", "webxr scene-viewer quick-look"); }
+      if (this.getAttribute("ar") !== "false") {
+        // Default skips Google's Scene Viewer, which re-downloads the file and may not read Meshopt or KTX2.
+        // Android Chrome uses WebXR (the model already in the page); iPhone uses Quick Look with ios-src.
+        mv.setAttribute("ar", "");
+        mv.setAttribute("ar-modes", this.getAttribute("ar-modes") || "webxr quick-look");
+        ["ios-src", "ar-scale", "ar-placement"].forEach(function (a) {
+          if (self.getAttribute(a)) mv.setAttribute(a, self.getAttribute(a));
+        });
+      }
       this._spin = this.getAttribute("auto-rotate") !== "false" && !reduceMotion && !lowData;
       if (this._spin) { mv.setAttribute("auto-rotate", ""); mv.setAttribute("auto-rotate-delay", "1500"); mv.setAttribute("rotation-per-second", "18deg"); }
 
@@ -296,6 +340,18 @@
         self._syncSpin();
       }, this._spin, "spin");
       this._syncSpin();
+      var clips = this._mv.availableAnimations || [];
+      if (clips.length) {                                   // models with built-in animation get a play/pause button
+        var clip = this.getAttribute("animation-name");
+        if (!clip || clips.indexOf(clip) < 0) clip = clips[0];
+        this._mv.animationName = clip;
+        var autoplay = !reduceMotion && !lowData;
+        if (autoplay) this._mv.play({ repetitions: Infinity });
+        this._animBtn = mk("anim", "Play or pause the animation", function () {
+          if (self._mv.paused) self._mv.play({ repetitions: Infinity }); else self._mv.pause();
+          self._animBtn.setAttribute("aria-pressed", String(!self._mv.paused));
+        }, autoplay, "anim");
+      }
       if (this._notes.length) {
         mk("pin", "Show or hide notes", function (e) {
           var off = self.classList.toggle("sv-notes-off");
@@ -412,6 +468,7 @@
       }
       var rows = [
         ["spin", "play", "Auto-rotate", "Starts or stops the slow spin."],
+        ["anim", "anim", "Animation", "Plays or pauses the model's built-in animation."],
         ["notes", "pin", "Notes", "Shows or hides the numbered markers."],
         ["reset", "reset", "Reset view", "Returns the camera to the starting view."],
         ["ar", "ar", "AR", "Places the model in your room using your phone camera."],
@@ -450,7 +507,9 @@
           this._vrPrepared = await mod.prepare({
             src: new URL(this.getAttribute("src"), location.href).href,
             dracoUrl: DRACO_URL,
-            notes: this._notes
+            basisUrl: BASIS_URL,
+            notes: this._notes,
+            animation: (this._mv && this._mv.animationName) || ""
           });
         }
         await this._vrPrepared.enter(function () {
@@ -556,6 +615,7 @@
 
   SomaViewer.active = null;
   SomaViewer.loadLib = loadLib;
+  SomaViewer.configure = configure;
   SomaViewer.loadVR = function () { return import(VR_URL); };
   window.SomaViewer = SomaViewer;
   if (!customElements.get("soma-viewer")) customElements.define("soma-viewer", SomaViewer);
