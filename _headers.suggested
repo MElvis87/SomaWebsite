@@ -1,0 +1,12 @@
+# HOW TO USE: put this in the root of your project (the same folder as index.html), named exactly  _headers  (no extension).
+# If you already have a _headers file, copy these rules into it instead of replacing it.
+# They let visitors' browsers keep decoders and models for 30 days, so repeat visits load faster.
+# If you change a model, give the new file a new name so nobody sees the old one.
+/assets/3dmodels/*
+  Cache-Control: public, max-age=2592000
+/assets/js/draco/*
+  Cache-Control: public, max-age=2592000
+/assets/js/basis/*
+  Cache-Control: public, max-age=2592000
+/assets/js/meshopt_decoder.js
+  Cache-Control: public, max-age=2592000

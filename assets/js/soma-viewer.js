@@ -2,6 +2,8 @@
    Usage:
      <soma-viewer src="assets/3dmodels/Amoeba.glb" title="Amoeba" alt="3D model of an amoeba">
        <soma-note position="x y z" normal="x y z" title="Nucleus">Text shown in the tooltip.</soma-note>
+       <soma-note at="0.5 0.9 1" normal="0 0 1" title="Shoulder">Placed as a fraction (0 to 1) of the model's width, height and depth,
+                                                                  so it stays put if you rescale the model.</soma-note>
      </soma-viewer>
    Optional attributes: poster (preview image), autoload (load when scrolled into view), camera-orbit, exposure,
    shadow-intensity, environment-image, ar="false" (hide the AR button), auto-rotate="false",
@@ -145,6 +147,10 @@
     "@media (prefers-reduced-motion:reduce){.sv-hot,.sv-tip,.sv-progress,.sv-hint{transition:none}}"
   ].join("");
 
+  // model-viewer wants units on positions ("0.4m"), so add metres where the number has none.
+  function meters(text) {
+    return String(text || "").trim().split(/\s+/).map(function (t) { return /[a-z]+$/i.test(t) ? t : t + "m"; }).join(" ");
+  }
   function nums(text) { return String(text || "").trim().split(/\s+/).map(parseFloat); }
   function orbitFor(normal) {
     var n = nums(normal), l = Math.hypot(n[0], n[1], n[2]) || 1;
@@ -165,7 +171,8 @@
       }
       this._notes = Array.prototype.map.call(this.querySelectorAll("soma-note"), function (n) {
         return { position: n.getAttribute("position"), normal: n.getAttribute("normal") || "0 0 1", title: n.getAttribute("title") || "",
-                 text: (n.textContent || "").trim(), orbit: n.getAttribute("orbit"), target: n.getAttribute("target") };
+                 text: (n.textContent || "").trim(), orbit: n.getAttribute("orbit"), target: n.getAttribute("target"),
+                 at: n.getAttribute("at") ? nums(n.getAttribute("at")) : null };
       });
       this._name = this.getAttribute("title") || "3D model";
       this._buildStart();
@@ -250,13 +257,13 @@
       if (this._spin) { mv.setAttribute("auto-rotate", ""); mv.setAttribute("auto-rotate-delay", "1500"); mv.setAttribute("rotation-per-second", "18deg"); }
 
       this._notes.forEach(function (note, i) {
-        if (!note.position) return;
+        if (!note.position && !note.at) return;
         var h = document.createElement("button");
         h.type = "button";
         h.className = "sv-hot";
         h.slot = "hotspot-" + (i + 1);
-        h.setAttribute("data-position", note.position);
-        h.setAttribute("data-normal", note.normal);
+        h.setAttribute("data-position", meters(note.position || "0 0 0"));   // "at" notes are moved into place once the model has loaded
+        h.setAttribute("data-normal", meters(note.normal));
         h.setAttribute("data-visibility-attribute", "visible");
         h.setAttribute("aria-label", "Note " + (i + 1) + ": " + note.title);
         h.innerHTML = '<span class="sv-num">' + (i + 1) + '</span><span class="sv-tip" role="tooltip"><strong></strong><span></span></span>';
@@ -310,6 +317,7 @@
     _ready() {
       var self = this;
       this._busy = false;
+      this._placeNotes();
       if (this._start) { this._start.remove(); this._start = null; }
       if (this._progress) this._progress.classList.add("sv-done");
 
@@ -447,6 +455,18 @@
       this.dispatchEvent(new CustomEvent("sv-idle", { bubbles: true }));
     }
 
+    // Notes written with at="fx fy fz" are fractions of the model's bounding box, so they survive rescaling.
+    _placeNotes() {
+      var mv = this._mv;
+      if (!mv || !mv.getDimensions || !mv.getBoundingBoxCenter) return;
+      var d = mv.getDimensions(), c = mv.getBoundingBoxCenter();
+      this._notes.forEach(function (note, i) {
+        if (!note.at) return;
+        note.position = (c.x - d.x / 2 + note.at[0] * d.x) + "m " + (c.y - d.y / 2 + note.at[1] * d.y) + "m " + (c.z - d.z / 2 + note.at[2] * d.z) + "m";
+        if (mv.updateHotspot) mv.updateHotspot({ name: "hotspot-" + (i + 1), position: note.position, normal: meters(note.normal) });
+      });
+    }
+
     _toast(message, ms) {
       var self = this;
       if (this._toastEl) this._toastEl.remove();
@@ -494,6 +514,19 @@
       this._helpBtn.setAttribute("aria-pressed", "true");
     }
 
+    // Positions handed to VR as fractions of the model's size, so they line up whichever coordinate system they were made in.
+    _vrNotes() {
+      var mv = this._mv, d = mv && mv.getDimensions && mv.getDimensions(), c = mv && mv.getBoundingBoxCenter && mv.getBoundingBoxCenter();
+      return this._notes.map(function (n) {
+        var at = n.at;
+        if (!at && n.position && d && c) {
+          var p = nums(n.position);
+          at = [(p[0] - (c.x - d.x / 2)) / (d.x || 1), (p[1] - (c.y - d.y / 2)) / (d.y || 1), (p[2] - (c.z - d.z / 2)) / (d.z || 1)];
+        }
+        return { title: n.title, text: n.text, position: n.position, at: at };
+      });
+    }
+
     // True VR: loads the separate VR module only on headsets, then opens the model in an immersive scene.
     async _vr() {
       var self = this, btn = this._vrBtn;
@@ -508,7 +541,7 @@
             src: new URL(this.getAttribute("src"), location.href).href,
             dracoUrl: DRACO_URL,
             basisUrl: BASIS_URL,
-            notes: this._notes,
+            notes: this._vrNotes(),
             animation: (this._mv && this._mv.animationName) || ""
           });
         }
@@ -559,7 +592,7 @@
       var note = h._note, mv = this._mv;
       mv.autoRotate = false;
       this._syncSpin();
-      mv.cameraTarget = note.target || note.position;
+      mv.cameraTarget = meters(note.target || note.position);
       mv.cameraOrbit = note.orbit || orbitFor(note.normal);
       this._place(h);
     }
