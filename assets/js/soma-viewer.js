@@ -7,7 +7,7 @@
      </soma-viewer>
    Optional attributes: poster (preview image), autoload (load when scrolled into view), camera-orbit, exposure,
    shadow-intensity, environment-image, ar="false" (hide the AR button), auto-rotate="false",
-   vr="false", animation-name="Walk", ios-src="model.usdz" (iPhone AR file), ar-modes, ar-scale, ar-placement,
+   vr="false", note-occlusion="off" (keeps note markers clickable from any angle: use it for transparent or glass models), animation-name="Walk", ios-src="model.usdz" (iPhone AR file), ar-modes, ar-scale, ar-placement,
    idle-timeout="180" (seconds of no interaction before the viewer returns to its preview; 0 turns it off).
    Nothing heavy loads (not the viewer library, not the model) until the visitor taps "View in 3D". */
 (function () {
@@ -264,7 +264,8 @@
         h.slot = "hotspot-" + (i + 1);
         h.setAttribute("data-position", meters(note.position || "0 0 0"));   // "at" notes are moved into place once the model has loaded
         h.setAttribute("data-normal", meters(note.normal));
-        h.setAttribute("data-visibility-attribute", "visible");
+        if (self.getAttribute("note-occlusion") === "off") h.setAttribute("data-visible", "");   // always visible and clickable, even behind glass
+        else h.setAttribute("data-visibility-attribute", "visible");
         h.setAttribute("aria-label", "Note " + (i + 1) + ": " + note.title);
         h.innerHTML = '<span class="sv-num">' + (i + 1) + '</span><span class="sv-tip" role="tooltip"><strong></strong><span></span></span>';
         h.querySelector("strong").textContent = note.title;
