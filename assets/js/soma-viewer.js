@@ -2,6 +2,8 @@
    Usage:
      <soma-viewer src="assets/3dmodels/Amoeba.glb" title="Amoeba" alt="3D model of an amoeba">
        <soma-note position="x y z" normal="x y z" title="Nucleus">Text shown in the tooltip.</soma-note>
+       <soma-note surface="3 0 112365 112366 112394 -95.277 124.000 -27.723" title="Drum">Code copied from the model-viewer editor's "data-surface".
+                                                              These notes stay attached to the surface while the model animates.</soma-note>
        <soma-note at="0.5 0.9 1" normal="0 0 1" title="Shoulder">Placed as a fraction (0 to 1) of the model's width, height and depth,
                                                                   so it stays put if you rescale the model.</soma-note>
      </soma-viewer>
@@ -172,7 +174,7 @@
       this._notes = Array.prototype.map.call(this.querySelectorAll("soma-note"), function (n) {
         return { position: n.getAttribute("position"), normal: n.getAttribute("normal") || "0 0 1", title: n.getAttribute("title") || "",
                  text: (n.textContent || "").trim(), orbit: n.getAttribute("orbit"), target: n.getAttribute("target"),
-                 at: n.getAttribute("at") ? nums(n.getAttribute("at")) : null };
+                 at: n.getAttribute("at") ? nums(n.getAttribute("at")) : null, surface: n.getAttribute("surface") };
       });
       this._name = this.getAttribute("title") || "3D model";
       this._buildStart();
@@ -257,13 +259,17 @@
       if (this._spin) { mv.setAttribute("auto-rotate", ""); mv.setAttribute("auto-rotate-delay", "1500"); mv.setAttribute("rotation-per-second", "18deg"); }
 
       this._notes.forEach(function (note, i) {
-        if (!note.position && !note.at) return;
+        if (!note.position && !note.at && !note.surface) return;
         var h = document.createElement("button");
         h.type = "button";
         h.className = "sv-hot";
         h.slot = "hotspot-" + (i + 1);
-        h.setAttribute("data-position", meters(note.position || "0 0 0"));   // "at" notes are moved into place once the model has loaded
-        h.setAttribute("data-normal", meters(note.normal));
+        if (note.surface) {
+          h.setAttribute("data-surface", note.surface);   // from the editor: stays attached to the surface while the model animates
+        } else {
+          h.setAttribute("data-position", meters(note.position || "0 0 0"));   // "at" notes are moved into place once the model has loaded
+          h.setAttribute("data-normal", meters(note.normal));
+        }
         if (self.getAttribute("note-occlusion") === "off") h.setAttribute("data-visible", "");   // always visible and clickable, even behind glass
         else h.setAttribute("data-visibility-attribute", "visible");
         h.setAttribute("aria-label", "Note " + (i + 1) + ": " + note.title);
@@ -350,6 +356,10 @@
       }, this._spin, "spin");
       this._syncSpin();
       var clips = this._mv.availableAnimations || [];
+      if (clips.length > 1) {
+        console.warn("[soma-viewer] \"" + this._name + "\" has " + clips.length + " animation clips (" + clips.join(", ") +
+          "). The viewer plays one clip at a time, so merge them into one clip with the merge-animations tool, or set animation-name.");
+      }
       if (clips.length) {                                   // models with built-in animation get a play/pause button
         var clip = this.getAttribute("animation-name");
         if (!clip || clips.indexOf(clip) < 0) clip = clips[0];
@@ -593,9 +603,22 @@
       var note = h._note, mv = this._mv;
       mv.autoRotate = false;
       this._syncSpin();
-      mv.cameraTarget = meters(note.target || note.position);
-      mv.cameraOrbit = note.orbit || orbitFor(note.normal);
+      // Surface notes have no fixed position, so the camera only moves for them if the note gives its own orbit / target.
+      if (note.target || note.position) mv.cameraTarget = meters(note.target || note.position);
+      if (note.orbit || note.position) mv.cameraOrbit = note.orbit || orbitFor(note.normal);
       this._place(h);
+      this._track();
+    }
+
+    // While a note is open on a moving model, keep its tooltip placed correctly as the marker moves.
+    _track() {
+      var self = this;
+      window.cancelAnimationFrame(this._raf);
+      (function loop() {
+        if (!self._cur) return;
+        self._place(self._cur);
+        self._raf = window.requestAnimationFrame(loop);
+      })();
     }
 
     _closeNote(restoreView) {
